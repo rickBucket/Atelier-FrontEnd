@@ -1,0 +1,37 @@
+{
+  "name": "fec-projectCatwalk",
+  "version": "1.0.0",
+  "description": "Front end capstone project for senior phase Hackreactor.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server/server.js",
+    "build": "webpack -w",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pmcconnell13/fec-projectCatwalk.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pmcconnell13/fec-projectCatwalk/issues"
+  },
+  "homepage": "https://github.com/pmcconnell13/fec-projectCatwalk#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "express": "^4.17.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.13.1",
+    "@babel/preset-env": "^7.13.5",
+    "@babel/preset-react": "^7.12.13",
+    "babel-loader": "^8.2.2",
+    "nodemon": "^2.0.7",
+    "webpack": "^4.46.0",
+    "webpack-cli": "^4.5.0"
+  }
+}

@@ -7,8 +7,8 @@ const port = 3000;
 app.use(express.static('../client/dist'));
 app.use(express.json());
 
-app.get('/', (req, res) => {
-  helper.getData();
+app.get('/products', (req, res) => {
+  helper.getProductData();
   res.send('Hello World!');
 });
 

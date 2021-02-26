@@ -10,15 +10,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pmcconnell13/fec-projectCatwalk.git"
+    "url": "git+https://github.com/Observant-Ostriches/fec-projectCatwalk.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/pmcconnell13/fec-projectCatwalk/issues"
+    "url": "https://github.com/Observant-Ostriches/fec-projectCatwalk/issues"
   },
-  "homepage": "https://github.com/pmcconnell13/fec-projectCatwalk#readme",
+  "homepage": "https://github.com/Observant-Ostriches/fec-projectCatwalk#readme",
   "dependencies": {
     "axios": "^0.21.1",
     "babel-jest": "^26.6.3",

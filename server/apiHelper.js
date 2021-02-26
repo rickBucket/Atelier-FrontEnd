@@ -1,19 +1,19 @@
 const axios = require('axios');
-const API_KEY = require('../config.js');
+const config = require('../config.js');
 
-const getData = () => (
-  axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/', {
+const getProductData = () => (
+  axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products', {
     headers: {
       'User-Agent': 'request',
-      Authorization: `token ${API_KEY}`,
+      Authorization: config.API_KEY,
     },
   })
     .then((results) => {
-      console.log(results);
+      console.log(results.data);
     })
     .catch((err) => {
       console.log(err);
     })
 );
 
-module.exports.getData = getData;
+module.exports.getProductData = getProductData;

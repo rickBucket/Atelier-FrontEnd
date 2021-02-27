@@ -10,7 +10,7 @@ var pluckFirstLineFromFile = function (filePath, callback = () => {}) {
   // TODO
   fs.readFile(filePath, 'UTF-8', (err, data)=> {
     if (err) {
-      callback(err, null);
+      console.log('hi')
     } else {
       callback(null, data.split('\n').shift());
     }
@@ -23,7 +23,7 @@ var getStatusCode = function (url, callback = () => {}) {
 
   request.get(url, (err, response, body) => {
     if (err) {
-      callback(err);
+
     } else {
       callback(null, response.statusCode);
     }

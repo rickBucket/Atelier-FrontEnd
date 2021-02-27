@@ -9,5 +9,8 @@ describe('<App />', () => {
   it('renders a div component', () => {
     const wrapper = shallow(<App />);
     expect(wrapper.find('#data')).not.toBeUndefined();
+    expect(wrapper.state().widget_id).toBe('0');
+
+    wrapper.find('#clear').simulate('click', {target: '1', preventDefault: ()=>{} });
   });
 });

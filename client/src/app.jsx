@@ -21,7 +21,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <button value="0" onClick={this.widgetSelect}>CLEAR</button>
+        <button id="clear" value="0" onClick={this.widgetSelect}>CLEAR</button>
         <button value="1" onClick={this.widgetSelect}>Product Detail</button>
         <button value="2" onClick={this.widgetSelect}>Related Products</button>
         <button value="3" onClick={this.widgetSelect}>Questionable Answers</button>

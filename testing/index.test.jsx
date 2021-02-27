@@ -11,6 +11,9 @@ describe('<App />', () => {
     expect(wrapper.find('#data')).not.toBeUndefined();
     expect(wrapper.state().widget_id).toBe('0');
 
-    wrapper.find('#clear').simulate('click', {target: '1', preventDefault: ()=>{} });
+    wrapper.find('#clear').simulate('click', {target: {value: '1'}, preventDefault: ()=>{} });
+    wrapper.find('#clear').simulate('click', {target: {value: '2'}, preventDefault: ()=>{} });
+    wrapper.find('#clear').simulate('click', {target: {value: '3'}, preventDefault: ()=>{} });
+    wrapper.find('#clear').simulate('click', {target: {value: '4'}, preventDefault: ()=>{} });
   });
 });

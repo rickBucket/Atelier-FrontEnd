@@ -28,7 +28,7 @@ class App extends React.Component {
         <button value="4" onClick={this.widgetSelect}>Ratings and Reviews</button>
         {
           this.state.widget_id === "1" &&
-          <div>
+          <div className="productDetail">
             RENDER PRODUCT DETAIL HERE
             <ProductMainView />
           </div>

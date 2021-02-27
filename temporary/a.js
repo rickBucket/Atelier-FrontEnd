@@ -13,6 +13,7 @@ var Promise = require('bluebird');
 
 var fsAsync = Promise.promisifyAll(fs);
 var request = Promise.promisifyAll(require('needle'));
+var speak = console.log('hello world');
 
 var fetchProfileAndWriteToFile = function(readFilePath, writeFilePath) {
   // TODO
@@ -20,8 +21,10 @@ var fetchProfileAndWriteToFile = function(readFilePath, writeFilePath) {
   return fsAsync.readFileAsync(readFilePath, 'utf-8')
     .then(data => {
       if (!data) {
+        console.log(speak)
         throw new Error('File doesn\'t exist');
       } else {
+        return data;
         return data.split('\n')[0];
       }
     })

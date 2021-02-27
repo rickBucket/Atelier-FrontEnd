@@ -8,8 +8,8 @@ var request = require('needle');
 // This function should retrieve the first line of the file at `filePath`
 var pluckFirstLineFromFile = function (filePath, callback = () => {}) {
   // TODO
-  fs.readFile(filePath, 'UTF-8', (err, data)=> {
-    if (err) {
+  fs.readFile(filePath, 'UTF-8', (error, data)=> {
+    if (error) {
       callback(err, null);
     } else {
       callback(null, data.split('\n').shift());

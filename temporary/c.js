@@ -12,9 +12,9 @@ var Promise = require('bluebird');
 var pluckFirstLineFromFileAsync = function(filePath) {
   // TODO
   return new Promise((resolve, reject) => {
-    fs.readFile(filePath, 'UTF-8', (err, res) => {
-      if (err) {
-        reject(err);
+    fs.readFile(filePath, 'UTF-8', (error, res) => {
+      if (error) {
+        reject(error);
       } else {
         resolve(res.split('\n').shift());
       }

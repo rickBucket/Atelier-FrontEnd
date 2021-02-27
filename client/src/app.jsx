@@ -1,4 +1,5 @@
 import React from 'react';
+import ProductMainView from './components/productDetail/productMainView.jsx';
 // IMPORT YOUR TOP LEVEL COMPONENTS HERE
 
 class App extends React.Component {
@@ -27,7 +28,10 @@ class App extends React.Component {
         <button value="4" onClick={this.widgetSelect}>Ratings and Reviews</button>
         {
           this.state.widget_id === "1" &&
-          <div>RENDER PRODUCT DETAIL HERE</div>
+          <div>
+            RENDER PRODUCT DETAIL HERE
+            <ProductMainView />
+          </div>
         } {
           this.state.widget_id === "2" &&
           <div>RENDER RELATED PRODUCTS HERE</div>

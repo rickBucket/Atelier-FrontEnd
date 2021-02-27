@@ -1,17 +1,22 @@
+const path = require('path');
 const express = require('express');
-const helper = require('./apiHelper.js');
+const routes = require('./router');
 
 const app = express();
 const port = 3000;
 
-app.use(express.static('../client/dist'));
+// Static Middleware
+app.use(express.static(path.join(__dirname, '../client/dist')));
+
+// Parse
 app.use(express.json());
 
-app.get('/products', (req, res) => {
-  helper.getProductData();
-  res.send('Hello World!');
-});
+// Routes
+app.use('/products', routes.productRoutes);
+app.use('/reviews', routes.reviewsRoutes);
+app.use('/qa', routes.questionsRoutes);
+app.use('/cart', routes.cartRoutes);
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`Listening at http://localhost:${port}`);
 });

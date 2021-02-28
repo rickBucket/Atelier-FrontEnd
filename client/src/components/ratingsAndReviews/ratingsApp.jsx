@@ -11,7 +11,7 @@ class RatingsApp extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      reviewList : {}
+      reviewList : ratingsDummy
     }
   }
 
@@ -26,7 +26,7 @@ class RatingsApp extends React.Component {
     return(
       <div>
         <SortOptions />
-        <ReviewList reviewList={ratingsDummy.results}/>
+        <ReviewList reviewList={this.state.reviewList}/>
         <WriteReview />
         <RatingBreakdown />
         <ProductBreakdown />

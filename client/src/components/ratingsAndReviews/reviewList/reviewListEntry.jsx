@@ -10,8 +10,8 @@ class ReviewListEntry extends React.Component {
   render() {
     var review = this.props.review
     return(
-      <div><b>Review List Entry Component</b>
-        <div>
+      <div className="ratings-flexbox-container"><b>Review List Entry Component</b>
+        <div className="ratings-starRatings">
           {`Star rating: ${review.rating}`}
         </div>
         <br />

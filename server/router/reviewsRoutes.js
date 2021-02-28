@@ -1,12 +1,16 @@
 /* eslint-disable */
 const express = require('express');
+const getReviews = require('../controllers/reviewsController.js');
 
 const router = express.Router();
 
 // import the reviewController file here
 
 // GET all reviews
-router.get('/', );
+router.get('/', getReviews.getReviews);
+
+// GET meta reviews
+router.get('/meta', getReviews.getReviewsMeta);
 
 // POST a review
 router.post('/', );

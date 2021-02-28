@@ -4,6 +4,7 @@ import RatingsApp from './components/ratingsAndReviews/ratingsApp.jsx'
 import ProductMainView from './components/productDetail/productMainView.jsx';
 import RelatedProductsMainView from './components/relatedProducts/relatedProductsMainView.jsx';
 // IMPORT YOUR TOP LEVEL COMPONENTS HERE
+import QuestionMaster from './components/questionsAndAnswers/QuestionMaster.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -41,7 +42,7 @@ class App extends React.Component {
           <RelatedProductsMainView />
         } {
           this.state.widget_id === "3" &&
-          <div>RENDER QUESTIONABLE ANSWERS HERE</div>
+          <QuestionMaster />
         } {
           this.state.widget_id === "4" &&
           <div>

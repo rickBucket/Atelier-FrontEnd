@@ -13,14 +13,17 @@ class Questions extends React.Component {
   render() {
     return (
       <div>
-        <>
-        add answer modal -
-        </>
-        map questions here in question
-        <Question />
+        {this.props.questionData.results.map((item, i) => {
+          return (
+            <Question item={item} key={i} />
+          )
+        })}
+
       </div>
     );
   }
 }
 
 export default Questions;
+
+// add answer modal

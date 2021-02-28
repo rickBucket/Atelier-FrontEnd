@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import ProductInfo from './information/productInfo.jsx';
 import ProductDescription from './information/productDescription.jsx';

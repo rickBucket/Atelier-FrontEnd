@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import PrimaryImageView from './primaryImageView.jsx';
 import ImageGallery from './imageGallery.jsx';

@@ -15,8 +15,8 @@ const RelatedProductList = (props) => {
 
 const Div = styled.div`
 display: flex;
-flex-direction: row;
 justify-content: space-around;
+align-content: center;
 `;
 
 export default RelatedProductList;

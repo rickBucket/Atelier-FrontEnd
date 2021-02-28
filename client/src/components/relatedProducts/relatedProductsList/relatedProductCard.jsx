@@ -9,7 +9,7 @@ class RelatedProductCard extends React.Component {
     this.state = {
       productIDInfo: dummyData[this.props.productID].productInfo,
       productIDStyles: dummyData[this.props.productID].styles,
-      defaultStyle: ''
+      featuredURL: ''
     }
     // bind functions here
   }
@@ -23,12 +23,23 @@ class RelatedProductCard extends React.Component {
         defaultStyleInfo = currentStyle;
       }
     }
-    this.setState({defaultStyle: defaultStyleInfo})
+    if (defaultStyleInfo === undefined) {
+      defaultStyleInfo = styles[0];
+    }
+    var url = defaultStyleInfo.photos[0].url;
+    console.log(url);
+    if (url === null) {
+      this.setState({featuredURL: "https://previews.123rf.com/images/urfandadashov/urfandadashov1809/urfandadashov180901275/109135379-photo-not-available-vector-icon-isolated-on-transparent-background-photo-not-available-logo-concept.jpg"})
+    } else {
+      this.setState({featuredURL: url})
+    }
+
   }
 
   render() {
     return (
       <FlexboxItem>
+        <img src={this.state.featuredURL} width="300"></img>
         <div>{this.state.productIDInfo.category}</div>
         <div>{this.state.productIDInfo.name}</div>
         <div>{this.state.productIDInfo.default_price}</div>
@@ -39,8 +50,9 @@ class RelatedProductCard extends React.Component {
 
 //styled-components
 const FlexboxItem = styled.div`
-  width: 200pz;
-  margin: 10px;
+  width: 300px;
+  height: 500px;
+  margin: 2px;
   border: 3px solid #333;
   background-color: grey;
 `;

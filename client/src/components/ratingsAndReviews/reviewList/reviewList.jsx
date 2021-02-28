@@ -5,7 +5,7 @@ const reviewList = (props) => {
 
   return(
     <div>
-      review list works
+      Review List Component
       <ReviewListEntry />
     </div>
   )

@@ -9,7 +9,7 @@ class ReviewListEntry extends React.Component {
 
   render() {
     return(
-      <div>reviewListEntry!</div>
+      <div>Review List Entry Component</div>
     )
   }
 }

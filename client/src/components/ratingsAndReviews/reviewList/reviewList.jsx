@@ -2,7 +2,6 @@ import React from 'react';
 import ReviewListEntry from './reviewListEntry.jsx'
 
 const reviewList = (props) => {
-console.log(props.reviewList)
   return(
     <div>
       Review List Component

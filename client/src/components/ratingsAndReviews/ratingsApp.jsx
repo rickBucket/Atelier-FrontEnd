@@ -1,5 +1,8 @@
 import React from 'react';
 import ratingsDummy from './ratingsDummy.jsx';
+import metaDummy from './metaDummy.jsx';
+import ReviewList from './reviewList/reviewList.jsx'
+
 
 class RatingsApp extends React.Component {
   constructor(props){
@@ -8,7 +11,9 @@ class RatingsApp extends React.Component {
 
   render() {
     return(
-      <div>HELLOOOOOO</div>
+      <div>
+        <ReviewList />
+      </div>
     )
   }
 }

@@ -23,7 +23,6 @@ class RelatedProductsMainView extends React.Component {
   render() {
     return (
       <div className="flexbox-container">
-        <div> Hello from MainView! </div>
         <RelatedProductsList relatedProducts={this.state.relatedProducts}/>
       </div>
 

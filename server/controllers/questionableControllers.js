@@ -2,7 +2,7 @@ const axios = require('axios');
 const config = require('../../config.js');
 
 const getQuestionableData = (req, res) => (
-  axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/qa', {
+  axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions', {
     headers: {
       'User-Agent': 'request',
       Authorization: config.API_KEY,

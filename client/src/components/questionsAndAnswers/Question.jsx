@@ -12,9 +12,7 @@ class Question extends React.Component {
   render() {
     return (
       <div>
-        Q: -
-        A: -
-        helpful question button -
+        <h3>Q: {this.props.item.question_body} </h3>
         <Answers />
       </div>
     )
@@ -22,3 +20,8 @@ class Question extends React.Component {
 }
 
 export default Question;
+
+// Q: -
+// A: -
+// helpful question button -
+//add answer button

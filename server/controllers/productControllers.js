@@ -12,10 +12,8 @@ const getProductData = (req, res) => (
       res.status(200).send(results.data);
     })
     .catch((err) => {
-      res.status(404);
+      res.status(404).send(err);
     })
 );
 
-module.exports = {
-  getProductData: getProductData
-};
+module.exports.getProductData = getProductData;

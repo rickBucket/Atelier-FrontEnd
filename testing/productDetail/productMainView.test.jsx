@@ -10,3 +10,5 @@ describe('<ProductMainView />', () => {
     expect(wrapper.find('#data')).not.toBeUndefined();
   });
 });
+
+

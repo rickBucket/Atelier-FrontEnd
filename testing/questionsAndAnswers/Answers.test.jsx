@@ -1,11 +1,11 @@
 import React from 'react';
 import { shallow, mount, render, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import QuestionMaster from '../../client/src/components/questionsAndAnswers/QuestionMaster.jsx';
+import Answers from '../../client/src/components/questionsAndAnswers/Answers.jsx';
 
-describe('<QuestionMaster />', () => {
+describe('<Answers />', () => {
   it('renders a div component', () => {
-    const wrapper = shallow(<QuestionMaster />);
+    const wrapper = shallow(<Answers />);
     expect(wrapper.find('#data')).not.toBeUndefined();
   });
 });

@@ -11,13 +11,15 @@ class Answers extends React.Component {
   render() {
     return (
       <div>
-        List of answers here -
-        helpful button -
-        report button -
-        load more answers
+       <h3> A: </h3> <p> setting up Answers later </p>
       </div>
     )
   }
 }
 
 export default Answers;
+
+// List of answers here -
+// helpful button -
+// report button -
+// load more answers

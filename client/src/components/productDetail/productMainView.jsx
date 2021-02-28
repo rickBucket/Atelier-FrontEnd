@@ -9,6 +9,13 @@ import Checkout from './checkout/checkout.jsx';
 class ProductMainView extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      currentProduct: {}
+    };
+  }
+
+  componentDidMount() {
+    console.log("HELLO");
   }
 
   render() {

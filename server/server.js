@@ -1,22 +1,26 @@
 /* eslint-disable */
 const path = require('path');
 const express = require('express');
-const routes = require('./router');
+const products = require('./apiHelpers/productAPI.js');
 
 const app = express();
 const port = 3000;
 
-// Static Middleware
+// Middleware
 app.use(express.static(path.join(__dirname, '../client/dist')));
-
-// Parse
 app.use(express.json());
 
-// Routes
-app.use('/products', routes.productRoutes);
-app.use('/reviews', routes.reviewsRoutes);
-app.use('/qa', routes.questionsRoutes);
-app.use('/cart', routes.cartRoutes);
+// Product API handler w/ optional q strings product_id and flag
+// flag = "styles" or "related"
+app.get('/products', (req, res) => {
+  products.getProducts(req.query.product_id, req.query.flag, (err, data) => {
+    if (err) {
+      res.status(404).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
 
 app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}`);

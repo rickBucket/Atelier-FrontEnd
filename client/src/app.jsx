@@ -1,6 +1,9 @@
+/* eslint-disable */
+
 import React from 'react';
 import RatingsApp from './components/ratingsAndReviews/ratingsApp.jsx'
 import ProductMainView from './components/productDetail/productMainView.jsx';
+import RelatedProductsMainView from './components/relatedProducts/relatedProductsMainView.jsx';
 // IMPORT YOUR TOP LEVEL COMPONENTS HERE
 
 class App extends React.Component {
@@ -35,7 +38,8 @@ class App extends React.Component {
           </div>
         } {
           this.state.widget_id === "2" &&
-          <div>RENDER RELATED PRODUCTS HERE</div>
+          // <div>RENDER RELATED PRODUCTS HERE</div>
+          <RelatedProductsMainView />
         } {
           this.state.widget_id === "3" &&
           <div>RENDER QUESTIONABLE ANSWERS HERE</div>

@@ -30,7 +30,8 @@ class RatingsApp extends React.Component {
         gridTemplateColumns: 'repeat(3, 1fr)',
         gridTemplateRows: 'repeat(5, 1fr)',
         gridGap: '30px',
-        justifyContent: 'center space-between',
+        rowGap: '20px',
+        justifyContent: 'center space-around',
         alignContent: 'center',
         width: '100vw',
         height: '100vh'

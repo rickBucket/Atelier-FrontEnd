@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React from 'react';
 
-class ListEntry extends React.Component {
+class RelatedProductCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,4 +17,4 @@ class ListEntry extends React.Component {
   }
 }
 
-export default ListEntry;
+export default RelatedProductCard;

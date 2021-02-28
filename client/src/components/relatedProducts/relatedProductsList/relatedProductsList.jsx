@@ -1,16 +1,16 @@
 /* eslint-disable */
 import React from 'react';
-import ListEntry from './listEntry.jsx';
+import RelatedProductCard from './relatedProductCard.jsx';
 
-const ProductList = (props) => {
+const RelatedProductList = (props) => {
  return (
   <div>
       <div> Hello from relatedProductsList! </div>
       <ul className="relatedProductList">
-        <ListEntry />
+        <RelatedProductCard />
       </ul>
   </div>
   )
 }
 
-export default ProductList;
+export default RelatedProductList;

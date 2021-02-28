@@ -3,11 +3,11 @@
 import React from 'react';
 import { shallow, mount, render, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import RelatedProductsMainView from '../../client/src/components/relatedProducts/relatedProductsMainView.jsx';
+import RelatedProductCard from '../../../client/src/components/relatedProducts/relatedProductsList/relatedProductCard.jsx';
 
-describe('<relatedProductsMainView />', () => {
+describe('<RelatedProductCard />', () => {
   it('renders a div component', () => {
-    const wrapper = shallow(<RelatedProductsMainView />);
+    const wrapper = shallow(<RelatedProductCard />);
     expect(wrapper.find('#data')).not.toBeUndefined();
   });
 });

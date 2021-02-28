@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React from 'react';
-import ProductList from './relatedProductsList/relatedProductsList.jsx';
+import RelatedProductsList from './relatedProductsList/relatedProductsList.jsx';
 
 class RelatedProductsMainView extends React.Component {
   constructor(props) {
@@ -15,7 +15,7 @@ class RelatedProductsMainView extends React.Component {
     return (
       <div>
         <div> Hello from MainView! </div>
-        <ProductList />
+        <RelatedProductsList />
       </div>
 
     )

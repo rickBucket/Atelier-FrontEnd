@@ -1,4 +1,5 @@
 import React from 'react';
+import RatingsApp from './components/ratingsAndReviews/ratingsApp.jsx'
 // IMPORT YOUR TOP LEVEL COMPONENTS HERE
 
 class App extends React.Component {
@@ -36,7 +37,7 @@ class App extends React.Component {
           <div>RENDER QUESTIONABLE ANSWERS HERE</div>
         } {
           this.state.widget_id === "4" &&
-          <div>RENDER RATINGS AND REVIEWS HERE</div>
+          <div><RatingsApp /></div>
         }
       </div>
     );

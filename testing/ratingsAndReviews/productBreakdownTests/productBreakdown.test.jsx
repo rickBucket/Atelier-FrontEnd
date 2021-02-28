@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount, render, configure } from 'enzyme';
-import ProductBreakdown from '../../../client/src/components/ratingsAndReviews/ProductBreakdown/ProductBreakdown.jsx';
+import ProductBreakdown from '../../../client/src/components/ratingsAndReviews/productBreakdown/productBreakdown.jsx';
 
 describe('<ProductBreakdown />', () => {
   it('should render a div', () => {

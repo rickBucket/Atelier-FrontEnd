@@ -2,7 +2,7 @@ const axios = require('axios');
 const config = require('../../config.js');
 
 const getReviews = (req, res) => (
-  axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews', {
+  axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews?product_id=14296', {
     headers: {
       'User-Agent': 'request',
       Authorization: config.API_KEY,
@@ -19,7 +19,7 @@ const getReviews = (req, res) => (
 );
 
 const getReviewsMeta = (req, res) => (
-  axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews/meta', {
+  axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews/meta?product_id=14296', {
     headers: {
       'User-Agent': 'request',
       Authorization: config.API_KEY,

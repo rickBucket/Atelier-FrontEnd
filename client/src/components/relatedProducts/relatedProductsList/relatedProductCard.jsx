@@ -1,5 +1,6 @@
 /* eslint-disable */
 import React from 'react';
+import styled from 'styled-components';
 import dummyData from '../dummyData.js';
 
 class RelatedProductCard extends React.Component {
@@ -27,14 +28,21 @@ class RelatedProductCard extends React.Component {
 
   render() {
     return (
-      <div>
-        <div></div>
+      <FlexboxItem>
         <div>{this.state.productIDInfo.category}</div>
         <div>{this.state.productIDInfo.name}</div>
         <div>{this.state.productIDInfo.default_price}</div>
-      </div>
+      </FlexboxItem>
     )
   }
 }
+
+//styled-components
+const FlexboxItem = styled.div`
+  width: 200pz;
+  margin: 10px;
+  border: 3px solid #333;
+  background-color: grey;
+`;
 
 export default RelatedProductCard;

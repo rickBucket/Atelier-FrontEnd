@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React from 'react';
-import Selectors from './selectors.jsx';
+import Selectors from './Selectors.jsx';
 
 class Checkout extends React.Component {
   constructor(props) {

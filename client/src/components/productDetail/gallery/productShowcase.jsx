@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React from 'react';
-import PrimaryImageView from './primaryImageView.jsx';
-import ImageGallery from './imageGallery.jsx';
+import PrimaryImageView from './PrimaryImageView.jsx';
+import ImageGallery from './ImageGallery.jsx';
 
 class ProductShowcase extends React.Component {
   constructor(props) {

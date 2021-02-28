@@ -1,11 +1,12 @@
 const express = require('express');
 
 const router = express.Router();
+const getData = require('../controllers/questionableControllers.js');
 
 // import questionsController file here
 
 // GET all Q&As
-router.get('/questions', );
+router.get('/questions', getData.getQuestionableData);
 
 // GET answers for one Q
 router.get('/questions/:question_id/answers', );

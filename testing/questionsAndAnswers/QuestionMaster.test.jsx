@@ -8,4 +8,9 @@ describe('<QuestionMaster />', () => {
     const wrapper = shallow(<QuestionMaster />);
     expect(wrapper.find('#data')).not.toBeUndefined();
   });
+
+  it('renders a search bar component', () => {
+    const wrapper = shallow(<QuestionMaster />);
+    expect(wrapper.find('#data')).not.toBeUndefined();
+  });
 });

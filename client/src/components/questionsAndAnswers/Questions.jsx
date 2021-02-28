@@ -18,7 +18,6 @@ class Questions extends React.Component {
             <Question item={item} key={i} />
           )
         })}
-
       </div>
     );
   }

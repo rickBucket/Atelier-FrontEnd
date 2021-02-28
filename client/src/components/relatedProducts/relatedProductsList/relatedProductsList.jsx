@@ -5,10 +5,9 @@ import RelatedProductCard from './relatedProductCard.jsx';
 const RelatedProductList = (props) => {
  return (
   <div>
-      <div> Hello from relatedProductsList! </div>
-      <ul className="relatedProductList">
-        <RelatedProductCard />
-      </ul>
+      {props.relatedProducts.map((product)=> {
+        return <RelatedProductCard productID={product} key={product}/>
+      })}
   </div>
   )
 }

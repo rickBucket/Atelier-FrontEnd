@@ -10,14 +10,23 @@ import SortOptions from './sortOptions/sortOptions.jsx';
 class RatingsApp extends React.Component {
   constructor(props){
     super(props)
+    this.state = {
+      reviewList : ratingsDummy
+    }
+  }
 
+  componentDidMount() {
+    // this.setState({
+    //   reviewList: ratingsDummy.results
+    // })
   }
 
   render() {
+    console.log(ratingsDummy.results)
     return(
       <div>
         <SortOptions />
-        <ReviewList />
+        <ReviewList reviewList={this.state.reviewList}/>
         <WriteReview />
         <RatingBreakdown />
         <ProductBreakdown />

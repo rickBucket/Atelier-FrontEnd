@@ -10,8 +10,19 @@ class ReviewListEntry extends React.Component {
   render() {
     var review = this.props.review
     return(
-      <div className="ratings-flexbox-container"><b>Review List Entry Component</b>
+      <div className="ratings-flexbox-container" style={{
+        display: 'grid',
+        borderStyle: 'solid',
+        borderColor: 'grey',
+        padding: '10px',
+      }}><b>Individual Review Tile</b>
+
         <div className="ratings-starRatings">
+          <span className="fa fa-star"></span>
+          <span className="fa fa-star"></span>
+          <span className="fa fa-star"></span>
+          <span className="fa fa-star"></span>
+          <span className="fa fa-star"></span>
           {`Star rating: ${review.rating}`}
         </div>
         <br />
@@ -23,11 +34,17 @@ class ReviewListEntry extends React.Component {
           {`Date: ${review.date}`}
         </div>
         <br />
-        <div>
+        <div style={{
+
+        }}>
           {`Review summary: ${review.summary}`}
         </div>
         <br />
-        <div>
+        <div style={{
+          borderStyle: 'solid',
+          borderWidth: '1px',
+          padding: '5px',
+        }}>
           {`Review body: ${review.body}`}
         </div>
         <br />
@@ -36,14 +53,11 @@ class ReviewListEntry extends React.Component {
         </div>
         <br />
         <div>
-          {`Helpfulness: ${review.helpfulness}`}
+          {`Helpful? Yes (${review.helpfulness}) | Report`}
         </div>
         <br />
         <div>
           {`Recommended: ${review.recommend}`}
-        </div>
-        <div>
-        -------------------------------------------
         </div>
       </div>
     )

@@ -6,8 +6,12 @@ const reviewList = (props) => {
   return(
     <div>
       Review List Component
-      <ul>
-      {reviewList.map((review, key) => (
+      <ul style={{
+        display: 'grid',
+        padding: '10px',
+        justifyContent: 'space-evenly'
+      }}>
+      {reviewList.slice(0, 2).map((review, key) => (
       <ReviewListEntry review={review} key={key}/>
       ))}
       </ul>

@@ -18,11 +18,11 @@ class ReviewListEntry extends React.Component {
       }}><b>Individual Review Tile</b>
 
         <div className="ratings-starRatings">
-          <span class="fa fa-star"></span>
-          <span class="fa fa-star"></span>
-          <span class="fa fa-star"></span>
-          <span class="fa fa-star"></span>
-          <span class="fa fa-star"></span>
+          <span className="fa fa-star"></span>
+          <span className="fa fa-star"></span>
+          <span className="fa fa-star"></span>
+          <span className="fa fa-star"></span>
+          <span className="fa fa-star"></span>
           {`Star rating: ${review.rating}`}
         </div>
         <br />
@@ -35,7 +35,7 @@ class ReviewListEntry extends React.Component {
         </div>
         <br />
         <div style={{
-          
+
         }}>
           {`Review summary: ${review.summary}`}
         </div>

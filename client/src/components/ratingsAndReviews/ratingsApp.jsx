@@ -17,7 +17,16 @@ class RatingsApp extends React.Component {
   }
 
   componentDidMount() {
-    axios.get(`/reviews/${this.props.productID}`)
+    axios.get(`/reviews/?product_id=${this.props.productID}`)
+      .then((results) => {
+        console.log('results data', results.data);
+        this.setState({
+          reviewList : results.data
+        })
+      })
+      .catch((err) => {
+        console.log('error on review GET request', err)
+      })
   }
 
   render() {

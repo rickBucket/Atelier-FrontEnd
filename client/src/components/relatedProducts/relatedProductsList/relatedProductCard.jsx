@@ -15,11 +15,23 @@ class RelatedProductCard extends React.Component {
     }
     // bind functions here
     this.FlexboxItem = styled.div`
+    height: 450px;
     width: 300px;
-    height: 500px;
-    margin: 2px;
     border: 3px solid #333;
     background-color: grey;
+    flex-shrink: 0;
+    margin-left: 5px;
+    margin-right: 5px;
+  `;
+    this.ImageWrapper = styled.div`
+    height: 200px;
+    width: auto;
+    margin-bottom: 20px;
+  `;
+    this.Image = styled.img`
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
   `;
   }
 
@@ -58,9 +70,6 @@ class RelatedProductCard extends React.Component {
   }
 
   render() {
-    var imageStyle = {
-
-    }
     return (
       <div>
         {
@@ -70,7 +79,10 @@ class RelatedProductCard extends React.Component {
         {
           this.state.loaded === 2 &&
           <this.FlexboxItem>
-            <img src={this.state.featuredURL} width="100%"></img>
+            <this.ImageWrapper>
+              <this.Image src={this.state.featuredURL} width="100%" height="auto"></this.Image>
+            </this.ImageWrapper>
+
             <div>{this.state.productIDInfo.category}</div>
             <div>{this.state.productIDInfo.name}</div>
             <div>{this.state.productIDInfo.default_price}</div>

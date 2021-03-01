@@ -6,7 +6,7 @@ import ProductInfo from '../../../client/src/components/productDetail/informatio
 
 describe('<ProductInfo />', () => {
   it('renders a div component', () => {
-    const wrapper = shallow(<ProductInfo />);
+    const wrapper = shallow(<ProductInfo category={'a'} name={'b'} price={'c'}/>);
     expect(wrapper.find('#data')).not.toBeUndefined();
   });
 });

@@ -16,7 +16,7 @@ class App extends React.Component {
     };
     this.widgetSelect = this.widgetSelect.bind(this);
   }
-
+// adding component did mount to choose productID
   componentDidMount() {
     axios.get('/products/?count=1')
       .then(({data})=> {

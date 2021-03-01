@@ -2,7 +2,6 @@
 import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import dummyData from '../dummyData.js';
 
 class RelatedProductCard extends React.Component {
   constructor(props) {
@@ -11,7 +10,7 @@ class RelatedProductCard extends React.Component {
       productIDInfo: '',
       productIDStyles: '',
       featuredURL: '',
-      loaded: false
+      loaded: 0
     }
     // bind functions here
     this.FlexboxItem = styled.div`
@@ -24,37 +23,48 @@ class RelatedProductCard extends React.Component {
   }
 
   componentDidMount() {
-    axios.get(`/products/?product_id=${this.props.productID}&flag=styles`)
-    .then(({ data }) => {
-      const styledata = data;
-      axios.get(`/products/?product_id=${this.props.productID}`)
-        .then(({ data }) => {
-          var styles = styledata.results;
-          var defaultStyleInfo;
-          for (var i = 0; i < styles.length; i++) {
-            var currentStyle = styles[i];
-            if (currentStyle["default?"] === true) {
-              defaultStyleInfo = currentStyle;
-            }
-          }
-          if (defaultStyleInfo === undefined) {
-            defaultStyleInfo = styles[0];
-          }
-          var url = defaultStyleInfo.photos[0].thumbnail_url;
-          if (url === null) {
-            this.setState({ productIDInfo: data, productIDStyles: styledata, featuredURL: "https://www.westernheights.k12.ok.us/wp-content/uploads/2020/01/No-Photo-Available.jpg", loaded: true })
-          } else {
-            this.setState({ productIDInfo: data, productIDStyles: styledata, featuredURL: url, loaded: true })
-          }
+    axios.get(`/products/?product_id=${this.props.productID}`)
+      .then(({ data })=> {
+        this.setState({
+          productIDInfo: data,
+          loaded: this.state.loaded + 1
         })
-    })
+      })
+    axios.get(`/products/?product_id=${this.props.productID}&flag=styles`)
+      .then(({ data })=> {
+        const defaultProduct = data.results.find((product)=> {
+          return product["default?"] === true
+        })
+        if (!defaultProduct) {
+          var url = data.results[0].photos[0].url;
+        } else {
+          url = defaultProduct.photos[0].url;
+        }
+        if (!url) {
+          this.setState({
+            productIDStyles: data,
+            loaded: this.state.loaded + 1,
+            featuredURL: "https://www.westernheights.k12.ok.us/wp-content/uploads/2020/01/No-Photo-Available.jpg"
+          })
+        } else {
+          this.setState({
+            productIDStyles: data,
+            loaded: this.state.loaded + 1,
+            featuredURL: url
+          })
+        }
+      })
   }
 
   render() {
     return (
       <div>
         {
-          this.state.loaded === true &&
+          this.state.loaded < 2 &&
+          <img src="https://i.gifer.com/7gQj.gif" width="100"></img>
+        }
+        {
+          this.state.loaded === 2 &&
           <this.FlexboxItem>
             <img src={this.state.featuredURL} width="300"></img>
             <div>{this.state.productIDInfo.category}</div>

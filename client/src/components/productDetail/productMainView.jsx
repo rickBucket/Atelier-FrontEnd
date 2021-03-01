@@ -21,28 +21,29 @@ const Button = styled.button`
 class ProductMainView extends React.Component {
   constructor(props) {
     super(props);
+    console.log(props);
     this.state = {
       currentProduct: {}, // {} id name slogan description category default_price features[{feature, value}]
-      styles: [] // style_id, name, original_price, sale_price, default?, photos[{thumbnail_url, url}], skus{#}
+      styles: [], // style_id, name, original_price, sale_price, default?, photos[{thumbnail_url, url}], skus{#}
+      loaded: 0
     };
   }
 
   componentDidMount() {
-    axios.get('/products/?count=1')
-      .then(({data}) => {
-        axios.get(`/products/?product_id=${data[0].id}`)
-          .then(({data}) => {
-            this.setState({
-              currentProduct: data
-            });
+      axios.get(`/products/?product_id=${this.props.productID}`)
+        .then(({data}) => {
+          this.setState({
+            currentProduct: data,
+            loaded: this.state.loaded + 1
           });
-        axios.get(`/products/?product_id=${data[0].id}&flag=styles`)
-          .then(({data}) => {
-            this.setState({
-              styles: data.results
-            });
+        });
+      axios.get(`/products/?product_id=${this.props.productID}&flag=styles`)
+        .then(({data}) => {
+          this.setState({
+            styles: data.results,
+            loaded: this.state.loaded + 1
           });
-      });
+        });
   }
 
   render() {
@@ -50,6 +51,7 @@ class ProductMainView extends React.Component {
       <div>
         <Button>Testing Styled Components</Button>
         {
+          this.state.loaded === 2 &&
           <div>
             <ProductShowcase photos={this.state.styles[0].photos} />
             <ProductInfo />

@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Div = styled.div`
-  border: 4px solid black;
+  border: 2px solid black;
   border-radius: 10px;
   padding: 5px;
   margin: 5px;
@@ -18,10 +18,10 @@ class ProductInfo extends React.Component {
   render() {
     return (
       <Div>
-        ProductInfo
-        <Div>{this.props.category}</Div>
-        <Div>{this.props.name}</Div>
-        <Div>${this.props.price}</Div>
+        *Rating and Review Link Here*
+        <h2>{this.props.category}</h2>
+        <h1>{this.props.name}</h1>
+        <h4>${this.props.price}</h4>
       </Div>
     );
   }

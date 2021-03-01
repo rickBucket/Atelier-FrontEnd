@@ -7,7 +7,7 @@ const handleQStrings = (input, flag = '') => {
     return '';
   } else {
     if (flag) {
-      return `/?${flag}=${input}`;
+      return `${flag}=${input}`;
     }
     return '/' + input;
   }
@@ -18,6 +18,17 @@ const getProducts = (q, callback) => {
   q.flag = handleQStrings(q.flag);
   q.page = handleQStrings(q.page, 'page');
   q.count = handleQStrings(q.count, 'count');
+
+  if (q.page) {
+    q.page = '/?' + q.page;
+    if (q.count) {
+      q.count = '&' + q.count;
+    }
+  } else {
+    if (q.count) {
+      q.count = '/?' + q.count;
+    }
+  }
 
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products${q.product_id + q.flag + q.page + q.count}`, {
     headers: {

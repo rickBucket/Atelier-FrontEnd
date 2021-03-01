@@ -15,6 +15,8 @@ class App extends React.Component {
     this.widgetSelect = this.widgetSelect.bind(this);
   }
 
+
+
   widgetSelect(e) {
     e.preventDefault();
     this.setState({

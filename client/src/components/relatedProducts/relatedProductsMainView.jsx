@@ -27,31 +27,45 @@ class RelatedProductsMainView extends React.Component {
 
   scrollLeft() {
     this.setState({
-      imagesToTheLeft: true
+      imagesToTheRight: true
     })
     const carousel = document.getElementById('productCarousel');
     carousel.scrollLeft -= 320;
+    if (carousel.scrollLeft <= 100) {
+      this.setState({
+        imagesToTheLeft: false,
+      });
+    }
   }
 
   scrollRight() {
     this.setState({
-      imagesToTheRight: true
+      imagesToTheLeft: true
     })
     const carousel = document.getElementById('productCarousel');
+    const scrollLeftMax = carousel.scrollWidth - carousel.clientWidth;
     carousel.scrollLeft += 320;
+    if (carousel.scrollLeft >= scrollLeftMax - 312) {
+      this.setState({
+        imagesToTheRight: false,
+      });
+    }
   }
 
   // add condititonal rendering in case relatedProducts hasn't been defined yet
   render() {
     return (
       <div >
-        <button onClick={this.scrollRight}>
+        <div>
+          Related Products
+        </div>
+        {this.state.imagesToTheRight ? <button onClick={this.scrollRight}>
           Right
-        </button>
+        </button> : null}
         <RelatedProductsList productID={this.props.productID} relatedProducts={this.state.relatedProducts}/>
-        <button onClick={this.scrollLeft}>
+        {this.state.imagesToTheLeft ? <button onClick={this.scrollLeft}>
           Left
-        </button>
+        </button> : null}
       </div>
 
     )

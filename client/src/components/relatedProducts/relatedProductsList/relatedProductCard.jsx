@@ -10,7 +10,8 @@ class RelatedProductCard extends React.Component {
       productIDInfo: '',
       productIDStyles: '',
       featuredURL: '',
-      loaded: 0
+      loaded: 0,
+      compare: false,
     }
     // bind functions here
     this.FlexboxItem = styled.div`
@@ -57,16 +58,19 @@ class RelatedProductCard extends React.Component {
   }
 
   render() {
+    var imageStyle = {
+
+    }
     return (
       <div>
         {
           this.state.loaded < 2 &&
-          <img src="https://i.gifer.com/7gQj.gif" width="100"></img>
+          <img src="https://i.gifer.com/7gQj.gif" width="150"></img>
         }
         {
           this.state.loaded === 2 &&
           <this.FlexboxItem>
-            <img src={this.state.featuredURL} width="300"></img>
+            <img src={this.state.featuredURL} width="100%"></img>
             <div>{this.state.productIDInfo.category}</div>
             <div>{this.state.productIDInfo.name}</div>
             <div>{this.state.productIDInfo.default_price}</div>

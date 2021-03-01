@@ -9,10 +9,18 @@ import Checkout from './checkout/checkout.jsx';
 import styled from 'styled-components';
 
 const Div = styled.div`
-  border: 4px solid black;
+  border: 2px solid black;
   border-radius: 10px;
   padding: 5px;
   margin: 5px;
+`
+const FlexDiv = styled.div`
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 5px;
+  margin: 5px;
+  display: flex;
+  justify-content: center;
 `
 
 class ProductMainView extends React.Component {
@@ -48,14 +56,18 @@ class ProductMainView extends React.Component {
         {
           this.state.loaded === 2 &&
           <Div>
-            <ProductShowcase photos={this.state.styles[0].photos} />
-            <ProductInfo
-              name={this.state.currentProduct.name}
-              category={this.state.currentProduct.category}
-              price={this.state.currentProduct.default_price}
-            />
-            <StyleSelector styles={this.state.styles}/>
-            <Checkout />
+            <FlexDiv>
+              <ProductShowcase photos={this.state.styles[0].photos} />
+              <Div>
+                <ProductInfo
+                  name={this.state.currentProduct.name}
+                  category={this.state.currentProduct.category}
+                  price={this.state.currentProduct.default_price}
+                />
+                <StyleSelector styles={this.state.styles}/>
+                <Checkout />
+              </Div>
+            </FlexDiv>
             <ProductDescription
               slogan={this.state.currentProduct.slogan}
               description={this.state.currentProduct.description}

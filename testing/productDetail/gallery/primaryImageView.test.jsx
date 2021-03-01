@@ -6,7 +6,7 @@ import PrimaryImageView from '../../../client/src/components/productDetail/galle
 
 describe('<PrimaryImageView />', () => {
   it('renders a div component', () => {
-    const wrapper = shallow(<PrimaryImageView />);
+    const wrapper = shallow(<PrimaryImageView photo={'a'}/>);
     expect(wrapper.find('#data')).not.toBeUndefined();
   });
 });

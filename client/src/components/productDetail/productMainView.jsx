@@ -8,20 +8,16 @@ import StyleSelector from './customization/styleSelector.jsx';
 import Checkout from './checkout/checkout.jsx';
 import styled from 'styled-components';
 
-const Button = styled.button`
-  background: palevioletred;
-  border-radius: 3px;
-  height: 25px;
-  border: none;
-  color: white;
-  display: flex;
-  text-align: center;
+const Div = styled.div`
+  border: 4px solid black;
+  border-radius: 10px;
+  padding: 5px;
+  margin: 5px;
 `
 
 class ProductMainView extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
     this.state = {
       currentProduct: {}, // {} id name slogan description category default_price features[{feature, value}]
       styles: [], // style_id, name, original_price, sale_price, default?, photos[{thumbnail_url, url}], skus{#}
@@ -48,19 +44,26 @@ class ProductMainView extends React.Component {
 
   render() {
     return (
-      <div>
-        <Button>Testing Styled Components</Button>
+      <Div>
         {
           this.state.loaded === 2 &&
-          <div>
+          <Div>
             <ProductShowcase photos={this.state.styles[0].photos} />
-            <ProductInfo />
+            <ProductInfo
+              name={this.state.currentProduct.name}
+              category={this.state.currentProduct.category}
+              price={this.state.currentProduct.default_price}
+            />
             <StyleSelector styles={this.state.styles}/>
             <Checkout />
-            <ProductDescription />
-          </div>
+            <ProductDescription
+              slogan={this.state.currentProduct.slogan}
+              description={this.state.currentProduct.description}
+              features={this.state.currentProduct.features}
+            />
+          </Div>
         }
-      </div>
+      </Div>
     );
   }
 }

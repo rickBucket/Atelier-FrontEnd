@@ -9,9 +9,22 @@ class Answers extends React.Component {
   }
 
   render() {
+    const btnStyle = {
+      "text-decoration": "underline",
+      "background": "transparent",
+      "border": "none",
+      "outline": "none",
+      "cursor": "pointer",
+      "float": "right",
+    };
+    const connect = {
+      "display": "inline",
+    }
+
     return (
-      <div>
-       <h3> A: </h3> <p> setting up Answers later </p>
+      <div style={connect}>
+       <h3> A: </h3> <p> setting up Answers later </p> <button value={"Helpful?"} style={btnStyle}> Yes </button>
+       <button style={btnStyle}> Report </button>
       </div>
     )
   }

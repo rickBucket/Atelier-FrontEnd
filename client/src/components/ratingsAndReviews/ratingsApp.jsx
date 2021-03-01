@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import ratingsDummy from './ratingsDummy.jsx';
 import metaDummy from './metaDummy.jsx';
 import ReviewList from './reviewList/reviewList.jsx';
@@ -16,9 +17,7 @@ class RatingsApp extends React.Component {
   }
 
   componentDidMount() {
-    // this.setState({
-    //   reviewList: ratingsDummy.results
-    // })
+    axios.get(`/reviews/${this.props.productID}`)
   }
 
   render() {

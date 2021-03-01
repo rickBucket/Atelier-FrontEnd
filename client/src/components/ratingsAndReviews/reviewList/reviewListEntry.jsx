@@ -34,7 +34,9 @@ class ReviewListEntry extends React.Component {
           {`Date: ${review.date}`}
         </div>
         <br />
-        <div>
+        <div style={{
+          
+        }}>
           {`Review summary: ${review.summary}`}
         </div>
         <br />

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 
 class StyleOption extends React.Component {

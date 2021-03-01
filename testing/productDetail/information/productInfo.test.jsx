@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import { shallow, mount, render, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';

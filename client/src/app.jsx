@@ -12,16 +12,19 @@ class App extends React.Component {
     super(props);
     this.state = {
       widget_id: '0', // 1 = product detail, 2 = related product, 3 = q&a, 4 = reviews
-      productID: ''
+      productID: '',
+      loadedID: 0
     };
     this.widgetSelect = this.widgetSelect.bind(this);
   }
+
 // adding component did mount to choose productID
   componentDidMount() {
     axios.get('/products/?count=1')
       .then(({data})=> {
         this.setState({
-          productId: data[0].id
+          productID: data[0].id,
+          loadedID: 1
         });
       })
       .catch((error)=> {
@@ -40,11 +43,15 @@ class App extends React.Component {
     return (
       <div>
         <button type="submit" id="clear" value="0" onClick={this.widgetSelect}>CLEAR</button>
-        <button type="submit" value="1" onClick={this.widgetSelect}>Product Detail</button>
-        <button type="submit" value="2" onClick={this.widgetSelect}>Related Products</button>
-        <button type="submit" value="3" onClick={this.widgetSelect}>Questionable Answers</button>
-        <button type="submit" value="4" onClick={this.widgetSelect}>Ratings and Reviews</button>
         {
+          this.state.loadedID === 1 &&
+          <div>
+            <button type="submit" value="1" onClick={this.widgetSelect}>Product Detail</button>
+            <button type="submit" value="2" onClick={this.widgetSelect}>Related Products</button>
+            <button type="submit" value="3" onClick={this.widgetSelect}>Questionable Answers</button>
+            <button type="submit" value="4" onClick={this.widgetSelect}>Ratings and Reviews</button>
+        </div>
+        } {
           this.state.widget_id === '1' &&
           <div className="productDetail">
             RENDER PRODUCT DETAIL HERE

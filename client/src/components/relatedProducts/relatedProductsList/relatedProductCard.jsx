@@ -26,7 +26,7 @@ class RelatedProductCard extends React.Component {
     if (defaultStyleInfo === undefined) {
       defaultStyleInfo = styles[0];
     }
-    var url = defaultStyleInfo.photos[0].url;
+    var url = defaultStyleInfo.photos[0].thumbnail_url;
     console.log(url);
     if (url === null) {
       this.setState({featuredURL: "https://previews.123rf.com/images/urfandadashov/urfandadashov1809/urfandadashov180901275/109135379-photo-not-available-vector-icon-isolated-on-transparent-background-photo-not-available-logo-concept.jpg"})

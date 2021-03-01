@@ -1,5 +1,6 @@
 /* eslint-disable */
 import React from 'react';
+import axios from 'axios';
 import RatingsApp from './components/ratingsAndReviews/ratingsApp.jsx'
 import ProductMainView from './components/productDetail/productMainView.jsx';
 import RelatedProductsMainView from './components/relatedProducts/relatedProductsMainView.jsx';
@@ -11,11 +12,26 @@ class App extends React.Component {
     super(props);
     this.state = {
       widget_id: '0', // 1 = product detail, 2 = related product, 3 = q&a, 4 = reviews
+      productID: ''
     };
     this.widgetSelect = this.widgetSelect.bind(this);
   }
 
+<<<<<<< HEAD
 
+=======
+  componentDidMount() {
+    axios.get('/products/?count=1')
+      .then(({data})=> {
+        this.setState({
+          productId: data[0].id
+        });
+      })
+      .catch((error)=> {
+        console.log('Error setting productID in App', error)
+      });
+  };
+>>>>>>> 63703d08ba7fb0f351f62b2ee323f93b8088dbfa
 
   widgetSelect(e) {
     e.preventDefault();
@@ -36,19 +52,19 @@ class App extends React.Component {
           this.state.widget_id === '1' &&
           <div className="productDetail">
             RENDER PRODUCT DETAIL HERE
-            <ProductMainView />
+            <ProductMainView productID={this.state.productID}/>
           </div>
         } {
           this.state.widget_id === "2" &&
           // <div>RENDER RELATED PRODUCTS HERE</div>
-          <RelatedProductsMainView />
+          <RelatedProductsMainView productID={this.state.productID}/>
         } {
           this.state.widget_id === "3" &&
-          <QuestionMaster />
+          <QuestionMaster productID={this.state.productID}/>
         } {
           this.state.widget_id === "4" &&
           <div>
-            <RatingsApp />
+            <RatingsApp productID={this.state.productID}/>
           </div>
         }
       </div>

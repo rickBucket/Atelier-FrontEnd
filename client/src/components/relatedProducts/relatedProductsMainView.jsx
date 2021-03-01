@@ -30,14 +30,13 @@ class RelatedProductsMainView extends React.Component {
       imagesToTheLeft: true
     })
     const carousel = document.getElementById('productCarousel');
-    // const remainderToTheRight = carousel.scrollWidth = carousel.clientWidth;
-    carousel.scroll({
-      left: 320,
-      behavior: 'smooth'
-    })
+    carousel.scrollLeft -= 320;
   }
 
   scrollRight() {
+    this.setState({
+      imagesToTheRight: true
+    })
     const carousel = document.getElementById('productCarousel');
     carousel.scrollLeft += 320;
   }

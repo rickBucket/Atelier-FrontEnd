@@ -42,11 +42,10 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        QANDA
+        <button type="submit" id="clear" value="0" onClick={this.widgetSelect}>CLEAR</button>
         {
           this.state.loadedID === 1 &&
           <div>
-            <button type="submit" id="clear" value="0" onClick={this.widgetSelect}>CLEAR</button>
             <button type="submit" value="1" onClick={this.widgetSelect}>Product Detail</button>
             <button type="submit" value="2" onClick={this.widgetSelect}>Related Products</button>
             <button type="submit" value="3" onClick={this.widgetSelect}>Questionable Answers</button>

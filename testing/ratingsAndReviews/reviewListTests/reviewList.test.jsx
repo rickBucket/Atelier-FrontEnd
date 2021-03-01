@@ -1,11 +1,11 @@
 import React from 'react';
 import { shallow, mount, render, configure } from 'enzyme';
 import ReviewList from '../../../client/src/components/ratingsAndReviews/reviewList/reviewList.jsx';
-import ratingsDummy from '../../../client/src/components/ratingsAndReviews/ratingsDummy.jsx'
+import reviewsDummy from '../../../client/src/components/ratingsAndReviews/reviewsDummy.jsx'
 
 describe('<ReviewList />', () => {
   it('should render a div', () => {
-    const wrapper = shallow(<ReviewList reviewList={ratingsDummy}/>);
+    const wrapper = shallow(<ReviewList reviewList={reviewsDummy}/>);
     expect(wrapper.find('#data')).not.toBeUndefined();
   });
 });

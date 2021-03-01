@@ -1,7 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import ratingsDummy from './ratingsDummy.jsx';
-import metaDummy from './metaDummy.jsx';
 import ReviewList from './reviewList/reviewList.jsx';
 import WriteReview from './writeReview/writeReview.jsx';
 import RatingBreakdown from './ratingBreakdown/ratingBreakdown.jsx';
@@ -12,8 +10,13 @@ class RatingsApp extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      reviewList : ratingsDummy
+      reviewList : [],
+      reviewsReady: false,
+      writeReviewModal: false
     }
+
+    this.writeReviewClick = this.writeReviewClick.bind(this);
+    this.exitWriteReviewClick = this.exitWriteReviewClick.bind(this);
   }
 
   componentDidMount() {
@@ -21,7 +24,8 @@ class RatingsApp extends React.Component {
       .then((results) => {
         console.log('results data', results.data);
         this.setState({
-          reviewList : results.data
+          reviewList : results.data,
+          reviewsReady: true
         })
       })
       .catch((err) => {
@@ -29,28 +33,62 @@ class RatingsApp extends React.Component {
       })
   }
 
+
+  handleReviewData(reviewData) {
+    //axiosPost here
+  }
+
+  exitWriteReviewClick(e) {
+    this.setState({
+      writeReviewModal: false
+    })
+  }
+
+  writeReviewClick(e) {
+    this.setState({
+      writeReviewModal: true
+    })
+  }
+
   render() {
+    if (this.state.writeReviewModal) {
+      return(
+        <div>
+            Let's write a review.
+            <WriteReview />
+            <br />
+            <button onClick={this.exitWriteReviewClick}>Exit write review</button>
+        </div>
+      )
+    }
     return(
+      <div>
+        {
+          this.state.reviewsReady === true &&
       <div className="reviewsGridContainer" style={{
         display: 'grid',
         borderStyle: 'solid',
         borderColor: 'red',
         gridTemplateColumns: 'repeat(3, 1fr)',
-        gridTemplateRows: 'repeat(5, 1fr)',
+        gridTemplateRows: 'repeat(8, 1fr)',
         padding: '20px',
         gridGap: '20px',
         rowGap: '20px',
         justifyContent: 'center space-around',
         alignContent: 'center',
-        width: '100vw',
-        height: '100vh'
+        borderRadius: '20px',
+        padding: '20px',
+        width: '95vw',
+        height: '95vh'
       }}>
 
         <div className="ratingBreakdownGridBox" style={{
           borderStyle: 'solid',
           borderColor: 'yellow',
+          padding: '10px',
+          borderRadius: '20px',
           gridColumn: '1',
-          gridRow: '1/3',
+          gridRow: '1/4',
         }}>
           <RatingBreakdown />
         </div>
@@ -58,8 +96,10 @@ class RatingsApp extends React.Component {
         <div className="productBreakdownGridBox" style={{
           borderStyle: 'solid',
           borderColor: 'orange',
+          borderRadius: '20px',
+          padding: '20px',
           gridColumn: '1',
-          gridRow: '3/5',
+          gridRow: '4/7',
         }}>
           <ProductBreakdown />
         </div>
@@ -67,7 +107,10 @@ class RatingsApp extends React.Component {
         <div className="sortOptionsBreakdownGridBox" style={{
           borderStyle: 'solid',
           borderColor: 'teal',
+          borderRadius: '20px',
+          padding: '20px',
           gridColumn: '2',
+          gridRow: '1'
         }}>
           <SortOptions />
         </div>
@@ -75,9 +118,11 @@ class RatingsApp extends React.Component {
         <div className="reviewListGridBox" style={{
           borderStyle: 'solid',
           borderColor: 'purple',
+          borderRadius: '20px',
           padding: '20px',
-          gridColumn: '2/4',
-          gridRow: '2/10',
+          gridColumn: '2/5',
+          gridRow: '2/8',
+          overflow: 'auto'
         }}>
           <ReviewList reviewList={this.state.reviewList}/>
         </div>
@@ -85,21 +130,29 @@ class RatingsApp extends React.Component {
         <div className="writeReviewGridBox" style={{
           borderStyle: 'solid',
           borderColor: 'green',
+          borderRadius: '20px',
+          padding: '20px',
           gridColumn: '2/3',
+          gridRow: '8'
         }}>
-          <WriteReview className="writeReviewGridBox"/>
+          <button onClick={this.writeReviewClick}>Write Review</button>
+          {/* <WriteReview className="writeReviewGridBox"/> */}
         </div>
 
         <div className="viewMoreReviewsGridBox" style={{
           borderStyle: 'solid',
+          borderRadius: '20px',
+          padding: '20px',
           borderColor: 'pink',
           gridColumn: '3',
+          gridRow: '8'
         }}>
           <button>More Reviews</button>
           {/* On click, this changes state of reviews to an extra two reviews */}
         </div>
-
-      </div>
+    </div>
+    }
+    </div>
     )
   }
 }

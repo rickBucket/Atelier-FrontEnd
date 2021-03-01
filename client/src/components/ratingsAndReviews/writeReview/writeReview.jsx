@@ -1,46 +1,137 @@
 import React from 'react';
 
-///////This will be a button, when clicked, opens up a write review form
-
 class WriteReview extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      writeReview: false
+      reviewBody: '',
+      reviewSummary: '',
+      nickname: '',
+      email: ''
     }
-    this.writeClick = this.writeClick.bind(this);
-    this.cancelWriteClick = this.cancelWriteClick.bind(this);
+    this.onInputChange = this.onInputChange.bind(this);
   }
 
-  writeClick(e){
+  onInputChange(e){
+    // console.log('input name', e.target.name);
+    // console.log('input value', e.target.value);
+    e.preventDefault();
     this.setState({
-      writeReview: true
-    })
-  }
-
-  cancelWriteClick(e){
-    this.setState({
-      writeReview: false
+      [e.target.name]: e.target.value
     })
   }
 
   render() {
-    var writeReview = this.state.writeReview
-    if (!writeReview) {
-      return(
-        <div>Write Review Component
-          <div onClick={this.writeClick}>Write Review (click me to change state)</div>
-        </div>
-      )
-    }
-    if (writeReview) {
-      return(
-        <div onClick={this.cancelWriteClick}>
-          Time to write (click me to change state)
-        </div>
-      )
-    }
+    console.log(this.state)
+    return(
+      <div style={{
+        display: 'grid',
+        borderStyle: 'solid',
+        borderColor: 'grey',
+        borderRadius: '20px',
+        padding: '10px',
+        height: '400px',
+        gridTemplateColumns: 'repeat(2, 1fr)',
+        gridTemplateRows: 'repeat(3, 1fr)',
+        justifyContent: 'space-around',
+        overflow: 'auto'
+      }}>
+        <form>
+
+          <div style={{
+            borderStyle: 'solid',
+            borderRadius: '20px',
+            borderWidth: '3px',
+            borderColor: 'grey',
+            padding: '10px',
+          }}>Review
+          <span className="fa fa-star"></span>
+          <span className="fa fa-star"></span>
+          <span className="fa fa-star"></span>
+          <span className="fa fa-star"></span>
+          <span className="fa fa-star"></span>
+          </div>
+
+          <div style={{
+            borderStyle: 'solid',
+            borderRadius: '20px',
+            borderWidth: '3px',
+            borderColor: 'grey',
+            padding: '10px',
+          }}>Would you recommend this product?
+            <button>Yes</button>
+            <button>No</button>
+          </div>
+
+          <div style={{
+            borderStyle: 'solid',
+            borderRadius: '20px',
+            borderWidth: '3px',
+            borderColor: 'grey',
+            padding: '10px',
+          }}>Characteristics
+          </div>
+
+          <div style={{
+            borderStyle: 'solid',
+            borderRadius: '20px',
+            borderWidth: '3px',
+            borderColor: 'grey',
+            padding: '10px',
+          }}>
+          <label for="reviewSummary">Review Summary (optional): </label>
+            <input type="text" value={this.state.reviewSummary} name="reviewSummary" onChange={this.onInputChange}></input>
+          </div>
+
+          <div style={{
+            borderStyle: 'solid',
+            borderRadius: '20px',
+            borderWidth: '3px',
+            borderColor: 'grey',
+            padding: '10px',
+          }}>
+            <label for="reviewBody">Review Body: </label>
+            <input type="text" value={this.state.reviewBody} name="reviewBody" onChange={this.onInputChange}></input>
+          </div>
+
+          <div style={{
+            borderStyle: 'solid',
+            borderRadius: '20px',
+            borderWidth: '3px',
+            borderColor: 'grey',
+            padding: '10px',
+          }}>Upload photos (optional)
+            <button onClick={(e) => e.preventDefault}>Add photos</button>
+          </div>
+
+          <div style={{
+            borderStyle: 'solid',
+            borderRadius: '20px',
+            borderWidth: '3px',
+            borderColor: 'grey',
+            padding: '10px',
+          }}>
+            <label for="nickname">Nickname: </label>
+            <input type="text" name="nickname" value={this.state.nickname} onChange={this.onInputChange}></input>
+          </div>
+
+          <div style={{
+            borderStyle: 'solid',
+            borderRadius: '20px',
+            borderWidth: '3px',
+            borderColor: 'grey',
+            padding: '10px',
+          }}>
+            <label for="email">Email: </label>
+            <input type="text" name="email" value={this.state.email} onChange={this.onInputChange}></input>
+          </div>
+
+          <button>Submit Review</button>
+
+        </form>
+      </div>
+    )
   }
 }
 
-export default WriteReview
+export default WriteReview;

@@ -7,24 +7,34 @@ class RelatedProductList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      farLeftImageIndex: 0
+      farLeftImageIndex: 0,
+      relatedProducts: this.props.relatedProducts,
     }
   }
 
   render() {
     return (
-      <Div>
-        {this.props.relatedProducts.map((product) => {
-          return <RelatedProductCard parentProductID={this.props.productID} productID={product} key={product} />
-        })}
-      </Div>
+      <div>
+        <RelatedListContainer id="productCarousel">
+          {this.props.relatedProducts.map((product) => {
+            return <RelatedProductCard parentProductID={this.props.productID} productID={product} key={product} />
+          })}
+        </RelatedListContainer>
+        </div>
     )
   }
 }
 
-const Div = styled.div`
+const RelatedListContainer = styled.div`
 display: flex;
-justify-content: space-around;
+justify-content: flex-start;
+overflow: hidden;
+`;
+const ButtonStyle = styled.div`
+position: absolute,
+right: 2%
+top: 45%
+cursor: pointer
 `;
 
 export default RelatedProductList;

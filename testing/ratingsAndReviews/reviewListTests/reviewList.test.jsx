@@ -8,4 +8,4 @@ describe('<ReviewList />', () => {
     const wrapper = shallow(<ReviewList reviewList={reviewsDummy}/>);
     expect(wrapper.find('#data')).not.toBeUndefined();
   });
-});
+}); 

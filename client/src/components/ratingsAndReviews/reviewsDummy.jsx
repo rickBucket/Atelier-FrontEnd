@@ -1,7 +1,6 @@
 import React from 'react';
 
-
-const ratingsDummy = {
+const reviewsDummy = {
   "product": "14296",
   "page": 0,
   "count": 5,
@@ -112,6 +111,6 @@ const ratingsDummy = {
           ]
       }
   ]
-}
+};
 
-export default ratingsDummy
+export default reviewsDummy;

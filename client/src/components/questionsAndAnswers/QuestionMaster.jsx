@@ -1,14 +1,26 @@
+/* eslint-disable */
 import React from 'react';
 import Search from './Search.jsx';
 import Questions from './Questions.jsx';
 import dummyData from './dummyData.js';
+import axios from 'axios';
 
 class QuestionMaster extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       questionData: dummyData,
     };
+  }
+
+  componentDidMount() {
+    axios.get(`qa/questions/?product_id=${this.props.productID}`)
+      .then((response) => {
+        console.log(response.data)
+        this.setState({
+          questionData: response.data,
+        });
+      });
   }
 
   render() {

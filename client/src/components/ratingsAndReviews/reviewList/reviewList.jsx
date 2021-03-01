@@ -1,8 +1,8 @@
 import React from 'react';
 import ReviewListEntry from './reviewListEntry.jsx'
 
-const reviewList = (props) => {
-  var reviewList = props.reviewList.results
+const reviewList = ({ reviewList }) => {
+  console.log('reviewList', reviewList)
   return(
     <div>
       Review List Component
@@ -11,7 +11,7 @@ const reviewList = (props) => {
         padding: '10px',
         justifyContent: 'space-evenly'
       }}>
-      {reviewList.slice(0, 2).map((review, key) => (
+      {reviewList.results.slice(0,2).map((review, key) => (
       <ReviewListEntry review={review} key={key}/>
       ))}
       </ul>

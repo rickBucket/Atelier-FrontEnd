@@ -1,11 +1,11 @@
 /* eslint-disable */
 import React from 'react';
 import axios from 'axios';
-import ProductInfo from './information/ProductInfo.jsx';
-import ProductDescription from './information/ProductDescription.jsx';
-import ProductShowcase from './gallery/ProductShowcase.jsx';
-import StyleSelector from './customization/StyleSelector.jsx';
-import Checkout from './checkout/Checkout.jsx';
+import ProductInfo from './information/productInfo.jsx';
+import ProductDescription from './information/productDescription.jsx';
+import ProductShowcase from './gallery/productShowcase.jsx';
+import StyleSelector from './customization/styleSelector.jsx';
+import Checkout from './checkout/checkout.jsx';
 import styled from 'styled-components';
 
 const Button = styled.button`

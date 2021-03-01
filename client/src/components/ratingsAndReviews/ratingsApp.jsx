@@ -11,8 +11,12 @@ class RatingsApp extends React.Component {
     super(props)
     this.state = {
       reviewList : [],
-      reviewsReady: false
+      reviewsReady: false,
+      writeReviewModal: false
     }
+
+    this.writeReviewClick = this.writeReviewClick.bind(this);
+    this.exitWriteReviewClick = this.exitWriteReviewClick.bind(this);
   }
 
   componentDidMount() {
@@ -29,7 +33,34 @@ class RatingsApp extends React.Component {
       })
   }
 
+
+  handleReviewData(reviewData) {
+    //axiosPost here
+  }
+
+  exitWriteReviewClick(e) {
+    this.setState({
+      writeReviewModal: false
+    })
+  }
+
+  writeReviewClick(e) {
+    this.setState({
+      writeReviewModal: true
+    })
+  }
+
   render() {
+    if (this.state.writeReviewModal) {
+      return(
+        <div>
+            Let's write a review.
+            <WriteReview />
+            <br />
+            <button onClick={this.exitWriteReviewClick}>Exit write review</button>
+        </div>
+      )
+    }
     return(
       <div>
         {
@@ -104,7 +135,8 @@ class RatingsApp extends React.Component {
           gridColumn: '2/3',
           gridRow: '8'
         }}>
-          <WriteReview className="writeReviewGridBox"/>
+          <button onClick={this.writeReviewClick}>Write Review</button>
+          {/* <WriteReview className="writeReviewGridBox"/> */}
         </div>
 
         <div className="viewMoreReviewsGridBox" style={{

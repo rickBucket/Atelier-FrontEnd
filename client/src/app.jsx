@@ -20,10 +20,10 @@ class App extends React.Component {
 
 // adding component did mount to choose productID
   componentDidMount() {
-    axios.get('/products/?count=1')
+    axios.get('/products/?count=3')
       .then(({data})=> {
         this.setState({
-          productID: data[0].id,
+          productID: data[1].id,
           loadedID: 1
         });
       })

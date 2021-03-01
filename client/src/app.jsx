@@ -46,7 +46,6 @@ class App extends React.Component {
         } {
           this.state.widget_id === "4" &&
           <div>
-            RENDER RATINGS AND REVIEWS HERE
             <RatingsApp />
           </div>
         }

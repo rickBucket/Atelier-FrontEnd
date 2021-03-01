@@ -1,7 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import ratingsDummy from './ratingsDummy.jsx';
-import metaDummy from './metaDummy.jsx';
 import ReviewList from './reviewList/reviewList.jsx';
 import WriteReview from './writeReview/writeReview.jsx';
 import RatingBreakdown from './ratingBreakdown/ratingBreakdown.jsx';
@@ -12,7 +10,8 @@ class RatingsApp extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      reviewList : ratingsDummy
+      reviewList : [],
+      reviewsReady: false
     }
   }
 
@@ -21,7 +20,8 @@ class RatingsApp extends React.Component {
       .then((results) => {
         console.log('results data', results.data);
         this.setState({
-          reviewList : results.data
+          reviewList : results.data,
+          reviewsReady: true
         })
       })
       .catch((err) => {
@@ -30,6 +30,7 @@ class RatingsApp extends React.Component {
   }
 
   render() {
+    if (this.state.reviewsReady) {
     return(
       <div className="reviewsGridContainer" style={{
         display: 'grid',
@@ -42,6 +43,8 @@ class RatingsApp extends React.Component {
         rowGap: '20px',
         justifyContent: 'center space-around',
         alignContent: 'center',
+        borderRadius: '20px',
+        padding: '20px',
         width: '100vw',
         height: '100vh'
       }}>
@@ -49,6 +52,8 @@ class RatingsApp extends React.Component {
         <div className="ratingBreakdownGridBox" style={{
           borderStyle: 'solid',
           borderColor: 'yellow',
+          padding: '10px',
+          borderRadius: '20px',
           gridColumn: '1',
           gridRow: '1/3',
         }}>
@@ -58,6 +63,8 @@ class RatingsApp extends React.Component {
         <div className="productBreakdownGridBox" style={{
           borderStyle: 'solid',
           borderColor: 'orange',
+          borderRadius: '20px',
+          padding: '20px',
           gridColumn: '1',
           gridRow: '3/5',
         }}>
@@ -67,6 +74,8 @@ class RatingsApp extends React.Component {
         <div className="sortOptionsBreakdownGridBox" style={{
           borderStyle: 'solid',
           borderColor: 'teal',
+          borderRadius: '20px',
+          padding: '20px',
           gridColumn: '2',
         }}>
           <SortOptions />
@@ -75,6 +84,7 @@ class RatingsApp extends React.Component {
         <div className="reviewListGridBox" style={{
           borderStyle: 'solid',
           borderColor: 'purple',
+          borderRadius: '20px',
           padding: '20px',
           gridColumn: '2/4',
           gridRow: '2/10',
@@ -85,6 +95,8 @@ class RatingsApp extends React.Component {
         <div className="writeReviewGridBox" style={{
           borderStyle: 'solid',
           borderColor: 'green',
+          borderRadius: '20px',
+          padding: '20px',
           gridColumn: '2/3',
         }}>
           <WriteReview className="writeReviewGridBox"/>
@@ -92,15 +104,21 @@ class RatingsApp extends React.Component {
 
         <div className="viewMoreReviewsGridBox" style={{
           borderStyle: 'solid',
+          borderRadius: '20px',
+          padding: '20px',
           borderColor: 'pink',
           gridColumn: '3',
         }}>
           <button>More Reviews</button>
           {/* On click, this changes state of reviews to an extra two reviews */}
         </div>
-
-      </div>
+    </div>
     )
+  } else {
+    return (
+      <div></div>
+    )
+  }
   }
 }
 

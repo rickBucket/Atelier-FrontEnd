@@ -13,6 +13,7 @@ class ReviewListEntry extends React.Component {
       <div className="ratings-flexbox-container" style={{
         display: 'grid',
         borderStyle: 'solid',
+        borderRadius: '20px',
         borderColor: 'grey',
         padding: '10px',
       }}><b>Individual Review Tile</b>
@@ -43,6 +44,7 @@ class ReviewListEntry extends React.Component {
         <div style={{
           borderStyle: 'solid',
           borderWidth: '1px',
+          borderRadius: '10px',
           padding: '5px',
         }}>
           {`Review body: ${review.body}`}

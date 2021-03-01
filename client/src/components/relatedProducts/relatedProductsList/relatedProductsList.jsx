@@ -29,6 +29,7 @@ const RelatedListContainer = styled.div`
 display: flex;
 justify-content: flex-start;
 overflow: hidden;
+position: relative;
 `;
 const ButtonStyle = styled.div`
 position: absolute,

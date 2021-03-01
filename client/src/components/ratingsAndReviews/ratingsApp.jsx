@@ -30,14 +30,16 @@ class RatingsApp extends React.Component {
   }
 
   render() {
-    if (this.state.reviewsReady) {
     return(
+      <div>
+        {
+          this.state.reviewsReady === true &&
       <div className="reviewsGridContainer" style={{
         display: 'grid',
         borderStyle: 'solid',
         borderColor: 'red',
         gridTemplateColumns: 'repeat(3, 1fr)',
-        gridTemplateRows: 'repeat(5, 1fr)',
+        gridTemplateRows: 'repeat(8, 1fr)',
         padding: '20px',
         gridGap: '20px',
         rowGap: '20px',
@@ -45,8 +47,8 @@ class RatingsApp extends React.Component {
         alignContent: 'center',
         borderRadius: '20px',
         padding: '20px',
-        width: '100vw',
-        height: '100vh'
+        width: '95vw',
+        height: '95vh'
       }}>
 
         <div className="ratingBreakdownGridBox" style={{
@@ -55,7 +57,7 @@ class RatingsApp extends React.Component {
           padding: '10px',
           borderRadius: '20px',
           gridColumn: '1',
-          gridRow: '1/3',
+          gridRow: '1/4',
         }}>
           <RatingBreakdown />
         </div>
@@ -66,7 +68,7 @@ class RatingsApp extends React.Component {
           borderRadius: '20px',
           padding: '20px',
           gridColumn: '1',
-          gridRow: '3/5',
+          gridRow: '4/7',
         }}>
           <ProductBreakdown />
         </div>
@@ -77,6 +79,7 @@ class RatingsApp extends React.Component {
           borderRadius: '20px',
           padding: '20px',
           gridColumn: '2',
+          gridRow: '1'
         }}>
           <SortOptions />
         </div>
@@ -86,8 +89,9 @@ class RatingsApp extends React.Component {
           borderColor: 'purple',
           borderRadius: '20px',
           padding: '20px',
-          gridColumn: '2/4',
-          gridRow: '2/10',
+          gridColumn: '2/5',
+          gridRow: '2/8',
+          overflow: 'auto'
         }}>
           <ReviewList reviewList={this.state.reviewList}/>
         </div>
@@ -98,6 +102,7 @@ class RatingsApp extends React.Component {
           borderRadius: '20px',
           padding: '20px',
           gridColumn: '2/3',
+          gridRow: '8'
         }}>
           <WriteReview className="writeReviewGridBox"/>
         </div>
@@ -108,17 +113,15 @@ class RatingsApp extends React.Component {
           padding: '20px',
           borderColor: 'pink',
           gridColumn: '3',
+          gridRow: '8'
         }}>
           <button>More Reviews</button>
           {/* On click, this changes state of reviews to an extra two reviews */}
         </div>
     </div>
+    }
+    </div>
     )
-  } else {
-    return (
-      <div></div>
-    )
-  }
   }
 }
 

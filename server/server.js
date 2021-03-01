@@ -23,6 +23,7 @@ app.get('/products', (req, res) => {
   });
 });
 
+
 app.get('/reviews', (req, res) => {
   console.log('query request', req.query)
   reviews.getReviews(req.query, (err, data) => {

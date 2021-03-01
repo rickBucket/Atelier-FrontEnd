@@ -22,16 +22,27 @@ class ProductMainView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentProduct: {}
+      currentProduct: {},
+      styles: []
     };
   }
 
   componentDidMount() {
-    axios.get('/products')
+    axios.get('/products/?count=1')
       .then(({data}) => {
-        console.log(data);
-      });
-    console.log("HELLO");
+        axios.get(`/products/?product_id=${data[0].id}`)
+          .then(({data}) => {
+            this.setState({
+              currentProduct: data
+            });
+          });
+        axios.get(`/products/?product_id=${data[0].id}/styles`)
+          .then(({data}) => {
+            this.setState({
+              styles: data.results
+            });
+          });
+      })
   }
 
   render() {

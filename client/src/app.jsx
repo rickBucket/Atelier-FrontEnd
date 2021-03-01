@@ -17,9 +17,6 @@ class App extends React.Component {
     this.widgetSelect = this.widgetSelect.bind(this);
   }
 
-<<<<<<< HEAD
-
-=======
   componentDidMount() {
     axios.get('/products/?count=1')
       .then(({data})=> {
@@ -31,7 +28,6 @@ class App extends React.Component {
         console.log('Error setting productID in App', error)
       });
   };
->>>>>>> 63703d08ba7fb0f351f62b2ee323f93b8088dbfa
 
   widgetSelect(e) {
     e.preventDefault();

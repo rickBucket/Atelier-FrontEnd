@@ -22,8 +22,8 @@ class ProductMainView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentProduct: {},
-      styles: []
+      currentProduct: {}, // {} id name slogan description category default_price features[{feature, value}]
+      styles: [] // style_id, name, original_price, sale_price, default?, photos[{thumbnail_url, url}], skus{#}
     };
   }
 
@@ -42,19 +42,22 @@ class ProductMainView extends React.Component {
               styles: data.results
             });
           });
-      })
+      });
   }
 
   render() {
     return (
       <div>
         <Button>Testing Styled Components</Button>
-        ProductMainView
-        <ProductShowcase />
-        <ProductInfo />
-        <StyleSelector />
-        <Checkout />
-        <ProductDescription />
+        {
+          <div>
+            <ProductShowcase photos={this.state.styles[0].photos} />
+            <ProductInfo />
+            <StyleSelector styles={this.state.styles}/>
+            <Checkout />
+            <ProductDescription />
+          </div>
+        }
       </div>
     );
   }

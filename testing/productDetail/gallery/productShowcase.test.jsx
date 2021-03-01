@@ -6,7 +6,7 @@ import ProductShowcase from '../../../client/src/components/productDetail/galler
 
 describe('<ProductShowcase />', () => {
   it('renders a div component', () => {
-    const wrapper = shallow(<ProductShowcase />);
+    const wrapper = shallow(<ProductShowcase photos={[{thumbnail_url: 'a', url: 'b'}]}/>);
     expect(wrapper.find('#data')).not.toBeUndefined();
   });
 });

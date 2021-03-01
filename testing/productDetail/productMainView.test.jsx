@@ -6,7 +6,7 @@ import ProductMainView from '../../client/src/components/productDetail/productMa
 
 describe('<ProductMainView />', () => {
   it('renders a div component', () => {
-    const wrapper = shallow(<ProductMainView />);
+    const wrapper = shallow(<ProductMainView productID={14931}/>);
     expect(wrapper.find('#data')).not.toBeUndefined();
   });
 });

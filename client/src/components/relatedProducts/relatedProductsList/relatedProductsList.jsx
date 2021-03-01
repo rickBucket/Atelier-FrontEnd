@@ -7,7 +7,7 @@ const RelatedProductList = (props) => {
  return (
   <Div>
       {props.relatedProducts.map((product)=> {
-        return <RelatedProductCard productID={product} key={product}/>
+        return <RelatedProductCard parentProductID={props.productID} productID={product} key={product}/>
       })}
   </Div>
   )

@@ -6,7 +6,7 @@ import ProductDescription from '../../../client/src/components/productDetail/inf
 
 describe('<ProductDescription />', () => {
   it('renders a div component', () => {
-    const wrapper = shallow(<ProductDescription />);
+    const wrapper = shallow(<ProductDescription slogan={'a'} description={'b'} features={[{feature: 'c', value: 'd'}]}/>);
     expect(wrapper.find('#data')).not.toBeUndefined();
   });
 });

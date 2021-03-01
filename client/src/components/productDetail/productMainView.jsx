@@ -36,7 +36,7 @@ class ProductMainView extends React.Component {
               currentProduct: data
             });
           });
-        axios.get(`/products/?product_id=${data[0].id}/styles`)
+        axios.get(`/products/?product_id=${data[0].id}&flag=styles`)
           .then(({data}) => {
             this.setState({
               styles: data.results

@@ -13,7 +13,7 @@ app.use(express.json());
 // Product API handler w/ optional q strings product_id and flag
 // flag = "styles" or "related"
 app.get('/products', (req, res) => {
-  products.getProducts(req.query.product_id, req.query.flag, (err, data) => {
+  products.getProducts(req.query, (err, data) => {
     if (err) {
       res.status(404).send(err);
     } else {

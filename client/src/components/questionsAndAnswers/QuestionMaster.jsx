@@ -11,6 +11,8 @@ const Container = styled.div`
   border: 3px grey solid;
 `;
 
+
+
 class QuestionMaster extends React.Component {
   constructor(props) {
     super(props);
@@ -31,7 +33,7 @@ class QuestionMaster extends React.Component {
   render() {
     return (
       <Container>
-        <h4>Question's and Answers</h4>
+        <h1>Question's and Answers</h1>
         <Search />
         <Questions questionData={this.state.questionData}/>
         <button className="Load-button"> Load more questions </button>

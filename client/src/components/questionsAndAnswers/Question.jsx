@@ -30,27 +30,43 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
+const LoadButton = styled.button`
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-weight: bold;
+`;
+
+
 class Question extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       answers: [],
-      loadedState: false
+      loadedState: false,
+      loadMore: false,
     };
   }
 
   componentDidMount() {
-
     const object = this.props.item.answers
+    if (object.length <= 1) {
       this.setState({
         answers: Object.values(object),
-        loadedState: true
+        loadedState: true,
+        loadMore: false
       })
-    console.log(this.state.answers);
+    } else {
+      this.setState({
+        answers: Object.values(object),
+        loadedState: true,
+        loadMore: true
+      })
+    }
   }
 
   render() {
-    console.log(this.props.item)
     if (!this.state.loadedState) {
       return(
         null
@@ -79,6 +95,11 @@ class Question extends React.Component {
             </ContainerB>
           )
         })}
+        {this.state.answers.length > 1 ? (
+          <LoadButton onClick={(event) => {event.preventDefault(); } }> LOAD MORE ANSWERS </LoadButton>
+          ) : (
+          null
+          )}
         </div>
 
     </ContainerA>

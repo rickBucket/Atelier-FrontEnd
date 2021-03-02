@@ -6,6 +6,33 @@ const Container = styled.div`
   border: 3px red solid;
 `;
 
+const SearchDiv = styled.div`
+  width: 100%;
+  position: relative;
+  display: flex;
+`;
+const SearchBar = styled.input`
+  width: 100%;
+  border: 1px solid grey;
+  border-right: none;
+  padding: 5px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #9DBFAF;
+`;
+
+const SearchBtn = styled.button`
+  width: 50px;
+  height: 50px;
+  border: 1px solid grey;
+  background:grey;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+`;
+
 class Search extends React.Component {
   constructor() {
     super();
@@ -26,10 +53,10 @@ class Search extends React.Component {
     return (
       <Container>
       <form onSubmit={event => {event.preventDefault(); }}>
-        <div className='searchBar'>
-        <input placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...        ' type='text' value={this.state.text} onChange={this.handleSubmit} ></input>
-        <button className='search_button'> Search </button>
-        </div>
+        <SearchDiv className='searchBar'>
+        <SearchBar placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...        ' type='text' value={this.state.text} onChange={this.handleSubmit} ></SearchBar>
+        <SearchBtn className='search_button'> Go! </SearchBtn>
+        </SearchDiv>
       </form>
       </Container>
     )
@@ -37,3 +64,5 @@ class Search extends React.Component {
 }
 
 export default Search;
+
+//get a magnifying glass icon for search bar

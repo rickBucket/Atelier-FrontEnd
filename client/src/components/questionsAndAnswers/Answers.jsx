@@ -15,11 +15,18 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
+const AnwserDiv = styled.div`
+  display: flex;
+`;
+const AnswerBody = styled.p`
+  padding-top: 6px;
+  padding-left: 10px;
+`;
+
 class Answers extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
     };
   }
   //when clicking on add load more answers add a total to a state integer and only show that many
@@ -27,8 +34,10 @@ class Answers extends React.Component {
   render() {
     return (
       <div>
-       <h3> A: </h3>
-        <p>{this.props.item.body}</p>
+        <AnwserDiv>
+        <h3> A: </h3>
+        <AnswerBody> {  this.props.item.body}</AnswerBody>
+        </AnwserDiv>
         <Container>
           <p>by {this.props.item.answerer_name} {this.props.item.date}</p>
           <p> Helpful? </p>

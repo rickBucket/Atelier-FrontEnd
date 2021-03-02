@@ -31,6 +31,13 @@ const SearchBtn = styled.button`
   border-radius: 0 5px 5px 0;
   cursor: pointer;
   font-size: 20px;
+
+  &:hover ${SearchBtn} {
+    background-color: lightgrey;
+    border: 1px solid black;
+  border-radius: 5px;
+  transition: all ease 0.3s;
+  }
 `;
 
 class Search extends React.Component {

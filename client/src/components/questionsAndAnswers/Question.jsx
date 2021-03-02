@@ -50,8 +50,11 @@ class Question extends React.Component {
       loadedState: false,
       loadMore: false,
       modal: false,
+      itemsToShow: 2,
+      expanded: false,
     };
     this.selectModal = this.selectModal.bind(this);
+    this.showMore = this.showMore.bind(this);
   }
 
   componentDidMount() {
@@ -77,9 +80,21 @@ class Question extends React.Component {
     })
   }
 
+  showMore() {
+    this.state.itemsToShow === 2 ? (
+      this.setState({
+        itemsToShow: this.state.answers.length,
+        expanded: true,
+      })
+    ) : (
+      this.setState({
+        itemsToShow: 2,
+        expanded: false,
+      })
+    )
+  }
+
   render() {
-    // console.log(this.props.item)
-    // seller={this.props.item.}
     if (!this.state.loadedState) {
       return(
         null
@@ -102,22 +117,21 @@ class Question extends React.Component {
 
 
         <div>
-        {this.state.answers.map((itemA, i) => {
+        {this.state.answers.slice(0,this.state.itemsToShow).map((answer, i) => {
           return (
             <ContainerB>
-            <Answers item={itemA} key={this.state.answers.id} />
+            <Answers item={answer} key={this.state.answers.id} seller={this.props.item.asker_name}/>
             </ContainerB>
           )
         })}
-        {this.state.answers.length > 1 ? (
-          <LoadButton onClick={(event) => {event.preventDefault(); } }> LOAD MORE ANSWERS </LoadButton>
+        {this.state.answers.length > 1 && !(this.state.expanded) ? (
+          <LoadButton onClick={(event) => { this.showMore(); } }> LOAD MORE ANSWERS </LoadButton>
           ) : (
-          null
+          <LoadButton onClick={(event) => { this.showMore(); }}> Collapse List </LoadButton>
           )}
         </div>
           <AnswerModal displayModal={this.state.modal} closeModal={this.selectModal}/>
     </ContainerA>
-
     );
   }
 }

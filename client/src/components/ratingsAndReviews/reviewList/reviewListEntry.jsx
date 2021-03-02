@@ -15,7 +15,7 @@ class ReviewListEntry extends React.Component {
         borderStyle: 'solid',
         borderRadius: '20px',
         gridTemplateColumns: 'repeat(4, 1fr)',
-        gridTemplateRows: 'repeat(6, 1fr)',
+        gridTemplateRows: 'minmax(6, 1fr) 200px',
         borderColor: 'grey',
         padding: '10px',
       }}>

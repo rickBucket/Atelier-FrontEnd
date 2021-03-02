@@ -55,7 +55,9 @@ class ProductMainView extends React.Component {
           this.setState({
             styles: data.results,
             loaded: this.state.loaded + 1,
-            selectedStyle: data.results[0]
+            selectedStyle: data.results.find((element) => {
+              return element["default?"] === true;
+            }) || data.results[0]
           });
         });
   }

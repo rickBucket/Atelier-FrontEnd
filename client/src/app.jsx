@@ -59,7 +59,7 @@ class App extends React.Component {
     return (
       <div>
         <button type="submit" id="clear" value="0" onClick={this.widgetSelect}>CLEAR</button>
-        <button type="submit" id="clear" value="0" onClick={this.nextProduct}>Next Product</button>
+        <button type="submit" id="next" onClick={this.nextProduct}>Next Product</button>
         {
           this.state.loadedID === 1 &&
           <div>

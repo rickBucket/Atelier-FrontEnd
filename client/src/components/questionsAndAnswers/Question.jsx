@@ -42,7 +42,6 @@ class Question extends React.Component {
   componentDidMount() {
 
     const object = this.props.item.answers
-    console.log(Object.values(object));
       this.setState({
         answers: Object.values(object),
         loadedState: true
@@ -51,6 +50,7 @@ class Question extends React.Component {
   }
 
   render() {
+    console.log(this.props.item)
     if (!this.state.loadedState) {
       return(
         null
@@ -64,10 +64,10 @@ class Question extends React.Component {
            </EachQ>
 
               <MoveRight>
-              <Button> Add Answer </Button>
               <p> Helpful? </p>
               <Button> Yes </Button>
-              <p>({})</p>
+              <p>({this.props.item.question_helpfulness})</p>
+              <Button> Add Answer </Button>
               </MoveRight>
 
 

@@ -58,7 +58,7 @@ class RatingsApp extends React.Component {
       return(
         <div>
             Let's write a review.
-            <WriteReview handleReviewData={this.handleReviewData}/>
+            <WriteReview handleReviewData={this.handleReviewData} productID={this.props.productID}/>
             <br />
             <button onClick={this.exitWriteReviewClick}>Exit write review</button>
         </div>

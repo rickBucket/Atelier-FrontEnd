@@ -9,7 +9,7 @@ const reviewList = ({ reviewList }) => {
       <ul style={{
         display: 'grid',
         padding: '10px',
-        justifyContent: 'space-evenly'
+        gridGap: '20px'
       }}>
       {reviewList.results.slice(0,2).map((review, key) => (
       <ReviewListEntry review={review} key={key}/>

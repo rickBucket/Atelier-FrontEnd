@@ -47,6 +47,7 @@ class WriteReview extends React.Component {
         borderColor: 'grey',
         borderRadius: '20px',
         padding: '10px',
+        gridGap: '20px',
         gridTemplateColumns: 'repeat(2, 1fr)',
         gridTemplateRows: 'minwidth(5, 1fr) 200px',
         overflow: 'auto'
@@ -58,6 +59,7 @@ class WriteReview extends React.Component {
             borderWidth: '3px',
             borderColor: 'grey',
             padding: '10px',
+            alignContent: 'center',
             gridColumn: '1',
             gridRow: '1'
           }}>

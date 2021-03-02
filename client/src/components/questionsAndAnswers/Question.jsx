@@ -6,11 +6,15 @@ import AnswerModal from './AnswerModal.jsx';
 
 const ContainerA = styled.div`
   padding: 10px;
-  border: 3px green solid;
+  border: 3px grey solid;
+  border-radius: 25px;
+  margin: 5px;
 `;
 
 const EachQ = styled.div`
   display: flex;
+  flex-direction: row;
+  justify-content: stretch;
 `;
 
 const MoveRight = styled.div`
@@ -20,7 +24,8 @@ const MoveRight = styled.div`
 
 const ContainerB = styled.div`
   padding: 10px;
-  border: 3px gold solid;
+  border: 3px green solid;
+  margin: 3px;
 `;
 
 const Button = styled.button`
@@ -37,6 +42,20 @@ const LoadButton = styled.button`
   outline: none;
   cursor: pointer;
   font-weight: bold;
+`;
+
+const Divide = styled.span`
+  margin-left: 5px;
+  margin-left: 5px;
+  padding-top: auto;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+`;
+
+const Q = styled.h3`
+  display: flex;
+  float: left;
 `;
 
 
@@ -104,16 +123,22 @@ class Question extends React.Component {
     <ContainerA>
 
            <EachQ>
-           <h3>Q: {this.props.item.question_body} </h3>
-           </EachQ>
+            <Q>
+            <h3>Q: {this.props.item.question_body}</h3>
+            </Q>
 
-              <MoveRight>
+               <MoveRight>
               <p> Helpful? </p>
               <Button> Yes </Button>
               <p>({this.props.item.question_helpfulness})</p>
-              <span className="divider"> | </span>
+              <Divide className="divider"> | </Divide>
               <Button onClick={ this.selectModal }> Add Answer </Button>
               </MoveRight>
+
+           </EachQ>
+
+
+
 
 
         <div>

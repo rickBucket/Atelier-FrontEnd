@@ -88,37 +88,23 @@ const putQuestions = (q, callback) => {
 };
 
 const postQuestions = (q, callback) => {
-  q.product_id = handleQStrings(q.product_id);
-  q.flag = handleQStrings(q.flag);
-  q.page = handleQStrings(q.page, "page");
-  q.count = handleQStrings(q.count, "count");
 
-  if (q.page) {
-    q.page = "/?" + q.page;
-    if (q.count) {
-      q.count = "&" + q.count;
-    }
-  } else {
-    if (q.count) {
-      q.count = "/?" + q.count;
-    }
-  }
+  //add a query string to specify whether it is an answer or question being posted.
 
   axios.post(
-      `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions${
-        q.product_id + q.flag + q.page + q.count
-      }`,
+      `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions`, q,
       {
         headers: {
-          "User-Agent": "request",
           Authorization: config.API_KEY,
         },
       }
     )
     .then((results) => {
+      console.log(results)
       callback(null, results.data);
     })
     .catch((err) => {
+      console.log(err)
       callback(err, null);
     });
 };

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   padding: 10px;
-  border: 3px red solid;
+  /* border: 3px red solid; */
 `;
 
 const SearchDiv = styled.div`
@@ -18,7 +18,8 @@ const SearchBar = styled.input`
   padding: 5px;
   border-radius: 5px 0 0 5px;
   outline: none;
-  color: #9DBFAF;
+  color: black;
+  font-size: 15px;
 `;
 
 const SearchBtn = styled.button`
@@ -47,7 +48,7 @@ class Search extends React.Component {
       text: '',
 
     }
-    this.handleSubmit = this.handleSubmit.bind.this;
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(event) {

@@ -55,6 +55,7 @@ class QuestionMaster extends React.Component {
   componentDidMount() {
     axios.get(`qa/questions/?product_id=${this.props.productID}`)
       .then((response) => {
+        console.log(this.props.productID)
         this.setState({
           questionData: response.data,
         });
@@ -76,7 +77,8 @@ class QuestionMaster extends React.Component {
         <ButtonA className="Load-button"> <b> MORE ANSWERED QUESTIONS </b> </ButtonA>
         <ButtonB className="add-Q-button" onClick={ this.selectModal }> <b>ADD A QUESTION +</b> </ButtonB>
         <QuestionModal displayModal={this.state.modal}
-        closeModal={this.selectModal}/>
+        closeModal={this.selectModal}
+        product_id={this.props.productID}/>
       </Container>
     );
   }

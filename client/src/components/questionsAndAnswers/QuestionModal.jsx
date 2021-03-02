@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 
 const Modal = styled.div`
     background-color: rgb(0,0,0); /* Fallback color */
@@ -101,6 +102,16 @@ class QuestionModal extends React.Component {
   postQuestion() {
     console.log('success!')
     //axios post request
+    axios.post(`/qa/questions`, {
+      body: this.state.newQuestion,
+      name: this.state.newName,
+      email: this.state.newEmail,
+      product_id: this.props.product_id,
+    })
+      .then(response => {
+
+        console.log('successful post!', response);
+      });
   }
 
   rejectQuestion() {

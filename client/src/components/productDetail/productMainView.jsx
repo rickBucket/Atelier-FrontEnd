@@ -13,14 +13,21 @@ const Div = styled.div`
   border-radius: 10px;
   padding: 5px;
   margin: 5px;
+  font-family: Arial;
+`
+const InvisDiv = styled.div`
+  border-radius: 10px;
+  padding: 5px;
+  font-family: Arial;
 `
 const FlexDiv = styled.div`
-  border: 2px solid black;
   border-radius: 10px;
   padding: 5px;
   margin: 5px;
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
+  font-family: Arial;
 `
 
 class ProductMainView extends React.Component {
@@ -52,13 +59,13 @@ class ProductMainView extends React.Component {
 
   render() {
     return (
-      <Div>
+      <div>
         {
           this.state.loaded === 2 &&
-          <Div>
+          <InvisDiv>
             <FlexDiv>
               <ProductShowcase photos={this.state.styles[0].photos} />
-              <Div>
+              <div>
                 <ProductInfo
                   name={this.state.currentProduct.name}
                   category={this.state.currentProduct.category}
@@ -66,16 +73,16 @@ class ProductMainView extends React.Component {
                 />
                 <StyleSelector styles={this.state.styles}/>
                 <Checkout />
-              </Div>
+              </div>
             </FlexDiv>
             <ProductDescription
               slogan={this.state.currentProduct.slogan}
               description={this.state.currentProduct.description}
               features={this.state.currentProduct.features}
             />
-          </Div>
+          </InvisDiv>
         }
-      </Div>
+      </div>
     );
   }
 }

@@ -17,28 +17,42 @@ const FlexDiv = styled.div`
   justify-content: center;
 `
 
+// props => slogan-string description-string features-[{feature value}]
 class ProductDescription extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      slogan: this.props.slogan,
+      description: this.props.description,
+      features: this.formatFeatures(this.props.features)
     };
+  }
+
+  formatFeatures(featureArray) {
+    var features = [];
+    featureArray.forEach((element) => {
+      let feat = ' - ' + element.feature;
+      let val = element.value;
+      if (typeof val === 'string' && val) {
+        feat = `${feat}: ${val.split('\"').join('')}`
+      }
+      features.push(feat);
+    });
+    return Array.from(new Set(features));
   }
 
   render() {
     return (
       <FlexDiv>
         <Div>
-          <h3>{this.props.slogan}</h3>
-          <h5>{this.props.description}</h5>
+          <h3>{this.state.slogan}</h3>
+          <h5>{this.state.description}</h5>
         </Div>
         <Div>
           {
-            this.props.features.map(({feature, value}) => {
+            this.state.features.map((element) => {
               return (
-                <h4 key={feature}>
-                  - {feature} - {value}
-                </h4>
+                <h4 key={element}>{element}</h4>
               );
             })
           }

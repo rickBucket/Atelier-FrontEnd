@@ -6,7 +6,7 @@ import dummyData from '../../client/src/components/questionsAndAnswers/dummyData
 
 describe('<Questions />', () => {
   it('renders a div component', () => {
-    const wrapper = shallow(<Questions questionData={dummyData} />);
+    const wrapper = shallow(<Questions questionData={this.state.questionData} />);
     expect(wrapper.find('#data')).not.toBeUndefined();
   });
 });

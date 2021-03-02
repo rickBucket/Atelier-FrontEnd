@@ -14,10 +14,12 @@ class ReviewListEntry extends React.Component {
         display: 'grid',
         borderStyle: 'solid',
         borderRadius: '20px',
-        gridTemplateColumns: 'repeat(4, 1fr)',
-        gridTemplateRows: 'repeat(6, 1fr)',
-        borderColor: 'grey',
+        gridGap: '20px',
         padding: '10px',
+        gridTemplateColumns: 'repeat(4, 1fr)',
+        gridTemplateRows: 'minmax(5, 1fr) 200px',
+        borderColor: 'grey',
+        boxShadow: '5px 5px 10px grey'
       }}>
 
         <div className="ratings-starRatings" style={{
@@ -26,6 +28,7 @@ class ReviewListEntry extends React.Component {
           borderRadius: '10px',
           padding: '5px',
           borderWidth: '1px',
+          alignContent: 'center',
           gridRow: '1',
           gridColumn: '1',
         }}>
@@ -43,6 +46,7 @@ class ReviewListEntry extends React.Component {
           borderRadius: '10px',
           borderWidth: '1px',
           padding: '5px',
+          justifyContent: 'center',
           gridRow: '1',
           gridColumn: '3'
         }}>
@@ -55,6 +59,7 @@ class ReviewListEntry extends React.Component {
           borderRadius: '10px',
           borderWidth: '1px',
           padding: '5px',
+          justifyContent: 'center',
           gridRow: '1',
           gridColumn: '4'
         }}>
@@ -67,6 +72,7 @@ class ReviewListEntry extends React.Component {
             borderRadius: '10px',
             borderWidth: '1px',
             padding: '5px',
+            justifyContent: 'center',
             gridRow: '2',
             gridColumn: '1/-1'
         }}>
@@ -103,10 +109,10 @@ class ReviewListEntry extends React.Component {
           borderRadius: '10px',
           borderWidth: '1px',
           padding: '5px',
-          gridRow: '6',
+          gridRow: '4',
           gridColumn: '1/-1'
         }}>
-          {`Helpful? Yes (${review.helpfulness}) | Report`}
+          {`Recommended: ${review.recommend}`}
         </div>
         <br />
         <div style={{
@@ -115,10 +121,10 @@ class ReviewListEntry extends React.Component {
           borderRadius: '10px',
           borderWidth: '1px',
           padding: '5px',
-          gridRow: '4',
+          gridRow: '6',
           gridColumn: '1/-1'
         }}>
-          {`Recommended: ${review.recommend}`}
+          {`Helpful? Yes (${review.helpfulness}) | Report`}
         </div>
       </div>
     )

@@ -36,8 +36,10 @@ class ProductMainView extends React.Component {
     this.state = {
       currentProduct: {}, // {} id name slogan description category default_price features[{feature, value}]
       styles: [], // style_id, name, original_price, sale_price, default?, photos[{thumbnail_url, url}], skus{#}
+      selectedStyle: {},
       loaded: 0
     };
+    this.changeStyle = this.changeStyle.bind(this);
   }
 
   componentDidMount() {
@@ -52,9 +54,20 @@ class ProductMainView extends React.Component {
         .then(({data}) => {
           this.setState({
             styles: data.results,
-            loaded: this.state.loaded + 1
+            loaded: this.state.loaded + 1,
+            selectedStyle: data.results.find((element) => {
+              return element["default?"] === true;
+            }) || data.results[0]
           });
         });
+  }
+
+  changeStyle(id) {
+    this.setState({
+      selectedStyle: this.state.styles.find((element) => {
+        return element.style_id === id;
+      })
+    });
   }
 
   render() {
@@ -64,14 +77,20 @@ class ProductMainView extends React.Component {
           this.state.loaded === 2 &&
           <InvisDiv>
             <FlexDiv>
-              <ProductShowcase photos={this.state.styles[0].photos} />
+              <ProductShowcase
+                key={this.state.selectedStyle.style_id}
+                photos={this.state.selectedStyle.photos}
+              />
               <div>
                 <ProductInfo
                   name={this.state.currentProduct.name}
                   category={this.state.currentProduct.category}
                   price={this.state.currentProduct.default_price}
                 />
-                <StyleSelector styles={this.state.styles}/>
+                <StyleSelector
+                  styles={this.state.styles}
+                  changeStyle={this.changeStyle}
+                />
                 <Checkout />
               </div>
             </FlexDiv>

@@ -11,6 +11,7 @@ class RatingsApp extends React.Component {
     super(props)
     this.state = {
       reviewList : [],
+      metaData: [],
       reviewsReady: false,
       writeReviewModal: false
     }
@@ -21,9 +22,9 @@ class RatingsApp extends React.Component {
   }
 
   componentDidMount() {
+    ////GET product reviews/////
     axios.get(`/reviews/?product_id=${this.props.productID}`)
       .then((results) => {
-        console.log('results data', results.data);
         this.setState({
           reviewList : results.data,
           reviewsReady: true
@@ -31,6 +32,17 @@ class RatingsApp extends React.Component {
       })
       .catch((err) => {
         console.log('error on review GET request', err)
+      })
+    ////GET product meta data//////
+    axios.get(`/reviews/?product_id=${this.props.productID}&meta=meta`)
+      .then((results) => {
+        this.setState({
+          metaData: results.data,
+        })
+        console.log(this.state)
+      })
+      .catch((err) => {
+        console.log('error on meta GET request', err)
       })
   }
 
@@ -58,7 +70,7 @@ class RatingsApp extends React.Component {
       return(
         <div>
             Let's write a review.
-            <WriteReview handleReviewData={this.handleReviewData}/>
+            <WriteReview handleReviewData={this.handleReviewData} productID={this.props.productID} metaData={this.state.metaData}/>
             <br />
             <button onClick={this.exitWriteReviewClick}>Exit write review</button>
         </div>

@@ -4,27 +4,30 @@ import Selectors from './selectors.jsx';
 import styled from 'styled-components';
 
 const Div = styled.div`
-  border: 2px solid black;
-  border-radius: 8px;
-  padding: 5px;
-  margin: 5px;
+  border: 0px solid grey;
+  border-radius: 12px;
+  padding: 4px 0px 4px 0px;
+  margin: 20px 12px 12px 12px;
+  box-shadow: 3px 3px 8px grey;
 `
 const ButtonCheckout = styled.button`
-  border: 1px solid grey;
+  background: white;
+  border: 0px solid grey;
   border-radius: 5px;
   margin: 5px 12px 12px 12px;
   cursor: pointer;
   width: 80%;
-  box-shadow: 4px 4px 5px black;
+  box-shadow: 3px 3px 8px grey;
 `
 const ButtonFav = styled.button`
-  border: 1px solid grey;
+  background: white;
+  border: 0px solid grey;
   border-radius: 5px;
   padding: 5px;
   margin: 5px 12px 12px 12px;
   cursor: pointer;
   width: 20%;
-  box-shadow: 4px 4px 5px black;
+  box-shadow: 3px 3px 8px grey;
 `
 const FlexDiv = styled.div`
   border-radius: 8px;
@@ -40,7 +43,7 @@ class Checkout extends React.Component {
 
   render() {
     return (
-      <div>
+      <Div>
         <FlexDiv>
           <Selectors />
           <Selectors />
@@ -49,7 +52,7 @@ class Checkout extends React.Component {
           <ButtonCheckout>Add to Bag</ButtonCheckout>
           <ButtonFav>STAR</ButtonFav>
         </FlexDiv>
-      </div>
+      </Div>
     );
   }
 }

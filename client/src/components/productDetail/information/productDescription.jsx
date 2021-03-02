@@ -3,11 +3,12 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Div = styled.div`
-  border: 1px solid grey;
+  border: 0px solid grey;
   border-radius: 12px;
   margin: 12px;
   padding: 0px 20px 0px 20px;
-  box-shadow: 4px 4px 5px black;
+  box-shadow: 3px 3px 8px grey;
+  max-width: 600px;
 `
 const FlexDiv = styled.div`
   border-radius: 12px;

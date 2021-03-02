@@ -27,31 +27,50 @@ class RelatedProductsMainView extends React.Component {
 
   scrollLeft() {
     this.setState({
-      imagesToTheLeft: true
+      imagesToTheRight: true
     })
     const carousel = document.getElementById('productCarousel');
-    carousel.scrollLeft -= 320;
+    carousel.scrollLeft -= 316;
+    if (carousel.scrollLeft <= 50) {
+      this.setState({
+        imagesToTheLeft: false,
+      });
+    }
   }
 
   scrollRight() {
     this.setState({
-      imagesToTheRight: true
+      imagesToTheLeft: true
     })
     const carousel = document.getElementById('productCarousel');
-    carousel.scrollLeft += 320;
+    const amountLeftToScroll = carousel.scrollWidth - carousel.clientWidth;
+    carousel.scrollLeft += 316;
+    if (carousel.scrollLeft >= amountLeftToScroll) {
+      this.setState({
+        imagesToTheRight: false,
+      });
+    }
   }
 
   // add condititonal rendering in case relatedProducts hasn't been defined yet
   render() {
     return (
       <div >
-        <button onClick={this.scrollRight}>
-          Right
-        </button>
+        <div>
+          Related Products
+        </div>
+        <div>
+          {this.state.imagesToTheRight ? <RightButton onClick={this.scrollRight}>
+            ➡️
+          </RightButton> : null}
+        </div>
+
         <RelatedProductsList productID={this.props.productID} relatedProducts={this.state.relatedProducts}/>
-        <button onClick={this.scrollLeft}>
-          Left
-        </button>
+        <div>
+        {this.state.imagesToTheLeft ? <LeftButton onClick={this.scrollLeft}>
+          ⬅️
+        </LeftButton> : null}
+        </div>
       </div>
 
     )
@@ -59,3 +78,21 @@ class RelatedProductsMainView extends React.Component {
 };
 
 export default RelatedProductsMainView;
+
+const LeftButton = styled.button`
+  position: absolute;
+  left: 2%;
+  top: 50%;
+  background-color: rgba(0,0,0,0.5);
+  cursor: pointer;
+  z-index: 100;
+`;
+
+const RightButton = styled.button`
+  position: absolute;
+  right: 2%;
+  top: 50%;
+  background-color: rgba(0,0,0,0.5);
+  cursor: pointer;
+  z-index: 100;
+`;

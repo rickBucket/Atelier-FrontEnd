@@ -2,18 +2,22 @@
 import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import ComparisonModal from './comparisonModal.jsx';
 
 class RelatedProductCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       productIDInfo: '',
+      parentProductIDInfo: '',
       productIDStyles: '',
       featuredURL: '',
       loaded: 0,
-      compare: false,
+      openCompareModal: false,
     }
     // bind functions here
+    this.handleCompareClick = this.handleCompareClick.bind(this);
+
     this.FlexboxItem = styled.div`
     height: 450px;
     width: 300px;
@@ -40,6 +44,7 @@ class RelatedProductCard extends React.Component {
       .then(({ data })=> {
         this.setState({
           productIDInfo: data,
+          compare: false,
           loaded: this.state.loaded + 1
         })
       })
@@ -69,6 +74,13 @@ class RelatedProductCard extends React.Component {
       })
   }
 
+  handleCompareClick(event) {
+    this.setState({
+      openCompareModal: !this.state.openCompareModal
+    })
+
+  }
+
   render() {
     return (
       <div>
@@ -79,6 +91,12 @@ class RelatedProductCard extends React.Component {
         {
           this.state.loaded === 2 &&
           <this.FlexboxItem>
+            <div>
+              <CompareButton
+                onClick={this.handleCompareClick}
+              >Compare</CompareButton>
+            </div>
+
             <this.ImageWrapper>
               <this.Image src={this.state.featuredURL} width="100%" height="auto"></this.Image>
             </this.ImageWrapper>
@@ -88,9 +106,22 @@ class RelatedProductCard extends React.Component {
             <div>{this.state.productIDInfo.default_price}</div>
           </this.FlexboxItem>
         }
+        {
+          this.state.openCompareModal &&
+          <ComparisonModal
+            displayModal={this.state.openCompareModal}
+            closeModal={this.handleCompareClick}/>
+        }
       </div>
     );
   }
 }
+
+const CompareButton = styled.button`
+  right: 20%;
+  top: 2%;
+  background-color: rgba(0,0,0,0.5);
+  cursor: pointer;
+`;
 
 export default RelatedProductCard;

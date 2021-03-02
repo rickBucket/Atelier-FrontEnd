@@ -21,11 +21,12 @@ class RelatedProductCard extends React.Component {
     this.FlexboxItem = styled.div`
     height: 450px;
     width: 300px;
-    border: 3px solid #333;
-    background-color: grey;
+    border: 1px solid grey;
     flex-shrink: 0;
     margin-left: 5px;
     margin-right: 5px;
+    box-shadow: 3px 3px 8px rgba(0,0,0,0.5);
+    border-radius: 10px;
   `;
     this.ImageWrapper = styled.div`
     height: 200px;
@@ -94,23 +95,25 @@ class RelatedProductCard extends React.Component {
             <div>
               <CompareButton
                 onClick={this.handleCompareClick}
-              >Compare</CompareButton>
+              >⭐</CompareButton>
             </div>
 
             <this.ImageWrapper>
               <this.Image src={this.state.featuredURL} width="100%" height="auto"></this.Image>
             </this.ImageWrapper>
 
-            <div>{this.state.productIDInfo.category}</div>
-            <div>{this.state.productIDInfo.name}</div>
-            <div>{this.state.productIDInfo.default_price}</div>
+            <ProductContentWrapper>{this.state.productIDInfo.category}</ProductContentWrapper>
+            <ProductContentWrapper>{this.state.productIDInfo.name}</ProductContentWrapper>
+            <ProductContentWrapper>${this.state.productIDInfo.default_price}</ProductContentWrapper>
           </this.FlexboxItem>
         }
         {
           this.state.openCompareModal &&
-          <ComparisonModal
+          <div>
+              <ComparisonModal
             displayModal={this.state.openCompareModal}
             closeModal={this.handleCompareClick}/>
+          </div>
         }
       </div>
     );
@@ -120,8 +123,13 @@ class RelatedProductCard extends React.Component {
 const CompareButton = styled.button`
   right: 20%;
   top: 2%;
-  background-color: rgba(0,0,0,0.5);
   cursor: pointer;
+  border: none;
+  background: none;
+`;
+
+const ProductContentWrapper = styled.div`
+  margin: 2px 2px 2px 5px;
 `;
 
 export default RelatedProductCard;

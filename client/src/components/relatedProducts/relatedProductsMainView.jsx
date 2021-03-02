@@ -82,7 +82,7 @@ export default RelatedProductsMainView;
 const LeftButton = styled.button`
   position: absolute;
   left: 2%;
-  top: 50%;
+  top: 30%;
   background-color: rgba(0,0,0,0.5);
   cursor: pointer;
   z-index: 100;
@@ -91,7 +91,7 @@ const LeftButton = styled.button`
 const RightButton = styled.button`
   position: absolute;
   right: 2%;
-  top: 50%;
+  top: 30%;
   background-color: rgba(0,0,0,0.5);
   cursor: pointer;
   z-index: 100;

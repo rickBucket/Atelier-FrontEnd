@@ -54,7 +54,6 @@ class App extends React.Component {
         } {
           this.state.widget_id === '1' &&
           <div className="productDetail">
-            RENDER PRODUCT DETAIL HERE
             <ProductMainView productID={this.state.productID}/>
           </div>
         } {

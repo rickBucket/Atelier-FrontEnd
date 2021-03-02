@@ -3,7 +3,13 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Div = styled.div`
-  border: 2px solid black;
+  border: 1px solid grey;
+  border-radius: 16px;
+  padding: 16px;
+  margin: 16px 12px 16px 12px;
+  box-shadow: 4px 4px 5px black;
+`
+const InvisDiv = styled.div`
   border-radius: 10px;
   padding: 5px;
   margin: 5px;

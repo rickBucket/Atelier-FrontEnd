@@ -3,14 +3,14 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Div = styled.div`
-  border: 2px solid black;
-  border-radius: 10px;
-  margin: 5px;
-  padding: 5px;
+  border: 1px solid grey;
+  border-radius: 12px;
+  margin: 12px;
+  padding: 0px 20px 0px 20px;
+  box-shadow: 4px 4px 5px black;
 `
 const FlexDiv = styled.div`
-  border: 2px solid black;
-  border-radius: 10px;
+  border-radius: 12px;
   margin: 4px;
   display: flex;
   justify-content: center;

@@ -54,7 +54,7 @@ class Search extends React.Component {
       <Container>
       <form onSubmit={event => {event.preventDefault(); }}>
         <SearchDiv className='searchBar'>
-        <SearchBar placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...        ' type='text' value={this.state.text} onChange={this.handleSubmit} ></SearchBar>
+        <SearchBar placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...        ' type='text' value={this.state.text}  onChange={this.handleSubmit} ></SearchBar>
         <SearchBtn className='search_button'> Go! </SearchBtn>
         </SearchDiv>
       </form>

@@ -2,6 +2,7 @@
 import React from 'react';
 import Answers from './Answers.jsx';
 import styled from 'styled-components';
+import AnswerModal from './AnswerModal.jsx';
 
 const ContainerA = styled.div`
   padding: 10px;
@@ -39,6 +40,8 @@ const LoadButton = styled.button`
 `;
 
 
+// CLASS STARTS HERE ------------------------//
+
 class Question extends React.Component {
   constructor(props) {
     super(props);
@@ -46,7 +49,9 @@ class Question extends React.Component {
       answers: [],
       loadedState: false,
       loadMore: false,
+      modal: false,
     };
+    this.selectModal = this.selectModal.bind(this);
   }
 
   componentDidMount() {
@@ -66,6 +71,12 @@ class Question extends React.Component {
     }
   }
 
+  selectModal() {
+    this.setState({
+      modal: !this.state.modal //toggle
+    })
+  }
+
   render() {
     if (!this.state.loadedState) {
       return(
@@ -83,7 +94,7 @@ class Question extends React.Component {
               <p> Helpful? </p>
               <Button> Yes </Button>
               <p>({this.props.item.question_helpfulness})</p>
-              <Button> Add Answer </Button>
+              <Button onClick={ this.selectModal }> Add Answer </Button>
               </MoveRight>
 
 
@@ -101,8 +112,9 @@ class Question extends React.Component {
           null
           )}
         </div>
-
+          <AnswerModal displayModal={this.state.modal} closeModal={this.selectModal}/>
     </ContainerA>
+
     );
   }
 }

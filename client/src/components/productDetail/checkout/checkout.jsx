@@ -8,7 +8,7 @@ const Div = styled.div`
   border-radius: 12px;
   padding: 4px 0px 4px 0px;
   margin: 20px 12px 12px 12px;
-  box-shadow: 3px 3px 8px grey;
+  box-shadow: 3px 3px 8px rgba(0,0,0,0.5);
 `
 const ButtonCheckout = styled.button`
   background: white;
@@ -17,7 +17,7 @@ const ButtonCheckout = styled.button`
   margin: 5px 12px 12px 12px;
   cursor: pointer;
   width: 80%;
-  box-shadow: 3px 3px 8px grey;
+  box-shadow: 3px 3px 8px rgba(0,0,0,0.5);
 `
 const ButtonFav = styled.button`
   background: white;
@@ -27,7 +27,7 @@ const ButtonFav = styled.button`
   margin: 5px 12px 12px 12px;
   cursor: pointer;
   width: 20%;
-  box-shadow: 3px 3px 8px grey;
+  box-shadow: 3px 3px 8px rgba(0,0,0,0.5);
 `
 const FlexDiv = styled.div`
   border-radius: 8px;

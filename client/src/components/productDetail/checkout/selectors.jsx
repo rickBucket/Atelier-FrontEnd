@@ -10,7 +10,7 @@ const Div = styled.div`
   margin: 12px 12px 5px 12px;
   width: 50%;
   cursor: pointer;
-  box-shadow: 3px 3px 8px grey;
+  box-shadow: 3px 3px 8px rgba(0,0,0,0.5);
 `
 
 class Selectors extends React.Component {

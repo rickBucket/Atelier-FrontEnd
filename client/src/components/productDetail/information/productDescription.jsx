@@ -7,7 +7,7 @@ const Div = styled.div`
   border-radius: 12px;
   margin: 12px;
   padding: 0px 20px 0px 20px;
-  box-shadow: 3px 3px 8px grey;
+  box-shadow: 3px 3px 8px rgba(0,0,0,0.5);
   max-width: 600px;
 `
 const FlexDiv = styled.div`
@@ -37,7 +37,7 @@ class ProductDescription extends React.Component {
             this.props.features.map(({feature, value}) => {
               return (
                 <h4 key={feature}>
-                  {feature} - {value}
+                  - {feature} - {value}
                 </h4>
               );
             })

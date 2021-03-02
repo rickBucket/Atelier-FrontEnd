@@ -7,7 +7,7 @@ const Div = styled.div`
   border-radius: 12px;
   padding: 12px;
   margin: 12px;
-  box-shadow: 3px 3px 8px grey;
+  box-shadow: 3px 3px 8px rgba(0,0,0,0.5);
 `
 const InvisDiv = styled.div`
   border-radius: 10px;
@@ -16,21 +16,22 @@ const InvisDiv = styled.div`
 `
 const Img = styled.img`
   border: 0px solid black;
-  border-radius: 12px;
-  margin: 12px;
-  max-height: 100px;
-  max-width: 100px;
+  border-radius: 50%;
+  margin: 5px;
   cursor: pointer;
-  box-shadow: 3px 3px 8px grey;
+  box-shadow: 3px 3px 8px rgba(0,0,0,0.5);
+  height: 70px;
+  width: 70px;
+  object-fit: cover;
 `
 const FlexStyleDiv = styled.div`
   border-radius: 12px;
-  padding: 5px;
-  margin: 5px;
+  padding: 0px;
+  margin: 0px;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  max-width: 540px;
+  max-width: 400px;
 `
 
 class StyleSelector extends React.Component {

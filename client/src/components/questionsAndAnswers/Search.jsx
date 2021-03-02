@@ -1,4 +1,10 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const Container = styled.div`
+  padding: 10px;
+  border: 3px red solid;
+`;
 
 class Search extends React.Component {
   constructor() {
@@ -18,12 +24,14 @@ class Search extends React.Component {
 
   render() {
     return (
+      <Container>
       <form onSubmit={event => {event.preventDefault(); }}>
         <div className='searchBar'>
         <input placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...        ' type='text' value={this.state.text} onChange={this.handleSubmit} ></input>
         <button className='search_button'> Search </button>
         </div>
       </form>
+      </Container>
     )
   }
 }

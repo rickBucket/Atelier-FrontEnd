@@ -1,5 +1,12 @@
 import React from 'react';
 import Question from './Question.jsx';
+import styled from 'styled-components';
+
+const Container = styled.div`
+  margin: 3px;
+  padding: 10px;
+  border: 3px blue solid;
+`;
 
 class Questions extends React.Component {
   constructor(props) {
@@ -7,18 +14,17 @@ class Questions extends React.Component {
     this.state = {
 
     };
-    console.log(this.props.questionData.results); //data to be mapped
   }
 
   render() {
     return (
-      <div>
+      <Container>
         {this.props.questionData.results.map((item, i) => {
           return (
             <Question item={item} key={i} />
           )
         })}
-      </div>
+      </Container>
     );
   }
 }

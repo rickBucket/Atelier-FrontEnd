@@ -34,7 +34,7 @@ class ProductDescription extends React.Component {
       let feat = ' - ' + element.feature;
       let val = element.value;
       if (typeof val === 'string' && val) {
-        feat = `${feat}: ${val.replaceAll('\"', '')}`
+        feat = `${feat}: ${val.split('\"').join('')}`
       }
       features.push(feat);
     });

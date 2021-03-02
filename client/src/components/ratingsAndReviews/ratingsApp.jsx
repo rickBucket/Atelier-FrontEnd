@@ -27,6 +27,7 @@ class RatingsApp extends React.Component {
       .then((results) => {
         this.setState({
           reviewList : results.data,
+          reviewsReady: true
         })
       })
       .catch((err) => {
@@ -35,10 +36,8 @@ class RatingsApp extends React.Component {
     ////GET product meta data//////
     axios.get(`/reviews/?product_id=${this.props.productID}&meta=meta`)
       .then((results) => {
-        console.log('meta data', results.data)
         this.setState({
           metaData: results.data,
-          reviewsReady: true
         })
         console.log(this.state)
       })

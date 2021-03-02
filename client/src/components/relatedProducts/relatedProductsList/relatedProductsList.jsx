@@ -1,27 +1,48 @@
 /* eslint-disable */
 import React from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 import RelatedProductCard from './relatedProductCard.jsx';
 
 class RelatedProductList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      farLeftImageIndex: 0,
       relatedProducts: this.props.relatedProducts,
+      parentProductIDInfo: '',
+
     }
   }
 
+  componentDidMount() {
+
+    axios.get(`/products/?product_id=${this.props.productID}`)
+      .then(({ data }) => {
+        this.setState({
+          parentProductIDInfo: data
+        })
+      })
+
+  }
+
   render() {
-    return (
-      <div>
-        <RelatedListContainer id="productCarousel">
-          {this.props.relatedProducts.map((product) => {
-            return <RelatedProductCard parentProductID={this.props.productID} productID={product} key={product} />
-          })}
-        </RelatedListContainer>
-        </div>
-    )
+    if (this.state.parentProductIDInfo.length === 0) {
+      return (
+        null
+      )
+    } else {
+      return (
+        <div>
+          <RelatedListContainer id="productCarousel">
+            {this.props.relatedProducts.map((product) => {
+              return <RelatedProductCard parentProductID={this.props.productID} productID={product}
+              parentProductIDInfo={this.state.parentProductIDInfo}
+              key={product} />
+            })}
+          </RelatedListContainer>
+          </div>
+      )
+    }
   }
 }
 

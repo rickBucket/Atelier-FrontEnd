@@ -39,12 +39,14 @@ class Answers extends React.Component {
         <AnswerBody> {  this.props.item.body}</AnswerBody>
         </AnwserDiv>
         <Container>
+
           <p>by {this.props.item.answerer_name} {this.props.item.date}</p>
+          <span className="divider"> | </span>
           <p> Helpful? </p>
           <Button> Yes </Button>
           <p>{this.props.item.helpfulness}</p>
-
-       <Button> Report </Button>
+          <span className="divider"> | </span>
+          <Button> Report </Button>
        </Container>
       </div>
     )
@@ -52,6 +54,10 @@ class Answers extends React.Component {
 }
 
 export default Answers;
+
+
+// {this.props.item.answerer_name === this.props.item}
+
 
 // List of answers here -
 // helpful button -

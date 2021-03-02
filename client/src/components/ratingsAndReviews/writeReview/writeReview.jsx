@@ -36,7 +36,12 @@ class WriteReview extends React.Component {
   }
 
   characteristicsRadioClick(e) {
-    this.setState({ characteristics: { ...this.state.characteristics, [e.target.name]: Number(e.target.value) } })
+    this.setState({
+      characteristics: {
+        ...this.state.characteristics,
+        [e.target.name]: Number(e.target.value)
+      }
+    });
   }
 
   recommendRadioClick(e) {
@@ -57,7 +62,7 @@ class WriteReview extends React.Component {
   }
 
   render() {
-    console.log(this.state)
+    console.log(this.props.metaData)
     return(
       <div style={{
         display: 'grid',

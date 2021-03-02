@@ -67,8 +67,7 @@ class WriteReview extends React.Component {
     return(
       <div style={{
         display: 'grid',
-        borderStyle: 'solid',
-        borderColor: 'grey',
+        boxShadow: '5px 5px 10px grey',
         borderRadius: '20px',
         padding: '10px',
         gridGap: '20px',
@@ -78,10 +77,8 @@ class WriteReview extends React.Component {
       }}>
         {/* <form> */}
           <div style={{
-            borderStyle: 'solid',
             borderRadius: '20px',
-            borderWidth: '3px',
-            borderColor: 'grey',
+            boxShadow: '5px 5px 10px grey',
             padding: '10px',
             alignContent: 'center',
             gridColumn: '1',
@@ -104,10 +101,8 @@ class WriteReview extends React.Component {
           </div>
 
           <div style={{
-            borderStyle: 'solid',
             borderRadius: '20px',
-            borderWidth: '3px',
-            borderColor: 'grey',
+            boxShadow: '5px 5px 10px grey',
             padding: '10px',
             gridColumn: '2',
             gridRow: '1',
@@ -122,10 +117,8 @@ class WriteReview extends React.Component {
           </div>
 
           <div style={{
-            borderStyle: 'solid',
             borderRadius: '20px',
-            borderWidth: '3px',
-            borderColor: 'grey',
+            boxShadow: '5px 5px 10px grey',
             padding: '10px',
             gridColumn: '1/-1',
             gridRow: '2'
@@ -223,10 +216,8 @@ class WriteReview extends React.Component {
 
 
           <div style={{
-            borderStyle: 'solid',
             borderRadius: '20px',
-            borderWidth: '3px',
-            borderColor: 'grey',
+            boxShadow: '5px 5px 10px grey',
             padding: '10px',
             gridRow: '3',
             gridColumn: '1'
@@ -236,10 +227,8 @@ class WriteReview extends React.Component {
           </div>
 
           <div style={{
-            borderStyle: 'solid',
             borderRadius: '20px',
-            borderWidth: '3px',
-            borderColor: 'grey',
+            boxShadow: '5px 5px 10px grey',
             padding: '10px',
             gridRow: '3',
             gridColumn: '2'
@@ -249,10 +238,8 @@ class WriteReview extends React.Component {
           </div>
 
           <div style={{
-            borderStyle: 'solid',
             borderRadius: '20px',
-            borderWidth: '3px',
-            borderColor: 'grey',
+            boxShadow: '5px 5px 10px grey',
             padding: '10px',
             gridRow: '4',
             gridColumn: '1/-1'
@@ -262,10 +249,8 @@ class WriteReview extends React.Component {
           </div>
 
           <div style={{
-            borderStyle: 'solid',
             borderRadius: '20px',
-            borderWidth: '3px',
-            borderColor: 'grey',
+            boxShadow: '5px 5px 10px grey',
             padding: '10px',
             gridRow: '5',
             gridColumn: '2'
@@ -274,10 +259,8 @@ class WriteReview extends React.Component {
           </div>
 
           <div style={{
-            borderStyle: 'solid',
             borderRadius: '20px',
-            borderWidth: '3px',
-            borderColor: 'grey',
+            boxShadow: '5px 5px 10px grey',
             padding: '10px',
             gridRow: '5',
             gridColumn: '1'
@@ -287,10 +270,8 @@ class WriteReview extends React.Component {
           </div>
 
           <button style={{
-            borderStyle: 'solid',
             borderRadius: '20px',
-            borderWidth: '3px',
-            borderColor: 'grey',
+            boxShadow: '5px 5px 10px grey',
             padding: '10px',
             gridRow: '6',
             gridColumn: '1/-1'

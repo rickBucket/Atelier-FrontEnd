@@ -12,7 +12,6 @@ class ReviewListEntry extends React.Component {
     return(
       <div className="ratings-flexbox-container" style={{
         display: 'grid',
-        borderStyle: 'solid',
         borderRadius: '20px',
         gridGap: '20px',
         padding: '10px',
@@ -23,41 +22,31 @@ class ReviewListEntry extends React.Component {
       }}>
 
         <div className="ratings-starRatings" style={{
-          borderStyle: 'solid',
-          borderColor: 'black',
+          boxShadow: '5px 5px 10px grey',
           borderRadius: '10px',
           padding: '5px',
-          borderWidth: '1px',
           alignContent: 'center',
           gridRow: '1',
           gridColumn: '1',
         }}>
           <span className="fa fa-star"></span>
-          <span className="fa fa-star"></span>
-          <span className="fa fa-star"></span>
-          <span className="fa fa-star"></span>
-          <span className="fa fa-star"></span>
           {`Star rating: ${review.rating}`}
         </div>
         <br />
         <div style={{
-          borderStyle: 'solid',
-          borderColor: 'black',
+          boxShadow: '5px 5px 10px grey',
           borderRadius: '10px',
-          borderWidth: '1px',
           padding: '5px',
           justifyContent: 'center',
           gridRow: '1',
           gridColumn: '3'
         }}>
-          {`Reviewer name: ${review.reviewer_name}`}
+          <b>{review.reviewer_name}</b>
         </div>
         <br />
         <div style={{
-          borderStyle: 'solid',
-          borderColor: 'black',
+          boxShadow: '5px 5px 10px grey',
           borderRadius: '10px',
-          borderWidth: '1px',
           padding: '5px',
           justifyContent: 'center',
           gridRow: '1',
@@ -67,10 +56,8 @@ class ReviewListEntry extends React.Component {
         </div>
         <br />
         <div style={{
-            borderStyle: 'solid',
-            borderColor: 'black',
+            boxShadow: '5px 5px 10px grey',
             borderRadius: '10px',
-            borderWidth: '1px',
             padding: '5px',
             justifyContent: 'center',
             gridRow: '2',
@@ -80,10 +67,8 @@ class ReviewListEntry extends React.Component {
         </div>
         <br />
         <div style={{
-          borderStyle: 'solid',
-          borderColor: 'black',
+          boxShadow: '5px 5px 10px grey',
           borderRadius: '10px',
-          borderWidth: '1px',
           padding: '5px',
           gridRow: '3',
           gridColumn: '1/-1'
@@ -92,10 +77,8 @@ class ReviewListEntry extends React.Component {
         </div>
         <br />
         <div style={{
-          borderStyle: 'solid',
-          borderColor: 'black',
+          boxShadow: '5px 5px 10px grey',
           borderRadius: '10px',
-          borderWidth: '1px',
           padding: '5px',
           gridRow: '5',
           gridColumn: '1/-1'
@@ -104,10 +87,8 @@ class ReviewListEntry extends React.Component {
         </div>
         <br />
         <div style={{
-          borderStyle: 'solid',
-          borderColor: 'black',
+          boxShadow: '5px 5px 10px grey',
           borderRadius: '10px',
-          borderWidth: '1px',
           padding: '5px',
           gridRow: '4',
           gridColumn: '1/-1'
@@ -116,15 +97,13 @@ class ReviewListEntry extends React.Component {
         </div>
         <br />
         <div style={{
-          borderStyle: 'solid',
-          borderColor: 'black',
+          boxShadow: '5px 5px 10px grey',
           borderRadius: '10px',
-          borderWidth: '1px',
           padding: '5px',
           gridRow: '6',
           gridColumn: '1/-1'
         }}>
-          {`Helpful? Yes (${review.helpfulness}) | Report`}
+          {`Helpful?`} <u>Yes</u> {`(${review.helpfulness}) | Report`}
         </div>
       </div>
     )

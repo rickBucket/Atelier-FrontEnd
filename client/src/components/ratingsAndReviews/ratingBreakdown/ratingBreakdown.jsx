@@ -6,9 +6,25 @@ class RatingBreakdown extends React.Component {
 
   }
 
+
+  componentDidMount(){
+
+  }
+
   render() {
+    console.log(this.props)
     return(
-      <div>Rating Breakdown Component</div>
+      <div style={{
+
+      }}>Rating Breakdown Component
+      <div>
+        stars
+      </div>
+      <div>
+        
+      </div>
+        <h1>3.5</h1>
+      </div>
     )
   }
 }

@@ -78,6 +78,8 @@ class Question extends React.Component {
   }
 
   render() {
+    // console.log(this.props.item)
+    // seller={this.props.item.}
     if (!this.state.loadedState) {
       return(
         null
@@ -94,6 +96,7 @@ class Question extends React.Component {
               <p> Helpful? </p>
               <Button> Yes </Button>
               <p>({this.props.item.question_helpfulness})</p>
+              <span className="divider"> | </span>
               <Button onClick={ this.selectModal }> Add Answer </Button>
               </MoveRight>
 
@@ -102,7 +105,7 @@ class Question extends React.Component {
         {this.state.answers.map((itemA, i) => {
           return (
             <ContainerB>
-            <Answers item={itemA} key={this.state.answers.id}/>
+            <Answers item={itemA} key={this.state.answers.id} />
             </ContainerB>
           )
         })}

@@ -48,9 +48,15 @@ class RatingsApp extends React.Component {
 
 
   handleReviewData(reviewData) {
-    console.log('REVIEW DATA', reviewData)
+    console.log(reviewData)
     //axiosPost here
-    //axios.post('/')
+    axios.post('/reviews', reviewData)
+      .then(results => {
+        console.log('post results client side', results)
+      })
+      .catch(err => {
+        console.log('err on review POST', err)
+      })
   }
 
   exitWriteReviewClick(e) {

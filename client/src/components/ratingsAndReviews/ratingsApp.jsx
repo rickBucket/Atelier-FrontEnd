@@ -17,6 +17,7 @@ class RatingsApp extends React.Component {
 
     this.writeReviewClick = this.writeReviewClick.bind(this);
     this.exitWriteReviewClick = this.exitWriteReviewClick.bind(this);
+    this.handleReviewData = this.handleReviewData.bind(this);
   }
 
   componentDidMount() {
@@ -35,7 +36,9 @@ class RatingsApp extends React.Component {
 
 
   handleReviewData(reviewData) {
+    console.log('REVIEW DATA', reviewData)
     //axiosPost here
+    //axios.post('/')
   }
 
   exitWriteReviewClick(e) {
@@ -55,7 +58,7 @@ class RatingsApp extends React.Component {
       return(
         <div>
             Let's write a review.
-            <WriteReview />
+            <WriteReview handleReviewData={this.handleReviewData}/>
             <br />
             <button onClick={this.exitWriteReviewClick}>Exit write review</button>
         </div>

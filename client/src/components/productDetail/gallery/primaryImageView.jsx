@@ -8,13 +8,13 @@ const Div = styled.div`
   padding: 4px;
 `
 const Img = styled.img`
-  border: 1px solid black;
+  border: 0px solid black;
   border-radius: 16px;
-  max-height: 540px;
-  max-width: 540px;
+  max-height: 600px;
+  max-width: 600px;
   margin: 12px;
   cursor: pointer;
-  box-shadow: 5px 5px 8px black;
+  box-shadow: 5px 5px 10px grey;
 `
 
 class PrimaryImageView extends React.Component {

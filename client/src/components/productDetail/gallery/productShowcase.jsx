@@ -4,25 +4,25 @@ import PrimaryImageView from './primaryImageView.jsx';
 import styled from 'styled-components';
 
 const Div = styled.div`
-  border: 1px solid grey;
-  border-radius: 16px;
+  border: 0px solid grey;
+  border-radius: 12px;
   padding: 12px;
-  margin: 5px;
-  box-shadow: 4px 4px 5px black;
+  margin: 12px;
+  box-shadow: 3px 3px 8px grey;
 `
 const InvisDiv = styled.div`
-  border-radius: 10px;
+  border-radius: 12px;
   padding: 5px;
   margin: 5px;
 `
 const Img = styled.img`
-  border: 1px solid black;
+  border: 0px solid black;
   border-radius: 12px;
   margin: auto;
   max-height: 100px;
   max-width: 100px;
   cursor: pointer;
-  box-shadow: 4px 4px 4px black;
+  box-shadow: 3px 3px 8px grey;
 `
 
 class ProductShowcase extends React.Component {

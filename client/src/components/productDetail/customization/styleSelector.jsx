@@ -3,11 +3,11 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Div = styled.div`
-  border: 1px solid grey;
-  border-radius: 16px;
+  border: 0px solid grey;
+  border-radius: 12px;
   padding: 12px;
   margin: 12px;
-  box-shadow: 4px 4px 5px black;
+  box-shadow: 3px 3px 8px grey;
 `
 const InvisDiv = styled.div`
   border-radius: 10px;
@@ -15,13 +15,13 @@ const InvisDiv = styled.div`
   margin: 5px;
 `
 const Img = styled.img`
-  border: 1px solid black;
-  border-radius: 14px;
-  margin: 5px;
+  border: 0px solid black;
+  border-radius: 12px;
+  margin: 12px;
   max-height: 100px;
   max-width: 100px;
   cursor: pointer;
-  box-shadow: 4px 4px 4px black;
+  box-shadow: 3px 3px 8px grey;
 `
 const FlexStyleDiv = styled.div`
   border-radius: 12px;
@@ -30,6 +30,7 @@ const FlexStyleDiv = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  max-width: 540px;
 `
 
 class StyleSelector extends React.Component {

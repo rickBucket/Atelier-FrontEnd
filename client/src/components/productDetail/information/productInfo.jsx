@@ -3,11 +3,12 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Div = styled.div`
-  border: 1px solid grey;
-  border-radius: 16px;
+  border: 0px solid grey;
+  border-radius: 12px;
   padding: 16px;
   margin: 16px 12px 16px 12px;
-  box-shadow: 4px 4px 5px black;
+  box-shadow: 3px 3px 8px grey;
+  max-width: 540px;
 `
 const InvisDiv = styled.div`
   border-radius: 10px;

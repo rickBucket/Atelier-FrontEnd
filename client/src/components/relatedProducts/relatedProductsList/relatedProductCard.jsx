@@ -21,11 +21,11 @@ class RelatedProductCard extends React.Component {
     this.FlexboxItem = styled.div`
     height: 450px;
     width: 300px;
-    border: 1px solid #333;
+    border: 1px solid grey;
     flex-shrink: 0;
     margin-left: 5px;
     margin-right: 5px;
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+    box-shadow: 3px 3px 8px rgba(0,0,0,0.5);
     border-radius: 10px;
   `;
     this.ImageWrapper = styled.div`

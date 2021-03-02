@@ -33,7 +33,7 @@ class ProductDescription extends React.Component {
     featureArray.forEach((element) => {
       let feat = ' - ' + element.feature;
       let val = element.value;
-      if (val) {
+      if (typeof val === 'string' && val) {
         feat = `${feat}: ${val.replaceAll('\"', '')}`
       }
       features.push(feat);

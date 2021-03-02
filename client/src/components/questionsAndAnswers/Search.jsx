@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 import React from 'react';
 import styled from 'styled-components';
 
@@ -33,7 +34,7 @@ const SearchBtn = styled.button`
   cursor: pointer;
   font-size: 20px;
 
-  &:hover ${SearchBtn} {
+  &:hover {
     background-color: lightgrey;
     border: 1px solid black;
   border-radius: 5px;

@@ -18,7 +18,7 @@ const ButtonA = styled.button`
   background-color: white;
   padding: 10px;
 
-  &:hover ${ButtonA} {
+  &:hover {
     background-color: lightgrey;
     border: 1px solid black;
   border-radius: 5px;
@@ -32,7 +32,7 @@ const ButtonB = styled.button`
   background-color: white;
   padding: 10px;
 
-  &:hover ${ButtonB} {
+  &:hover {
     background-color: lightgrey;
     border: 1px solid black;
   border-radius: 5px;

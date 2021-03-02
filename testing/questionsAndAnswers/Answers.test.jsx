@@ -5,7 +5,7 @@ import Answers from '../../client/src/components/questionsAndAnswers/Answers.jsx
 
 describe('<Answers />', () => {
   it('renders a div component', () => {
-    const wrapper = shallow(<Answers item={this.props.questionData.resutls.answers} />);
+    const wrapper = shallow(<Answers item={dummyData.results.answers} />);
     expect(wrapper.find('#data')).not.toBeUndefined();
   });
 });

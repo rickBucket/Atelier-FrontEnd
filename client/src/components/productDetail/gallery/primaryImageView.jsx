@@ -3,18 +3,25 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Div = styled.div`
-  border: 2px solid black;
   border-radius: 10px;
-  padding: 4px;
+  padding: auto;
+  margin: 4px;
+  height: 600px;
+  width: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  float: right;
 `
 const Img = styled.img`
   border: 0px solid black;
   border-radius: 16px;
+  margin: auto;
+  cursor: pointer;
+  box-shadow: 4px 4px 10px rgba(0,0,0,0.7);
+  position: absolute;
   max-height: 600px;
   max-width: 600px;
-  margin: 12px;
-  cursor: pointer;
-  box-shadow: 5px 5px 10px grey;
 `
 
 class PrimaryImageView extends React.Component {
@@ -24,7 +31,9 @@ class PrimaryImageView extends React.Component {
 
   render() {
     return (
-      <Img src={this.props.photo} a=''></Img>
+      <Div>
+        <Img src={this.props.photo} a=''></Img>
+      </Div>
     );
   }
 }

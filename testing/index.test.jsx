@@ -16,5 +16,6 @@ describe('<App />', () => {
     wrapper.find('#clear').simulate('click', {target: {value: '2'}, preventDefault: ()=>{} });
     wrapper.find('#clear').simulate('click', {target: {value: '3'}, preventDefault: ()=>{} });
     wrapper.find('#clear').simulate('click', {target: {value: '4'}, preventDefault: ()=>{} });
+    wrapper.find('#next').simulate('click', {preventDefault: ()=>{} });
   });
 });

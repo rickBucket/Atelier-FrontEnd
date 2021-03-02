@@ -7,7 +7,7 @@ const Div = styled.div`
   border-radius: 12px;
   padding: 16px;
   margin: 16px 12px 16px 12px;
-  box-shadow: 3px 3px 8px grey;
+  box-shadow: 3px 3px 8px rgba(0,0,0,0.5);
   max-width: 540px;
 `
 const InvisDiv = styled.div`

@@ -3,10 +3,23 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Div = styled.div`
-  border: 2px solid black;
-  border-radius: 10px;
-  padding: 5px;
-  margin: 5px;
+  background: rgba(0,0,0,0.5);
+  padding: auto;
+  margin: -55px -15px;
+  height: 100%;
+  width: 99.9%;
+  position: absolute;
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  backdrop-filter: blur(8px) contrast(70%);
+`
+const Img = styled.img`
+  border-radius: 25px;
+  margin: auto;
+  max-height: 920px;
+  max-width: 1280px;
+  cursor: pointer;
 `
 
 class ExpandedView extends React.Component {
@@ -19,9 +32,8 @@ class ExpandedView extends React.Component {
 
   render() {
     return (
-      <Div>
-        ExpandedView
-
+      <Div onClick={this.props.unselectPhoto}>
+        <Img src={this.props.photo} a=""></Img>
       </Div>
     );
   }

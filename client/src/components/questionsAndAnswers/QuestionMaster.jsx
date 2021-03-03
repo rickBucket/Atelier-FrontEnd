@@ -12,6 +12,34 @@ const Container = styled.div`
   border: 3px grey solid;
 `;
 
+const ButtonA = styled.button`
+  height: 60px;
+  width: 235px;
+  background-color: white;
+  padding: 10px;
+
+  &:hover {
+    background-color: lightgrey;
+    border: 1px solid black;
+  border-radius: 5px;
+  transition: all ease 0.3s;
+  }
+`;
+
+const ButtonB = styled.button`
+  height: 60px;
+  width: 175px;
+  background-color: white;
+  padding: 10px;
+
+  &:hover {
+    background-color: lightgrey;
+    border: 1px solid black;
+  border-radius: 5px;
+  transition: all ease 0.3s;
+  }
+
+`;
 
 
 class QuestionMaster extends React.Component {
@@ -27,6 +55,7 @@ class QuestionMaster extends React.Component {
   componentDidMount() {
     axios.get(`qa/questions/?product_id=${this.props.productID}`)
       .then((response) => {
+        console.log(this.props.productID)
         this.setState({
           questionData: response.data,
         });
@@ -45,10 +74,11 @@ class QuestionMaster extends React.Component {
         <h1>Question's and Answers</h1>
         <Search />
         <Questions questionData={this.state.questionData}/>
-        <button className="Load-button"> Load more questions </button>
-        <button className="add-Q-button" onClick={ this.selectModal }> Add a Question  + </button>
+        <ButtonA className="Load-button"> <b> MORE ANSWERED QUESTIONS </b> </ButtonA>
+        <ButtonB className="add-Q-button" onClick={ this.selectModal }> <b>ADD A QUESTION +</b> </ButtonB>
         <QuestionModal displayModal={this.state.modal}
-        closeModal={this.selectModal}/>
+        closeModal={this.selectModal}
+        product_id={this.props.productID}/>
       </Container>
     );
   }

@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   display: flex;
-  padding: 10px;
-  border: 3px purple solid;
+  /* padding: 10px;
+  border: 3px purple solid; */
 `;
 
 const Button = styled.button`
@@ -23,12 +23,22 @@ const AnswerBody = styled.p`
   padding-left: 10px;
 `;
 
+const Divide = styled.span`
+  margin-left: 5px;
+  margin-left: 5px;
+  padding-top: 17.3px;
+  font-weight: bold;
+`;
+
+
 class Answers extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+
     };
   }
+
   //when clicking on add load more answers add a total to a state integer and only show that many
 
   render() {
@@ -36,20 +46,23 @@ class Answers extends React.Component {
       <div>
         <AnwserDiv>
         <h3> A: </h3>
-        <AnswerBody> {  this.props.item.body}</AnswerBody>
+        <AnswerBody> { this.props.item.body }</AnswerBody>
         </AnwserDiv>
+
         <Container>
 
-          <p>by {this.props.item.answerer_name} {this.props.item.date}</p>
-          <span className="divider"> | </span>
+          {this.props.item.answerer_name === this.props.seller ?
+            (<p>by <b> Seller </b> {this.props.item.date} </p>) :
+            (<p>by {this.props.item.answerer_name} {this.props.item.date}</p>)}
+          <Divide className="divider"> | </Divide>
           <p> Helpful? </p>
           <Button> Yes </Button>
           <p>{this.props.item.helpfulness}</p>
-          <span className="divider"> | </span>
+          <Divide className="divider"> | </Divide>
           <Button> Report </Button>
        </Container>
       </div>
-    )
+    );
   }
 }
 

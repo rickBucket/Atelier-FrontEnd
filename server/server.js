@@ -61,6 +61,7 @@ app.get('/qa/questions', (req, res) => {
 app.post('/qa/questions', (req, res) => {
   questions.postQuestions(req.body, (err, data) => {
     if (err) {
+      console.log(req.body);
       res.status(404).send(err);
     } else {
       res.status(201).send(data)

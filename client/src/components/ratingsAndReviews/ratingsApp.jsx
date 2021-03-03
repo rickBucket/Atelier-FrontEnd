@@ -147,7 +147,11 @@ class RatingsApp extends React.Component {
           gridColumn: '2/3',
           gridRow: '8'
         }}>
-          <button onClick={this.writeReviewClick}>Write Review</button>
+          <button onClick={this.writeReviewClick} style={{
+            borderRadius: '20px',
+            boxShadow: '5px 5px 10px green',
+            padding: '10px',
+          }}>Write Review</button>
           {/* <WriteReview className="writeReviewGridBox"/> */}
         </div>
 
@@ -156,9 +160,13 @@ class RatingsApp extends React.Component {
           boxShadow: '5px 5px 10px pink',
           padding: '20px',
           gridColumn: '3',
-          gridRow: '8'
+          gridRow: '8',
         }}>
-          <button>More Reviews</button>
+          <button style={{
+            borderRadius: '20px',
+            boxShadow: '5px 5px 10px pink',
+            padding: '10px',
+          }}>More Reviews</button>
           {/* On click, this changes state of reviews to an extra two reviews */}
         </div>
     </div>

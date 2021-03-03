@@ -1,4 +1,5 @@
 import React from 'react';
+import CharacteristicsRadio from './characteristicsRadio.jsx'
 
 class WriteReview extends React.Component {
   constructor(props) {
@@ -13,12 +14,6 @@ class WriteReview extends React.Component {
       rating: null,
       photos: [],
       characteristics: {
-        //[this.props.metaData.characteristics.Size.id]: null,
-        //[this.props.metaData.characteristics.Width.id]: null,
-        [this.props.metaData.characteristics.Comfort.id]: null,
-        [this.props.metaData.characteristics.Quality.id]: null,
-        [this.props.metaData.characteristics.Length.id]: null,
-        [this.props.metaData.characteristics.Fit.id]: null,
       }
     }
 
@@ -58,12 +53,43 @@ class WriteReview extends React.Component {
   }
 
   handleReviewData(e) {
-    //send review data to ratingsApp
-    console.log('state', this.state)
+    //body check
+    if (this.state.body.length < 50 || this.state.body.length > 1000) {
+      alert('Review body must be at least 50 characters');
+      e.preventDefault()
+      return false
+    }
+    //email check
+    if (!(this.state.email).match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/) || this.state.email.length > 60 || this.state.email.length === 0) {
+      alert(`Please make sure email is in proper format ex. 'hello@hello.com`);
+      e.preventDefault()
+      return false
+    }
+    //summary check
+    if (this.state.summary.length > 60) {
+      alert(`Summary must be 60 characters or less`)
+      e.preventDefault()
+      return false
+    }
+    //name check
+    if (this.state.name.length > 60 || this.state.name.length === 0) {
+      alert(`Name must be filled in and 60 characters or less`)
+      e.preventDefault()
+      return false
+    }
+    //mandatory  fields
+    if (this.state.rating === null || this.state.recommend === null || this.props.metaData.characteristics.Comfort.id === null || this.props.metaData.characteristics.Quality.id === null || this.props.metaData.characteristics.Length.id === null || this.props.metaData.characteristics.Fit.id === null) {
+      alert(`Please fill out all mandatory fields`);
+      e.preventDefault()
+      return false
+    }
+
+    alert('Your review has been submitted!')
     this.props.handleReviewData(this.state)
   }
 
   render() {
+    console.log(this.state.characteristics)
     return(
       <div style={{
         display: 'grid',
@@ -76,7 +102,7 @@ class WriteReview extends React.Component {
         alignItems: 'center',
         overflow: 'auto'
       }}>
-        {/* <form> */}
+        <form onSubmit={this.handleReviewData}>
           <div style={{
             borderRadius: '20px',
             boxShadow: '5px 5px 10px grey',
@@ -87,7 +113,7 @@ class WriteReview extends React.Component {
             alignItems: 'center'
           }}>
           <div>
-              <b>Size</b>
+              <b>Overall</b>
               <br />
               <input type="radio" id="star1" name="rating" value="1" onClick={this.starRadioClick}></input>
               <label for="star1"><span className="fa fa-star">1</span></label>
@@ -118,6 +144,8 @@ class WriteReview extends React.Component {
             </div>
           </div>
 
+
+
           <div style={{
             borderRadius: '20px',
             boxShadow: '5px 5px 10px grey',
@@ -125,7 +153,9 @@ class WriteReview extends React.Component {
             gridColumn: '1/-1',
             gridRow: '2'
           }}>Characteristics
-            {/* <div>
+            {
+              this.props.metaData.characteristics.Size &&
+            <div>
               <b>Size</b>
               <br />
               <input type="radio" id="size1" name={this.props.metaData.characteristics.Size.id} value="1" onClick={this.characteristicsRadioClick}></input>
@@ -139,7 +169,10 @@ class WriteReview extends React.Component {
               <input type="radio" id="size5" name={this.props.metaData.characteristics.Size.id} value="5" onClick={this.characteristicsRadioClick}></input>
               <label for="size5">A size too wide</label>
             </div>
+            }
             <br />
+            {
+              this.props.metaData.characteristics.Width &&
             <div>
               <b>Width</b>
               <br />
@@ -154,7 +187,10 @@ class WriteReview extends React.Component {
               <input type="radio" id="width5" name={this.props.metaData.characteristics.Width.id} value="5" onClick={this.characteristicsRadioClick}></input>
               <label for="width5">Too wide</label>
             </div>
-            <br /> */}
+            }
+            <br />
+            {
+              this.props.metaData.characteristics.Comfort &&
             <div>
               <b>Comfort</b>
               <br />
@@ -169,7 +205,10 @@ class WriteReview extends React.Component {
               <input type="radio" id="comfort5" name={this.props.metaData.characteristics.Comfort.id} value="5" onClick={this.characteristicsRadioClick}></input>
               <label for="comfort5">Perfect</label>
             </div>
+            }
             <br />
+            {
+              this.props.metaData.characteristics.Quality &&
             <div>
               <b>Quality</b>
               <br />
@@ -184,7 +223,10 @@ class WriteReview extends React.Component {
               <input type="radio" id="quality5" name={this.props.metaData.characteristics.Quality.id} value="5" onClick={this.characteristicsRadioClick}></input>
               <label for="quality5">Perfect</label>
             </div>
+            }
             <br />
+            {
+            this.props.metaData.characteristics.Length &&
             <div>
               <b>Length</b>
               <br />
@@ -199,7 +241,10 @@ class WriteReview extends React.Component {
               <input type="radio" id="length5" name={this.props.metaData.characteristics.Length.id} value="5" onClick={this.characteristicsRadioClick}></input>
               <label for="length5">Runs long</label>
             </div>
+            }
             <br />
+            {
+            this.props.metaData.characteristics.Fit &&
             <div>
               <b>Fit</b>
               <br />
@@ -214,6 +259,7 @@ class WriteReview extends React.Component {
               <input type="radio" id="fit5" name={this.props.metaData.characteristics.Fit.id} value="5" onClick={this.characteristicsRadioClick}></input>
               <label for="fit5">Runs long</label>
             </div>
+            }
           </div>
 
 
@@ -279,7 +325,7 @@ class WriteReview extends React.Component {
             gridColumn: '1/-1'
           }} onClick={this.handleReviewData}>Submit Review</button>
 
-        {/* </form> */}
+        </form>
       </div>
     )
   }

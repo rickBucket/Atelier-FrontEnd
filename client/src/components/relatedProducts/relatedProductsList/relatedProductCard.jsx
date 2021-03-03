@@ -10,7 +10,6 @@ class RelatedProductCard extends React.Component {
     this.state = {
       productIDInfo: '',
       parentProductIDInfo: this.props.parentProductIDInfo,
-      compareProductsFeatures: '',
       productIDStyles: '',
       featuredURL: '',
       loaded: 0,
@@ -94,7 +93,6 @@ class RelatedProductCard extends React.Component {
         }
       }
     })
-    console.log(combinedFeatures);
 
     currentProduct.forEach((product)=> {
       if (!combinedFeatures[product.feature]) {
@@ -113,22 +111,6 @@ class RelatedProductCard extends React.Component {
         }
       }
     })
-    // for (let j = 0; j < currentProduct.length; j++) {
-    //   if (combinedFeatures[currentProduct[j].feature] === undefined) {
-    //     if (currentProduct[j].value === null) {
-    //       combinedFeatures[currentProduct[j].feature] = ['✔️'];
-    //     } else {
-    //       combinedFeatures[currentProduct[j].feature] = [currentProduct[j].value];
-    //     }
-    //   } else {
-    //     if (currentProduct[j].value === null) {
-    //       combinedFeatures[currentProduct[j].feature][1] = '✔️';
-    //     } else {
-    //       combinedFeatures[currentProduct[j].feature][1] = currentProduct[j].value;
-    //     }
-    //   }
-    // }
-    // console.log(combinedFeatures);
 
     const arrayOfCombinedFeatures = [];
     const features = Object.keys(combinedFeatures);
@@ -141,7 +123,6 @@ class RelatedProductCard extends React.Component {
     this.setState({
       combinedFeatures: arrayOfCombinedFeatures
     })
-    console.log(arrayOfCombinedFeatures)
   };
 
   handleCompareClick(event) {

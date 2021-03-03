@@ -6,7 +6,8 @@ import Checkout from '../../../client/src/components/productDetail/checkout/chec
 
 describe('<Checkout />', () => {
   it('renders a div component', () => {
-    const wrapper = shallow(<Checkout />);
+    const wrapper = shallow(<Checkout skus={{'a':{}}}
+    />);
     expect(wrapper.find('#data')).not.toBeUndefined();
   });
 });

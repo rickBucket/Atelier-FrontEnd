@@ -1,18 +1,17 @@
 /* eslint-disable */
 import React from 'react';
-import Selectors from './selectors.jsx';
 import styled from 'styled-components';
 
 const Div = styled.div`
-  border: 0px solid grey;
   border-radius: 12px;
   padding: 4px 0px 4px 0px;
   margin: 20px 12px 12px 12px;
   box-shadow: 3px 3px 8px rgba(0,0,0,0.5);
+  background: rgba(255,255,255,0.1);
 `
 const ButtonCheckout = styled.button`
-  background: white;
   border: 0px solid grey;
+  background: white;
   border-radius: 5px;
   margin: 5px 12px 12px 12px;
   cursor: pointer;
@@ -20,13 +19,23 @@ const ButtonCheckout = styled.button`
   box-shadow: 3px 3px 8px rgba(0,0,0,0.5);
 `
 const ButtonFav = styled.button`
-  background: white;
   border: 0px solid grey;
+  background: white;
   border-radius: 5px;
   padding: 5px;
   margin: 5px 12px 12px 12px;
   cursor: pointer;
   width: 20%;
+  box-shadow: 3px 3px 8px rgba(0,0,0,0.5);
+`
+const Selector = styled.select`
+  border: 0px solid grey;
+  background: white;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 12px;
+  cursor: pointer;
+  width: 50%;
   box-shadow: 3px 3px 8px rgba(0,0,0,0.5);
 `
 const FlexDiv = styled.div`
@@ -39,19 +48,59 @@ const FlexDiv = styled.div`
 class Checkout extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      skus: this.props.skus,
+      selectedSKU: {quantity: 0},
+      quantity: 0
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleQuantity = this.handleQuantity.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(e) {
+    this.setState({
+      selectedSKU: Object.values(this.state.skus).find((element) => {
+        return element.size === e.target.value;
+      })
+    });
+  }
+
+  handleQuantity(e) {
+    this.setState({
+      quantity: e.target.value
+    });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
   }
 
   render() {
     return (
       <Div>
-        <FlexDiv>
-          <Selectors />
-          <Selectors />
-        </FlexDiv>
-        <FlexDiv>
-          <ButtonCheckout>Add to Bag</ButtonCheckout>
-          <ButtonFav>STAR</ButtonFav>
-        </FlexDiv>
+        <form>
+          <FlexDiv>
+            <Selector name="size" onChange={this.handleChange}>
+              {
+                Object.values(this.state.skus).map((x) => {
+                  return <option value={x.size} key={x.size}>{x.size}</option>
+                })
+              }
+            </Selector>
+            <Selector name="quantity" onChange={this.handleQuantity}>
+              {
+                [...Array(this.state.selectedSKU.quantity % 15).keys()].map((x) => {
+                  return <option value={x} key={x}>{x}</option>
+                })
+              }
+            </Selector>
+          </FlexDiv>
+          <FlexDiv>
+            <ButtonCheckout>Add to Bag</ButtonCheckout>
+            <ButtonFav>STAR</ButtonFav>
+          </FlexDiv>
+        </form>
       </Div>
     );
   }

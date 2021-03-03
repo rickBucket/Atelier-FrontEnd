@@ -10,14 +10,14 @@ const FlexDiv = styled.div`
   margin: 12px 12px 12px -48px;
   box-shadow: 3px 3px 8px rgba(0,0,0,0.5);
   overflow-x: hidden;
-  width: 116px;
-  height: 560px;
+  width: 101px;
+  height: 540px;
   display: flex;
   flex-wrap: wrap;
   float: left;
   position: absolute;
   z-index: 10;
-  background: rgba(128,128,128,0.2);
+  background: rgba(255,255,255,0.1);
   backdrop-filter: blur(16px);
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none;  /* IE 10+ */
@@ -35,8 +35,8 @@ const Img = styled.img`
   border: 0px solid black;
   border-radius: 12px;
   margin: 8px;
-  height: 100px;
-  width: 100px;
+  height: 85px;
+  width: 85px;
   object-fit: cover;
   cursor: pointer;
   box-shadow: 3px 3px 8px rgba(0,0,0,0.5);

@@ -9,6 +9,7 @@ const Div = styled.div`
   padding: 0px 20px 0px 20px;
   box-shadow: 3px 3px 8px rgba(0,0,0,0.5);
   max-width: 600px;
+  background: rgba(255,255,255,0.1);
 `
 const FlexDiv = styled.div`
   border-radius: 12px;

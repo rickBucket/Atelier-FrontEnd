@@ -7,7 +7,7 @@ const FlexDiv = styled.div`
   border: 0px solid grey;
   border-radius: 12px;
   padding: auto;
-  margin: 12px 12px 12px -25px;
+  margin: 12px 12px 12px -48px;
   box-shadow: 3px 3px 8px rgba(0,0,0,0.5);
   overflow-x: hidden;
   width: 116px;
@@ -17,7 +17,8 @@ const FlexDiv = styled.div`
   float: left;
   position: absolute;
   z-index: 10;
-  backdrop-filter: blur(12px);
+  background: rgba(128,128,128,0.2);
+  backdrop-filter: blur(16px);
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none;  /* IE 10+ */
   &::-webkit-scrollbar {
@@ -49,6 +50,7 @@ class ProductShowcase extends React.Component {
       currentPhoto: this.props.photos[0]
     };
     this.handleClick = this.handleClick.bind(this);
+    this.handleExpand = this.handleExpand.bind(this);
   }
 
   handleClick(value) {
@@ -57,10 +59,17 @@ class ProductShowcase extends React.Component {
     });
   }
 
+  handleExpand() {
+    this.props.selectPhoto(this.state.currentPhoto.url);
+  }
+
   render() {
     return (
       <InvisDiv>
-        <PrimaryImageView photo={this.state.currentPhoto.url} />
+        <PrimaryImageView
+          handleExpand={this.handleExpand}
+          photo={this.state.currentPhoto.url}
+        />
         <FlexDiv>
           {
             this.state.photos.map((photo) => {

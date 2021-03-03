@@ -3,6 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import RelatedProductsList from './relatedProductsList/relatedProductsList.jsx';
+import YourOutfitList from './yourOutfitList/yourOutfitList.jsx';
 
 class RelatedProductsMainView extends React.Component {
   constructor(props) {
@@ -59,17 +60,21 @@ class RelatedProductsMainView extends React.Component {
         <div>
           Related Products
         </div>
-        <div>
-          {this.state.imagesToTheRight ? <RightButton onClick={this.scrollRight}>
-            ➡️
+        <RelatedListWrapper>
+          <div>
+            {this.state.imagesToTheRight ? <RightButton onClick={this.scrollRight}>
+              ➡️
           </RightButton> : null}
-        </div>
-
-        <RelatedProductsList productID={this.props.productID} relatedProducts={this.state.relatedProducts}/>
-        <div>
-        {this.state.imagesToTheLeft ? <LeftButton onClick={this.scrollLeft}>
-          ⬅️
+          </div>
+          <RelatedProductsList productID={this.props.productID} relatedProducts={this.state.relatedProducts} />
+          <div>
+            {this.state.imagesToTheLeft ? <LeftButton onClick={this.scrollLeft}>
+              ⬅️
         </LeftButton> : null}
+          </div>
+        </RelatedListWrapper>
+        <div>
+          <YourOutfitList />
         </div>
       </div>
 
@@ -82,7 +87,7 @@ export default RelatedProductsMainView;
 const LeftButton = styled.button`
   position: absolute;
   left: 2%;
-  top: 20%;
+  top: 30%;
   background: none;
   border: none;
   cursor: pointer;
@@ -94,10 +99,14 @@ const LeftButton = styled.button`
 const RightButton = styled.button`
   position: absolute;
   right: 2%;
-  top: 20%;
+  top: 30%;
   background: none;
   border: none;
   cursor: pointer;
   z-index: 100;
   background-color: rgba(0,0,0,0.4);
+`;
+
+const RelatedListWrapper = styled.div`
+  margin: 10px;
 `;

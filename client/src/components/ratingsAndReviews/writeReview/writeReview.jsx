@@ -314,7 +314,7 @@ class WriteReview extends React.Component {
             gridRow: '5',
           }}>
             <label for="body"><b>* Your Review: </b></label>
-            <input type="text" style={{width : '90%'}} value={this.state.body} name="body" onChange={this.onInputChange} placeholder="Why did you like the product or not?"></input>
+            <input type="text" style={{width : '90%'}} value={this.state.body} name="body" onChange={this.onInputChange} placeholder="What did you like/dislike about the product?"></input>
           </div>
 
           <div style={{

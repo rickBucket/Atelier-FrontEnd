@@ -11,10 +11,12 @@ class RatingsApp extends React.Component {
     super(props)
     this.state = {
       reviewList : [],
+      allReviews: [],
       metaData: [],
       reviewsReady: false,
       metaReady: false,
-      writeReviewModal: false
+      writeReviewModal: false,
+      noReviews: false
     }
 
     this.writeReviewClick = this.writeReviewClick.bind(this);
@@ -24,10 +26,16 @@ class RatingsApp extends React.Component {
 
   componentDidMount() {
     ////GET product reviews/////
-    axios.get(`/reviews/?product_id=${this.props.productID}`)
+    axios.get(`/reviews/?product_id=${this.props.productID}&count=10`)
       .then((results) => {
+        if (results.data.results.length === 0){
+          this.setState({
+            noReviews: true
+          })
+        };
         this.setState({
-          reviewList : results.data,
+          reviewList : results.data.results.slice(0, 2),
+          allReviews: results.data.results,
           reviewsReady: true
         })
       })
@@ -66,6 +74,10 @@ class RatingsApp extends React.Component {
     })
   }
 
+  moreReviewsClick(e) {
+
+  }
+
   writeReviewClick(e) {
     this.setState({
       writeReviewModal: true
@@ -73,12 +85,25 @@ class RatingsApp extends React.Component {
   }
 
   render() {
+    console.log(this.state.reviewList)
     if (this.state.writeReviewModal) {
       return(
         <div>
             <WriteReview handleReviewData={this.handleReviewData} productID={this.props.productID} metaData={this.state.metaData}/>
             <br />
             <button onClick={this.exitWriteReviewClick}>Exit write review</button>
+        </div>
+      )
+    }
+    if (this.state.noReviews) {
+      return(
+        <div>
+          <h1 style={{textAlign: 'center'}}>Be the first to write a review!</h1>
+          <button onClick={this.writeReviewClick} style={{
+            borderRadius: '20px',
+            boxShadow: '5px 5px 10px green',
+            padding: '10px',
+          }}>ADD A REVIEW +</button>
         </div>
       )
     }
@@ -158,7 +183,8 @@ class RatingsApp extends React.Component {
           }}>ADD A REVIEW +</button>
           {/* <WriteReview className="writeReviewGridBox"/> */}
         </div>
-
+        {
+          this.state.allReviews.length > 2 &&
         <div className="viewMoreReviewsGridBox" style={{
           borderRadius: '20px',
           boxShadow: '5px 5px 10px pink',
@@ -173,6 +199,7 @@ class RatingsApp extends React.Component {
           }}>MORE REVIEWS</button>
           {/* On click, this changes state of reviews to an extra two reviews */}
         </div>
+        }
     </div>
     }
     </div>

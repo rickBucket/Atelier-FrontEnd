@@ -11,7 +11,7 @@ const reviewList = ({ reviewList }) => {
         gridGap: '20px',
         alignItems: 'center'
       }}>
-      {reviewList.results.map((review, key) => (
+      {reviewList.map((review, key) => (
       <ReviewListEntry review={review} key={key}/>
       ))}
       </ul>

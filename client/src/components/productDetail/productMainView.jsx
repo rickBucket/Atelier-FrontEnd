@@ -6,6 +6,7 @@ import ProductDescription from './information/productDescription.jsx';
 import ProductShowcase from './gallery/productShowcase.jsx';
 import StyleSelector from './customization/styleSelector.jsx';
 import Checkout from './checkout/checkout.jsx';
+import ExpandedView from './gallery/expandedView.jsx';
 import styled from 'styled-components';
 
 const Div = styled.div`
@@ -37,9 +38,12 @@ class ProductMainView extends React.Component {
       currentProduct: {}, // {} id name slogan description category default_price features[{feature, value}]
       styles: [], // style_id, name, original_price, sale_price, default?, photos[{thumbnail_url, url}], skus{#}
       selectedStyle: {},
+      selectedPhoto: '',
       loaded: 0
     };
     this.changeStyle = this.changeStyle.bind(this);
+    this.selectPhoto = this.selectPhoto.bind(this);
+    this.unselectPhoto = this.unselectPhoto.bind(this);
   }
 
   componentDidMount() {
@@ -70,16 +74,37 @@ class ProductMainView extends React.Component {
     });
   }
 
+  selectPhoto(photo) {
+    this.setState({
+      selectedPhoto: photo
+    });
+  }
+
+  unselectPhoto() {
+    this.setState({
+      selectedPhoto: ''
+    });
+  }
+
   render() {
     return (
       <div>
         {
           this.state.loaded === 2 &&
           <InvisDiv>
+            {
+              this.state.selectedPhoto &&
+              <ExpandedView
+                key={this.state.selectedStyle.style_id}
+                photo={this.state.selectedPhoto}
+                unselectPhoto={this.unselectPhoto}
+              />
+            }
             <FlexDiv>
               <ProductShowcase
                 key={this.state.selectedStyle.style_id}
                 photos={this.state.selectedStyle.photos}
+                selectPhoto={this.selectPhoto}
               />
               <div>
                 <ProductInfo

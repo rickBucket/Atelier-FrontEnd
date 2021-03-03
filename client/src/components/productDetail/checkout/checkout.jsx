@@ -40,14 +40,24 @@ const FlexDiv = styled.div`
 class Checkout extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      selectedStyle: this.props.selectedStyle,
+      selectedSKU: {}
+    };
   }
 
   render() {
     return (
       <Div>
         <FlexDiv>
-          <Selectors />
-          <Selectors />
+          <Selectors
+            name={'Select Size'}
+            options={this.state.selectedStyle.skus}
+          />
+          <Selectors
+            name={'QTY'}
+            options={this.state.selectedStyle.skus}
+          />
         </FlexDiv>
         <FlexDiv>
           <ButtonCheckout>Add to Bag</ButtonCheckout>

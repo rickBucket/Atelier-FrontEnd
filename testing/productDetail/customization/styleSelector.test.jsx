@@ -6,7 +6,8 @@ import StyleSelector from '../../../client/src/components/productDetail/customiz
 
 describe('<StyleSelector />', () => {
   it('renders a div component', () => {
-    const wrapper = shallow(<StyleSelector styles={[{style_id: 'a', name: 'b', original_price: 'c', sale_price: 'd', 'default?': 'e', photos: [{thumbnail_url: 'f', url: 'g'}], skus: 'h'}]}/>);
+    const wrapper = shallow(<StyleSelector styles={[{style_id: 'a', name: 'b', original_price: 'c', sale_price: 'd', 'default?': 'e', photos: [{thumbnail_url: 'f', url: 'g'}], skus: 'h'}]}
+    selectedStyles={{style_id: 'a', name: 'b', original_price: 'c', sale_price: 'd', 'default?': 'e', photos: [{thumbnail_url: 'f', url: 'g'}], skus: 'h'}}/>);
     expect(wrapper.find('#data')).not.toBeUndefined();
   });
 });

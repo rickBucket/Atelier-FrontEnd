@@ -73,11 +73,9 @@ class RatingsApp extends React.Component {
   }
 
   render() {
-    console.log(this.state.reviewList)
     if (this.state.writeReviewModal) {
       return(
         <div>
-            Let's write a review.
             <WriteReview handleReviewData={this.handleReviewData} productID={this.props.productID} metaData={this.state.metaData}/>
             <br />
             <button onClick={this.exitWriteReviewClick}>Exit write review</button>
@@ -90,8 +88,6 @@ class RatingsApp extends React.Component {
           this.state.reviewsReady === true &&
       <div className="reviewsGridContainer" style={{
         display: 'grid',
-        borderStyle: 'solid',
-        borderColor: 'red',
         gridTemplateColumns: 'repeat(3, 1fr)',
         gridTemplateRows: 'minmax(8, 1fr) 200px',
         gridGap: '20px',
@@ -159,7 +155,7 @@ class RatingsApp extends React.Component {
             borderRadius: '20px',
             boxShadow: '5px 5px 10px green',
             padding: '10px',
-          }}>Write Review</button>
+          }}>ADD A REVIEW +</button>
           {/* <WriteReview className="writeReviewGridBox"/> */}
         </div>
 
@@ -174,7 +170,7 @@ class RatingsApp extends React.Component {
             borderRadius: '20px',
             boxShadow: '5px 5px 10px pink',
             padding: '10px',
-          }}>Show More Reviews</button>
+          }}>MORE REVIEWS</button>
           {/* On click, this changes state of reviews to an extra two reviews */}
         </div>
     </div>

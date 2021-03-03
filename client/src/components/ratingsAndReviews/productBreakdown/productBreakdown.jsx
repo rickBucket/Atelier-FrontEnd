@@ -13,7 +13,6 @@ class ProductBreakdown extends React.Component {
 
   render() {
     const characteristics = this.props.metaData.characteristics
-    console.log(this.props.metaData.characteristics)
     return(
       <div style={{
         display: 'grid',
@@ -22,7 +21,7 @@ class ProductBreakdown extends React.Component {
         gridGap: '5px'
       }}>
         {
-         characteristics.Comfort !== false &&
+         characteristics.Comfort &&
         <div style={{
           gridColumn: '1',
           gridRow: '1',
@@ -32,7 +31,7 @@ class ProductBreakdown extends React.Component {
         </div>
         }
         {
-         characteristics.Fit !== false &&
+         characteristics.Fit &&
         <div style={{
           gridColumn: '1',
           gridRow: '2',
@@ -42,7 +41,7 @@ class ProductBreakdown extends React.Component {
         </div>
         }
         {
-          characteristics.Length !== false &&
+          characteristics.Length &&
         <div style={{
           gridColumn: '1',
           gridRow: '3',
@@ -52,7 +51,7 @@ class ProductBreakdown extends React.Component {
         </div>
         }
         {
-         characteristics.Quality !== false &&
+         characteristics.Quality &&
         <div style={{
           gridColumn: '1',
           gridRow: '4',
@@ -62,7 +61,7 @@ class ProductBreakdown extends React.Component {
         </div>
         }
         {
-        characteristics.Size === true &&
+         characteristics.Size &&
         <div style={{
           gridColumn: '1',
           gridRow: '5',
@@ -72,7 +71,7 @@ class ProductBreakdown extends React.Component {
         </div>
         }
         {
-        characteristics.Width === true &&
+        characteristics.Width &&
         <div style={{
           gridColumn: '1',
           gridRow: '6',

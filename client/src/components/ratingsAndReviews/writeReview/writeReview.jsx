@@ -1,4 +1,5 @@
 import React from 'react';
+import CharacteristicsRadio from './characteristicsRadio.jsx'
 
 class WriteReview extends React.Component {
   constructor(props) {
@@ -13,12 +14,6 @@ class WriteReview extends React.Component {
       rating: null,
       photos: [],
       characteristics: {
-        //[this.props.metaData.characteristics.Size.id]: null,
-        //[this.props.metaData.characteristics.Width.id]: null,
-        [this.props.metaData.characteristics.Comfort.id]: null,
-        [this.props.metaData.characteristics.Quality.id]: null,
-        [this.props.metaData.characteristics.Length.id]: null,
-        [this.props.metaData.characteristics.Fit.id]: null,
       }
     }
 
@@ -58,36 +53,72 @@ class WriteReview extends React.Component {
   }
 
   handleReviewData(e) {
-    //send review data to ratingsApp
-    console.log('state', this.state)
+    //mandatory  fields
+    if (this.state.rating === null || this.state.recommend === null || this.props.metaData.characteristics.Comfort.id === null || this.props.metaData.characteristics.Quality.id === null || this.props.metaData.characteristics.Length.id === null || this.props.metaData.characteristics.Fit.id === null) {
+      alert(`Please fill out all required (*) fields`);
+      e.preventDefault()
+      return false
+    }
+    //body check
+    if (this.state.body.length < 50 || this.state.body.length > 1000) {
+      alert('Review body must be at least 50 characters');
+      e.preventDefault()
+      return false
+    }
+    //email check
+    if (!(this.state.email).match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/) || this.state.email.length > 60 || this.state.email.length === 0) {
+      alert(`Please make sure email is in proper format ex. 'hello@hello.com`);
+      e.preventDefault()
+      return false
+    }
+    //summary check
+    if (this.state.summary.length > 60) {
+      alert(`Summary must be 60 characters or less`)
+      e.preventDefault()
+      return false
+    }
+    //name check
+    if (this.state.name.length > 60 || this.state.name.length === 0) {
+      alert(`Name must be filled in and 60 characters or less`)
+      e.preventDefault()
+      return false
+    }
+
+    alert('Your review has been submitted!')
     this.props.handleReviewData(this.state)
   }
 
   render() {
     return(
-      <div style={{
+      <div >
+        <form onSubmit={this.handleReviewData} style={{
         display: 'grid',
         boxShadow: '5px 5px 10px grey',
         borderRadius: '20px',
         padding: '10px',
         gridGap: '20px',
         gridTemplateColumns: 'repeat(2, 1fr)',
-        gridTemplateRows: 'minwidth(5, 1fr) 200px',
+        gridTemplateRows: 'minwidth(6, 1fr) 200px',
         alignItems: 'center',
         overflow: 'auto'
       }}>
-        {/* <form> */}
+        <div style={{
+          gridColumn: '1/-1',
+          gridRow: '1'
+        }}>
+          <h1 style={{textAlign: 'center'}}>Tell us about this product!</h1>
+          <small>* Required fields</small>
+        </div>
           <div style={{
             borderRadius: '20px',
             boxShadow: '5px 5px 10px grey',
             padding: '10px',
-            alignContent: 'center',
+            textAlign: 'center',
             gridColumn: '1',
-            gridRow: '1',
-            alignItems: 'center'
+            gridRow: '2',
           }}>
           <div>
-              <b>Size</b>
+              <b>* Overall</b>
               <br />
               <input type="radio" id="star1" name="rating" value="1" onClick={this.starRadioClick}></input>
               <label for="star1"><span className="fa fa-star">1</span></label>
@@ -99,6 +130,15 @@ class WriteReview extends React.Component {
               <label for="star4"><span className="fa fa-star">4</span></label>
               <input type="radio" id="star5" name="rating" value="5" onClick={this.starRadioClick}></input>
               <label for="star5"><span className="fa fa-star">5</span></label>
+              <br />
+              <small>
+                1 - Poor
+                2 - Fair
+                3 - Average
+                4 - Good
+                5 - Great
+              </small>
+
             </div>
           </div>
 
@@ -106,10 +146,11 @@ class WriteReview extends React.Component {
             borderRadius: '20px',
             boxShadow: '5px 5px 10px grey',
             padding: '10px',
+            textAlign: 'center',
             gridColumn: '2',
-            gridRow: '1',
+            gridRow: '2',
           }}>
-            <b>Would you recommend this product?</b>
+            <b>* Would you recommend this product?</b>
             <div>
               <input type="radio" id="yes" name="recommend" value={true} onClick={this.recommendRadioClick}></input>
               <label for="yes">Yes</label>
@@ -118,14 +159,19 @@ class WriteReview extends React.Component {
             </div>
           </div>
 
+
+
           <div style={{
             borderRadius: '20px',
             boxShadow: '5px 5px 10px grey',
             padding: '10px',
+            textAlign: 'center',
             gridColumn: '1/-1',
-            gridRow: '2'
-          }}>Characteristics
-            {/* <div>
+            gridRow: '3'
+          }}><b>* Characteristics</b>
+            {
+              this.props.metaData.characteristics.Size &&
+            <div>
               <b>Size</b>
               <br />
               <input type="radio" id="size1" name={this.props.metaData.characteristics.Size.id} value="1" onClick={this.characteristicsRadioClick}></input>
@@ -139,7 +185,10 @@ class WriteReview extends React.Component {
               <input type="radio" id="size5" name={this.props.metaData.characteristics.Size.id} value="5" onClick={this.characteristicsRadioClick}></input>
               <label for="size5">A size too wide</label>
             </div>
+            }
             <br />
+            {
+              this.props.metaData.characteristics.Width &&
             <div>
               <b>Width</b>
               <br />
@@ -154,7 +203,10 @@ class WriteReview extends React.Component {
               <input type="radio" id="width5" name={this.props.metaData.characteristics.Width.id} value="5" onClick={this.characteristicsRadioClick}></input>
               <label for="width5">Too wide</label>
             </div>
-            <br /> */}
+            }
+            <br />
+            {
+              this.props.metaData.characteristics.Comfort &&
             <div>
               <b>Comfort</b>
               <br />
@@ -169,7 +221,10 @@ class WriteReview extends React.Component {
               <input type="radio" id="comfort5" name={this.props.metaData.characteristics.Comfort.id} value="5" onClick={this.characteristicsRadioClick}></input>
               <label for="comfort5">Perfect</label>
             </div>
+            }
             <br />
+            {
+              this.props.metaData.characteristics.Quality &&
             <div>
               <b>Quality</b>
               <br />
@@ -184,7 +239,10 @@ class WriteReview extends React.Component {
               <input type="radio" id="quality5" name={this.props.metaData.characteristics.Quality.id} value="5" onClick={this.characteristicsRadioClick}></input>
               <label for="quality5">Perfect</label>
             </div>
+            }
             <br />
+            {
+            this.props.metaData.characteristics.Length &&
             <div>
               <b>Length</b>
               <br />
@@ -199,7 +257,10 @@ class WriteReview extends React.Component {
               <input type="radio" id="length5" name={this.props.metaData.characteristics.Length.id} value="5" onClick={this.characteristicsRadioClick}></input>
               <label for="length5">Runs long</label>
             </div>
+            }
             <br />
+            {
+            this.props.metaData.characteristics.Fit &&
             <div>
               <b>Fit</b>
               <br />
@@ -214,6 +275,7 @@ class WriteReview extends React.Component {
               <input type="radio" id="fit5" name={this.props.metaData.characteristics.Fit.id} value="5" onClick={this.characteristicsRadioClick}></input>
               <label for="fit5">Runs long</label>
             </div>
+            }
           </div>
 
 
@@ -221,41 +283,48 @@ class WriteReview extends React.Component {
             borderRadius: '20px',
             boxShadow: '5px 5px 10px grey',
             padding: '10px',
-            gridRow: '3',
-            gridColumn: '1'
+            textAlign: 'center',
+            gridColumn: '1',
+            gridRow: '4',
           }}>
           <label for="summary">Review Summary (optional): </label>
-            <input type="text" value={this.state.summary} name="summary" onChange={this.onInputChange}></input>
+            <input type="text" value={this.state.summary} name="summary" onChange={this.onInputChange} placeholder="Example: Best purchase ever!"></input>
           </div>
 
           <div style={{
             borderRadius: '20px',
             boxShadow: '5px 5px 10px grey',
             padding: '10px',
-            gridRow: '3',
-            gridColumn: '2'
-          }}>
-            <label for="name">Your name: </label>
-            <input type="text" name="name" value={this.state.name} onChange={this.onInputChange}></input>
-          </div>
-
-          <div style={{
-            borderRadius: '20px',
-            boxShadow: '5px 5px 10px grey',
-            padding: '10px',
+            textAlign: 'center',
+            gridColumn: '2',
             gridRow: '4',
-            gridColumn: '1/-1'
           }}>
-            <label for="body">Your Review: </label>
-            <input type="text" value={this.state.body} name="body" onChange={this.onInputChange}></input>
+            <label for="name"><b>* Your name: </b></label>
+            <input type="text" name="name" value={this.state.name} onChange={this.onInputChange} placeholder="Example: jackson11!"></input>
+            <br />
+            <small><i>For privacy reasons, do not use your full name or email address.</i></small>
           </div>
 
           <div style={{
             borderRadius: '20px',
             boxShadow: '5px 5px 10px grey',
             padding: '10px',
+            textAlign: 'center',
+            width : '100',
+            gridColumn: '1/-1',
             gridRow: '5',
-            gridColumn: '2'
+          }}>
+            <label for="body"><b>* Your Review: </b></label>
+            <input type="text" value={this.state.body} name="body" onChange={this.onInputChange} placeholder="Why did you like the product or not?"></input>
+          </div>
+
+          <div style={{
+            borderRadius: '20px',
+            boxShadow: '5px 5px 10px grey',
+            padding: '10px',
+            textAlign: 'center',
+            gridColumn: '2',
+            gridRow: '6',
           }}>Upload photos (optional)
             <button onClick={(e) => e.preventDefault}>Add photos</button>
           </div>
@@ -264,22 +333,25 @@ class WriteReview extends React.Component {
             borderRadius: '20px',
             boxShadow: '5px 5px 10px grey',
             padding: '10px',
-            gridRow: '5',
-            gridColumn: '1'
+            textAlign: 'center',
+            gridColumn: '1',
+            gridRow: '6',
           }}>
-            <label for="email">Email: </label>
-            <input type="text" name="email" value={this.state.email} onChange={this.onInputChange}></input>
+            <label for="email"><b>* Email: </b></label>
+            <input type="text" name="email" value={this.state.email} onChange={this.onInputChange} placeholder="Example: jackson11@email.com"></input>
+            <br />
+            <small><i>For authentication reasons, you will not be emailed.</i></small>
           </div>
 
           <button style={{
             borderRadius: '20px',
             boxShadow: '5px 5px 10px grey',
             padding: '10px',
-            gridRow: '6',
-            gridColumn: '1/-1'
-          }} onClick={this.handleReviewData}>Submit Review</button>
+            gridColumn: '1/-1',
+            gridRow: '7',
+          }} onClick={this.handleReviewData}><b>Submit Review</b></button>
 
-        {/* </form> */}
+        </form>
       </div>
     )
   }

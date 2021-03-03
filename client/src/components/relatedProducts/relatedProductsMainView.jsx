@@ -82,17 +82,22 @@ export default RelatedProductsMainView;
 const LeftButton = styled.button`
   position: absolute;
   left: 2%;
-  top: 30%;
-  background-color: rgba(0,0,0,0.5);
+  top: 20%;
+  background: none;
+  border: none;
   cursor: pointer;
   z-index: 100;
+  background-color: rgba(0,0,0,0.4);
+
 `;
 
 const RightButton = styled.button`
   position: absolute;
   right: 2%;
-  top: 30%;
-  background-color: rgba(0,0,0,0.5);
+  top: 20%;
+  background: none;
+  border: none;
   cursor: pointer;
   z-index: 100;
+  background-color: rgba(0,0,0,0.4);
 `;

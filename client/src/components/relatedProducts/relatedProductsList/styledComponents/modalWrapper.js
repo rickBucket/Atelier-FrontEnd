@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Modal = styled.div`
+const ModalWrapper = styled.div`
 background-color: rgb(0,0,0); /* Fallback color */
 background-color: rgba(0,0,0,0.4); /* Overlay effect: translucent background: black w/ partial opacity */
 z-index: 1; /* Overlay effect: positioned over other containers */
@@ -18,4 +18,4 @@ font-size: calc(10px + 2vmin);
 color: black;
 `;
 
-export default Modal;
+export default ModalWrapper;

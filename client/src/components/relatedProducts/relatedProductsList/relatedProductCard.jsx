@@ -9,14 +9,16 @@ class RelatedProductCard extends React.Component {
     super(props);
     this.state = {
       productIDInfo: '',
-      parentProductIDInfo: '',
+      parentProductIDInfo: this.props.parentProductIDInfo,
       productIDStyles: '',
       featuredURL: '',
       loaded: 0,
       openCompareModal: false,
+      combinedFeatures: ''
     }
     // bind functions here
     this.handleCompareClick = this.handleCompareClick.bind(this);
+    this.combineFeatures = this.combineFeatures.bind(this);
 
     this.FlexboxItem = styled.div`
     height: 450px;
@@ -45,6 +47,8 @@ class RelatedProductCard extends React.Component {
       .then(({ data })=> {
         this.setState({
           productIDInfo: data,
+          parentProductFeatures: this.props.parentProductIDInfo.features,
+          currentProductFeatures: data.features,
           compare: false,
           loaded: this.state.loaded + 1
         })
@@ -75,11 +79,57 @@ class RelatedProductCard extends React.Component {
       })
   }
 
+  combineFeatures (parentProduct, currentProduct) {
+    // goal is to get features into an array so we can map over it in comparisonModal
+
+    const combinedFeatures = {};
+
+    parentProduct.forEach((product)=>{
+      if(!combinedFeatures[product.feature]) {
+        if (product.value === null) {
+          combinedFeatures[product.feature] = ['✔️'];
+        } else {
+          combinedFeatures[product.feature] = [product.value]
+        }
+      }
+    })
+
+    currentProduct.forEach((product)=> {
+      if (!combinedFeatures[product.feature]) {
+        if (product.value === null) {
+          combinedFeatures[product.feature] = [];
+          combinedFeatures[product.feature][1] = '✔️';
+        } else {
+          combinedFeatures[product.feature] = [];
+          combinedFeatures[product.feature][1] = product.value;
+        }
+      } else {
+        if (product.value === null) {
+          combinedFeatures[product.feature][1] = '✔️'
+        } else {
+          combinedFeatures[product.feature][1] = product.value;
+        }
+      }
+    })
+
+    const arrayOfCombinedFeatures = [];
+    const features = Object.keys(combinedFeatures);
+    const values = Object.values(combinedFeatures);
+
+    for (let p = 0; p < features.length; p++) {
+      arrayOfCombinedFeatures.push(values[p][0], features[p], values[p][1]);
+    }
+
+    this.setState({
+      combinedFeatures: arrayOfCombinedFeatures
+    })
+  };
+
   handleCompareClick(event) {
     this.setState({
       openCompareModal: !this.state.openCompareModal
     })
-
+    this.combineFeatures(this.state.parentProductFeatures, this.state.currentProductFeatures)
   }
 
   render() {
@@ -87,7 +137,7 @@ class RelatedProductCard extends React.Component {
       <div>
         {
           this.state.loaded < 2 &&
-          <img src="https://i.gifer.com/7gQj.gif" width="150"></img>
+          <img src="https://www.bluechipexterminating.com/wp-content/uploads/2020/02/loading-gif-png-5.gif" width="150"></img>
         }
         {
           this.state.loaded === 2 &&
@@ -111,8 +161,13 @@ class RelatedProductCard extends React.Component {
           this.state.openCompareModal &&
           <div>
               <ComparisonModal
-            displayModal={this.state.openCompareModal}
-            closeModal={this.handleCompareClick}/>
+            // displayModal={this.state.openCompareModal}
+            closeModal={this.handleCompareClick}
+            productFeatures={this.state.compareProductsFeatures}
+            parentProduct={this.state.parentProductIDInfo.name}
+            compareProduct={this.state.productIDInfo.name}
+            combinedFeatures={this.state.combinedFeatures}
+            />
           </div>
         }
       </div>

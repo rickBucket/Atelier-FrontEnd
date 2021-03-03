@@ -3,6 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import RelatedProductCard from './relatedProductCard.jsx';
+import ListContainer from '../sharedStyledComponents/listContainer.js';
 
 class RelatedProductList extends React.Component {
   constructor(props) {
@@ -15,14 +16,12 @@ class RelatedProductList extends React.Component {
   }
 
   componentDidMount() {
-
     axios.get(`/products/?product_id=${this.props.productID}`)
       .then(({ data }) => {
         this.setState({
           parentProductIDInfo: data
         })
       })
-
   }
 
   render() {
@@ -33,30 +32,17 @@ class RelatedProductList extends React.Component {
     } else {
       return (
         <div>
-          <RelatedListContainer id="productCarousel">
+          <ListContainer id="productCarousel">
             {this.props.relatedProducts.map((product) => {
               return <RelatedProductCard parentProductID={this.props.productID} productID={product}
-              parentProductIDInfo={this.state.parentProductIDInfo}
-              key={product} />
+                parentProductIDInfo={this.state.parentProductIDInfo}
+                key={product} />
             })}
-          </RelatedListContainer>
-          </div>
+          </ListContainer>
+        </div>
       )
     }
   }
 }
-
-const RelatedListContainer = styled.div`
-display: flex;
-justify-content: flex-start;
-overflow: hidden;
-position: relative;
-`;
-const ButtonStyle = styled.div`
-position: absolute,
-right: 2%
-top: 45%
-cursor: pointer
-`;
 
 export default RelatedProductList;

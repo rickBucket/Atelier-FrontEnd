@@ -60,7 +60,7 @@ class RelatedProductsMainView extends React.Component {
         <div>
           Related Products
         </div>
-        <RelatedListWrapper>
+        <ListWrapper>
           <div>
             {this.state.imagesToTheRight ? <RightButton onClick={this.scrollRight}>
               ➡️
@@ -72,10 +72,13 @@ class RelatedProductsMainView extends React.Component {
               ⬅️
         </LeftButton> : null}
           </div>
-        </RelatedListWrapper>
+        </ListWrapper>
         <div>
-          <YourOutfitList />
+          Your Outfit
         </div>
+        <ListWrapper>
+          <YourOutfitList parentProductID={this.props.productID}/>
+        </ListWrapper>
       </div>
 
     )
@@ -107,6 +110,6 @@ const RightButton = styled.button`
   background-color: rgba(0,0,0,0.4);
 `;
 
-const RelatedListWrapper = styled.div`
+const ListWrapper = styled.div`
   margin: 10px;
 `;

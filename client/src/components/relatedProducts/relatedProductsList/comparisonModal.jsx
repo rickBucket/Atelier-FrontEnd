@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import ModalContent from './styledComponents/modalContent.js';
 import ModalWrapper from './styledComponents/modalWrapper.js';
 import ComparisonTitle from './styledComponents/comparisonTitle.js';
+import CompareWrapper from './styledComponents/compareWrapper.js';
 
 const ComparisonModal = (props) => {
   const divStyle = {
@@ -32,9 +33,9 @@ const ComparisonModal = (props) => {
           <div>{null}</div>
           <ProductTitle><b>{props.compareProduct}</b></ProductTitle>
        </ComparisonTitle>
-       <CompareContainer>
-          {props.combinedFeatures.map((feature, i) => <TestDiv key={`modal${i}`}>{feature}</TestDiv>)}
-      </CompareContainer>
+       <CompareWrapper>
+          {props.combinedFeatures.map((feature, i) => <TestDiv key={i}>{feature}</TestDiv>)}
+      </CompareWrapper>
       </ModalContent>
      </ModalWrapper>
   );
@@ -42,6 +43,7 @@ const ComparisonModal = (props) => {
 
 const CloseButton = styled.span`
   color: #aaaaaa;
+  position: relative;
   float: right; /* Positioned to the right of the parent container whichever size it is */
   font-size: 25px;
   font-weight: bold;
@@ -53,19 +55,6 @@ const TestDiv = styled.div`
 const ProductTitle = styled.div`
   margin: 5px 4px 0px 1px;
   border: 2px solid blue;
-`;
-
-const CompareContainer = styled.div`
-
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: auto;
-  column-gap: 10px;
-  row-gap: 20px;
-  overflow: auto;
-  justify-items: center;
-  position: relative;
-  font-size: 25px;
 `;
 
 const CompareTitle = styled.div`

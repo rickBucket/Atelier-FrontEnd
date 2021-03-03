@@ -8,8 +8,11 @@ import QuestionModal from './QuestionModal.jsx';
 import Question from './Question.jsx';
 
 const Container = styled.div`
-  padding: 10px;
-  border: 3px grey solid;
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 5px;
+  margin: 5px;
+  font-family: Arial;
 `;
 
 const ButtonA = styled.button`
@@ -58,7 +61,7 @@ class QuestionMaster extends React.Component {
     this.state = {
       questionData: [],
       modal: false,
-      itemsToShow: 2,
+      itemsToShow: 4,
       expanded: false,
       showAll: false,
     };
@@ -84,14 +87,14 @@ class QuestionMaster extends React.Component {
   }
 
   showMore() {
-    this.state.itemsToShow === 2 ? (
+    this.state.itemsToShow === 4 ? (
       this.setState({
         itemsToShow: this.state.questionData.length,
         expanded: true,
       })
     ) : (
       this.setState({
-        itemsToShow: 2,
+        itemsToShow: 4,
         expanded: false,
       })
     )

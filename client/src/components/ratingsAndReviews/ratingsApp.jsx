@@ -73,6 +73,7 @@ class RatingsApp extends React.Component {
   }
 
   render() {
+    console.log(this.state.reviewList)
     if (this.state.writeReviewModal) {
       return(
         <div>
@@ -169,7 +170,7 @@ class RatingsApp extends React.Component {
             borderRadius: '20px',
             boxShadow: '5px 5px 10px pink',
             padding: '10px',
-          }}>More Reviews</button>
+          }}>Show More Reviews</button>
           {/* On click, this changes state of reviews to an extra two reviews */}
         </div>
     </div>

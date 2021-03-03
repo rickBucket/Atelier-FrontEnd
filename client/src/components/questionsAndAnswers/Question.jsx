@@ -5,10 +5,12 @@ import styled from 'styled-components';
 import AnswerModal from './AnswerModal.jsx';
 
 const ContainerA = styled.div`
-  padding: 10px;
-  border: 3px grey solid;
-  border-radius: 25px;
-  margin: 5px;
+  border: 0px solid grey;
+  border-radius: 12px;
+  margin: 12px;
+  padding: 0px 20px 0px 20px;
+  box-shadow: 3px 3px 8px rgba(0,0,0,0.5);
+  max-width: 600px;
 `;
 
 const EachQ = styled.div`
@@ -56,6 +58,15 @@ const Divide = styled.span`
 const Q = styled.h3`
   display: flex;
   float: left;
+`;
+
+const ScrollList = styled.ul`
+  list-style:none;
+  max-height:200px;
+  margin:0;
+  overflow:auto;
+  padding:0;
+  text-indent:10px;
 `;
 
 
@@ -142,6 +153,7 @@ class Question extends React.Component {
 
 
         <div>
+          <ScrollList>
         {this.state.answers.slice(0,this.state.itemsToShow).map((answer) => {
           return (
             <ContainerB>
@@ -149,13 +161,14 @@ class Question extends React.Component {
             </ContainerB>
           )
         })}
+        </ScrollList>
         {this.state.answers.length > 1 && !(this.state.expanded) ? (
           <LoadButton onClick={(event) => { this.showMore(); } }> LOAD MORE ANSWERS </LoadButton>
           ) : (
           <LoadButton onClick={(event) => { this.showMore(); }}> Collapse List </LoadButton>
           )}
         </div>
-          <AnswerModal displayModal={this.state.modal} closeModal={this.selectModal}/>
+          <AnswerModal displayModal={this.state.modal} closeModal={this.selectModal} question_id={this.props.item.question_id}/>
     </ContainerA>
     );
   }

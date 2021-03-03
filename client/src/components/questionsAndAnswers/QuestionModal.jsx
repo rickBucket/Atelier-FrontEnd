@@ -109,7 +109,6 @@ class QuestionModal extends React.Component {
       product_id: this.props.product_id,
     })
       .then(response => {
-
         console.log('successful post!', response);
       });
   }

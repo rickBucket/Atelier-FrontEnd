@@ -9,6 +9,7 @@ const Div = styled.div`
   padding: 4px 0px 4px 0px;
   margin: 20px 12px 12px 12px;
   box-shadow: 3px 3px 8px rgba(0,0,0,0.5);
+  background: rgba(255,255,255,0.1);
 `
 const ButtonCheckout = styled.button`
   background: white;

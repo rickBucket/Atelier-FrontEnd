@@ -8,6 +8,7 @@ const Div = styled.div`
   padding: 12px;
   margin: 12px;
   box-shadow: 3px 3px 8px rgba(0,0,0,0.5);
+  background: rgba(255,255,255,0.1);
 `
 const InvisDiv = styled.div`
   border-radius: 10px;
@@ -37,21 +38,27 @@ const FlexStyleDiv = styled.div`
 class StyleSelector extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      selectedStyle: this.props.selectedStyle.name
+    }
   }
 
-  handleClick(id) {
+  handleClick(id, name) {
     this.props.changeStyle(id);
+    this.setState({
+      selectedStyle: name
+    });
   }
 
   render() {
     return (
       <Div>
-        {'Style > Selected Style'}
+        {`Style > ${this.state.selectedStyle}`}
         <FlexStyleDiv>
           {
             this.props.styles.map((style) => {
               return (
-                <Img key={style.style_id} src={style.photos[0].thumbnail_url} onClick={this.handleClick.bind(this, style.style_id)} a=''></Img>
+                <Img key={style.style_id} src={style.photos[0].thumbnail_url} onClick={this.handleClick.bind(this, style.style_id, style.name)} a=''></Img>
               );
             })
           }

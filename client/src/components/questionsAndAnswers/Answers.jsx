@@ -52,8 +52,8 @@ class Answers extends React.Component {
         <Container>
 
           {this.props.item.answerer_name === this.props.seller ?
-            (<p>by <b> Seller </b> {this.props.item.date} </p>) :
-            (<p>by {this.props.item.answerer_name} {this.props.item.date}</p>)}
+            (<p>by <b> Seller </b> {new Date(this.props.item.date).toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })} </p>) :
+            (<p>by {this.props.item.answerer_name} {new Date(this.props.item.date).toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>)}
           <Divide className="divider"> | </Divide>
           <p> Helpful? </p>
           <Button> Yes </Button>

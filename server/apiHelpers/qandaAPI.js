@@ -88,7 +88,25 @@ const putQuestions = (q, callback) => {
 };
 
 const postQuestions = (q, callback) => {
-
+  console.log(q)
+  if(!q.product_id) {
+    axios.post(
+      `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions/${q.question_id}/answers`, q,
+      {
+        headers: {
+          Authorization: config.API_KEY,
+        },
+      }
+    )
+    .then((results) => {
+      console.log(results)
+      callback(null, results.data);
+    })
+    .catch((err) => {
+      console.log(err)
+      callback(err, null);
+    });
+  } else {
   //add a query string to specify whether it is an answer or question being posted.
 
   axios.post(
@@ -107,6 +125,7 @@ const postQuestions = (q, callback) => {
       console.log(err)
       callback(err, null);
     });
+  }
 };
 
 module.exports.getQuestions = getQuestions;

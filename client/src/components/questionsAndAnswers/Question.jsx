@@ -142,7 +142,7 @@ class Question extends React.Component {
 
 
         <div>
-        {this.state.answers.slice(0,this.state.itemsToShow).map((answer, i) => {
+        {this.state.answers.slice(0,this.state.itemsToShow).map((answer) => {
           return (
             <ContainerB>
             <Answers item={answer} key={this.state.answers.id} seller={this.props.item.asker_name}/>

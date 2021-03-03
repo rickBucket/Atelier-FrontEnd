@@ -9,10 +9,6 @@ import ComparisonTitle from './styledComponents/comparisonTitle.js';
 import CompareWrapper from './styledComponents/compareWrapper.js';
 
 const ComparisonModal = (props) => {
-  const divStyle = {
-    display: props.displayModal ? 'block' : 'none'
-  };
-
   const closeModal = (event) => {
     event.stopPropagation();
     props.closeModal()

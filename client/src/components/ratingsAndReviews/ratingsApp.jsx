@@ -139,7 +139,8 @@ class RatingsApp extends React.Component {
           boxShadow: '5px 5px 10px purple',
           gridColumn: '2/5',
           gridRow: '2/8',
-          overflow: 'auto'
+          overflow: 'auto',
+          listStyle: 'none'
         }}>
           <ReviewList reviewList={this.state.reviewList}/>
         </div>

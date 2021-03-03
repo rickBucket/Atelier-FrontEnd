@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 
 const Modal = styled.div`
     background-color: rgb(0,0,0); /* Fallback color */
@@ -78,11 +79,11 @@ class AnswerModal extends React.Component {
   }
 
   type(event) {
-    if(event.target.placeholder === "Example: jack@email.com") {
+    if (event.target.placeholder === 'Example: jack@email.com') {
       this.setState({
         newEmail: event.target.value
       });
-    } else if(event.target.placeholder === "Examples: jackson11!") {
+    } else if (event.target.placeholder === 'Examples: jackson11!') {
       this.setState({
         newName: event.target.value
       });
@@ -94,7 +95,16 @@ class AnswerModal extends React.Component {
   }
 
   postAnswer() {
-    //axios post request here
+    axios.post(`/qa/questions`, {
+      body: this.state.newAnswer,
+      name: this.state.newName,
+      email: this.state.newEmail,
+      photos: [''],
+      question_id: this.props.question_id,
+    })
+      .then(response => {
+        console.log('successful answer post', response.data);
+    });
   }
 
   render() {
@@ -106,12 +116,13 @@ class AnswerModal extends React.Component {
           <Modal_Con className="modal-content" onClick={event => {event.stopPropagation(); }}>
             <Close className="close" onClick={ (event) => { this.selectModal(event); }}>&times;</Close>
             <NewForm>
-              <NewQueA placeholder="Example: jack@email.com" type="text" />
+              <NewQueA placeholder="Example: jack@email.com"
+              value={this.state.newEmail} type="text" onChange={event => {event.preventDefault(); this.type(event); }} />
               <p>For authentication reasons, you will not be emailed</p>
-              <NewQueB placeholder="Examples: jackson11!" type="text" />
+              <NewQueB placeholder="Examples: jackson11!" type="text" value={this.state.newName} onChange={event => {event.preventDefault(); this.type(event); }} />
               <p>For privacy reasons, do not use your full name or email address</p>
-              <NewQueC placeholder="Enter Answer Here..." type="text" />
-              <Button> Submit Answer </Button>
+              <NewQueC placeholder="Enter Answer Here..." type="text" value={this.state.newAnswer} onChange={event => {event.preventDefault(); this.type(event); }} />
+              <Button onClick={() => { this.postAnswer(); }}> Submit Answer </Button>
             </NewForm>
           </Modal_Con>
       </Modal>

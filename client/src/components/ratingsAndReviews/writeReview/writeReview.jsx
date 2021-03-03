@@ -73,6 +73,7 @@ class WriteReview extends React.Component {
         gridGap: '20px',
         gridTemplateColumns: 'repeat(2, 1fr)',
         gridTemplateRows: 'minwidth(5, 1fr) 200px',
+        alignItems: 'center',
         overflow: 'auto'
       }}>
         {/* <form> */}
@@ -82,7 +83,8 @@ class WriteReview extends React.Component {
             padding: '10px',
             alignContent: 'center',
             gridColumn: '1',
-            gridRow: '1'
+            gridRow: '1',
+            alignItems: 'center'
           }}>
           <div>
               <b>Size</b>

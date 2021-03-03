@@ -12,13 +12,13 @@ class ReviewListEntry extends React.Component {
     return(
       <div className="ratings-flexbox-container" style={{
         display: 'grid',
-        borderRadius: '20px',
-        gridGap: '20px',
-        padding: '10px',
         gridTemplateColumns: 'repeat(4, 1fr)',
         gridTemplateRows: 'minmax(5, 1fr) 200px',
-        borderColor: 'grey',
-        boxShadow: '5px 5px 10px grey'
+        borderRadius: '20px',
+        boxShadow: '5px 5px 10px grey',
+        gridGap: '20px',
+        padding: '10px',
+        alignItems: 'center'
       }}>
 
         <div className="ratings-starRatings" style={{

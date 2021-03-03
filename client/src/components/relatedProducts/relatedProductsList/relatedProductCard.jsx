@@ -83,39 +83,57 @@ class RelatedProductCard extends React.Component {
   combineFeatures (parentProduct, currentProduct) {
     // goal is to get features into an array so we can map over it in comparisonModal
 
-    //de-duplicate feature lists
-    var deduplicatedParentFeatures;
     const combinedFeatures = {};
-    for (let i = 0; i < parentProduct.length; i++) {
-      if (combinedFeatures[parentProduct[i].feature] === undefined) {
-        if (parentProduct[i].value === null) {
-          combinedFeatures[parentProduct[i].feature] = ['✔️'];
+
+    parentProduct.forEach((product)=>{
+      if(!combinedFeatures[product.feature]) {
+        if (product.value === null) {
+          combinedFeatures[product.feature] = ['✔️'];
         } else {
-          combinedFeatures[parentProduct[i].feature] = [parentProduct[i].value];
+          combinedFeatures[product.feature] = [product.value]
         }
       }
-    }
-    console.log('after parent features', combinedFeatures)
-    for (let j = 0; j < currentProduct.length; j++) {
-      if (combinedFeatures[currentProduct[j].feature] === undefined) {
-        if (currentProduct[j].value === null) {
-          combinedFeatures[currentProduct[j].feature] = ['✔️'];
+    })
+    console.log(combinedFeatures);
+
+    currentProduct.forEach((product)=> {
+      if (!combinedFeatures[product.feature]) {
+        if (product.value === null) {
+          combinedFeatures[product.feature] = [];
+          combinedFeatures[product.feature][1] = '✔️';
         } else {
-          combinedFeatures[currentProduct[j].feature] = [currentProduct[j].value];
+          combinedFeatures[product.feature] = [];
+          combinedFeatures[product.feature][1] = product.value;
         }
       } else {
-        if (currentProduct[j].value === null) {
-          combinedFeatures[currentProduct[j].feature][1] = '✔️';
+        if (product.value === null) {
+          combinedFeatures[product.feature][1] = '✔️'
         } else {
-          combinedFeatures[currentProduct[j].feature][1] = currentProduct[j].value;
+          combinedFeatures[product.feature][1] = product.value;
         }
       }
-    }
+    })
+    // for (let j = 0; j < currentProduct.length; j++) {
+    //   if (combinedFeatures[currentProduct[j].feature] === undefined) {
+    //     if (currentProduct[j].value === null) {
+    //       combinedFeatures[currentProduct[j].feature] = ['✔️'];
+    //     } else {
+    //       combinedFeatures[currentProduct[j].feature] = [currentProduct[j].value];
+    //     }
+    //   } else {
+    //     if (currentProduct[j].value === null) {
+    //       combinedFeatures[currentProduct[j].feature][1] = '✔️';
+    //     } else {
+    //       combinedFeatures[currentProduct[j].feature][1] = currentProduct[j].value;
+    //     }
+    //   }
+    // }
     // console.log(combinedFeatures);
 
     const arrayOfCombinedFeatures = [];
     const features = Object.keys(combinedFeatures);
     const values = Object.values(combinedFeatures);
+
     for (let p = 0; p < features.length; p++) {
       arrayOfCombinedFeatures.push(values[p][0], features[p], values[p][1]);
     }

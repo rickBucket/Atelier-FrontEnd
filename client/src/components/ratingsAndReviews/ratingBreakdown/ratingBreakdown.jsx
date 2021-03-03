@@ -1,4 +1,5 @@
 import React from 'react';
+import RatingsBreakdownList from './ratingsBreakdownList.jsx'
 
 class RatingBreakdown extends React.Component {
   constructor(props) {
@@ -7,12 +8,7 @@ class RatingBreakdown extends React.Component {
   }
 
 
-  componentDidMount(){
-
-  }
-
   render() {
-    console.log(this.props)
     return(
       <div style={{
         display: 'grid',
@@ -57,7 +53,7 @@ class RatingBreakdown extends React.Component {
           gridColumn: '1/-1',
           gridRow: '4',
         }}>
-          star breakdown component
+          <RatingsBreakdownList metaData={this.props.metaData}/>
         </div>
       </div>
     )

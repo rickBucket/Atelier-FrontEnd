@@ -8,7 +8,7 @@ import dummyData from '../../../client/src/components/relatedProducts/dummyData.
 
 describe('<ComparisonModal />', () => {
   it('renders a div component', () => {
-    const wrapper = shallow(<ComparisonModal />);
+    const wrapper = shallow(<ComparisonModal combinedFeatures={[]}/>);
     expect(wrapper.find('#data')).not.toBeUndefined();
   });
 });

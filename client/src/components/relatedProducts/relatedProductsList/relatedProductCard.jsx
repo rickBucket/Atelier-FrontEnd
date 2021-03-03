@@ -9,14 +9,17 @@ class RelatedProductCard extends React.Component {
     super(props);
     this.state = {
       productIDInfo: '',
-      parentProductIDInfo: '',
+      parentProductIDInfo: this.props.parentProductIDInfo,
+      compareProductsFeatures: '',
       productIDStyles: '',
       featuredURL: '',
       loaded: 0,
       openCompareModal: false,
+      combinedFeatures: ''
     }
     // bind functions here
     this.handleCompareClick = this.handleCompareClick.bind(this);
+    this.combineFeatures = this.combineFeatures.bind(this);
 
     this.FlexboxItem = styled.div`
     height: 450px;
@@ -45,6 +48,8 @@ class RelatedProductCard extends React.Component {
       .then(({ data })=> {
         this.setState({
           productIDInfo: data,
+          parentProductFeatures: this.props.parentProductIDInfo.features,
+          currentProductFeatures: data.features,
           compare: false,
           loaded: this.state.loaded + 1
         })
@@ -75,11 +80,57 @@ class RelatedProductCard extends React.Component {
       })
   }
 
+  combineFeatures (parentProduct, currentProduct) {
+    // goal is to get features into an array so we can map over it in comparisonModal
+
+    //de-duplicate feature lists
+    var deduplicatedParentFeatures;
+    const combinedFeatures = {};
+    for (let i = 0; i < parentProduct.length; i++) {
+      if (combinedFeatures[parentProduct[i].feature] === undefined) {
+        if (parentProduct[i].value === null) {
+          combinedFeatures[parentProduct[i].feature] = ['✔️'];
+        } else {
+          combinedFeatures[parentProduct[i].feature] = [parentProduct[i].value];
+        }
+      }
+    }
+    console.log('after parent features', combinedFeatures)
+    for (let j = 0; j < currentProduct.length; j++) {
+      if (combinedFeatures[currentProduct[j].feature] === undefined) {
+        if (currentProduct[j].value === null) {
+          combinedFeatures[currentProduct[j].feature] = ['✔️'];
+        } else {
+          combinedFeatures[currentProduct[j].feature] = [currentProduct[j].value];
+        }
+      } else {
+        if (currentProduct[j].value === null) {
+          combinedFeatures[currentProduct[j].feature][1] = '✔️';
+        } else {
+          combinedFeatures[currentProduct[j].feature][1] = currentProduct[j].value;
+        }
+      }
+    }
+    // console.log(combinedFeatures);
+
+    const arrayOfCombinedFeatures = [];
+    const features = Object.keys(combinedFeatures);
+    const values = Object.values(combinedFeatures);
+    for (let p = 0; p < features.length; p++) {
+      arrayOfCombinedFeatures.push(values[p][0], features[p], values[p][1]);
+    }
+
+    this.setState({
+      combinedFeatures: arrayOfCombinedFeatures
+    })
+    console.log(arrayOfCombinedFeatures)
+  };
+
   handleCompareClick(event) {
     this.setState({
       openCompareModal: !this.state.openCompareModal
     })
-
+    this.combineFeatures(this.state.parentProductFeatures, this.state.currentProductFeatures)
   }
 
   render() {
@@ -87,7 +138,7 @@ class RelatedProductCard extends React.Component {
       <div>
         {
           this.state.loaded < 2 &&
-          <img src="https://i.gifer.com/7gQj.gif" width="150"></img>
+          <img src="https://www.bluechipexterminating.com/wp-content/uploads/2020/02/loading-gif-png-5.gif" width="150"></img>
         }
         {
           this.state.loaded === 2 &&
@@ -111,8 +162,13 @@ class RelatedProductCard extends React.Component {
           this.state.openCompareModal &&
           <div>
               <ComparisonModal
-            displayModal={this.state.openCompareModal}
-            closeModal={this.handleCompareClick}/>
+            // displayModal={this.state.openCompareModal}
+            closeModal={this.handleCompareClick}
+            productFeatures={this.state.compareProductsFeatures}
+            parentProduct={this.state.parentProductIDInfo.name}
+            compareProduct={this.state.productIDInfo.name}
+            combinedFeatures={this.state.combinedFeatures}
+            />
           </div>
         }
       </div>

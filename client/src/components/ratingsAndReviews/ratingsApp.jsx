@@ -39,7 +39,6 @@ class RatingsApp extends React.Component {
         this.setState({
           metaData: results.data,
         })
-        console.log(this.state)
       })
       .catch((err) => {
         console.log('error on meta GET request', err)

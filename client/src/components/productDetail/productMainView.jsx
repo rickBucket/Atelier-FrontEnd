@@ -115,8 +115,11 @@ class ProductMainView extends React.Component {
                 <StyleSelector
                   styles={this.state.styles}
                   changeStyle={this.changeStyle}
+                  selectedStyle={this.state.selectedStyle}
                 />
-                <Checkout />
+                <Checkout
+                  skus={this.state.selectedStyle.skus}
+                />
               </div>
             </FlexDiv>
             <ProductDescription

@@ -39,6 +39,10 @@ class StyleSelector extends React.Component {
     super(props);
   }
 
+  handleClick(id) {
+    this.props.changeStyle(id);
+  }
+
   render() {
     return (
       <Div>
@@ -47,7 +51,7 @@ class StyleSelector extends React.Component {
           {
             this.props.styles.map((style) => {
               return (
-                <Img key={style.style_id} src={style.photos[0].thumbnail_url} a=''></Img>
+                <Img key={style.style_id} src={style.photos[0].thumbnail_url} onClick={this.handleClick.bind(this, style.style_id)} a=''></Img>
               );
             })
           }

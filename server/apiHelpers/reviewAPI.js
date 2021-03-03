@@ -11,7 +11,7 @@ const handleQStrings = (input, flag = '') => {
     }
     return '/' + input;
   }
-}
+};
 
 // TODO GET + POST + PUT
 const getReviews = (q, callback) => {
@@ -34,6 +34,25 @@ const getReviews = (q, callback) => {
   .catch((err) => {
     callback(err, null);
   })
-}
+};
 
-module.exports.getReviews = getReviews;
+const postReviews = (body, callback) => {
+  axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews`, body, {
+    headers: {
+      Authorization: config.API_KEY,
+    }
+  })
+    .then((results) => {
+      console.log('api results', results.data)
+      callback(null, results.data);
+    })
+    .catch((err) => {
+      console.log('api err', err)
+      callback(err, null);
+    })
+};
+
+module.exports = {
+  getReviews: getReviews,
+  postReviews: postReviews
+};

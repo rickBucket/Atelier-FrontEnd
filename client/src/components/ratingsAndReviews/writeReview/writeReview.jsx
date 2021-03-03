@@ -9,7 +9,7 @@ class WriteReview extends React.Component {
       summary: '',
       name: '',
       email: '',
-      recommend: '',
+      recommend: null,
       rating: null,
       photos: [],
       characteristics: {
@@ -47,7 +47,7 @@ class WriteReview extends React.Component {
 
   recommendRadioClick(e) {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: Boolean(e.target.value)
     })
   }
 
@@ -59,6 +59,7 @@ class WriteReview extends React.Component {
 
   handleReviewData(e) {
     //send review data to ratingsApp
+    console.log('state', this.state)
     this.props.handleReviewData(this.state)
   }
 
@@ -66,25 +67,24 @@ class WriteReview extends React.Component {
     return(
       <div style={{
         display: 'grid',
-        borderStyle: 'solid',
-        borderColor: 'grey',
+        boxShadow: '5px 5px 10px grey',
         borderRadius: '20px',
         padding: '10px',
         gridGap: '20px',
         gridTemplateColumns: 'repeat(2, 1fr)',
         gridTemplateRows: 'minwidth(5, 1fr) 200px',
+        alignItems: 'center',
         overflow: 'auto'
       }}>
         {/* <form> */}
           <div style={{
-            borderStyle: 'solid',
             borderRadius: '20px',
-            borderWidth: '3px',
-            borderColor: 'grey',
+            boxShadow: '5px 5px 10px grey',
             padding: '10px',
             alignContent: 'center',
             gridColumn: '1',
-            gridRow: '1'
+            gridRow: '1',
+            alignItems: 'center'
           }}>
           <div>
               <b>Size</b>
@@ -103,28 +103,24 @@ class WriteReview extends React.Component {
           </div>
 
           <div style={{
-            borderStyle: 'solid',
             borderRadius: '20px',
-            borderWidth: '3px',
-            borderColor: 'grey',
+            boxShadow: '5px 5px 10px grey',
             padding: '10px',
             gridColumn: '2',
             gridRow: '1',
           }}>
             <b>Would you recommend this product?</b>
             <div>
-              <input type="radio" id="yes" name="recommend" value="true" onClick={this.recommendRadioClick}></input>
+              <input type="radio" id="yes" name="recommend" value={true} onClick={this.recommendRadioClick}></input>
               <label for="yes">Yes</label>
-              <input type="radio" id="no" name="recommend" value="false" onClick={this.recommendRadioClick}></input>
+              <input type="radio" id="no" name="recommend" value={false} onClick={this.recommendRadioClick}></input>
               <label for="no">No</label>
             </div>
           </div>
 
           <div style={{
-            borderStyle: 'solid',
             borderRadius: '20px',
-            borderWidth: '3px',
-            borderColor: 'grey',
+            boxShadow: '5px 5px 10px grey',
             padding: '10px',
             gridColumn: '1/-1',
             gridRow: '2'
@@ -222,10 +218,8 @@ class WriteReview extends React.Component {
 
 
           <div style={{
-            borderStyle: 'solid',
             borderRadius: '20px',
-            borderWidth: '3px',
-            borderColor: 'grey',
+            boxShadow: '5px 5px 10px grey',
             padding: '10px',
             gridRow: '3',
             gridColumn: '1'
@@ -235,10 +229,8 @@ class WriteReview extends React.Component {
           </div>
 
           <div style={{
-            borderStyle: 'solid',
             borderRadius: '20px',
-            borderWidth: '3px',
-            borderColor: 'grey',
+            boxShadow: '5px 5px 10px grey',
             padding: '10px',
             gridRow: '3',
             gridColumn: '2'
@@ -248,10 +240,8 @@ class WriteReview extends React.Component {
           </div>
 
           <div style={{
-            borderStyle: 'solid',
             borderRadius: '20px',
-            borderWidth: '3px',
-            borderColor: 'grey',
+            boxShadow: '5px 5px 10px grey',
             padding: '10px',
             gridRow: '4',
             gridColumn: '1/-1'
@@ -261,10 +251,8 @@ class WriteReview extends React.Component {
           </div>
 
           <div style={{
-            borderStyle: 'solid',
             borderRadius: '20px',
-            borderWidth: '3px',
-            borderColor: 'grey',
+            boxShadow: '5px 5px 10px grey',
             padding: '10px',
             gridRow: '5',
             gridColumn: '2'
@@ -273,10 +261,8 @@ class WriteReview extends React.Component {
           </div>
 
           <div style={{
-            borderStyle: 'solid',
             borderRadius: '20px',
-            borderWidth: '3px',
-            borderColor: 'grey',
+            boxShadow: '5px 5px 10px grey',
             padding: '10px',
             gridRow: '5',
             gridColumn: '1'
@@ -286,10 +272,8 @@ class WriteReview extends React.Component {
           </div>
 
           <button style={{
-            borderStyle: 'solid',
             borderRadius: '20px',
-            borderWidth: '3px',
-            borderColor: 'grey',
+            boxShadow: '5px 5px 10px grey',
             padding: '10px',
             gridRow: '6',
             gridColumn: '1/-1'

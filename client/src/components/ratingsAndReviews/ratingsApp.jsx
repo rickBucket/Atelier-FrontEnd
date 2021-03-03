@@ -113,15 +113,18 @@ class RatingsApp extends React.Component {
         </div>
         }
 
-        <div className="productBreakdownGridBox" style={{
-          boxShadow: '5px 5px 10px orange',
-          borderRadius: '20px',
-          padding: '20px',
-          gridColumn: '1',
-          gridRow: '4/7',
-        }}>
-          <ProductBreakdown />
+        {
+          this.state.metaReady === true &&
+          <div className="productBreakdownGridBox" style={{
+            boxShadow: '5px 5px 10px orange',
+            borderRadius: '20px',
+            padding: '20px',
+            gridColumn: '1',
+            gridRow: '4/7',
+          }}>
+          <ProductBreakdown metaData={this.state.metaData}/>
         </div>
+        }
 
         <div className="sortOptionsBreakdownGridBox" style={{
           boxShadow: '5px 5px 10px teal',
@@ -139,7 +142,8 @@ class RatingsApp extends React.Component {
           boxShadow: '5px 5px 10px purple',
           gridColumn: '2/5',
           gridRow: '2/8',
-          overflow: 'auto'
+          overflow: 'auto',
+          listStyle: 'none'
         }}>
           <ReviewList reviewList={this.state.reviewList}/>
         </div>

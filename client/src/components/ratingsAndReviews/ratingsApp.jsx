@@ -13,6 +13,7 @@ class RatingsApp extends React.Component {
       reviewList : [],
       metaData: [],
       reviewsReady: false,
+      metaReady: false,
       writeReviewModal: false
     }
 
@@ -38,6 +39,7 @@ class RatingsApp extends React.Component {
       .then((results) => {
         this.setState({
           metaData: results.data,
+          metaReady: true
         })
       })
       .catch((err) => {
@@ -97,7 +99,8 @@ class RatingsApp extends React.Component {
         padding: '20px',
         height: '85vh'
       }}>
-
+        {
+         this.state.metaReady === true &&
         <div className="ratingBreakdownGridBox" style={{
           padding: '10px',
           boxShadow: '5px 5px 10px gold',
@@ -107,6 +110,7 @@ class RatingsApp extends React.Component {
         }}>
           <RatingBreakdown metaData={this.state.metaData}/>
         </div>
+        }
 
         <div className="productBreakdownGridBox" style={{
           boxShadow: '5px 5px 10px orange',

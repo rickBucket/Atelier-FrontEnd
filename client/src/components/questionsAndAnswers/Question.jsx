@@ -6,11 +6,15 @@ import AnswerModal from './AnswerModal.jsx';
 
 const ContainerA = styled.div`
   padding: 10px;
-  border: 3px green solid;
+  border: 3px grey solid;
+  border-radius: 25px;
+  margin: 5px;
 `;
 
 const EachQ = styled.div`
   display: flex;
+  flex-direction: row;
+  justify-content: stretch;
 `;
 
 const MoveRight = styled.div`
@@ -20,7 +24,8 @@ const MoveRight = styled.div`
 
 const ContainerB = styled.div`
   padding: 10px;
-  border: 3px gold solid;
+  border: 3px green solid;
+  margin: 3px;
 `;
 
 const Button = styled.button`
@@ -39,6 +44,20 @@ const LoadButton = styled.button`
   font-weight: bold;
 `;
 
+const Divide = styled.span`
+  margin-left: 5px;
+  margin-left: 5px;
+  padding-top: auto;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+`;
+
+const Q = styled.h3`
+  display: flex;
+  float: left;
+`;
+
 
 // CLASS STARTS HERE ------------------------//
 
@@ -50,8 +69,11 @@ class Question extends React.Component {
       loadedState: false,
       loadMore: false,
       modal: false,
+      itemsToShow: 2,
+      expanded: false,
     };
     this.selectModal = this.selectModal.bind(this);
+    this.showMore = this.showMore.bind(this);
   }
 
   componentDidMount() {
@@ -77,9 +99,21 @@ class Question extends React.Component {
     })
   }
 
+  showMore() {
+    this.state.itemsToShow === 2 ? (
+      this.setState({
+        itemsToShow: this.state.answers.length,
+        expanded: true,
+      })
+    ) : (
+      this.setState({
+        itemsToShow: 2,
+        expanded: false,
+      })
+    )
+  }
+
   render() {
-    // console.log(this.props.item)
-    // seller={this.props.item.}
     if (!this.state.loadedState) {
       return(
         null
@@ -89,35 +123,40 @@ class Question extends React.Component {
     <ContainerA>
 
            <EachQ>
-           <h3>Q: {this.props.item.question_body} </h3>
-           </EachQ>
+            <Q>
+            <h3>Q: {this.props.item.question_body}</h3>
+            </Q>
 
-              <MoveRight>
+               <MoveRight>
               <p> Helpful? </p>
               <Button> Yes </Button>
               <p>({this.props.item.question_helpfulness})</p>
-              <span className="divider"> | </span>
+              <Divide className="divider"> | </Divide>
               <Button onClick={ this.selectModal }> Add Answer </Button>
               </MoveRight>
 
+           </EachQ>
+
+
+
+
 
         <div>
-        {this.state.answers.map((itemA, i) => {
+        {this.state.answers.slice(0,this.state.itemsToShow).map((answer, i) => {
           return (
             <ContainerB>
-            <Answers item={itemA} key={this.state.answers.id} />
+            <Answers item={answer} key={this.state.answers.id} seller={this.props.item.asker_name}/>
             </ContainerB>
           )
         })}
-        {this.state.answers.length > 1 ? (
-          <LoadButton onClick={(event) => {event.preventDefault(); } }> LOAD MORE ANSWERS </LoadButton>
+        {this.state.answers.length > 1 && !(this.state.expanded) ? (
+          <LoadButton onClick={(event) => { this.showMore(); } }> LOAD MORE ANSWERS </LoadButton>
           ) : (
-          null
+          <LoadButton onClick={(event) => { this.showMore(); }}> Collapse List </LoadButton>
           )}
         </div>
           <AnswerModal displayModal={this.state.modal} closeModal={this.selectModal}/>
     </ContainerA>
-
     );
   }
 }

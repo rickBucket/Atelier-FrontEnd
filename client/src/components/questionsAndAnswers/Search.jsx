@@ -1,9 +1,10 @@
+/* eslint-disable no-use-before-define */
 import React from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
   padding: 10px;
-  border: 3px red solid;
+  /* border: 3px red solid; */
 `;
 
 const SearchDiv = styled.div`
@@ -18,7 +19,8 @@ const SearchBar = styled.input`
   padding: 5px;
   border-radius: 5px 0 0 5px;
   outline: none;
-  color: #9DBFAF;
+  color: black;
+  font-size: 15px;
 `;
 
 const SearchBtn = styled.button`
@@ -31,6 +33,13 @@ const SearchBtn = styled.button`
   border-radius: 0 5px 5px 0;
   cursor: pointer;
   font-size: 20px;
+
+  &:hover {
+    background-color: lightgrey;
+    border: 1px solid black;
+  border-radius: 5px;
+  transition: all ease 0.3s;
+  }
 `;
 
 class Search extends React.Component {
@@ -40,7 +49,7 @@ class Search extends React.Component {
       text: '',
 
     }
-    this.handleSubmit = this.handleSubmit.bind.this;
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(event) {

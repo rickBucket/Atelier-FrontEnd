@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import ListContainer from '../sharedStyledComponents/listContainer.js';
 import CardContainer from '../sharedStyledComponents/cardContainer.js';
-import AddOutfitWrapper from './styledComponents/AddOutfitWrapper.js';
+import AddOutfitWrapper from './styledComponents/addOutfitWrapper.js';
 import YourOutfitCard from './yourOutfitCard.jsx';
 
 class YourOutfitList extends React.Component {

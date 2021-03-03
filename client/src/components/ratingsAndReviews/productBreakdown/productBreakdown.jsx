@@ -13,7 +13,6 @@ class ProductBreakdown extends React.Component {
 
   render() {
     const characteristics = this.props.metaData.characteristics
-    console.log(this.props.metaData.characteristics)
     return(
       <div style={{
         display: 'grid',

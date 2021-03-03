@@ -73,11 +73,9 @@ class RatingsApp extends React.Component {
   }
 
   render() {
-    console.log(this.state.reviewList)
     if (this.state.writeReviewModal) {
       return(
         <div>
-            Let's write a review.
             <WriteReview handleReviewData={this.handleReviewData} productID={this.props.productID} metaData={this.state.metaData}/>
             <br />
             <button onClick={this.exitWriteReviewClick}>Exit write review</button>
@@ -90,8 +88,6 @@ class RatingsApp extends React.Component {
           this.state.reviewsReady === true &&
       <div className="reviewsGridContainer" style={{
         display: 'grid',
-        borderStyle: 'solid',
-        borderColor: 'red',
         gridTemplateColumns: 'repeat(3, 1fr)',
         gridTemplateRows: 'minmax(8, 1fr) 200px',
         gridGap: '20px',

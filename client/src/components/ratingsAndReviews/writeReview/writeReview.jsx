@@ -53,6 +53,12 @@ class WriteReview extends React.Component {
   }
 
   handleReviewData(e) {
+    //mandatory  fields
+    if (this.state.rating === null || this.state.recommend === null || this.props.metaData.characteristics.Comfort.id === null || this.props.metaData.characteristics.Quality.id === null || this.props.metaData.characteristics.Length.id === null || this.props.metaData.characteristics.Fit.id === null) {
+      alert(`Please fill out all required (*) fields`);
+      e.preventDefault()
+      return false
+    }
     //body check
     if (this.state.body.length < 50 || this.state.body.length > 1000) {
       alert('Review body must be at least 50 characters');
@@ -77,21 +83,15 @@ class WriteReview extends React.Component {
       e.preventDefault()
       return false
     }
-    //mandatory  fields
-    if (this.state.rating === null || this.state.recommend === null || this.props.metaData.characteristics.Comfort.id === null || this.props.metaData.characteristics.Quality.id === null || this.props.metaData.characteristics.Length.id === null || this.props.metaData.characteristics.Fit.id === null) {
-      alert(`Please fill out all mandatory fields`);
-      e.preventDefault()
-      return false
-    }
 
     alert('Your review has been submitted!')
     this.props.handleReviewData(this.state)
   }
 
   render() {
-    console.log(this.state.characteristics)
     return(
-      <div style={{
+      <div >
+        <form onSubmit={this.handleReviewData} style={{
         display: 'grid',
         boxShadow: '5px 5px 10px grey',
         borderRadius: '20px',
@@ -102,7 +102,6 @@ class WriteReview extends React.Component {
         alignItems: 'center',
         overflow: 'auto'
       }}>
-        <form onSubmit={this.handleReviewData}>
           <div style={{
             borderRadius: '20px',
             boxShadow: '5px 5px 10px grey',
@@ -113,7 +112,7 @@ class WriteReview extends React.Component {
             alignItems: 'center'
           }}>
           <div>
-              <b>Overall</b>
+              <b>* Overall</b>
               <br />
               <input type="radio" id="star1" name="rating" value="1" onClick={this.starRadioClick}></input>
               <label for="star1"><span className="fa fa-star">1</span></label>
@@ -135,7 +134,7 @@ class WriteReview extends React.Component {
             gridColumn: '2',
             gridRow: '1',
           }}>
-            <b>Would you recommend this product?</b>
+            <b>* Would you recommend this product?</b>
             <div>
               <input type="radio" id="yes" name="recommend" value={true} onClick={this.recommendRadioClick}></input>
               <label for="yes">Yes</label>
@@ -152,7 +151,7 @@ class WriteReview extends React.Component {
             padding: '10px',
             gridColumn: '1/-1',
             gridRow: '2'
-          }}>Characteristics
+          }}><b>* Characteristics</b>
             {
               this.props.metaData.characteristics.Size &&
             <div>
@@ -281,7 +280,7 @@ class WriteReview extends React.Component {
             gridRow: '3',
             gridColumn: '2'
           }}>
-            <label for="name">Your name: </label>
+            <label for="name"><b>* Your name: </b></label>
             <input type="text" name="name" value={this.state.name} onChange={this.onInputChange}></input>
           </div>
 
@@ -292,7 +291,7 @@ class WriteReview extends React.Component {
             gridRow: '4',
             gridColumn: '1/-1'
           }}>
-            <label for="body">Your Review: </label>
+            <label for="body"><b>* Your Review: </b></label>
             <input type="text" value={this.state.body} name="body" onChange={this.onInputChange}></input>
           </div>
 
@@ -313,7 +312,7 @@ class WriteReview extends React.Component {
             gridRow: '5',
             gridColumn: '1'
           }}>
-            <label for="email">Email: </label>
+            <label for="email"><b>* Email: </b></label>
             <input type="text" name="email" value={this.state.email} onChange={this.onInputChange}></input>
           </div>
 
@@ -323,7 +322,7 @@ class WriteReview extends React.Component {
             padding: '10px',
             gridRow: '6',
             gridColumn: '1/-1'
-          }} onClick={this.handleReviewData}>Submit Review</button>
+          }} onClick={this.handleReviewData}><b>Submit Review</b></button>
 
         </form>
       </div>

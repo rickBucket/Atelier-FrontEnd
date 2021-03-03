@@ -98,18 +98,24 @@ class WriteReview extends React.Component {
         padding: '10px',
         gridGap: '20px',
         gridTemplateColumns: 'repeat(2, 1fr)',
-        gridTemplateRows: 'minwidth(5, 1fr) 200px',
+        gridTemplateRows: 'minwidth(6, 1fr) 200px',
         alignItems: 'center',
         overflow: 'auto'
       }}>
+        <div style={{
+          gridColumn: '1/-1',
+          gridRow: '1'
+        }}>
+          <h1 style={{textAlign: 'center'}}>Tell us about this product!</h1>
+          <small>* Required fields</small>
+        </div>
           <div style={{
             borderRadius: '20px',
             boxShadow: '5px 5px 10px grey',
             padding: '10px',
-            alignContent: 'center',
+            textAlign: 'center',
             gridColumn: '1',
-            gridRow: '1',
-            alignItems: 'center'
+            gridRow: '2',
           }}>
           <div>
               <b>* Overall</b>
@@ -124,6 +130,15 @@ class WriteReview extends React.Component {
               <label for="star4"><span className="fa fa-star">4</span></label>
               <input type="radio" id="star5" name="rating" value="5" onClick={this.starRadioClick}></input>
               <label for="star5"><span className="fa fa-star">5</span></label>
+              <br />
+              <small>
+                1 - Poor
+                2 - Fair
+                3 - Average
+                4 - Good
+                5 - Great
+              </small>
+
             </div>
           </div>
 
@@ -131,8 +146,9 @@ class WriteReview extends React.Component {
             borderRadius: '20px',
             boxShadow: '5px 5px 10px grey',
             padding: '10px',
+            textAlign: 'center',
             gridColumn: '2',
-            gridRow: '1',
+            gridRow: '2',
           }}>
             <b>* Would you recommend this product?</b>
             <div>
@@ -149,8 +165,9 @@ class WriteReview extends React.Component {
             borderRadius: '20px',
             boxShadow: '5px 5px 10px grey',
             padding: '10px',
+            textAlign: 'center',
             gridColumn: '1/-1',
-            gridRow: '2'
+            gridRow: '3'
           }}><b>* Characteristics</b>
             {
               this.props.metaData.characteristics.Size &&
@@ -266,41 +283,48 @@ class WriteReview extends React.Component {
             borderRadius: '20px',
             boxShadow: '5px 5px 10px grey',
             padding: '10px',
-            gridRow: '3',
-            gridColumn: '1'
+            textAlign: 'center',
+            gridColumn: '1',
+            gridRow: '4',
           }}>
           <label for="summary">Review Summary (optional): </label>
-            <input type="text" value={this.state.summary} name="summary" onChange={this.onInputChange}></input>
+            <input type="text" value={this.state.summary} name="summary" onChange={this.onInputChange} placeholder="Example: Best purchase ever!"></input>
           </div>
 
           <div style={{
             borderRadius: '20px',
             boxShadow: '5px 5px 10px grey',
             padding: '10px',
-            gridRow: '3',
-            gridColumn: '2'
+            textAlign: 'center',
+            gridColumn: '2',
+            gridRow: '4',
           }}>
             <label for="name"><b>* Your name: </b></label>
-            <input type="text" name="name" value={this.state.name} onChange={this.onInputChange}></input>
+            <input type="text" name="name" value={this.state.name} onChange={this.onInputChange} placeholder="Example: jackson11!"></input>
+            <br />
+            <small><i>For privacy reasons, do not use your full name or email address.</i></small>
           </div>
 
           <div style={{
             borderRadius: '20px',
             boxShadow: '5px 5px 10px grey',
             padding: '10px',
-            gridRow: '4',
-            gridColumn: '1/-1'
+            textAlign: 'center',
+            width : '100',
+            gridColumn: '1/-1',
+            gridRow: '5',
           }}>
             <label for="body"><b>* Your Review: </b></label>
-            <input type="text" value={this.state.body} name="body" onChange={this.onInputChange}></input>
+            <input type="text" value={this.state.body} name="body" onChange={this.onInputChange} placeholder="Why did you like the product or not?"></input>
           </div>
 
           <div style={{
             borderRadius: '20px',
             boxShadow: '5px 5px 10px grey',
             padding: '10px',
-            gridRow: '5',
-            gridColumn: '2'
+            textAlign: 'center',
+            gridColumn: '2',
+            gridRow: '6',
           }}>Upload photos (optional)
             <button onClick={(e) => e.preventDefault}>Add photos</button>
           </div>
@@ -309,19 +333,22 @@ class WriteReview extends React.Component {
             borderRadius: '20px',
             boxShadow: '5px 5px 10px grey',
             padding: '10px',
-            gridRow: '5',
-            gridColumn: '1'
+            textAlign: 'center',
+            gridColumn: '1',
+            gridRow: '6',
           }}>
             <label for="email"><b>* Email: </b></label>
-            <input type="text" name="email" value={this.state.email} onChange={this.onInputChange}></input>
+            <input type="text" name="email" value={this.state.email} onChange={this.onInputChange} placeholder="Example: jackson11@email.com"></input>
+            <br />
+            <small><i>For authentication reasons, you will not be emailed.</i></small>
           </div>
 
           <button style={{
             borderRadius: '20px',
             boxShadow: '5px 5px 10px grey',
             padding: '10px',
-            gridRow: '6',
-            gridColumn: '1/-1'
+            gridColumn: '1/-1',
+            gridRow: '7',
           }} onClick={this.handleReviewData}><b>Submit Review</b></button>
 
         </form>

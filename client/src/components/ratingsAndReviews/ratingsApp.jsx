@@ -155,7 +155,7 @@ class RatingsApp extends React.Component {
             borderRadius: '20px',
             boxShadow: '5px 5px 10px green',
             padding: '10px',
-          }}>Write Review</button>
+          }}>ADD A REVIEW +</button>
           {/* <WriteReview className="writeReviewGridBox"/> */}
         </div>
 
@@ -170,7 +170,7 @@ class RatingsApp extends React.Component {
             borderRadius: '20px',
             boxShadow: '5px 5px 10px pink',
             padding: '10px',
-          }}>Show More Reviews</button>
+          }}>MORE REVIEWS</button>
           {/* On click, this changes state of reviews to an extra two reviews */}
         </div>
     </div>

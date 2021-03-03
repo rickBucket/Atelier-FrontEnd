@@ -48,9 +48,15 @@ class RatingsApp extends React.Component {
 
 
   handleReviewData(reviewData) {
-    console.log('REVIEW DATA', reviewData)
+    console.log(reviewData)
     //axiosPost here
-    //axios.post('/')
+    axios.post('/reviews', reviewData)
+      .then(results => {
+        console.log('post results client side', results)
+      })
+      .catch(err => {
+        console.log('err on review POST', err)
+      })
   }
 
   exitWriteReviewClick(e) {
@@ -94,19 +100,17 @@ class RatingsApp extends React.Component {
       }}>
 
         <div className="ratingBreakdownGridBox" style={{
-          borderStyle: 'solid',
-          borderColor: 'yellow',
           padding: '10px',
+          boxShadow: '5px 5px 10px gold',
           borderRadius: '20px',
           gridColumn: '1',
           gridRow: '1/4',
         }}>
-          <RatingBreakdown />
+          <RatingBreakdown metaData={this.state.metaData}/>
         </div>
 
         <div className="productBreakdownGridBox" style={{
-          borderStyle: 'solid',
-          borderColor: 'orange',
+          boxShadow: '5px 5px 10px orange',
           borderRadius: '20px',
           padding: '20px',
           gridColumn: '1',
@@ -116,8 +120,7 @@ class RatingsApp extends React.Component {
         </div>
 
         <div className="sortOptionsBreakdownGridBox" style={{
-          borderStyle: 'solid',
-          borderColor: 'teal',
+          boxShadow: '5px 5px 10px teal',
           borderRadius: '20px',
           padding: '20px',
           gridColumn: '2',
@@ -127,10 +130,9 @@ class RatingsApp extends React.Component {
         </div>
 
         <div className="reviewListGridBox" style={{
-          borderStyle: 'solid',
-          borderColor: 'purple',
           borderRadius: '20px',
           padding: '20px',
+          boxShadow: '5px 5px 10px purple',
           gridColumn: '2/5',
           gridRow: '2/8',
           overflow: 'auto'
@@ -139,8 +141,7 @@ class RatingsApp extends React.Component {
         </div>
 
         <div className="writeReviewGridBox" style={{
-          borderStyle: 'solid',
-          borderColor: 'green',
+          boxShadow: '5px 5px 10px green',
           borderRadius: '20px',
           padding: '20px',
           gridColumn: '2/3',
@@ -151,10 +152,9 @@ class RatingsApp extends React.Component {
         </div>
 
         <div className="viewMoreReviewsGridBox" style={{
-          borderStyle: 'solid',
           borderRadius: '20px',
+          boxShadow: '5px 5px 10px pink',
           padding: '20px',
-          borderColor: 'pink',
           gridColumn: '3',
           gridRow: '8'
         }}>

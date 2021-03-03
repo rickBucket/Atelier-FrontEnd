@@ -38,11 +38,12 @@ class YourOutfitList extends React.Component {
 
   addOutfit() {
     // for now adding to outfit locally
+
     const newOutfitInfo = [{
       info: this.state.parentProductInfo,
       styles: this.state.parentProductStyles
     }]
-
+    console.log(newOutfitInfo)
     this.setState({
       outfits: [... newOutfitInfo]
     })

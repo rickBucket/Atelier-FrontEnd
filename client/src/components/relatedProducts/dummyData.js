@@ -1714,6 +1714,114 @@ module.exports = {
         }
       ]
     }
+  },
+  'outfits': {
+    'info': {
+      "id": 14035,
+      "campus": "hr-sfo",
+      "name": "Bright Future Sunglasses",
+      "slogan": "You've got to wear shades",
+      "description": "Where you're going you might not need roads, but you definitely need some shades. Give those baby blues a rest and let the future shine bright on these timeless lenses.",
+      "category": "Accessories",
+      "default_price": "69.00",
+      "created_at": "2021-02-23T02:49:02.833Z",
+      "updated_at": "2021-02-23T02:49:02.833Z",
+      "features": [
+        {
+          "feature": "Lenses",
+          "value": "Ultrasheen"
+        },
+        {
+          "feature": "UV Protection",
+          "value": null
+        },
+        {
+          "feature": "Frames",
+          "value": "LightCompose"
+        }
+      ]
+    },
+    'styles': {
+      "product_id": "14035",
+      "results": [
+        {
+          "style_id": 70546,
+          "name": "Black Lenses & Black Frame",
+          "original_price": "69.00",
+          "sale_price": null,
+          "default?": false,
+          "photos": [
+            {
+              "thumbnail_url": null,
+              "url": null
+            }
+          ],
+          "skus": {
+            "null": {
+              "quantity": null,
+              "size": null
+            }
+          }
+        },
+        {
+          "style_id": 70547,
+          "name": "Black Lenses & Gold Frame",
+          "original_price": "69.00",
+          "sale_price": null,
+          "default?": true,
+          "photos": [
+            {
+              "thumbnail_url": null,
+              "url": null
+            }
+          ],
+          "skus": {
+            "null": {
+              "quantity": null,
+              "size": null
+            }
+          }
+        },
+        {
+          "style_id": 70548,
+          "name": "Gold Lenses & Black Frame",
+          "original_price": "69.00",
+          "sale_price": null,
+          "default?": false,
+          "photos": [
+            {
+              "thumbnail_url": null,
+              "url": null
+            }
+          ],
+          "skus": {
+            "null": {
+              "quantity": null,
+              "size": null
+            }
+          }
+        },
+        {
+          "style_id": 70549,
+          "name": "Gold Lenses & Gold Frame",
+          "original_price": "69.00",
+          "sale_price": null,
+          "default?": false,
+          "photos": [
+            {
+              "thumbnail_url": null,
+              "url": null
+            }
+          ],
+          "skus": {
+            "null": {
+              "quantity": null,
+              "size": null
+            }
+          }
+        }
+      ]
+    }
   }
 }
 

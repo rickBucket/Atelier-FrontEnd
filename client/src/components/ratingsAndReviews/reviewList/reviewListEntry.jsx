@@ -52,7 +52,7 @@ class ReviewListEntry extends React.Component {
           gridRow: '1',
           gridColumn: '4'
         }}>
-          {`Date: ${review.date}`}
+          {new Date(review.date).toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
         </div>
         <br />
         <div style={{
@@ -76,16 +76,23 @@ class ReviewListEntry extends React.Component {
           {`Review body: ${review.body}`}
         </div>
         <br />
+        {
+        review.response !== null &&
         <div style={{
           boxShadow: '5px 5px 10px grey',
           borderRadius: '10px',
           padding: '5px',
           gridRow: '5',
-          gridColumn: '1/-1'
+          gridColumn: '1/-1',
+          backgroundColor: 'lightgrey'
         }}>
           {`Response: ${review.response}`}
         </div>
+        }
         <br />
+
+        {
+        review.recommend === true &&
         <div style={{
           boxShadow: '5px 5px 10px grey',
           borderRadius: '10px',
@@ -93,8 +100,10 @@ class ReviewListEntry extends React.Component {
           gridRow: '4',
           gridColumn: '1/-1'
         }}>
-          {`Recommended: ${review.recommend}`}
+          {`✓ I recommend this product`}
         </div>
+        }
+
         <br />
         <div style={{
           boxShadow: '5px 5px 10px grey',

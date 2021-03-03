@@ -7,7 +7,6 @@ class ratingsBreakdownList extends React.Component {
       ratingsReady: false
     }
 
-    // this.ratingsObj = this.props.metaData.ratings;
     this.totalStars = this.totalStars.bind(this);
   }
 
@@ -16,7 +15,11 @@ class ratingsBreakdownList extends React.Component {
     for (var star in obj) {
       total += Number(obj[star])
     }
-    return (Number(obj[key])/total).toFixed(2)
+    if (isNaN((Number(obj[key])/total).toFixed(2))) {
+      return 0
+    } else {
+      return (Number(obj[key])/total).toFixed(2)
+    }
   }
 
 render() {

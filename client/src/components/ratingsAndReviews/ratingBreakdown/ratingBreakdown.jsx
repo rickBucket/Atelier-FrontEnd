@@ -18,13 +18,22 @@ class RatingBreakdown extends React.Component {
       responseTotal += Number(obj[star])
     }
     var result = wholeTotal / responseTotal;
-    return (Math.round(result * 4) / 4).toFixed(2);
+    if (isNaN((Math.round(result * 4) / 4).toFixed(2))) {
+      return 0
+    } else {
+      return (Math.round(result * 4) / 4).toFixed(2);
+    }
   }
 
   recommendedAverage(obj) {
     var total = Number(obj.false) + Number(obj.true);
     var result = Number(obj.true) / total;
-    return result.toFixed(2) * 100;
+
+    if (isNaN(result.toFixed(2) * 100)) {
+      return 0
+    } else {
+      return result.toFixed(2) * 100;
+    }
   }
 
 //   // Multiply the number of individuals selecting each rating by the corresponding rating value (1 – 5)
@@ -32,9 +41,10 @@ class RatingBreakdown extends React.Component {
 // Divide that result by the total number of responses to the question
 
   render() {
-    console.log(this.props.metaData)
+
     const ratingsObj = this.props.metaData.ratings;
     const recommendedObj = this.props.metaData.recommended;
+
     return(
       <div style={{
         display: 'grid',

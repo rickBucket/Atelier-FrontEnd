@@ -48,16 +48,23 @@ class ProductShowcase extends React.Component {
       photos: this.props.photos,
       currentPhoto: this.props.photos[0]
     };
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(value) {
+    this.setState({
+      currentPhoto: this.state.photos.find((element) => element.url === value)
+    });
   }
 
   render() {
     return (
       <InvisDiv>
-        <PrimaryImageView photo={this.state.currentPhoto.url}/>
+        <PrimaryImageView photo={this.state.currentPhoto.url} />
         <FlexDiv>
           {
             this.state.photos.map((photo) => {
-              return <Img key={photo.url} src={photo.thumbnail_url} a=''></Img>
+              return <Img key={photo.url} onClick={this.handleClick.bind(this, photo.url)} src={photo.thumbnail_url} a=''></Img>
             })
           }
         </FlexDiv>

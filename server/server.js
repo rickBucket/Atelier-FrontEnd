@@ -26,7 +26,6 @@ app.get('/products', (req, res) => {
 
 
 app.get('/reviews', (req, res) => {
-  console.log('query request', req.query);
   reviews.getReviews(req.query, (err, data) => {
     if (err) {
       res.status(404).send(err);
@@ -40,8 +39,10 @@ app.post('/reviews', (req, res) => {
   console.log('post body', req.body);
   reviews.postReviews(req.body, (err, data) => {
     if (err) {
+      console.log('post err', err)
       res.status(404).send(err);
     } else {
+      console.log('post data' ,data)
       res.status(200).send(data);
     }
   });
@@ -60,6 +61,7 @@ app.get('/qa/questions', (req, res) => {
 app.post('/qa/questions', (req, res) => {
   questions.postQuestions(req.body, (err, data) => {
     if (err) {
+      console.log(req.body);
       res.status(404).send(err);
     } else {
       res.status(201).send(data)

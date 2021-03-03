@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const Container = styled.div`
   margin: 3px;
   padding: 10px;
-  border: 3px blue solid;
+  /* border: 3px blue solid; */
 `;
 
 class Questions extends React.Component {

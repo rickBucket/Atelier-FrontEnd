@@ -14,15 +14,16 @@ const ButtonCheckout = styled.button`
   background: white;
   border-radius: 5px;
   margin: 5px 12px 12px 12px;
+  padding: 8px;
   cursor: pointer;
-  width: 80%;
+  width: 60%;
   box-shadow: 3px 3px 8px rgba(0,0,0,0.5);
 `
 const ButtonFav = styled.button`
   border: 0px solid grey;
   background: white;
   border-radius: 5px;
-  padding: 5px;
+  padding: 8px;
   margin: 5px 12px 12px 12px;
   cursor: pointer;
   width: 20%;
@@ -32,10 +33,10 @@ const Selector = styled.select`
   border: 0px solid grey;
   background: white;
   border-radius: 5px;
-  padding: 5px;
+  padding: 8px;
   margin: 12px;
   cursor: pointer;
-  width: 50%;
+  width: 40%;
   box-shadow: 3px 3px 8px rgba(0,0,0,0.5);
 `
 const FlexDiv = styled.div`
@@ -50,7 +51,7 @@ class Checkout extends React.Component {
     super(props);
     this.state = {
       skus: this.props.skus,
-      selectedSKU: {quantity: 0},
+      selectedSKU: {quantity: -1},
       quantity: 0
     };
     this.handleChange = this.handleChange.bind(this);
@@ -59,11 +60,17 @@ class Checkout extends React.Component {
   }
 
   handleChange(e) {
-    this.setState({
-      selectedSKU: Object.values(this.state.skus).find((element) => {
-        return element.size === e.target.value;
-      })
-    });
+    if (e.target.value === 'Size') {
+      this.setState({
+        selectedSKU: {quantity: -1}
+      });
+    } else {
+      this.setState({
+        selectedSKU: Object.values(this.state.skus).find((element) => {
+          return element.size === e.target.value;
+        })
+      });
+    }
   }
 
   handleQuantity(e) {
@@ -82,23 +89,33 @@ class Checkout extends React.Component {
         <form>
           <FlexDiv>
             <Selector name="size" onChange={this.handleChange}>
+              <option>Size</option>
               {
-                Object.values(this.state.skus).map((x) => {
-                  return <option value={x.size} key={x.size}>{x.size}</option>
+                Array.from(new Set(Object.values(this.state.skus).map(x => x.size))).map((x) => {
+                  return <option key={x}>{x}</option>
                 })
               }
             </Selector>
             <Selector name="quantity" onChange={this.handleQuantity}>
               {
-                [...Array(this.state.selectedSKU.quantity % 15).keys()].map((x) => {
-                  return <option value={x} key={x}>{x}</option>
+                this.state.selectedSKU.quantity === -1 &&
+                <option>Size Required</option>
+              }
+              {
+                this.state.selectedSKU.quantity > 0 &&
+                [...Array(Math.min(this.state.selectedSKU.quantity, 15) + 1).keys()].map((x) => {
+                  return <option key={x}>{x}</option>
                 })
+              }
+              {
+                this.state.selectedSKU.quantity === 0 &&
+                <option>OUT OF STOCK</option>
               }
             </Selector>
           </FlexDiv>
           <FlexDiv>
-            <ButtonCheckout>Add to Bag</ButtonCheckout>
-            <ButtonFav>STAR</ButtonFav>
+            <ButtonCheckout onClick={this.handleSubmit}>Add to Bag</ButtonCheckout>
+            <ButtonFav onClick={this.handleSubmit}>STAR</ButtonFav>
           </FlexDiv>
         </form>
       </Div>

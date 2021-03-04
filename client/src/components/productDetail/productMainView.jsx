@@ -118,6 +118,7 @@ class ProductMainView extends React.Component {
                   selectedStyle={this.state.selectedStyle}
                 />
                 <Checkout
+                  key={this.state.selectedStyle.style_id}
                   skus={this.state.selectedStyle.skus}
                 />
               </div>

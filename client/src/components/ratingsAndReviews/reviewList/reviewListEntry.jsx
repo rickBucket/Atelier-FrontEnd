@@ -25,6 +25,7 @@ class ReviewListEntry extends React.Component {
 
   render() {
     var review = this.props.review
+    console.log(review)
     return(
       <div className="ratings-flexbox-container" style={{
         display: 'grid',
@@ -106,7 +107,7 @@ class ReviewListEntry extends React.Component {
           gridColumn: '1/-1',
           backgroundColor: 'lightgrey'
         }}>
-          {`Response: ${review.response}`}
+          <b>Response from seller: </b>{review.response}
         </div>
         }
         <br />

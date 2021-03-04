@@ -81,7 +81,7 @@ app.post('/qa/questions', (req, res) => {
 })
 
 app.put('/qa/questions', (req, res) => {
-  questions.putQuestions(req.query, (err, data) => {
+  questions.putQuestions(req.body, (err, data) => {
     if (err) {
       res.status(404).send(err);
     } else {

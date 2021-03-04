@@ -99,17 +99,18 @@ class Checkout extends React.Component {
             <Selector name="quantity" onChange={this.handleQuantity}>
               {
                 this.state.selectedSKU.quantity === -1 &&
-                <option>Size Required</option>
-              }
-              {
+                <React.Fragment>
+                  <option>Quantity</option>
+                  <option>SIZE REQUIRED</option>
+                </React.Fragment>
+              } {
+                this.state.selectedSKU.quantity === 0 &&
+                <option>OUT OF STOCK</option>
+              } {
                 this.state.selectedSKU.quantity > 0 &&
                 [...Array(Math.min(this.state.selectedSKU.quantity, 15) + 1).keys()].map((x) => {
                   return <option key={x}>{x}</option>
                 })
-              }
-              {
-                this.state.selectedSKU.quantity === 0 &&
-                <option>OUT OF STOCK</option>
               }
             </Selector>
           </FlexDiv>

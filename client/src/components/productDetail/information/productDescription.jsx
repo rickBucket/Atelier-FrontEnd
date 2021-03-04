@@ -13,9 +13,9 @@ const Div = styled.div`
 `
 const FlexDiv = styled.div`
   border-radius: 12px;
-  margin: 4px;
   display: flex;
   justify-content: center;
+  margin: -16px auto auto auto;
 `
 
 // props => slogan-string description-string features-[{feature value}]

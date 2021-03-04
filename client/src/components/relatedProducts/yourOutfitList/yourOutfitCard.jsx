@@ -9,16 +9,12 @@ class YourOutfitCard extends React.Component {
     super(props);
     this.state = {
       productIDInfo: '',
-
       productIDStyles: '',
       featuredURL: '',
       loaded: 0,
-
       salePrice: ''
     }
     this.removeOutfit = this.removeOutfit.bind(this);
-
-
   }
 
   componentDidMount() {
@@ -57,7 +53,6 @@ class YourOutfitCard extends React.Component {
     this.props.deleteOutfit(this.state.productIDStyles.product_id);
   }
 
-
   render() {
     var sale = {
       textDecoration: this.state.salePrice ? 'line-through' : 'none',
@@ -73,9 +68,9 @@ class YourOutfitCard extends React.Component {
           this.state.loaded === 1 &&
           <div>
               <ButtonWrapper>
-              <button
+              <DeleteButton
                 onClick={this.removeOutfit}
-              >X</button>
+              >&#9747;</DeleteButton>
               </ButtonWrapper>
 
             <ImageWrapper>
@@ -106,9 +101,22 @@ object-fit: contain;
 z-index: 0;
 `;
 
+// const ButtonWrapper = styled.div`
+//   position: absolute;
+// `;
+
+const DeleteButton = styled.button`
+  right: 20%;
+  top: 2%;
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-size: 20px;
+`;
+
 const ButtonWrapper = styled.div`
-  position: relative;
-  z-index: 100;
+  position: absolute;
+  z-index: 1;
 `;
 
 const ProductContentWrapper = styled.div`

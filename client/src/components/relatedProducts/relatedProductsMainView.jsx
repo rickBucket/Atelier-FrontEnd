@@ -56,20 +56,20 @@ class RelatedProductsMainView extends React.Component {
   // add condititonal rendering in case relatedProducts hasn't been defined yet
   render() {
     return (
-      <div >
+      <AllEncompassing>
         <div>
           Related Products
         </div>
         <ListWrapper>
           <div>
             {this.state.imagesToTheRight ? <RightButton onClick={this.scrollRight}>
-              ➡️
+            &#8250;
           </RightButton> : null}
           </div>
           <RelatedProductsList productID={this.props.productID} relatedProducts={this.state.relatedProducts} />
           <div>
             {this.state.imagesToTheLeft ? <LeftButton onClick={this.scrollLeft}>
-              ⬅️
+            &#8249;
         </LeftButton> : null}
           </div>
         </ListWrapper>
@@ -77,37 +77,49 @@ class RelatedProductsMainView extends React.Component {
           Your Outfit
         </div>
         <ListWrapper>
+        {/* <div>
+            {this.state.imagesToTheRight ? <RightButton onClick={this.scrollRight}>
+            Hello
+          </RightButton> : null}
+          </div> */}
           <YourOutfitList parentProductID={this.props.productID}/>
+          {/* <div>
+            {this.state.imagesToTheLeft ? <LeftButton onClick={this.scrollLeft}>
+              ⬅️
+        </LeftButton> : null}
+          </div> */}
         </ListWrapper>
-      </div>
-
+      </AllEncompassing>
     )
   }
 };
 
 export default RelatedProductsMainView;
 
+const AllEncompassing = styled.div`
+  padding: 5px 40px 0px 40px;
+`;
+
 const LeftButton = styled.button`
   position: absolute;
   left: 2%;
-  top: 30%;
+  top: 25%;
   background: none;
   border: none;
   cursor: pointer;
   z-index: 100;
-  background-color: rgba(0,0,0,0.4);
-
+  font-size: 30px;
 `;
 
 const RightButton = styled.button`
   position: absolute;
   right: 2%;
-  top: 30%;
+  top: 25%;
   background: none;
   border: none;
   cursor: pointer;
   z-index: 100;
-  background-color: rgba(0,0,0,0.4);
+  font-size: 30px;
 `;
 
 const ListWrapper = styled.div`

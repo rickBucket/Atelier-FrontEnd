@@ -9,7 +9,7 @@ const Div = styled.div`
   height: 100%;
   width: 99.9%;
   position: absolute;
-  z-index: 20;
+  z-index: 50;
   display: flex;
   justify-content: center;
   backdrop-filter: blur(8px) contrast(70%);

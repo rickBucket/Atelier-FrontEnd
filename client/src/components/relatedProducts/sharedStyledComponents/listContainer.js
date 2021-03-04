@@ -10,6 +10,8 @@ height: 500px;
 margin: 0px;
 padding: 0px;
 border-radius: 10px;
+transitions: .5s;
+scroll-behavior: smooth;
 `;
 
 export default ListContainer;

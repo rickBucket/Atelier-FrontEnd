@@ -51,7 +51,7 @@ class Checkout extends React.Component {
     super(props);
     this.state = {
       skus: this.props.skus,
-      selectedSKU: {quantity: 0},
+      selectedSKU: {quantity: -1},
       quantity: 0
     };
     this.handleChange = this.handleChange.bind(this);
@@ -62,7 +62,7 @@ class Checkout extends React.Component {
   handleChange(e) {
     if (e.target.value === 'Size') {
       this.setState({
-        selectedSKU: {quantity: 0}
+        selectedSKU: {quantity: -1}
       });
     } else {
       this.setState({
@@ -97,11 +97,19 @@ class Checkout extends React.Component {
               }
             </Selector>
             <Selector name="quantity" onChange={this.handleQuantity}>
-              <option>Quantity</option>
               {
+                this.state.selectedSKU.quantity === -1 &&
+                <option>Size Required</option>
+              }
+              {
+                this.state.selectedSKU.quantity > 0 &&
                 [...Array(this.state.selectedSKU.quantity % 15).keys()].map((x) => {
                   return <option key={x}>{x}</option>
                 })
+              }
+              {
+                this.state.selectedSKU.quantity === 0 &&
+                <option>OUT OF STOCK</option>
               }
             </Selector>
           </FlexDiv>

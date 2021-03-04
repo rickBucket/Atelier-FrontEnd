@@ -1,6 +1,98 @@
 import React from 'react';
 import CharacteristicsRadio from './characteristicsRadio.jsx'
 
+const gridLayout = {
+  display: 'grid',
+  boxShadow: '5px 5px 10px grey',
+  borderRadius: '20px',
+  padding: '10px',
+  gridGap: '20px',
+  gridTemplateColumns: 'repeat(2, 1fr)',
+  gridTemplateRows: 'minwidth(6, 1fr) 200px',
+  alignItems: 'center',
+  overflow: 'auto'
+};
+
+const starStyle = {
+  borderRadius: '20px',
+  boxShadow: '5px 5px 10px grey',
+  padding: '10px',
+  textAlign: 'center',
+  gridColumn: '1',
+  gridRow: '2',
+};
+
+const recommendStyle = {
+  borderRadius: '20px',
+  boxShadow: '5px 5px 10px grey',
+  padding: '10px',
+  textAlign: 'center',
+  gridColumn: '2',
+  gridRow: '2',
+};
+
+const characteristicsStyle = {
+  borderRadius: '20px',
+  boxShadow: '5px 5px 10px grey',
+  padding: '10px',
+  textAlign: 'center',
+  gridColumn: '1/-1',
+  gridRow: '3'
+};
+
+const summaryStyle = {
+  borderRadius: '20px',
+  boxShadow: '5px 5px 10px grey',
+  padding: '10px',
+  textAlign: 'center',
+  gridColumn: '1',
+  gridRow: '4',
+};
+
+const nameStyle = {
+  borderRadius: '20px',
+  boxShadow: '5px 5px 10px grey',
+  padding: '10px',
+  textAlign: 'center',
+  gridColumn: '2',
+  gridRow: '4',
+};
+
+const reviewStyle = {
+  borderRadius: '20px',
+  boxShadow: '5px 5px 10px grey',
+  padding: '10px',
+  textAlign: 'center',
+  gridColumn: '1/-1',
+  gridRow: '5',
+};
+
+const photoStyle = {
+  borderRadius: '20px',
+  boxShadow: '5px 5px 10px grey',
+  padding: '10px',
+  textAlign: 'center',
+  gridColumn: '2',
+  gridRow: '6',
+};
+
+const emailStyle = {
+  borderRadius: '20px',
+  boxShadow: '5px 5px 10px grey',
+  padding: '10px',
+  textAlign: 'center',
+  gridColumn: '1',
+  gridRow: '6',
+};
+
+const submitStyle = {
+  borderRadius: '20px',
+  boxShadow: '5px 5px 10px grey',
+  padding: '10px',
+  gridColumn: '1/-1',
+  gridRow: '7',
+};
+
 class WriteReview extends React.Component {
   constructor(props) {
     super(props)
@@ -101,17 +193,7 @@ class WriteReview extends React.Component {
   render() {
     return(
       <div >
-        <form onSubmit={this.handleReviewData} style={{
-        display: 'grid',
-        boxShadow: '5px 5px 10px grey',
-        borderRadius: '20px',
-        padding: '10px',
-        gridGap: '20px',
-        gridTemplateColumns: 'repeat(2, 1fr)',
-        gridTemplateRows: 'minwidth(6, 1fr) 200px',
-        alignItems: 'center',
-        overflow: 'auto'
-      }}>
+        <form onSubmit={this.handleReviewData} style={gridLayout}>
         <div style={{
           gridColumn: '1/-1',
           gridRow: '1'
@@ -119,14 +201,7 @@ class WriteReview extends React.Component {
           <h1 style={{textAlign: 'center'}}>Tell us about this product!</h1>
           <small>* Required fields</small>
         </div>
-          <div style={{
-            borderRadius: '20px',
-            boxShadow: '5px 5px 10px grey',
-            padding: '10px',
-            textAlign: 'center',
-            gridColumn: '1',
-            gridRow: '2',
-          }}>
+          <div style={starStyle}>
           <div>
               <b>* Overall</b>
               <br />
@@ -152,14 +227,7 @@ class WriteReview extends React.Component {
             </div>
           </div>
 
-          <div style={{
-            borderRadius: '20px',
-            boxShadow: '5px 5px 10px grey',
-            padding: '10px',
-            textAlign: 'center',
-            gridColumn: '2',
-            gridRow: '2',
-          }}>
+          <div style={recommendStyle}>
             <b>* Would you recommend this product?</b>
             <div>
               <input type="radio" id="yes" name="recommend" value={true} onClick={this.recommendRadioClick}></input>
@@ -171,14 +239,7 @@ class WriteReview extends React.Component {
 
 
 
-          <div style={{
-            borderRadius: '20px',
-            boxShadow: '5px 5px 10px grey',
-            padding: '10px',
-            textAlign: 'center',
-            gridColumn: '1/-1',
-            gridRow: '3'
-          }}><b>* Characteristics</b>
+          <div style={characteristicsStyle}><b>* Characteristics</b>
             {
               this.props.metaData.characteristics.Size &&
             <div>
@@ -289,78 +350,37 @@ class WriteReview extends React.Component {
           </div>
 
 
-          <div style={{
-            borderRadius: '20px',
-            boxShadow: '5px 5px 10px grey',
-            padding: '10px',
-            textAlign: 'center',
-            gridColumn: '1',
-            gridRow: '4',
-          }}>
+          <div style={summaryStyle}>
           <label for="summary">Review Summary (optional): </label>
             <input type="text" value={this.state.summary} style={{width : '90%'}} name="summary" onChange={this.onInputChange} placeholder="Example: Best purchase ever!"></input>
           </div>
 
-          <div style={{
-            borderRadius: '20px',
-            boxShadow: '5px 5px 10px grey',
-            padding: '10px',
-            textAlign: 'center',
-            gridColumn: '2',
-            gridRow: '4',
-          }}>
+          <div style={nameStyle}>
             <label for="name"><b>* Your Name: </b></label>
             <input type="text" name="name" style={{width : '90%'}} value={this.state.name} onChange={this.onInputChange} placeholder="Example: jackson11!"></input>
             <br />
             <small><i>For privacy reasons, do not use your full name or email address.</i></small>
           </div>
 
-          <div style={{
-            borderRadius: '20px',
-            boxShadow: '5px 5px 10px grey',
-            padding: '10px',
-            textAlign: 'center',
-            gridColumn: '1/-1',
-            gridRow: '5',
-          }}>
+          <div style={reviewStyle}>
             <label for="body"><b>* Your Review: </b></label>
             <input type="text" style={{width : '90%'}} value={this.state.body} name="body" onChange={this.onInputChange} placeholder="What did you like/dislike about the product?"></input>
             <br />
             <small>{this.minimumCharCount()}</small>
           </div>
 
-          <div style={{
-            borderRadius: '20px',
-            boxShadow: '5px 5px 10px grey',
-            padding: '10px',
-            textAlign: 'center',
-            gridColumn: '2',
-            gridRow: '6',
-          }}>Upload photos (optional)
+          <div style={photoStyle}>Upload photos (optional)
             <button onClick={(e) => e.preventDefault}>Add photos</button>
           </div>
 
-          <div style={{
-            borderRadius: '20px',
-            boxShadow: '5px 5px 10px grey',
-            padding: '10px',
-            textAlign: 'center',
-            gridColumn: '1',
-            gridRow: '6',
-          }}>
+          <div style={emailStyle}>
             <label for="email"><b>* Email: </b></label>
             <input type="text" style={{width : '90%'}} name="email" value={this.state.email} onChange={this.onInputChange} placeholder="Example: jackson11@email.com"></input>
             <br />
             <small><i>For authentication reasons, you will not be emailed.</i></small>
           </div>
 
-          <button id="submitReview" style={{
-            borderRadius: '20px',
-            boxShadow: '5px 5px 10px grey',
-            padding: '10px',
-            gridColumn: '1/-1',
-            gridRow: '7',
-          }} onClick={this.handleReviewData}><b>Submit Review</b></button>
+          <button id="submitReview" style={submitStyle} onClick={this.handleReviewData}><b>Submit Review</b></button>
 
         </form>
       </div>

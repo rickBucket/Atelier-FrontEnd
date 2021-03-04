@@ -1,5 +1,14 @@
 import React from 'react';
 
+const optionsBar = {
+  width: '20%',
+  border: 'none',
+  textAlign: 'center',
+  borderRadius: '5px',
+  boxShadow: '5px 5px 5px teal',
+  cursor: 'pointer'
+}
+
 class SortOptions extends React.Component {
   constructor(props) {
     super(props)
@@ -16,14 +25,7 @@ class SortOptions extends React.Component {
       <div style={{
         fontWeight: 'bold'
       }}>{`${this.totalReviews(this.props.metaData.recommended)} reviews, sorted by most`}
-        <select style={{
-          width: '20%',
-          border: 'none',
-          textAlign: 'center',
-          borderRadius: '5px',
-          boxShadow: '5px 5px 5px teal',
-          cursor: 'pointer'
-        }}>
+        <select style={optionsBar}>
           <option value="0">Relevant</option>
           <option value="1">Helpful</option>
           <option value="2">Recent</option>

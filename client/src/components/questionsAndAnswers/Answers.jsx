@@ -43,41 +43,20 @@ class Answers extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
     };
     this.click = this.click.bind(this);
   }
 
   click(event) {
-    console.log(this.props.item);
-    if (event.target.name === 'yes') {
-      if (!this.state.clickedYes) {
-        axios.put('/qa/questions', {
-          question_id: this.props.item.question_id,
-          yes: 'yes',
-          question_helpfulness: this.props.item.answer_helpfulness,
-        })
-          .then((response) => {
-            console.log(reponse);
-            this.setState({
-              clickedYes: true,
-            });
-          });
-      }
-    } else if (!this.state.clickedReport) {
-      axios.put('/qa/questions/', {
-        question_id: this.props.item.question_id,
-        report: 'report',
-
-      })
-        .then((response) => {
-          console.log(reponse);
-          this.setState({
-            clickedReport: true,
-          });
-        });
-    }
+    axios.put('/qa/questions', {
+      answer_id: this.props.item.id,
+      type: event.target.name,
+    })
+      .then((response) => {
+        console.log(response);
+      });
   }
+
 
 
   render() {
@@ -123,7 +102,7 @@ class Answers extends React.Component {
             )}
           <Divide className="divider"> | </Divide>
           <p> Helpful? </p>
-          <Button name="yes" onClick={(event) => { event.preventDefault(); this.click(event); }}> Yes </Button>
+          <Button name="helpful" onClick={(event) => { event.preventDefault(); this.click(event); }}> Yes </Button>
           <p>{this.props.item.helpfulness}</p>
           <Divide className="divider"> | </Divide>
           <Button name="report" onClick={(event) => { event.preventDefault(); this.click(event); }}> Report </Button>

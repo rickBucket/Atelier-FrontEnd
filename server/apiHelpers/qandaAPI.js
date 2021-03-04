@@ -56,9 +56,10 @@ const getQuestions = (q, callback) => {
 };
 
 const putQuestions = (q, callback) => {
-  if (q.yes) {
+  console.log(q)
+  if (q.answer_id) {
   axios.put(
-      `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions${q.question_id}`, 
+      `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/answers/${q.answer_id}/${q.type}`, {},
       {
         headers: {
           Authorization: config.API_KEY,
@@ -73,10 +74,9 @@ const putQuestions = (q, callback) => {
     });
   } else {
     axios.put(
-      `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions${q.question_id}`,
+      `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions/${q.question_id}/${q.type}`, {},
       {
         headers: {
-          "User-Agent": "request",
           Authorization: config.API_KEY,
         },
       }

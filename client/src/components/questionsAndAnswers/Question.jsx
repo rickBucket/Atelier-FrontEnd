@@ -3,6 +3,7 @@ import React from 'react';
 import Answers from './Answers.jsx';
 import styled from 'styled-components';
 import AnswerModal from './AnswerModal.jsx';
+import axios from 'axios';
 
 const ContainerA = styled.div`
   border: 0px solid grey;
@@ -10,7 +11,7 @@ const ContainerA = styled.div`
   margin: 12px;
   padding: 0px 20px 0px 20px;
   box-shadow: 3px 3px 8px rgba(0,0,0,0.5);
-  max-width: 600px;
+  max-width: 1000px;
 `;
 
 const EachQ = styled.div`
@@ -82,9 +83,14 @@ class Question extends React.Component {
       modal: false,
       itemsToShow: 2,
       expanded: false,
+      clickedYes: false,
+      clickedReport: false,
+      report: 'report',
+      yes: 'yes',
     };
     this.selectModal = this.selectModal.bind(this);
     this.showMore = this.showMore.bind(this);
+    this.click = this.click.bind(this);
   }
 
   componentDidMount() {
@@ -124,6 +130,21 @@ class Question extends React.Component {
     )
   }
 
+  click(event) {
+    if (!this.state.clickedYes) {
+    axios.put('/qa/questions/', {
+      question_id: this.props.item.question_id,
+      yes: 'yes'
+    })
+    .then(response => {
+      console.log(reponse);
+      this.setState({
+        clickedYes: true
+      })
+    })
+  }
+  }
+
   render() {
     if (!this.state.loadedState) {
       return(
@@ -140,16 +161,13 @@ class Question extends React.Component {
 
                <MoveRight>
               <p> Helpful? </p>
-              <Button> Yes </Button>
+              <Button name="yes"> Yes </Button>
               <p>({this.props.item.question_helpfulness})</p>
               <Divide className="divider"> | </Divide>
               <Button onClick={ this.selectModal }> Add Answer </Button>
               </MoveRight>
 
            </EachQ>
-
-
-
 
 
         <div>

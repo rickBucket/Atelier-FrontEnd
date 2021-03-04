@@ -299,7 +299,7 @@ class WriteReview extends React.Component {
             gridColumn: '2',
             gridRow: '4',
           }}>
-            <label for="name"><b>* Your name: </b></label>
+            <label for="name"><b>* Your Name: </b></label>
             <input type="text" name="name" style={{width : '90%'}} value={this.state.name} onChange={this.onInputChange} placeholder="Example: jackson11!"></input>
             <br />
             <small><i>For privacy reasons, do not use your full name or email address.</i></small>
@@ -342,7 +342,7 @@ class WriteReview extends React.Component {
             <small><i>For authentication reasons, you will not be emailed.</i></small>
           </div>
 
-          <button style={{
+          <button id="submitReview" style={{
             borderRadius: '20px',
             boxShadow: '5px 5px 10px grey',
             padding: '10px',

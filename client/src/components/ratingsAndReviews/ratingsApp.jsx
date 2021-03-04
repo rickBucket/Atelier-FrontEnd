@@ -185,16 +185,18 @@ class RatingsApp extends React.Component {
           <ProductBreakdown metaData={this.state.metaData}/>
         </div>
         }
-
+        {
+          this.state.metaReady === true &&
         <div className="sortOptionsBreakdownGridBox" style={{
           boxShadow: '5px 5px 10px teal',
           borderRadius: '20px',
           padding: '20px',
-          gridColumn: '2',
+          gridColumn: '2/-1',
           gridRow: '1'
         }}>
-          <SortOptions />
+          <SortOptions metaData={this.state.metaData}/>
         </div>
+        }
 
         <div className="reviewListGridBox" style={{
           borderRadius: '20px',
@@ -247,56 +249,3 @@ class RatingsApp extends React.Component {
 
 export default RatingsApp
 
-{/* /* General grid for Reviews and ratings
-
-.reviewsGridContainer {
-  display: grid;
-  border-style: solid;
-  border-color: red;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(5, 1fr);
-  grid-gap: 30px;
-  justify-content: center space-between;
-  align-content: center;
-  width: 100vw;
-  height: 100vh;
-}
-
-.reviewListGridBox {
-  border-style: solid;
-  border-color: purple;
-  grid-column: 2/4;
-  grid-row: 2/10;
-}
-
-.writeReviewGridBox {
-  border-style: solid;
-  border-color: green;
-  grid-column: 2/3;
-}
-
-.ratingBreakdownGridBox {
-  border-style: solid;
-  border-color: yellow;
-  grid-column: 1;
-  grid-row: 1/3;
-}
-
-.productBreakdownGridBox {
-  border-style: solid;
-  border-color: orange;
-  grid-column: 1;
-  grid-row: 3/5;
-}
-
-.sortOptionsBreakdownGridBox {
-  border-style: solid;
-  border-color: teal;
-  grid-column: 2;
-}
-
-.viewMoreReviewsGridBox {
-  border-style: solid;
-  border-color: pink;
-  grid-column: 3;
-} */}

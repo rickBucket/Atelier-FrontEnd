@@ -25,7 +25,6 @@ class ratingsBreakdownList extends React.Component {
 render() {
 
   const ratingsObj = this.props.metaData.ratings;
-  console.log(ratingsObj)
 
   return(
     <div style={{

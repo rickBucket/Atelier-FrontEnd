@@ -2,6 +2,8 @@
 #report:hover,
 #addReview:hover,
 #moreReviews:hover,
-#starBreakdown:hover {
+#starBreakdown:hover,
+#submitReview:hover {
   cursor: pointer;
 }
+

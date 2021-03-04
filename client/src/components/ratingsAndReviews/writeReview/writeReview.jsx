@@ -21,15 +21,10 @@ class WriteReview extends React.Component {
     this.characteristicsRadioClick = this.characteristicsRadioClick.bind(this);
     this.recommendRadioClick = this.recommendRadioClick.bind(this);
     this.starRadioClick = this.starRadioClick.bind(this);
-    this.handleReviewData =this.handleReviewData.bind(this);
+    this.handleReviewData = this.handleReviewData.bind(this);
   }
 
-  onInputChange(e){
-    e.preventDefault();
-    this.setState({
-      [e.target.name]: e.target.value
-    })
-  }
+
 
   characteristicsRadioClick(e) {
     this.setState({
@@ -38,6 +33,21 @@ class WriteReview extends React.Component {
         [e.target.name]: Number(e.target.value)
       }
     });
+  }
+
+  minimumCharCount(){
+    if (this.state.body.length >= 50) {
+      return `Minimum character count reached`
+    } else if (this.state.body.length < 50) {
+      return `Minimum required characters left: ${(50 - this.state.body.length)}`
+    }
+  }
+
+  onInputChange(e){
+    e.preventDefault();
+    this.setState({
+      [e.target.name]: e.target.value
+    })
   }
 
   recommendRadioClick(e) {
@@ -315,6 +325,8 @@ class WriteReview extends React.Component {
           }}>
             <label for="body"><b>* Your Review: </b></label>
             <input type="text" style={{width : '90%'}} value={this.state.body} name="body" onChange={this.onInputChange} placeholder="What did you like/dislike about the product?"></input>
+            <br />
+            <small>{this.minimumCharCount()}</small>
           </div>
 
           <div style={{

@@ -31,7 +31,7 @@ class RelatedProductList extends React.Component {
       )
     } else {
       return (
-        <div>
+
           <ListContainer id="productCarousel">
             {this.props.relatedProducts.map((product) => {
               return <RelatedProductCard parentProductID={this.props.productID} productID={product}
@@ -39,7 +39,7 @@ class RelatedProductList extends React.Component {
                 key={product} />
             })}
           </ListContainer>
-        </div>
+
       )
     }
   }

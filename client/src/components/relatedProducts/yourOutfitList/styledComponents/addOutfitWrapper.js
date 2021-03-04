@@ -13,6 +13,8 @@ const AddOutfitWrapper = styled.div`
   align-items: center;
   box-shadow: 3px 3px 8px rgba(0,0,0,0.5);
   border-radius: 10px;
+  flex-shrink: 0;
+  flex-grow: 0;
 `;
 
 export default AddOutfitWrapper;

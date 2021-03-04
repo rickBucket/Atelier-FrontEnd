@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import axios from 'axios';
 import ListContainer from '../sharedStyledComponents/listContainer.js';
 import CardContainer from '../sharedStyledComponents/cardContainer.js';
-import AddOutfitWrapper from './styledComponents/addOutfitWrapper.js';
 import YourOutfitCard from './yourOutfitCard.jsx';
 
 class YourOutfitList extends React.Component {
@@ -43,7 +42,6 @@ class YourOutfitList extends React.Component {
       info: this.state.parentProductInfo,
       styles: this.state.parentProductStyles
     }]
-    console.log(newOutfitInfo)
     this.setState({
       outfits: [... newOutfitInfo]
     })
@@ -68,11 +66,15 @@ class YourOutfitList extends React.Component {
   }
 
   render() {
+
     return (
       <ListContainer>
-        <AddOutfitWrapper onClick={this.addOutfit}>
-          + Add to Your Outfit
-        </AddOutfitWrapper>
+        <CardContainer onClick={this.addOutfit}>
+          <AddOutfitContent>
+            + Add To Your Outfit
+          </AddOutfitContent>
+
+        </CardContainer>
         {this.state.outfits.length ? <CardContainer>
           {this.state.outfits.map((outfit, i)=> {
              return <YourOutfitCard
@@ -89,9 +91,10 @@ class YourOutfitList extends React.Component {
 
 export default YourOutfitList;
 
-
-
-
-// flex-shrink: 0;
-// flex-grow: 0;
-// text-align: center;
+const AddOutfitContent = styled.div`
+  min-height: 450px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255,255,255,0.1);
+`;

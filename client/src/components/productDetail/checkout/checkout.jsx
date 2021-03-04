@@ -103,7 +103,7 @@ class Checkout extends React.Component {
               }
               {
                 this.state.selectedSKU.quantity > 0 &&
-                [...Array(this.state.selectedSKU.quantity % 15).keys()].map((x) => {
+                [...Array(Math.max(this.state.selectedSKU.quantity, 15)).keys()].map((x) => {
                   return <option key={x}>{x}</option>
                 })
               }

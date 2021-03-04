@@ -14,15 +14,16 @@ const ButtonCheckout = styled.button`
   background: white;
   border-radius: 5px;
   margin: 5px 12px 12px 12px;
+  padding: 8px;
   cursor: pointer;
-  width: 80%;
+  width: 60%;
   box-shadow: 3px 3px 8px rgba(0,0,0,0.5);
 `
 const ButtonFav = styled.button`
   border: 0px solid grey;
   background: white;
   border-radius: 5px;
-  padding: 5px;
+  padding: 8px;
   margin: 5px 12px 12px 12px;
   cursor: pointer;
   width: 20%;
@@ -32,10 +33,10 @@ const Selector = styled.select`
   border: 0px solid grey;
   background: white;
   border-radius: 5px;
-  padding: 5px;
+  padding: 8px;
   margin: 12px;
   cursor: pointer;
-  width: 50%;
+  width: 40%;
   box-shadow: 3px 3px 8px rgba(0,0,0,0.5);
 `
 const FlexDiv = styled.div`

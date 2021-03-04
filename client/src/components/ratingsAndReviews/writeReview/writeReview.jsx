@@ -288,7 +288,7 @@ class WriteReview extends React.Component {
             gridRow: '4',
           }}>
           <label for="summary">Review Summary (optional): </label>
-            <input type="text" value={this.state.summary} name="summary" onChange={this.onInputChange} placeholder="Example: Best purchase ever!"></input>
+            <input type="text" value={this.state.summary} style={{width : '90%'}} name="summary" onChange={this.onInputChange} placeholder="Example: Best purchase ever!"></input>
           </div>
 
           <div style={{
@@ -300,7 +300,7 @@ class WriteReview extends React.Component {
             gridRow: '4',
           }}>
             <label for="name"><b>* Your name: </b></label>
-            <input type="text" name="name" value={this.state.name} onChange={this.onInputChange} placeholder="Example: jackson11!"></input>
+            <input type="text" name="name" style={{width : '90%'}} value={this.state.name} onChange={this.onInputChange} placeholder="Example: jackson11!"></input>
             <br />
             <small><i>For privacy reasons, do not use your full name or email address.</i></small>
           </div>
@@ -310,12 +310,11 @@ class WriteReview extends React.Component {
             boxShadow: '5px 5px 10px grey',
             padding: '10px',
             textAlign: 'center',
-            width : '100',
             gridColumn: '1/-1',
             gridRow: '5',
           }}>
             <label for="body"><b>* Your Review: </b></label>
-            <input type="text" value={this.state.body} name="body" onChange={this.onInputChange} placeholder="Why did you like the product or not?"></input>
+            <input type="text" style={{width : '90%'}} value={this.state.body} name="body" onChange={this.onInputChange} placeholder="What did you like/dislike about the product?"></input>
           </div>
 
           <div style={{
@@ -338,7 +337,7 @@ class WriteReview extends React.Component {
             gridRow: '6',
           }}>
             <label for="email"><b>* Email: </b></label>
-            <input type="text" name="email" value={this.state.email} onChange={this.onInputChange} placeholder="Example: jackson11@email.com"></input>
+            <input type="text" style={{width : '90%'}} name="email" value={this.state.email} onChange={this.onInputChange} placeholder="Example: jackson11@email.com"></input>
             <br />
             <small><i>For authentication reasons, you will not be emailed.</i></small>
           </div>

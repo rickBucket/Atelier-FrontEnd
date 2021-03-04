@@ -5,7 +5,7 @@ const CompareWrapper = styled.div`
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto;
   column-gap: 10px;
-  row-gap: 20px;
+  row-gap: 30px;
   overflow: auto;
   justify-items: center;
   position: relative;

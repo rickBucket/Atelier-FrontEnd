@@ -59,11 +59,17 @@ class Checkout extends React.Component {
   }
 
   handleChange(e) {
-    this.setState({
-      selectedSKU: Object.values(this.state.skus).find((element) => {
-        return element.size === e.target.value;
-      })
-    });
+    if (e.target.value === 'Size') {
+      this.setState({
+        selectedSKU: {quantity: 0}
+      });
+    } else {
+      this.setState({
+        selectedSKU: Object.values(this.state.skus).find((element) => {
+          return element.size === e.target.value;
+        })
+      });
+    }
   }
 
   handleQuantity(e) {
@@ -82,23 +88,25 @@ class Checkout extends React.Component {
         <form>
           <FlexDiv>
             <Selector name="size" onChange={this.handleChange}>
+              <option>Size</option>
               {
-                Object.values(this.state.skus).map((x) => {
-                  return <option value={x.size} key={x.size}>{x.size}</option>
+                Array.from(new Set(Object.values(this.state.skus).map(x => x.size))).map((x) => {
+                  return <option key={x}>{x}</option>
                 })
               }
             </Selector>
             <Selector name="quantity" onChange={this.handleQuantity}>
+              <option>Quantity</option>
               {
                 [...Array(this.state.selectedSKU.quantity % 15).keys()].map((x) => {
-                  return <option value={x} key={x}>{x}</option>
+                  return <option key={x}>{x}</option>
                 })
               }
             </Selector>
           </FlexDiv>
           <FlexDiv>
-            <ButtonCheckout>Add to Bag</ButtonCheckout>
-            <ButtonFav>STAR</ButtonFav>
+            <ButtonCheckout onClick={this.handleSubmit}>Add to Bag</ButtonCheckout>
+            <ButtonFav onClick={this.handleSubmit}>STAR</ButtonFav>
           </FlexDiv>
         </form>
       </Div>

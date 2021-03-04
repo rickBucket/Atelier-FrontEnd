@@ -24,36 +24,9 @@ class RatingsApp extends React.Component {
     this.exitWriteReviewClick = this.exitWriteReviewClick.bind(this);
     this.handleReviewData = this.handleReviewData.bind(this);
     this.moreReviewsClick = this.moreReviewsClick.bind(this);
+    this.handlePut = this.handlePut.bind(this);
   }
 
-  moreReviewsClick(e) {
-    var reviewEnd = this.state.reviewEnd
-    var reviewList = this.state.reviewList
-    var newEnd = reviewEnd + 2
-    console.log(newEnd, reviewList.length)
-    if (newEnd > reviewList.length) {
-      this.setState({
-        hideMoreReviews: true
-      })
-    }
-    if (newEnd === reviewList.length - 1 || newEnd === reviewList.length) {
-      axios.get(`/reviews/?product_id=${this.props.productID}&count=${newEnd + 20}`)
-      .then((results) => {
-        console.log(results.data.results)
-        this.setState({
-          reviewList: results.data.results,
-          reviewEnd: newEnd
-        })
-      })
-      .catch((err) => {
-        console.log('error on review GET request', err)
-      })
-    } else {
-      this.setState({
-        reviewEnd: newEnd
-      })
-    }
-  }
 
   componentDidMount() {
     ////GET product reviews/////
@@ -102,6 +75,44 @@ class RatingsApp extends React.Component {
     this.setState({
       writeReviewModal: false
     })
+  }
+
+  moreReviewsClick(e) {
+    var reviewEnd = this.state.reviewEnd
+    var reviewList = this.state.reviewList
+    var newEnd = reviewEnd + 2
+    if (newEnd > reviewList.length) {
+      this.setState({
+        hideMoreReviews: true
+      })
+    }
+    if (newEnd === reviewList.length - 1 || newEnd === reviewList.length) {
+      axios.get(`/reviews/?product_id=${this.props.productID}&count=${newEnd + 20}`)
+      .then((results) => {
+        this.setState({
+          reviewList: results.data.results,
+          reviewEnd: newEnd
+        })
+      })
+      .catch((err) => {
+        console.log('error on review GET request', err)
+      })
+    } else {
+      this.setState({
+        reviewEnd: newEnd
+      })
+    }
+  }
+
+  handlePut(review_id, type) {
+    console.log(review_id, type)
+    axios.put(`/reviews/${review_id}/${type}`)
+      .then((results) => {
+        console.log(results.data)
+      })
+      .catch((err) => {
+        console.log(err.data)
+      })
   }
 
   writeReviewClick(e) {
@@ -194,7 +205,7 @@ class RatingsApp extends React.Component {
           overflow: 'auto',
           listStyle: 'none'
         }}>
-          <ReviewList reviewList={this.state.reviewList} reviewEnd={this.state.reviewEnd}/>
+          <ReviewList reviewList={this.state.reviewList} reviewEnd={this.state.reviewEnd} handlePut={this.handlePut}/>
         </div>
 
         <div className="writeReviewGridBox" style={{
@@ -209,7 +220,6 @@ class RatingsApp extends React.Component {
             boxShadow: '5px 5px 10px green',
             padding: '10px',
           }}>ADD A REVIEW +</button>
-          {/* <WriteReview className="writeReviewGridBox"/> */}
         </div>
         {
           this.state.reviewList.length > 2 && this.state.hideMoreReviews === false &&

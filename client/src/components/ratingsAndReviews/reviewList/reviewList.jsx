@@ -1,7 +1,7 @@
 import React from 'react';
 import ReviewListEntry from './reviewListEntry.jsx'
 
-const reviewList = ({ reviewList, reviewEnd }) => {
+const reviewList = ({ reviewList, reviewEnd, handlePut}) => {
   return(
     <div>
       Review List Component
@@ -12,7 +12,7 @@ const reviewList = ({ reviewList, reviewEnd }) => {
         alignItems: 'center'
       }}>
       {reviewList.slice(0, reviewEnd).map((review, key) => (
-      <ReviewListEntry review={review} key={key}/>
+      <ReviewListEntry review={review} key={key} handlePut={handlePut}/>
       ))}
       </ul>
       </div>

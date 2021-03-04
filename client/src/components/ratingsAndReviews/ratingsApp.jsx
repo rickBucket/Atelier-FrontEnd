@@ -122,17 +122,6 @@ class RatingsApp extends React.Component {
   }
 
   render() {
-    // console.log(this.state.reviewList)
-    //write review modal
-    if (this.state.writeReviewModal) {
-      return(
-        <div>
-            <WriteReview handleReviewData={this.handleReviewData} productID={this.props.productID} metaData={this.state.metaData}/>
-            <br />
-            <button onClick={this.exitWriteReviewClick}>Exit write review</button>
-        </div>
-      )
-    }
     //no reviews edge
     if (this.state.noReviews) {
       return(
@@ -173,6 +162,45 @@ class RatingsApp extends React.Component {
         </div>
         }
 
+        {
+          this.state.writeReviewModal &&
+          <div>
+          <div style={{
+            backgroundColor: 'rgb(0,0,0)', /* Fallback color */
+            backgroundColor: 'rgba(0,0,0,0.4)', /* Overlay effect: translucent background: black w/ partial opacity */
+            zIndex: '1', /* Overlay effect: positioned over other containers */
+            width: '100%', /* Full width */
+            height: '100%', /* Full height */
+            position: 'fixed', /* Fix position on the top-left corner*/
+            top: '0',
+            left: '0',
+            overflow: 'auto', /* Enable scroll if needed */
+            paddingTop: '80px' /* Location of the content container */
+          }} onClick={this.exitWriteReviewClick}>
+            <div style={{
+              backgroundColor: 'white',
+              width: '70%', /* Width in proportion to its parent container*/
+              maxWidth: '100%', /* Max width where it stops expanding */
+              height: '70%', /* Height in proportion to its parent container */
+              margin: 'auto', /* Auto margin according to the element width */
+              padding: '10px',
+              border: 'none',
+              overflow: 'auto',
+              borderRadius: '20px' /* Optional. Rounds container corners */
+            }} onClick={e => e.stopPropagation()}>
+              {/* <span onClick={this.exitWriteReviewClick} style={{
+                  border: 'none',
+                  zIndex: '100',
+                  float: 'right',
+                  position: 'sticky',
+                  boxShadow: '2px 2px 4px grey',
+                }}>x</span> */}
+              <WriteReview handleReviewData={this.handleReviewData} productID={this.props.productID} metaData={this.state.metaData}/>
+              <br />
+            </div>
+          </div>
+          </div>
+        }
         {
           this.state.metaReady === true &&
           <div className="productBreakdownGridBox" style={{

@@ -104,7 +104,7 @@ class AnswerModal extends React.Component {
     })
       .then(response => {
         console.log('successful answer post', response.data);
-    });
+      });
   }
 
   render() {

@@ -73,48 +73,49 @@ class QuestionModal extends React.Component {
     this.type = this.type.bind(this);
     this.rejectQuestion = this.rejectQuestion.bind(this);
   }
+
   selectModal(event) {
     event.stopPropagation();
     this.props.closeModal();
   }
 
   type(event) {
-    if(event.target.placeholder === "Example: jack@email.com") {
+    if (event.target.placeholder === 'Example: jack@email.com') {
       this.setState({
-        newEmail: event.target.value
+        newEmail: event.target.value,
       });
-    } else if(event.target.placeholder === "Examples: jackson11!") {
+    } else if (event.target.placeholder === 'Examples: jackson11!') {
       this.setState({
-        newName: event.target.value
+        newName: event.target.value,
       });
     } else {
       this.setState({
-        newQuestion: event.target.value
+        newQuestion: event.target.value,
       });
     }
     if ((this.state.newEmail.length > 0 && this.state.newEmail.includes('@')) && this.state.newName.length > 0 && this.state.newQuestion.length > 0) {
       this.setState({
-        send: true
+        send: true,
       });
     }
   }
 
   postQuestion() {
-    console.log('success!')
-    //axios post request
-    axios.post(`/qa/questions`, {
+    console.log('success!');
+    // axios post request
+    axios.post('/qa/questions', {
       body: this.state.newQuestion,
       name: this.state.newName,
       email: this.state.newEmail,
       product_id: this.props.product_id,
     })
-      .then(response => {
+      .then((response) => {
         console.log('successful post!', response);
       });
   }
 
   rejectQuestion() {
-    alert('You must enter something in all fields and provide a valid email')
+    alert('You must enter something in all fields and provide a valid email');
   }
 
   render() {
@@ -123,17 +124,17 @@ class QuestionModal extends React.Component {
     };
     return (
       <Modal className="modal" onClick={(event) => { this.selectModal(event); }} style={divStyle}>
-          <Modal_Con className="modal-content" onClick={event => {event.stopPropagation(); }}>
-            <Close className="close" onClick={ (event) => { this.selectModal(event); }}>&times;</Close>
-            <NewForm>
-              <NewQueA placeholder="Example: jack@email.com" type="text" value={this.state.newEmail} onChange={event => { this.type(event); }} />
-              <p>For authentication reasons, you will not be emailed</p>
-              <NewQueB placeholder="Examples: jackson11!" type="text" value={this.state.newName} onChange={event => { this.type(event); }} />
-              <p>For privacy reasons, do not use your full name or email address</p>
-              <NewQueC placeholder="Enter Question Here..." type="text" value={this.state.newQuestion} onChange={event => { this.type(event); }} />
-              <Button onClick={this.state.send ? (this.postQuestion) : (this.rejectQuestion) }> Submit Question </Button>
-            </NewForm>
-          </Modal_Con>
+        <Modal_Con className="modal-content" onClick={(event) => { event.stopPropagation(); }}>
+          <Close className="close" onClick={(event) => { this.selectModal(event); }}>&times;</Close>
+          <NewForm>
+            <NewQueA placeholder="Example: jack@email.com" type="text" value={this.state.newEmail} onChange={(event) => { this.type(event); }} />
+            <p>For authentication reasons, you will not be emailed</p>
+            <NewQueB placeholder="Examples: jackson11!" type="text" value={this.state.newName} onChange={(event) => { this.type(event); }} />
+            <p>For privacy reasons, do not use your full name or email address</p>
+            <NewQueC placeholder="Enter Question Here..." type="text" value={this.state.newQuestion} onChange={(event) => { this.type(event); }} />
+            <Button onClick={this.state.send ? (this.postQuestion) : (this.rejectQuestion)}> Submit Question </Button>
+          </NewForm>
+        </Modal_Con>
       </Modal>
     );
   }

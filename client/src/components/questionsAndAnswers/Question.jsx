@@ -83,14 +83,10 @@ class Question extends React.Component {
       modal: false,
       itemsToShow: 2,
       expanded: false,
-      clickedYes: false,
-      clickedReport: false,
-      report: 'report',
-      yes: 'yes',
     };
     this.selectModal = this.selectModal.bind(this);
     this.showMore = this.showMore.bind(this);
-    this.click = this.click.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
@@ -130,19 +126,14 @@ class Question extends React.Component {
     )
   }
 
-  click(event) {
-    if (!this.state.clickedYes) {
-    axios.put('/qa/questions/', {
+  handleClick(event) {
+    axios.put('/qa/questions', {
       question_id: this.props.item.question_id,
-      yes: 'yes'
+      type: event.target.name,
     })
-    .then(response => {
-      console.log(reponse);
-      this.setState({
-        clickedYes: true
-      })
-    })
-  }
+      .then((response) => {
+        console.log(response);
+      });
   }
 
   render() {
@@ -155,14 +146,14 @@ class Question extends React.Component {
     <ContainerA>
 
            <EachQ>
-            <Q>
-            <h3>Q: {this.props.item.question_body}</h3>
-            </Q>
+            <Q>Q: {this.props.item.question_body}</Q>
 
                <MoveRight>
               <p> Helpful? </p>
-              <Button name="yes"> Yes </Button>
+              <Button name="helpful" onClick={(event) => { event.preventDefault(); this.handleClick(event); }}> Yes </Button>
               <p>({this.props.item.question_helpfulness})</p>
+              <Divide className="divider"> | </Divide>
+              <Button name="report" onClick={(event) => { event.preventDefault(); this.handleClick(event); }}> Report </Button>
               <Divide className="divider"> | </Divide>
               <Button onClick={ this.selectModal }> Add Answer </Button>
               </MoveRight>
@@ -172,10 +163,10 @@ class Question extends React.Component {
 
         <div>
           <ScrollList>
-        {this.state.answers.slice(0,this.state.itemsToShow).map((answer) => {
+        {this.state.answers.slice(0,this.state.itemsToShow).map((answer, i) => {
           return (
             <ContainerB>
-            <Answers item={answer} key={this.state.answers.id} seller={this.props.item.asker_name}/>
+            <Answers item={answer} key={i} seller={this.props.item.asker_name} reportItem={this.props.item.reported}/>
             </ContainerB>
           )
         })}

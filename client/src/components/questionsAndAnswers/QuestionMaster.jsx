@@ -70,7 +70,7 @@ class QuestionMaster extends React.Component {
   }
 
   //make a function when the product id is changed calls axios.get on the new product id
-  
+
   componentDidMount() {
     axios.get(`qa/questions/?product_id=${this.props.productID}`)
       .then((response) => {
@@ -103,7 +103,6 @@ class QuestionMaster extends React.Component {
   }
 
   render() {
-    console.log(this.state.questionData[0])
     return (
       <Container>
         <h1>Question's and Answers</h1>
@@ -112,7 +111,7 @@ class QuestionMaster extends React.Component {
         <QuestionContainer>
         {this.state.questionData.slice(0, this.state.itemsToShow).map((item, i) => {
           return (
-            <Question item={item} key={this.state.questionData.question_id} />
+            <Question item={item} key={i} />
           )
         })}
         </QuestionContainer>

@@ -32,9 +32,7 @@ class PrimaryImageView extends React.Component {
   render() {
     return (
       <Div>
-        <Img onClick={this.props.handleExpand}
-            src={this.props.photo}
-            a=''></Img>
+        <Img src={this.props.photo} a=''></Img>
       </Div>
     );
   }

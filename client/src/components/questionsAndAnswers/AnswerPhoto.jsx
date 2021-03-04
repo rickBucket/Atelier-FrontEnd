@@ -1,26 +1,34 @@
 import React from 'react';
 import styled from 'styled-components';
+import PhotoModal from './PhotoModal.jsx';
 
 const Photos = styled.img`
   height: 100px;
   width: 130px;
   padding-left: 25px;
 `;
-
 class AnswerPhoto extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isOpen: false,
+      modal: false
     };
+    this.selectModal = this.selectModal.bind(this);
+  }
+  selectModal() {
+    this.setState({
+      modal: !this.state.modal //toggle
+    })
   }
 
   render() {
     const {photo} = this.props;
     return (
-      <div className="modal">
-        <div className="modal-content">
-        <Photos src={photo} alt="Product" />
+      <div>
+        <div>
+        <Photos src={photo} alt="Product" onClick={ this.selectModal } />
+        <PhotoModal photo={photo} displayModal={this.state.modal}
+        closeModal={this.selectModal} />
         </div>
       </div>
     );

@@ -10,9 +10,6 @@ class ReviewListEntry extends React.Component {
   }
 
   handlePutEntry(e){
-    // console.log(this.props.review.review_id);
-    // console.log(e.target.id)
-    // this.props.handlePut(this.props.review.review_id, e.target.id)
     axios.put(`/reviews`, {
       review_id: this.props.review.review_id,
       type: e.target.id

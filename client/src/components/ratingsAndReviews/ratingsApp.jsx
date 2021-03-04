@@ -138,7 +138,7 @@ class RatingsApp extends React.Component {
       return(
         <div>
           <h1 style={{textAlign: 'center'}}>Be the first to write a review!</h1>
-          <button onClick={this.writeReviewClick} style={{
+          <button id="addReview" onClick={this.writeReviewClick} style={{
             borderRadius: '20px',
             boxShadow: '5px 5px 10px green',
             padding: '10px',
@@ -215,7 +215,7 @@ class RatingsApp extends React.Component {
           gridColumn: '2/3',
           gridRow: '8'
         }}>
-          <button onClick={this.writeReviewClick} style={{
+          <button id="addReview" onClick={this.writeReviewClick} style={{
             borderRadius: '20px',
             boxShadow: '5px 5px 10px green',
             padding: '10px',
@@ -230,7 +230,7 @@ class RatingsApp extends React.Component {
           gridColumn: '3',
           gridRow: '8',
         }}>
-          <button style={{
+          <button id="moreReviews" style={{
             borderRadius: '20px',
             boxShadow: '5px 5px 10px pink',
             padding: '10px',

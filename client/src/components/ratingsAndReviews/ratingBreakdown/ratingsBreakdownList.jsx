@@ -25,6 +25,7 @@ class ratingsBreakdownList extends React.Component {
 render() {
 
   const ratingsObj = this.props.metaData.ratings;
+  console.log(ratingsObj)
 
   return(
     <div style={{
@@ -33,24 +34,29 @@ render() {
       gridTemplateRows: 'minwidth(5, 1fr) 100px',
     }}>
 
-      <div><u>5 stars</u>
-      {this.totalStars(ratingsObj, '5')}
+      <div id="starBreakdown"><u>5 stars</u>
+      {this.totalStars(ratingsObj['5'], '5')}
+      <div>{ratingsObj['5']}</div>
       <img src=""></img>
       </div>
-      <div><u>4 stars</u>
+      <div id="starBreakdown"><u>4 stars</u>
       {this.totalStars(ratingsObj, '4')}
+      <div>{ratingsObj['4']}</div>
       <img src=""></img>
       </div>
-      <div><u>3 stars</u>
+      <div id="starBreakdown"><u>3 stars</u>
       {this.totalStars(ratingsObj, '3')}
+      <div>{ratingsObj['3']}</div>
       <img src=""></img>
       </div>
-      <div><u>2 stars</u>
+      <div id="starBreakdown"><u>2 stars</u>
       {this.totalStars(ratingsObj, '2')}
+      <div>{ratingsObj['2']}</div>
       <img src=""></img>
       </div>
-      <div><u>1 star</u>
+      <div id="starBreakdown"><u>1 star</u>
       {this.totalStars(ratingsObj, '1')}
+      <div>{ratingsObj['1']}</div>
       <img src=""></img>
       </div>
     </div>

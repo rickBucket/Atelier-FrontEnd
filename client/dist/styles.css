@@ -1,0 +1,7 @@
+#helpful:hover,
+#report:hover,
+#addReview:hover,
+#moreReviews:hover,
+#starBreakdown:hover {
+  cursor: pointer;
+}

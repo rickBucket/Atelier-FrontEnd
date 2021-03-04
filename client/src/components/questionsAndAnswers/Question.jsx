@@ -83,14 +83,10 @@ class Question extends React.Component {
       modal: false,
       itemsToShow: 2,
       expanded: false,
-      clickedYes: false,
-      clickedReport: false,
-      report: 'report',
-      yes: 'yes',
     };
     this.selectModal = this.selectModal.bind(this);
     this.showMore = this.showMore.bind(this);
-    this.click = this.click.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
@@ -130,7 +126,7 @@ class Question extends React.Component {
     )
   }
 
-  click(event) {
+  handleClick(event) {
     axios.put('/qa/questions', {
       question_id: this.props.item.question_id,
       type: event.target.name,
@@ -141,7 +137,6 @@ class Question extends React.Component {
   }
 
   render() {
-    console.log(this.props.item)
     if (!this.state.loadedState) {
       return(
         null
@@ -155,10 +150,10 @@ class Question extends React.Component {
 
                <MoveRight>
               <p> Helpful? </p>
-              <Button name="helpful" onClick={(event) => { event.preventDefault(); this.click(event); }}> Yes </Button>
+              <Button name="helpful" onClick={(event) => { event.preventDefault(); this.handleClick(event); }}> Yes </Button>
               <p>({this.props.item.question_helpfulness})</p>
               <Divide className="divider"> | </Divide>
-              <Button name="report" onClick={(event) => { event.preventDefault(); this.click(event); }}> Report </Button>
+              <Button name="report" onClick={(event) => { event.preventDefault(); this.handleClick(event); }}> Report </Button>
               <Divide className="divider"> | </Divide>
               <Button onClick={ this.selectModal }> Add Answer </Button>
               </MoveRight>

@@ -44,10 +44,10 @@ class Answers extends React.Component {
     super(props);
     this.state = {
     };
-    this.click = this.click.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
-  click(event) {
+  handleClick(event) {
     axios.put('/qa/questions', {
       answer_id: this.props.item.id,
       type: event.target.name,
@@ -102,10 +102,10 @@ class Answers extends React.Component {
             )}
           <Divide className="divider"> | </Divide>
           <p> Helpful? </p>
-          <Button name="helpful" onClick={(event) => { event.preventDefault(); this.click(event); }}> Yes </Button>
+          <Button name="helpful" onClick={(event) => { event.preventDefault(); this.handleClick(event); }}> Yes </Button>
           <p>{this.props.item.helpfulness}</p>
           <Divide className="divider"> | </Divide>
-          <Button name="report" onClick={(event) => { event.preventDefault(); this.click(event); }}> Report </Button>
+          <Button name="report" onClick={(event) => { event.preventDefault(); this.handleClick(event); }}> Report </Button>
         </Container>
       </div>
     );

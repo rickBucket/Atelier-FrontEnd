@@ -12,22 +12,60 @@ class RatingsApp extends React.Component {
     this.state = {
       reviewList : [],
       metaData: [],
+      reviewEnd: 2,
       reviewsReady: false,
       metaReady: false,
-      writeReviewModal: false
+      writeReviewModal: false,
+      noReviews: false,
+      hideMoreReviews: false
     }
 
     this.writeReviewClick = this.writeReviewClick.bind(this);
     this.exitWriteReviewClick = this.exitWriteReviewClick.bind(this);
     this.handleReviewData = this.handleReviewData.bind(this);
+    this.moreReviewsClick = this.moreReviewsClick.bind(this);
+  }
+
+  moreReviewsClick(e) {
+    var reviewEnd = this.state.reviewEnd
+    var reviewList = this.state.reviewList
+    var newEnd = reviewEnd + 2
+    console.log(newEnd, reviewList.length)
+    if (newEnd > reviewList.length) {
+      this.setState({
+        hideMoreReviews: true
+      })
+    }
+    if (newEnd === reviewList.length - 1 || newEnd === reviewList.length) {
+      axios.get(`/reviews/?product_id=${this.props.productID}&count=${newEnd + 20}`)
+      .then((results) => {
+        console.log(results.data.results)
+        this.setState({
+          reviewList: results.data.results,
+          reviewEnd: newEnd
+        })
+      })
+      .catch((err) => {
+        console.log('error on review GET request', err)
+      })
+    } else {
+      this.setState({
+        reviewEnd: newEnd
+      })
+    }
   }
 
   componentDidMount() {
     ////GET product reviews/////
-    axios.get(`/reviews/?product_id=${this.props.productID}`)
+    axios.get(`/reviews/?product_id=${this.props.productID}&count=6`)
       .then((results) => {
+        if (results.data.results.length === 0){
+          this.setState({
+            noReviews: true
+          })
+        };
         this.setState({
-          reviewList : results.data,
+          reviewList : results.data.results,
           reviewsReady: true
         })
       })
@@ -73,12 +111,27 @@ class RatingsApp extends React.Component {
   }
 
   render() {
+    // console.log(this.state.reviewList)
+    //write review modal
     if (this.state.writeReviewModal) {
       return(
         <div>
             <WriteReview handleReviewData={this.handleReviewData} productID={this.props.productID} metaData={this.state.metaData}/>
             <br />
             <button onClick={this.exitWriteReviewClick}>Exit write review</button>
+        </div>
+      )
+    }
+    //no reviews edge
+    if (this.state.noReviews) {
+      return(
+        <div>
+          <h1 style={{textAlign: 'center'}}>Be the first to write a review!</h1>
+          <button onClick={this.writeReviewClick} style={{
+            borderRadius: '20px',
+            boxShadow: '5px 5px 10px green',
+            padding: '10px',
+          }}>ADD A REVIEW +</button>
         </div>
       )
     }
@@ -141,7 +194,7 @@ class RatingsApp extends React.Component {
           overflow: 'auto',
           listStyle: 'none'
         }}>
-          <ReviewList reviewList={this.state.reviewList}/>
+          <ReviewList reviewList={this.state.reviewList} reviewEnd={this.state.reviewEnd}/>
         </div>
 
         <div className="writeReviewGridBox" style={{
@@ -158,7 +211,8 @@ class RatingsApp extends React.Component {
           }}>ADD A REVIEW +</button>
           {/* <WriteReview className="writeReviewGridBox"/> */}
         </div>
-
+        {
+          this.state.reviewList.length > 2 && this.state.hideMoreReviews === false &&
         <div className="viewMoreReviewsGridBox" style={{
           borderRadius: '20px',
           boxShadow: '5px 5px 10px pink',
@@ -170,9 +224,10 @@ class RatingsApp extends React.Component {
             borderRadius: '20px',
             boxShadow: '5px 5px 10px pink',
             padding: '10px',
-          }}>MORE REVIEWS</button>
+          }} onClick={this.moreReviewsClick}>MORE REVIEWS</button>
           {/* On click, this changes state of reviews to an extra two reviews */}
         </div>
+        }
     </div>
     }
     </div>

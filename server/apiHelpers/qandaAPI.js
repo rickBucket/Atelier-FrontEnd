@@ -56,22 +56,24 @@ const getQuestions = (q, callback) => {
 };
 
 const putQuestions = (q, callback) => {
-  if (q.question_id) {
-    q.question_id = 'questions/' + q.question_id
-  } else{
-    q.question_id = '';
-  }
-
-  if (q.answer_id) {
-    q.answer_id = 'answers/' + q.answer_id
-  } else {
-    q.answer_id = '';
-  }
-
+  if (q.yes) {
   axios.put(
-      `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/${
-        q.question_id + q.answer_id + '/' + q.flag
-      }`,
+      `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions${q.question_id}`, 
+      {
+        headers: {
+          Authorization: config.API_KEY,
+        },
+      }
+    )
+    .then((results) => {
+      callback(null, results.data);
+    })
+    .catch((err) => {
+      callback(err, null);
+    });
+  } else {
+    axios.put(
+      `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions${q.question_id}`,
       {
         headers: {
           "User-Agent": "request",
@@ -85,6 +87,7 @@ const putQuestions = (q, callback) => {
     .catch((err) => {
       callback(err, null);
     });
+  }
 };
 
 const postQuestions = (q, callback) => {

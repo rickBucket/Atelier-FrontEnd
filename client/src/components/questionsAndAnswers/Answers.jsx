@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
+import AnswerPhoto from './AnswerPhoto.jsx';
 
 const Container = styled.div`
   display: flex;
@@ -30,6 +32,12 @@ const Divide = styled.span`
   font-weight: bold;
 `;
 
+const PhotoDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+// --------------- CLASS STARTS HERE ------------- //
 
 class Answers extends React.Component {
   constructor(props) {
@@ -37,30 +45,89 @@ class Answers extends React.Component {
     this.state = {
 
     };
+    this.click = this.click.bind(this);
   }
 
-  //when clicking on add load more answers add a total to a state integer and only show that many
+  click(event) {
+    console.log(this.props.item);
+    if (event.target.name === 'yes') {
+      if (!this.state.clickedYes) {
+        axios.put('/qa/questions', {
+          question_id: this.props.item.question_id,
+          yes: 'yes',
+          question_helpfulness: this.props.item.answer_helpfulness,
+        })
+          .then((response) => {
+            console.log(reponse);
+            this.setState({
+              clickedYes: true,
+            });
+          });
+      }
+    } else if (!this.state.clickedReport) {
+      axios.put('/qa/questions/', {
+        question_id: this.props.item.question_id,
+        report: 'report',
+
+      })
+        .then((response) => {
+          console.log(reponse);
+          this.setState({
+            clickedReport: true,
+          });
+        });
+    }
+  }
+
 
   render() {
     return (
       <div>
         <AnwserDiv>
-        <h3> A: </h3>
-        <AnswerBody> { this.props.item.body }</AnswerBody>
+          <h3> A: </h3>
+          <AnswerBody>
+            { this.props.item.body }
+          </AnswerBody>
         </AnwserDiv>
+        <br />
+
+        <PhotoDiv>
+          {this.props.item.photos.map((photo, i) => (
+            <AnswerPhoto photo={photo} key={i} />
+          ))}
+        </PhotoDiv>
 
         <Container>
 
-          {this.props.item.answerer_name === this.props.seller ?
-            (<p>by <b> Seller </b> {new Date(this.props.item.date).toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })} </p>) :
-            (<p>by {this.props.item.answerer_name} {new Date(this.props.item.date).toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>)}
+          {this.props.item.answerer_name === this.props.seller
+            ? (
+              <p>
+                by
+                <b> Seller </b>
+                {' '}
+                {new Date(this.props.item.date).toLocaleDateString(undefined, {
+                  weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
+                })}
+                {' '}
+              </p>
+            )
+            : (
+              <p>
+                by
+                {this.props.item.answerer_name}
+                {' '}
+                {new Date(this.props.item.date).toLocaleDateString(undefined, {
+                  weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
+                })}
+              </p>
+            )}
           <Divide className="divider"> | </Divide>
           <p> Helpful? </p>
-          <Button> Yes </Button>
+          <Button name="yes" onClick={(event) => { event.preventDefault(); this.click(event); }}> Yes </Button>
           <p>{this.props.item.helpfulness}</p>
           <Divide className="divider"> | </Divide>
-          <Button> Report </Button>
-       </Container>
+          <Button name="report" onClick={(event) => { event.preventDefault(); this.click(event); }}> Report </Button>
+        </Container>
       </div>
     );
   }
@@ -68,9 +135,7 @@ class Answers extends React.Component {
 
 export default Answers;
 
-
 // {this.props.item.answerer_name === this.props.item}
-
 
 // List of answers here -
 // helpful button -

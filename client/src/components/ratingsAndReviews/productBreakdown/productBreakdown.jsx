@@ -1,5 +1,13 @@
 import React from 'react';
 
+const gridLayout = {
+  display: 'grid',
+  gridTemplateColumns: '1fr',
+  gridTemplateRows: 'minwidth(6, 1fr) 100px',
+  gridGap: '5px'
+};
+
+
 class ProductBreakdown extends React.Component {
   constructor(props) {
     super(props)
@@ -14,12 +22,7 @@ class ProductBreakdown extends React.Component {
   render() {
     const characteristics = this.props.metaData.characteristics
     return(
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: '1fr',
-        gridTemplateRows: 'minwidth(6, 1fr) 100px',
-        gridGap: '5px'
-      }}>
+      <div style={gridLayout}>
         {
          characteristics.Comfort &&
         <div style={{

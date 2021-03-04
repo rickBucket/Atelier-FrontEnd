@@ -6,6 +6,101 @@ import RatingBreakdown from './ratingBreakdown/ratingBreakdown.jsx';
 import ProductBreakdown from './productBreakdown/productBreakdown.jsx';
 import SortOptions from './sortOptions/sortOptions.jsx';
 
+const gridLayout = {
+  display: 'grid',
+  gridTemplateColumns: 'repeat(3, 1fr)',
+  gridTemplateRows: 'minmax(8, 1fr) 200px',
+  gridGap: '20px',
+  rowGap: '20px',
+  borderRadius: '20px',
+  padding: '20px',
+  height: '85vh'
+};
+
+const ratingGrid = {
+  padding: '10px',
+  boxShadow: '5px 5px 10px gold',
+  borderRadius: '20px',
+  gridColumn: '1',
+  gridRow: '1/4',
+};
+
+const addReviewBtnStyle = {
+  borderRadius: '20px',
+  boxShadow: '5px 5px 10px green',
+  padding: '10px',
+};
+
+const modalStyle = {
+  backgroundColor: 'rgb(0,0,0)', /* Fallback color */
+  backgroundColor: 'rgba(0,0,0,0.4)', /* Overlay effect: translucent background: black w/ partial opacity */
+  zIndex: '1', /* Overlay effect: positioned over other containers */
+  width: '100%', /* Full width */
+  height: '100%', /* Full height */
+  position: 'fixed', /* Fix position on the top-left corner*/
+  top: '0',
+  left: '0',
+  overflow: 'auto', /* Enable scroll if needed */
+  paddingTop: '80px' /* Location of the content container */
+};
+
+
+const innerModalStyle = {
+  backgroundColor: 'white',
+  width: '70%', /* Width in proportion to its parent container*/
+  maxWidth: '100%', /* Max width where it stops expanding */
+  height: '70%', /* Height in proportion to its parent container */
+  margin: 'auto', /* Auto margin according to the element width */
+  padding: '10px',
+  border: 'none',
+  overflow: 'auto',
+  borderRadius: '20px' /* Optional. Rounds container corners */
+};
+
+const productStyle = {
+  boxShadow: '5px 5px 10px orange',
+  borderRadius: '20px',
+  padding: '20px',
+  gridColumn: '1',
+  gridRow: '4/7',
+};
+
+const sortOptionsStyle = {
+  boxShadow: '5px 5px 10px teal',
+  borderRadius: '20px',
+  padding: '20px',
+  gridColumn: '2/-1',
+  gridRow: '1'
+};
+
+const reviewListStyle = {
+  borderRadius: '20px',
+  padding: '20px',
+  boxShadow: '5px 5px 10px purple',
+  gridColumn: '2/5',
+  gridRow: '2/8',
+  overflow: 'auto',
+  listStyle: 'none'
+};
+
+const writeReviewStyle = {
+  boxShadow: '5px 5px 10px green',
+  borderRadius: '20px',
+  padding: '20px',
+  margin: 'auto',
+  gridColumn: '2/3',
+  gridRow: '8'
+};
+
+const moreReviewsStyle = {
+  borderRadius: '20px',
+  boxShadow: '5px 5px 10px pink',
+  padding: '20px',
+  margin: 'auto',
+  gridColumn: '3',
+  gridRow: '8',
+};
+
 class RatingsApp extends React.Component {
   constructor(props){
     super(props)
@@ -127,147 +222,72 @@ class RatingsApp extends React.Component {
       return(
         <div>
           <h1 style={{textAlign: 'center'}}>Be the first to write a review!</h1>
-          <button id="addReview" onClick={this.writeReviewClick} style={{
-            borderRadius: '20px',
-            boxShadow: '5px 5px 10px green',
-            padding: '10px',
-          }}>ADD A REVIEW +</button>
+          <button id="addReview" onClick={this.writeReviewClick} style={addReviewBtnStyle}>ADD A REVIEW +</button>
         </div>
       )
     }
     return(
-      <div>
+      <div style={{
+        maxWidth: '80%',
+        maxHeight: '70%',
+        margin: 'auto'
+
+      }}>
+
         {
           this.state.reviewsReady === true &&
-      <div className="reviewsGridContainer" style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(3, 1fr)',
-        gridTemplateRows: 'minmax(8, 1fr) 200px',
-        gridGap: '20px',
-        rowGap: '20px',
-        borderRadius: '20px',
-        padding: '20px',
-        height: '85vh'
-      }}>
+      <div className="reviewsGridContainer" style={gridLayout}>
+
         {
          this.state.metaReady === true &&
-        <div className="ratingBreakdownGridBox" style={{
-          padding: '10px',
-          boxShadow: '5px 5px 10px gold',
-          borderRadius: '20px',
-          gridColumn: '1',
-          gridRow: '1/4',
-        }}>
+        <div className="ratingBreakdownGridBox" style={ratingGrid}>
           <RatingBreakdown metaData={this.state.metaData}/>
         </div>
         }
 
         {
           this.state.writeReviewModal &&
-          <div>
-          <div style={{
-            backgroundColor: 'rgb(0,0,0)', /* Fallback color */
-            backgroundColor: 'rgba(0,0,0,0.4)', /* Overlay effect: translucent background: black w/ partial opacity */
-            zIndex: '1', /* Overlay effect: positioned over other containers */
-            width: '100%', /* Full width */
-            height: '100%', /* Full height */
-            position: 'fixed', /* Fix position on the top-left corner*/
-            top: '0',
-            left: '0',
-            overflow: 'auto', /* Enable scroll if needed */
-            paddingTop: '80px' /* Location of the content container */
-          }} onClick={this.exitWriteReviewClick}>
-            <div style={{
-              backgroundColor: 'white',
-              width: '70%', /* Width in proportion to its parent container*/
-              maxWidth: '100%', /* Max width where it stops expanding */
-              height: '70%', /* Height in proportion to its parent container */
-              margin: 'auto', /* Auto margin according to the element width */
-              padding: '10px',
-              border: 'none',
-              overflow: 'auto',
-              borderRadius: '20px' /* Optional. Rounds container corners */
-            }} onClick={e => e.stopPropagation()}>
-              {/* <span onClick={this.exitWriteReviewClick} style={{
-                  border: 'none',
-                  zIndex: '100',
-                  float: 'right',
-                  position: 'sticky',
-                  boxShadow: '2px 2px 4px grey',
-                }}>x</span> */}
+          <div style={modalStyle} onClick={this.exitWriteReviewClick}>
+            <div style={innerModalStyle} onClick={e => e.stopPropagation()}>
               <WriteReview handleReviewData={this.handleReviewData} productID={this.props.productID} metaData={this.state.metaData}/>
               <br />
             </div>
           </div>
-          </div>
         }
+
         {
           this.state.metaReady === true &&
-          <div className="productBreakdownGridBox" style={{
-            boxShadow: '5px 5px 10px orange',
-            borderRadius: '20px',
-            padding: '20px',
-            gridColumn: '1',
-            gridRow: '4/7',
-          }}>
+          <div className="productBreakdownGridBox" style={productStyle}>
           <ProductBreakdown metaData={this.state.metaData}/>
         </div>
         }
+
         {
           this.state.metaReady === true &&
-        <div className="sortOptionsBreakdownGridBox" style={{
-          boxShadow: '5px 5px 10px teal',
-          borderRadius: '20px',
-          padding: '20px',
-          gridColumn: '2/-1',
-          gridRow: '1'
-        }}>
+        <div className="sortOptionsBreakdownGridBox" style={sortOptionsStyle}>
           <SortOptions metaData={this.state.metaData}/>
         </div>
         }
 
-        <div className="reviewListGridBox" style={{
-          borderRadius: '20px',
-          padding: '20px',
-          boxShadow: '5px 5px 10px purple',
-          gridColumn: '2/5',
-          gridRow: '2/8',
-          overflow: 'auto',
-          listStyle: 'none'
-        }}>
+        <div className="reviewListGridBox" style={reviewListStyle}>
           <ReviewList reviewList={this.state.reviewList} reviewEnd={this.state.reviewEnd} handlePut={this.handlePut}/>
         </div>
 
-        <div className="writeReviewGridBox" style={{
-          boxShadow: '5px 5px 10px green',
-          borderRadius: '20px',
-          padding: '20px',
-          gridColumn: '2/3',
-          gridRow: '8'
-        }}>
-          <button id="addReview" onClick={this.writeReviewClick} style={{
-            borderRadius: '20px',
-            boxShadow: '5px 5px 10px green',
-            padding: '10px',
-          }}>ADD A REVIEW +</button>
+        <div className="writeReviewGridBox" style={writeReviewStyle}>
+          <button id="addReview" onClick={this.writeReviewClick} style={addReviewBtnStyle}>ADD A REVIEW +</button>
         </div>
+
         {
           this.state.reviewList.length > 2 && this.state.hideMoreReviews === false &&
-        <div className="viewMoreReviewsGridBox" style={{
-          borderRadius: '20px',
-          boxShadow: '5px 5px 10px pink',
-          padding: '20px',
-          gridColumn: '3',
-          gridRow: '8',
-        }}>
+        <div className="viewMoreReviewsGridBox" style={moreReviewsStyle}>
           <button id="moreReviews" style={{
             borderRadius: '20px',
             boxShadow: '5px 5px 10px pink',
             padding: '10px',
           }} onClick={this.moreReviewsClick}>MORE REVIEWS</button>
-          {/* On click, this changes state of reviews to an extra two reviews */}
         </div>
         }
+
     </div>
     }
     </div>

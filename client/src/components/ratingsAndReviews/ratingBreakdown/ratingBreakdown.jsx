@@ -1,6 +1,15 @@
 import React from 'react';
 import RatingsBreakdownList from './ratingsBreakdownList.jsx'
 
+const gridLayout = {
+  display: 'grid',
+  gridTemplateColumns: 'repeat(2 1fr)',
+  gridTemplateRows: 'minwidth(4 1fr) 100px',
+  padding: '10px',
+  gridGap: '5px',
+  alignItems: 'center'
+};
+
 class RatingBreakdown extends React.Component {
   constructor(props) {
     super(props)
@@ -42,14 +51,7 @@ class RatingBreakdown extends React.Component {
     const recommendedObj = this.props.metaData.recommended;
 
     return(
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(2 1fr)',
-        gridTemplateRows: 'minwidth(4 1fr) 100px',
-        padding: '10px',
-        gridGap: '5px',
-        alignItems: 'center'
-      }}>
+      <div style={gridLayout}>
         <div style={{
           gridRow: '1',
           gridColumn: '1/-1',

@@ -69,6 +69,8 @@ class QuestionMaster extends React.Component {
     this.showMore = this.showMore.bind(this);
   }
 
+  //make a function when the product id is changed calls axios.get on the new product id
+  
   componentDidMount() {
     axios.get(`qa/questions/?product_id=${this.props.productID}`)
       .then((response) => {
@@ -89,7 +91,7 @@ class QuestionMaster extends React.Component {
   showMore() {
     this.state.itemsToShow === 4 ? (
       this.setState({
-        itemsToShow: this.state.questionData.length,
+        itemsToShow: this.state.questionData.length ,
         expanded: true,
       })
     ) : (
@@ -101,7 +103,7 @@ class QuestionMaster extends React.Component {
   }
 
   render() {
-    // if (this.state.showAll) {
+    console.log(this.state.questionData[0])
     return (
       <Container>
         <h1>Question's and Answers</h1>
@@ -118,7 +120,7 @@ class QuestionMaster extends React.Component {
         {this.state.questionData.length > 1 && !(this.state.expanded) ? (
           <ButtonA className="Load-button" onClick={this.showMore} > <b> MORE ANSWERED QUESTIONS </b> </ButtonA>
         ) : (
-          <ButtonA className="Load-button" onClick={this.showMore} > <b> COLLAPSE QUESTIONS </b> </ButtonA>
+          null
         )}
 
 

@@ -3,6 +3,7 @@ import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import ComparisonModal from './comparisonModal.jsx';
+import CardContainer from '../sharedStyledComponents/cardContainer.js';
 
 class RelatedProductCard extends React.Component {
   constructor(props) {
@@ -21,16 +22,6 @@ class RelatedProductCard extends React.Component {
     this.handleCompareClick = this.handleCompareClick.bind(this);
     this.combineFeatures = this.combineFeatures.bind(this);
 
-    this.FlexboxItem = styled.div`
-    height: 450px;
-    width: 300px;
-    border: 1px solid grey;
-    flex-shrink: 0;
-    margin-left: 5px;
-    margin-right: 5px;
-    box-shadow: 3px 3px 8px rgba(0,0,0,0.5);
-    border-radius: 10px;
-  `;
     this.ImageWrapper = styled.div`
     height: 200px;
     width: auto;
@@ -152,11 +143,11 @@ class RelatedProductCard extends React.Component {
         }
         {
           this.state.loaded === 2 &&
-          <this.FlexboxItem>
+          <CardContainer>
               <ButtonWrapper>
               <CompareButton
                 onClick={this.handleCompareClick}
-              >⭐</CompareButton>
+              >&#9734;</CompareButton>
               </ButtonWrapper>
 
             <this.ImageWrapper>
@@ -167,13 +158,12 @@ class RelatedProductCard extends React.Component {
             <ProductContentWrapper>{this.state.productIDInfo.name}</ProductContentWrapper>
             <ProductContentWrapper style={sale}>${this.state.productIDInfo.default_price}</ProductContentWrapper>
             {this.state.salePrice ? <ProductContentWrapper>{this.state.salePrice}</ProductContentWrapper> : null}
-          </this.FlexboxItem>
+          </CardContainer>
         }
         {
           this.state.openCompareModal &&
           <div>
               <ComparisonModal
-            // displayModal={this.state.openCompareModal}
             closeModal={this.handleCompareClick}
             productFeatures={this.state.compareProductsFeatures}
             parentProduct={this.state.parentProductIDInfo.name}
@@ -193,11 +183,12 @@ const CompareButton = styled.button`
   cursor: pointer;
   border: none;
   background: none;
+  font-size: 25px;
 `;
 
 const ButtonWrapper = styled.div`
-  position: relative;
-  z-index: 100;
+  position: absolute;
+  z-index: 1;
 `;
 
 const ProductContentWrapper = styled.div`

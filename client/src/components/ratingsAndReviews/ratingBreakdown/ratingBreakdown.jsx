@@ -7,6 +7,7 @@ class RatingBreakdown extends React.Component {
 
     this.averageRating = this.averageRating.bind(this);
     this.recommendedAverage = this.recommendedAverage.bind(this);
+    this.totalReviews = this.totalReviews.bind(this);
   }
 
 
@@ -23,6 +24,11 @@ class RatingBreakdown extends React.Component {
     } else {
       return (Math.round(result * 4) / 4).toFixed(1);
     }
+  }
+
+  totalReviews(obj){
+    var total = Number(obj.false) + Number(obj.true);
+    return total
   }
 
   recommendedAverage(obj) {
@@ -83,7 +89,7 @@ class RatingBreakdown extends React.Component {
           gridRow: '3',
           color: 'grey'
         }}>
-          {`${this.recommendedAverage(recommendedObj)}% of reviews recommend this product`}
+          {`${this.recommendedAverage(recommendedObj)}% of ${this.totalReviews(recommendedObj)} reviews recommend this product`}
         </div>
         <div style={{
           gridColumn: '1/-1',

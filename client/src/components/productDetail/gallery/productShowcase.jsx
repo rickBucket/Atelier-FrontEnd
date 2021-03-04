@@ -41,6 +41,26 @@ const Img = styled.img`
   cursor: pointer;
   box-shadow: 3px 3px 8px rgba(0,0,0,0.5);
 `
+const ButtonDiv = styled.div`
+  color: black;
+  text-shadow: 0px 0px 2px white;
+  border: 0px solid black;
+  border-radius: 50%;
+  margin: 84px 12px -64px -64px;
+  padding: 12px;
+  cursor: pointer;
+  height: 16px;
+  width: 16px;
+  object-fit: cover;
+  box-shadow: 3px 3px 8px rgba(0,0,0,0.5);
+  display: flex;
+  float: right;
+  justify-content: center;
+  position: relative;
+  z-index: 20;
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(8px);
+`
 
 class ProductShowcase extends React.Component {
   constructor(props) {
@@ -66,6 +86,10 @@ class ProductShowcase extends React.Component {
   render() {
     return (
       <InvisDiv>
+        <ButtonDiv
+          className="fa fa-expand"
+          onClick={this.handleExpand}
+        />
         <PrimaryImageView
           handleExpand={this.handleExpand}
           photo={this.state.currentPhoto.url}

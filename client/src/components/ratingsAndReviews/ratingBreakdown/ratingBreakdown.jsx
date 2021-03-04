@@ -18,10 +18,10 @@ class RatingBreakdown extends React.Component {
       responseTotal += Number(obj[star])
     }
     var result = wholeTotal / responseTotal;
-    if (isNaN((Math.round(result * 4) / 4).toFixed(2))) {
+    if (isNaN((Math.round(result * 4) / 4).toFixed(1))) {
       return 0
     } else {
-      return (Math.round(result * 4) / 4).toFixed(2);
+      return (Math.round(result * 4) / 4).toFixed(1);
     }
   }
 

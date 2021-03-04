@@ -14,7 +14,8 @@ class RelatedProductCard extends React.Component {
       featuredURL: '',
       loaded: 0,
       openCompareModal: false,
-      combinedFeatures: ''
+      combinedFeatures: '',
+      salePrice: ''
     }
     // bind functions here
     this.handleCompareClick = this.handleCompareClick.bind(this);
@@ -33,12 +34,13 @@ class RelatedProductCard extends React.Component {
     this.ImageWrapper = styled.div`
     height: 200px;
     width: auto;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
   `;
     this.Image = styled.img`
     height: 100%;
     width: 100%;
     object-fit: contain;
+    z-index: 0;
   `;
   }
 
@@ -49,7 +51,6 @@ class RelatedProductCard extends React.Component {
           productIDInfo: data,
           parentProductFeatures: this.props.parentProductIDInfo.features,
           currentProductFeatures: data.features,
-          compare: false,
           loaded: this.state.loaded + 1
         })
       })
@@ -60,14 +61,20 @@ class RelatedProductCard extends React.Component {
         })
         if (!defaultProduct) {
           var url = data.results[0].photos[0].url;
+          this.setState({
+            salePrice: data.results[0]["sale_price"]
+          })
         } else {
           url = defaultProduct.photos[0].url;
+          this.setState({
+            salePrice: defaultProduct["sale_price"]
+          })
         }
         if (!url) {
           this.setState({
             productIDStyles: data,
             loaded: this.state.loaded + 1,
-            featuredURL: "https://www.westernheights.k12.ok.us/wp-content/uploads/2020/01/No-Photo-Available.jpg"
+            featuredURL: "https://www.westernheights.k12.ok.us/wp-content/uploads/2020/01/No-Photo-Available.jpg",
           })
         } else {
           this.setState({
@@ -133,20 +140,24 @@ class RelatedProductCard extends React.Component {
   }
 
   render() {
+    var sale = {
+      textDecoration: this.state.salePrice ? 'line-through' : 'none',
+      color: this.state.salePrice ? 'red' : 'black'
+    }
     return (
       <div>
         {
           this.state.loaded < 2 &&
-          <img src="https://www.bluechipexterminating.com/wp-content/uploads/2020/02/loading-gif-png-5.gif" width="150"></img>
+          <img src="https://www.bluechipexterminating.com/wp-content/uploads/2020/02/loading-gif-png-5.gif" width="300"></img>
         }
         {
           this.state.loaded === 2 &&
           <this.FlexboxItem>
-            <div>
+              <ButtonWrapper>
               <CompareButton
                 onClick={this.handleCompareClick}
               >⭐</CompareButton>
-            </div>
+              </ButtonWrapper>
 
             <this.ImageWrapper>
               <this.Image src={this.state.featuredURL} width="100%" height="auto"></this.Image>
@@ -154,7 +165,8 @@ class RelatedProductCard extends React.Component {
 
             <ProductContentWrapper>{this.state.productIDInfo.category}</ProductContentWrapper>
             <ProductContentWrapper>{this.state.productIDInfo.name}</ProductContentWrapper>
-            <ProductContentWrapper>${this.state.productIDInfo.default_price}</ProductContentWrapper>
+            <ProductContentWrapper style={sale}>${this.state.productIDInfo.default_price}</ProductContentWrapper>
+            {this.state.salePrice ? <ProductContentWrapper>{this.state.salePrice}</ProductContentWrapper> : null}
           </this.FlexboxItem>
         }
         {
@@ -183,8 +195,13 @@ const CompareButton = styled.button`
   background: none;
 `;
 
+const ButtonWrapper = styled.div`
+  position: relative;
+  z-index: 100;
+`;
+
 const ProductContentWrapper = styled.div`
-  margin: 2px 2px 2px 5px;
+  margin: 3px 3px 3px 5px;
 `;
 
 export default RelatedProductCard;

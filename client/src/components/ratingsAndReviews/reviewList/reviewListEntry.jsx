@@ -52,19 +52,23 @@ class ReviewListEntry extends React.Component {
           gridRow: '1',
           gridColumn: '4'
         }}>
-          {new Date(review.date).toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+          {new Date(review.date).toLocaleDateString(undefined, {year: 'numeric', month: 'long', day: 'numeric' })}
         </div>
         <br />
+        {
+          review.summary &&
         <div style={{
             boxShadow: '5px 5px 10px grey',
             borderRadius: '10px',
             padding: '5px',
             justifyContent: 'center',
             gridRow: '2',
-            gridColumn: '1/-1'
+            gridColumn: '1/-1',
+            fontWeight: 'bold'
         }}>
-          {`Review summary: ${review.summary}`}
+          {review.summary}
         </div>
+        }
         <br />
         <div style={{
           boxShadow: '5px 5px 10px grey',
@@ -73,7 +77,7 @@ class ReviewListEntry extends React.Component {
           gridRow: '3',
           gridColumn: '1/-1'
         }}>
-          {`Review body: ${review.body}`}
+          {review.body}
         </div>
         <br />
         {
@@ -110,9 +114,10 @@ class ReviewListEntry extends React.Component {
           borderRadius: '10px',
           padding: '5px',
           gridRow: '6',
-          gridColumn: '1/-1'
+          gridColumn: '1/-1',
+          fontSize: '12px'
         }}>
-          {`Helpful?`} <u>Yes</u> {`(${review.helpfulness}) | Report`}
+          {`Helpful?`} <u>Yes</u> {`(${review.helpfulness}) | `}<u>Report</u>
         </div>
       </div>
     )

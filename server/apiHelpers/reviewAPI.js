@@ -52,7 +52,25 @@ const postReviews = (body, callback) => {
     })
 };
 
+const putReviews = (body ,callback) => {
+  //${body.review_id}/${body.type}
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews/${body.review_id}/${body.type}`, {}, {
+    headers: {
+      Authorization: config.API_KEY,
+    }
+  })
+   .then((results) => {
+     callback(null, results.data)
+   })
+   .catch((err) => {
+     console.log('put err', err)
+     callback(err, null)
+   })
+
+}
+
 module.exports = {
   getReviews: getReviews,
-  postReviews: postReviews
+  postReviews: postReviews,
+  putReviews: putReviews
 };

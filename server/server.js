@@ -48,6 +48,17 @@ app.post('/reviews', (req, res) => {
   });
 });
 
+app.put('/reviews', (req, res) => {
+  reviews.putReviews(req.body, (err, data) => {
+    if (err) {
+      console.log('put err', err);
+      res.status(404).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  })
+})
+
 app.get('/qa/questions', (req, res) => {
   questions.getQuestions(req.query, (err, data) => {
     if (err) {

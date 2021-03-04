@@ -1,14 +1,34 @@
 import React from 'react';
 import ReviewList from './reviewList.jsx';
+import axios from 'axios';
 
 class ReviewListEntry extends React.Component {
   constructor(props) {
     super(props)
 
+    this.handlePutEntry = this.handlePutEntry.bind(this);
+  }
+
+  handlePutEntry(e){
+    // console.log(this.props.review.review_id);
+    // console.log(e.target.id)
+    // this.props.handlePut(this.props.review.review_id, e.target.id)
+    axios.put(`/reviews`, {
+      review_id: this.props.review.review_id,
+      type: e.target.id
+    })
+      .then((results) => {
+        alert('Your request has been received!')
+      })
+      .catch((err) => {
+        console.log(err)
+        alert(`There's been an issue with your request`)
+      })
   }
 
   render() {
     var review = this.props.review
+    console.log(review)
     return(
       <div className="ratings-flexbox-container" style={{
         display: 'grid',
@@ -117,7 +137,7 @@ class ReviewListEntry extends React.Component {
           gridColumn: '1/-1',
           fontSize: '12px'
         }}>
-          {`Helpful?`} <u>Yes</u> {`(${review.helpfulness}) | `}<u>Report</u>
+          {`Helpful?`} <u onClick={this.handlePutEntry} id="helpful">Yes</u> {`(${review.helpfulness}) | `}<u onClick={this.handlePutEntry} id="report">Report</u>
         </div>
       </div>
     )

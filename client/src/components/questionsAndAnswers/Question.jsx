@@ -6,18 +6,17 @@ import AnswerModal from './AnswerModal.jsx';
 import axios from 'axios';
 
 const ContainerA = styled.div`
-  border: 0px solid grey;
+  border-top: 0px solid grey;
   border-radius: 12px;
   margin: 12px;
   padding: 0px 20px 0px 20px;
   box-shadow: 3px 3px 8px rgba(0,0,0,0.5);
-  max-width: 1000px;
+  max-width: 800px;
 `;
 
 const EachQ = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: stretch;
 `;
 
 const MoveRight = styled.div`
@@ -27,7 +26,7 @@ const MoveRight = styled.div`
 
 const ContainerB = styled.div`
   padding: 10px;
-  border: 3px green solid;
+  border-top: 3px grey solid;
   margin: 3px;
 `;
 
@@ -37,6 +36,11 @@ const Button = styled.button`
   border: none;
   outline: none;
   cursor: pointer;
+
+  &:hover {
+    text-decoration: none;
+    font-weight: bold;
+  }
 `;
 
 const LoadButton = styled.button`
@@ -49,17 +53,12 @@ const LoadButton = styled.button`
 
 const Divide = styled.span`
   margin-left: 5px;
-  margin-left: 5px;
-  padding-top: auto;
+  margin-right: 5px;
+  padding-top: 17.5px;
   font-weight: bold;
   display: flex;
-  justify-content: center;
 `;
 
-const Q = styled.h3`
-  display: flex;
-  float: left;
-`;
 
 const ScrollList = styled.ul`
   list-style:none;
@@ -146,7 +145,8 @@ class Question extends React.Component {
     <ContainerA>
 
            <EachQ>
-            <Q>Q: {this.props.item.question_body}</Q>
+
+            <h3>Q: {this.props.item.question_body}</h3>
 
                <MoveRight>
               <p> Helpful? </p>
@@ -171,7 +171,7 @@ class Question extends React.Component {
           )
         })}
         </ScrollList>
-        {this.state.answers.length > 1 && !(this.state.expanded) ? (
+        {this.state.answers.length >= 2 && !(this.state.expanded) ? (
           <LoadButton onClick={(event) => { this.showMore(); } }> LOAD MORE ANSWERS </LoadButton>
           ) : (
           <LoadButton onClick={(event) => { this.showMore(); }}> Collapse List </LoadButton>

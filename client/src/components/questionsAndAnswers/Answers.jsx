@@ -15,6 +15,11 @@ const Button = styled.button`
   border: none;
   outline: none;
   cursor: pointer;
+
+  &:hover {
+    text-decoration: none;
+    font-weight: bold;
+  }
 `;
 
 const AnwserDiv = styled.div`
@@ -27,7 +32,7 @@ const AnswerBody = styled.p`
 
 const Divide = styled.span`
   margin-left: 5px;
-  margin-left: 5px;
+  margin-right: 5px;
   padding-top: 17.3px;
   font-weight: bold;
 `;
@@ -60,6 +65,8 @@ class Answers extends React.Component {
 
 
   render() {
+    console.log(this.props.item.answerer_name);
+    console.log(this.props.seller);
     return (
       <div>
         <AnwserDiv>
@@ -81,7 +88,7 @@ class Answers extends React.Component {
           {this.props.item.answerer_name === this.props.seller
             ? (
               <p>
-                by
+                by  {' '}
                 <b> Seller </b>
                 {' '}
                 {new Date(this.props.item.date).toLocaleDateString(undefined, {
@@ -92,7 +99,7 @@ class Answers extends React.Component {
             )
             : (
               <p>
-                by
+                by {' '}
                 {this.props.item.answerer_name}
                 {' '}
                 {new Date(this.props.item.date).toLocaleDateString(undefined, {

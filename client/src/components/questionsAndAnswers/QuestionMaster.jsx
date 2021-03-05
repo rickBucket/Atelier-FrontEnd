@@ -20,9 +20,10 @@ const ButtonA = styled.button`
   width: 235px;
   background-color: white;
   padding: 10px;
+  margin-left: 25px;
 
   &:hover {
-    background-color: lightgrey;
+    background-color: grey;
     border: 1px solid black;
   border-radius: 5px;
   transition: all ease 0.3s;
@@ -34,9 +35,10 @@ const ButtonB = styled.button`
   width: 175px;
   background-color: white;
   padding: 10px;
+  margin-left: 10px;
 
   &:hover {
-    background-color: lightgrey;
+    background-color: grey;
     border: 1px solid black;
   border-radius: 5px;
   transition: all ease 0.3s;
@@ -49,6 +51,7 @@ const QuestionContainer = styled.div`
   padding: 10px;
   /* border: 3px blue solid; */
   /* box-shadow: 10px 10px 8px grey; */
+  position: center;
 `;
 
 

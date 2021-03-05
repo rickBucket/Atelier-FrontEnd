@@ -108,7 +108,7 @@ const LeftButtonWrapper = styled.div`
   backdrop-filter: blur(15px) contrast(70%);
   border: none;
   cursor: pointer;
-  z-index: 10;
+  z-index: 0;
   outline: 0;
 `;
 
@@ -122,7 +122,7 @@ const RightButtonWrapper = styled.div`
   backdrop-filter: blur(8px) contrast(70%);
   border: none;
   cursor: pointer;
-  z-index: 10;
+  z-index: 0;
   outline: 0;
 `;
 

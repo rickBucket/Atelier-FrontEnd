@@ -26,33 +26,6 @@ class RelatedProductsMainView extends React.Component {
       })
   }
 
-  // scrollLeft() {
-  //   this.setState({
-  //     imagesToTheRight: true
-  //   })
-  //   const carousel = document.getElementById('productCarousel');
-  //   carousel.scrollLeft -= 316;
-  //   if (carousel.scrollLeft <= 50) {
-  //     this.setState({
-  //       imagesToTheLeft: false,
-  //     });
-  //   }
-  // }
-
-  // scrollRight() {
-  //   this.setState({
-  //     imagesToTheLeft: true
-  //   })
-  //   const carousel = document.getElementById('productCarousel');
-  //   const amountLeftToScroll = carousel.scrollWidth - carousel.clientWidth;
-  //   carousel.scrollLeft += 316;
-  //   if (carousel.scrollLeft >= amountLeftToScroll) {
-  //     this.setState({
-  //       imagesToTheRight: false,
-  //     });
-  //   }
-  // }
-
   // add condititonal rendering in case relatedProducts hasn't been defined yet
   render() {
     return (
@@ -61,33 +34,13 @@ class RelatedProductsMainView extends React.Component {
           Related Products
         </div>
         <ListWrapper>
-          {/* <div>
-            {this.state.imagesToTheRight ? <RightButton onClick={this.scrollRight}>
-            &#8250;
-          </RightButton> : null}
-          </div> */}
           <RelatedProductsList productID={this.props.productID} relatedProducts={this.state.relatedProducts} />
-          {/* <div>
-            {this.state.imagesToTheLeft ? <LeftButton onClick={this.scrollLeft}>
-            &#8249;
-        </LeftButton> : null}
-          </div> */}
         </ListWrapper>
         <div>
           Your Outfit
         </div>
         <ListWrapper>
-        {/* <div>
-            {this.state.imagesToTheRight ? <RightButton onClick={this.scrollRight}>
-            Hello
-          </RightButton> : null}
-          </div> */}
           <YourOutfitList parentProductID={this.props.productID}/>
-          {/* <div>
-            {this.state.imagesToTheLeft ? <LeftButton onClick={this.scrollLeft}>
-              ⬅️
-        </LeftButton> : null}
-          </div> */}
         </ListWrapper>
       </AllEncompassing>
     )

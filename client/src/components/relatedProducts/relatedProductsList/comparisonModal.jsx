@@ -30,7 +30,19 @@ const ComparisonModal = (props) => {
           <ProductTitle><b>{props.compareProduct}</b></ProductTitle>
        </ComparisonTitle>
        <CompareWrapper>
-          {props.combinedFeatures.map((feature, i) => <TestDiv key={i}>{feature}</TestDiv>)}
+          {props.combinedFeatures.map((feature, i) => {
+            if (feature) {
+              if (feature[0] === '"') {
+                var cleanFeature = feature.substring(1, feature.length-1)
+                return <TestDiv key={i}>{cleanFeature}</TestDiv>
+              } else {
+                return <TestDiv key={i}>{feature}</TestDiv>
+              }
+            } else {
+              return <TestDiv key={i}>{feature}</TestDiv>
+            };
+          })
+          }
       </CompareWrapper>
       </ModalContent>
      </ModalWrapper>
@@ -46,17 +58,18 @@ const CloseButton = styled.span`
 `;
 
 const TestDiv = styled.div`
-  border: 2px solid blue;
+  text-align: center;
+  font-size: 20px;
 `;
 const ProductTitle = styled.div`
-  margin: 5px 4px 0px 1px;
-  border: 2px solid blue;
+  text-align: center;
+  border-bottom: 1px solid grey;
+  margin: 7px;
 `;
 
 const CompareTitle = styled.div`
   margin: 4px 5px;
   font-size: 15px;
-  border: 2px solid blue;
 `;
 
 export default ComparisonModal;

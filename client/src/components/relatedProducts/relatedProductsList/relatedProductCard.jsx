@@ -4,6 +4,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 import ComparisonModal from './comparisonModal.jsx';
 import CardContainer from '../sharedStyledComponents/cardContainer.js';
+import StarRating from '../../shared/starRating.jsx';
 
 class RelatedProductCard extends React.Component {
   constructor(props) {
@@ -16,11 +17,15 @@ class RelatedProductCard extends React.Component {
       loaded: 0,
       openCompareModal: false,
       combinedFeatures: '',
-      salePrice: ''
+      salePrice: '',
+      averageRating: '',
+      metaData: '',
+      averageRatingLoaded: false
     }
     // bind functions here
     this.handleCompareClick = this.handleCompareClick.bind(this);
     this.combineFeatures = this.combineFeatures.bind(this);
+    this.averageRating = this.averageRating.bind(this);
 
     this.ImageWrapper = styled.div`
     height: 200px;
@@ -76,13 +81,34 @@ class RelatedProductCard extends React.Component {
         }
       })
 
-      // testing cart api
-      // axios.post('/cart', {
-      //   sku_id: 420346
-      // })
-      //   .then(({ data }) => {
-      //     console.log('this is data', data);
-      //   });
+    // get reviews
+    axios.get(`/reviews/?product_id=${this.props.productID}&meta=meta`)
+    .then((results) => {
+      this.setState({
+        metaData: results.data,
+        averageRating: Number(this.averageRating(results.data.ratings)),
+        averageRatingLoaded: true
+      })
+    })
+    .catch((err) => {
+      console.log('error on meta GET request', err)
+    })
+
+  }
+
+  averageRating(obj){
+    var wholeTotal = 0;
+    var responseTotal = 0;
+    for (var star in obj) {
+      wholeTotal += (Number(obj[star]) * Number(star))
+      responseTotal += Number(obj[star])
+    }
+    var result = wholeTotal / responseTotal;
+    if (isNaN((Math.round(result * 4) / 4).toFixed(1))) {
+      return 0
+    } else {
+      return result.toFixed(1);
+    }
   }
 
   combineFeatures (parentProduct, currentProduct) {
@@ -166,6 +192,9 @@ class RelatedProductCard extends React.Component {
             <ProductContentWrapper>{this.state.productIDInfo.name}</ProductContentWrapper>
             <ProductContentWrapper style={sale}>${this.state.productIDInfo.default_price}</ProductContentWrapper>
             {this.state.salePrice ? <ProductContentWrapper>{this.state.salePrice}</ProductContentWrapper> : null}
+            <ProductContentWrapper>
+            {this.state.averageRatingLoaded ? <StarRating averageRating={this.state.averageRating} height={18} width={15}/> : null}
+            </ProductContentWrapper>
           </CardContainer>
         }
         {
@@ -200,7 +229,7 @@ const ButtonWrapper = styled.div`
 `;
 
 const ProductContentWrapper = styled.div`
-  margin: 3px 3px 3px 5px;
+  margin: 5px 15px;
 `;
 
 export default RelatedProductCard;

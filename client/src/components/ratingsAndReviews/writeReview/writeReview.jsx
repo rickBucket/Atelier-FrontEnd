@@ -3,14 +3,14 @@ import CharacteristicsRadio from './characteristicsRadio.jsx'
 
 const gridLayout = {
   display: 'grid',
-  boxShadow: '5px 5px 10px grey',
-  borderRadius: '20px',
+  // boxShadow: '5px 5px 10px grey',
+  // borderRadius: '20px',
   padding: '10px',
   // gridGap: '20px',
   gridTemplateColumns: 'repeat(2, 1fr)',
   gridTemplateRows: 'minwidth(6, 1fr) 200px',
   alignItems: 'center',
-  overflow: 'auto'
+  overflow: 'auto',
 };
 
 const starStyle = {
@@ -193,7 +193,7 @@ class WriteReview extends React.Component {
   render() {
     return(
       <div >
-        <form onSubmit={this.handleReviewData} style={gridLayout}>
+        <form onSubmit={this.handleReviewData} id="reviewForm" style={gridLayout}>
         <div style={{
           gridColumn: '1/-1',
           gridRow: '1'

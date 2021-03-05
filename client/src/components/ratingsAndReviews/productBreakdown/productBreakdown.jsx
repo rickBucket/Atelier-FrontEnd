@@ -7,6 +7,15 @@ const gridLayout = {
   gridGap: '5px'
 };
 
+const characteristicsBar = {
+  position: 'relative',
+  height: '7px',
+  width: '150px',
+  border: 'none',
+  backgroundColor: 'rgba(232, 232, 232, .8)',
+  boxShadow: '2px 2px 4px orange'
+}
+
 
 class ProductBreakdown extends React.Component {
   constructor(props) {
@@ -25,22 +34,46 @@ class ProductBreakdown extends React.Component {
       <div style={gridLayout}>
         {
          characteristics.Comfort &&
-        <div style={{
-          gridColumn: '1',
-          gridRow: '1',
-        }}><b>Comfort</b>
-          {this.characteristicStats(characteristics.Comfort.value)}
-          {`Uncomfortable --> Perfect`}
-        </div>
+            <div style={{
+              gridColumn: '1',
+              gridRow: '1',
+            }}><div style={{fontSize: '13px', color: 'grey'}}>Comfort</div>
+
+            <div style={characteristicsBar}>
+            <div style={{
+            background: 'rgba(51, 170, 51, .8)',
+            height: '100%',
+            borderRadius: 'inherit',
+            width: `${(this.characteristicStats(characteristics.Comfort.value) / 5) * 100}%`
+          }}>
+          </div>
+            </div>
+
+             <div style={{fontSize: '11px', color: 'grey'}}>
+              {`Uncomfortable --> Perfect`}
+             </div>
+
+          </div>
         }
         {
          characteristics.Fit &&
         <div style={{
           gridColumn: '1',
           gridRow: '2',
-        }}><b>Fit</b>
-          {this.characteristicStats(characteristics.Fit.value)}
+        }}><div style={{fontSize: '13px', color: 'grey'}}>Fit</div>
+         <div style={characteristicsBar}>
+         <div style={{
+            background: 'rgba(51, 170, 51, .8)',
+            height: '100%',
+            borderRadius: 'inherit',
+            width: `${(this.characteristicStats(characteristics.Fit.value) / 5) * 100}%`
+          }}>
+          </div>
+        </div>
+
+          <div style={{fontSize: '11px', color: 'grey'}}>
           {`Runs tight --> Perfect --> Runs long`}
+          </div>
         </div>
         }
         {
@@ -48,9 +81,21 @@ class ProductBreakdown extends React.Component {
         <div style={{
           gridColumn: '1',
           gridRow: '3',
-        }}><b>Length</b>
-          {this.characteristicStats(characteristics.Length.value)}
-          {`Runs short --> Perfect --> Runs long`}
+        }}><div style={{fontSize: '13px', color: 'grey'}}>Length</div>
+
+         <div style={characteristicsBar}>
+         <div style={{
+            background: 'rgba(51, 170, 51, .8)',
+            height: '100%',
+            borderRadius: 'inherit',
+            width: `${(this.characteristicStats(characteristics.Length.value) / 5) * 100}%`
+          }}>
+          </div>
+        </div>
+           <div style={{fontSize: '11px', color: 'grey'}}>
+          {`Runs short    Perfect    Runs long`}
+          </div>
+
         </div>
         }
         {
@@ -58,9 +103,21 @@ class ProductBreakdown extends React.Component {
         <div style={{
           gridColumn: '1',
           gridRow: '4',
-        }}><b>Quality</b>
-          {this.characteristicStats(characteristics.Quality.value)}
+        }}><div style={{fontSize: '13px', color: 'grey'}}>Quality</div>
+
+         <div style={characteristicsBar}>
+         <div style={{
+            background: 'rgba(51, 170, 51, .8)',
+            height: '100%',
+            borderRadius: 'inherit',
+            width: `${(this.characteristicStats(characteristics.Quality.value) / 5) * 100}%`
+          }}>
+          </div>
+        </div>
+           <div style={{fontSize: '11px', color: 'grey'}}>
           {`Poor --> Perfect`}
+          </div>
+
         </div>
         }
         {
@@ -68,9 +125,22 @@ class ProductBreakdown extends React.Component {
         <div style={{
           gridColumn: '1',
           gridRow: '5',
-        }}><b>Size</b>
-          {this.characteristicStats(characteristics.Size.value)}
+        }}><div style={{fontSize: '13px', color: 'grey'}}>Size</div>
+
+         <div style={characteristicsBar}>
+         <div style={{
+            background: 'rgba(51, 170, 51, .8)',
+            height: '100%',
+            borderRadius: 'inherit',
+            width: `${(this.characteristicStats(characteristics.Size.value) / 5) * 100}%`
+          }}>
+          </div>
+        </div>
+
+           <div style={{fontSize: '11px', color: 'grey'}}>
           {`Too small --> Perfect --> Too wide`}
+          </div>
+
         </div>
         }
         {
@@ -78,11 +148,24 @@ class ProductBreakdown extends React.Component {
         <div style={{
           gridColumn: '1',
           gridRow: '6',
-        }}><b>Width</b>
-          {this.characteristicStats(characteristics.Width.value)}
+        }}><div style={{fontSize: '13px', color: 'grey'}}>Width</div>
+
+         <div style={characteristicsBar}>
+         <div style={{
+            background: 'rgba(51, 170, 51, .8)',
+            height: '100%',
+            borderRadius: 'inherit',
+            width: `${(this.characteristicStats(characteristics.Width.value) / 5) * 100}%`
+          }}>
+          </div>
+        </div>
+           <div style={{fontSize: '11px', color: 'grey'}}>
           {`Too narrow --> Perfect --> Too wide`}
+          </div>
+
         </div>
         }
+
       </div>
     )
   }

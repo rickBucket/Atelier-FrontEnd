@@ -19,8 +19,8 @@ const singleStarContainer = {
   display: 'inline-block'
 }
 
-const StarRating = (props) => {
-  let rating = props.averageRating || 0;
+const StarRating = ({averageRating, height, width}) => {
+  let rating = averageRating || 0;
   let stars = [];
   while (stars.length < 5) {
       if (rating > 1) {
@@ -63,15 +63,22 @@ const StarRating = (props) => {
     <div>
         {stars.map((item, i) => {
             return (
-                <div style={singleStarContainer} key={i}>
+                <div style={{
+                  height: `${height}px`,
+                  width: `${width}px`,
+                  display: 'inline-block'
+                }} key={i}>
                     <div style={{
                       position: 'relative',
                       display: 'inline-block',
-                      height: '36px',
+                      height: `${height}px`,
                       backgroundColor: '#333333',
-                      width: `${parseInt(item*31)}px`
+                      width: `${parseInt(item*width)}px`
                       }}>
-                        <img style={singleStarOutline} src="star.png" alt="stars alt"></img>
+                        <img style={{
+                          height: `${height}px`,
+                          width: `${width}px`
+                        }} src="star.png" alt="stars alt"></img>
                     </div>
                 </div>
             );

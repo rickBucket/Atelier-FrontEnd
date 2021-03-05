@@ -38,6 +38,8 @@ const ComparisonModal = (props) => {
               } else {
                 return <TestDiv key={i}>{feature}</TestDiv>
               }
+            } else {
+              return <TestDiv key={i}>{feature}</TestDiv>
             };
           })
           }

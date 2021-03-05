@@ -20,7 +20,7 @@ const singleStarContainer = {
 }
 
 const StarRating = (props) => {
-  let rating = 3.75;
+  let rating = props.averageRating || 0;
   let stars = [];
   while (stars.length < 5) {
       if (rating > 1) {

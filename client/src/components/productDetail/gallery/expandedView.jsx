@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 const Div = styled.div`
   background: rgba(0,0,0,0.55);
-  padding: auto;
   margin: -55px -15px;
   height: 100%;
   width: 99.9%;
@@ -15,7 +14,7 @@ const Div = styled.div`
   backdrop-filter: blur(8px) contrast(70%);
 `
 const Img = styled.img`
-  border-radius: 20px;
+  border-radius: 16px;
   margin: auto;
   max-height: 920px;
   max-width: 1280px;

@@ -1,11 +1,14 @@
 import React from 'react';
 import ReviewList from './reviewList.jsx';
 import axios from 'axios';
+import StarRating from '../../shared/starRating.jsx';
 
 const gridLayout = {
   display: 'grid',
-  gridTemplateColumns: 'repeat(3, 1fr)',
-  gridTemplateRows: 'minmax(5, 1fr) 200px',
+  gridTemplateColumns: 'repeat(2, 1fr)',
+  gridAutoFlow: 'dense',
+  //gridTemplateRows: 'minmax(5, 1fr) 200px',
+  gridAutoRows: 'auto',
   // borderRadius: '20px',
   border: 'solid',
   borderWidth: '2px',
@@ -18,28 +21,29 @@ const gridLayout = {
 const starLayout = {
   // boxShadow: '5px 5px 10px grey',
   // borderRadius: '10px',
-  padding: '5px',
-  alignContent: 'center',
-  gridRow: '1',
-  gridColumn: '1',
+  gridColumn: '1/3',
+  fontSize: '20px',
+  display: 'flex',
+  flexWrap: 'nowrap',
+  width: '100%'
 };
 
 const nameLayout = {
   // boxShadow: '5px 5px 10px grey',
   // borderRadius: '10px',
   padding: '5px',
-  justifyContent: 'center',
+  textAlign: 'right',
   gridRow: '1',
-  gridColumn: '3'
+  gridColumn: '2'
 };
 
 const dateLayout = {
   // boxShadow: '5px 5px 10px grey',
   // borderRadius: '10px',
   padding: '5px',
-  justifyContent: 'center',
+  textAlign: 'center',
   gridRow: '1',
-  gridColumn: '4'
+  gridColumn: '3'
 };
 
 const reviewLayout = {
@@ -48,7 +52,7 @@ const reviewLayout = {
   padding: '5px',
   justifyContent: 'center',
   gridRow: '2',
-  gridColumn: '1/-1',
+  gridColumnEnd: 'span 3',
   fontWeight: 'bold'
 };
 
@@ -57,7 +61,7 @@ const bodyLayout = {
   // borderRadius: '10px',
   padding: '5px',
   gridRow: '3',
-  gridColumn: '1/-1'
+  gridColumnEnd: 'span 3'
 }
 
 const responseLayout = {
@@ -93,6 +97,22 @@ class ReviewListEntry extends React.Component {
     super(props)
 
     this.handlePutEntry = this.handlePutEntry.bind(this);
+    this.averageRating = this.averageRating.bind(this);
+  }
+
+  averageRating(obj){
+    var wholeTotal = 0;
+    var responseTotal = 0;
+    for (var star in obj) {
+      wholeTotal += (Number(obj[star]) * Number(star))
+      responseTotal += Number(obj[star])
+    }
+    var result = wholeTotal / responseTotal;
+    if (isNaN((Math.round(result * 4) / 4).toFixed(1))) {
+      return 0
+    } else {
+      return result.toFixed(1);
+    }
   }
 
   handlePutEntry(e){
@@ -109,15 +129,16 @@ class ReviewListEntry extends React.Component {
       })
   }
 
+
   render() {
     var review = this.props.review
+    console.log(review.rating)
     return(
       <div className="ratings-flexbox-container" style={gridLayout}>
 
-        <div className="ratings-starRatings" style={starLayout}>
-          <span className="fa fa-star"></span>
-          {`Star rating: ${review.rating}`}
-        </div>
+          <div>
+           <StarRating averageRating={review.rating}/>
+          </div>
         <br />
 
         <div style={nameLayout}>

@@ -6,6 +6,24 @@ const gridLayout = {
   gridTemplateRows: 'minwidth(5, 1fr) 100px',
 }
 
+const starBar = {
+  position: 'relative',
+  height: '10px',
+  width: '150px',
+  borderRadius: '10px',
+  border: 'none',
+  backgroundColor: 'rgba(232, 232, 232, .8)',
+  boxShadow: '2px 2px 4px gold'
+}
+
+const starBarFlex = {
+  display: 'flex',
+  wrap: 'wrap',
+  padding: '3px',
+  cursor: 'pointer'
+  }
+
+
 class ratingsBreakdownList extends React.Component {
   constructor(props) {
     super(props)
@@ -13,11 +31,11 @@ class ratingsBreakdownList extends React.Component {
       ratingsReady: false
     }
 
-    this.totalStars = this.totalStars.bind(this);
+    this.starPercentage = this.starPercentage.bind(this);
     this.sortByStar = this.sortByStar.bind(this);
   }
 
-  totalStars(obj, key){
+  starPercentage(obj, key){
     var total = 0;
     for (var star in obj) {
       total += Number(obj[star])
@@ -25,7 +43,7 @@ class ratingsBreakdownList extends React.Component {
     if (isNaN((Number(obj[key])/total).toFixed(2))) {
       return 0
     } else {
-      return (Number(obj[key])/total).toFixed(2)
+      return ((Number(obj[key])/total).toFixed(2) * 100)
     }
   }
 
@@ -40,38 +58,93 @@ class ratingsBreakdownList extends React.Component {
 render() {
 
   const ratingsObj = this.props.metaData.ratings;
+  console.log(this.starPercentage(ratingsObj, '5'))
 
   return(
     <div style={gridLayout}>
 
-      <div id="5" style={{cursor: 'pointer'}} onClick={this.sortByStar}><u>5 stars</u>
-      {this.totalStars(ratingsObj, '5')}
-      <div>{ratingsObj['5']}</div>
-      <img src=""></img>
-      </div>
+      <div id="5" style={starBarFlex} onClick={this.sortByStar}>
 
-      <div id="starBreakdown"><u>4 stars</u>
-      {this.totalStars(ratingsObj, '4')}
-      <div>{ratingsObj['4']}</div>
-      <img src=""></img>
-      </div>
+        <small><u>5 stars</u></small>
+        <div style={starBar}>
+          <div style={{
+            background: 'rgba(51, 170, 51, .8)',
+            height: '100%',
+            borderRadius: 'inherit',
+            width: `${this.starPercentage(ratingsObj, '5')}%`
+          }}>
+          </div>
+        </div>
+        <small>{ratingsObj['5']} votes</small>
 
-      <div id="starBreakdown"><u>3 stars</u>
-      {this.totalStars(ratingsObj, '3')}
-      <div>{ratingsObj['3']}</div>
-      <img src=""></img>
       </div>
+      <br />
 
-      <div id="starBreakdown"><u>2 stars</u>
-      {this.totalStars(ratingsObj, '2')}
-      <div>{ratingsObj['2']}</div>
-      <img src=""></img>
+      <div id="starBreakdown" style={starBarFlex}>
+
+      <small><u>4 stars </u></small>
+      <div style={starBar}>
+        <div style={{
+          background: 'rgba(51, 170, 51, .8)',
+          height: '100%',
+          borderRadius: 'inherit',
+          width: `${this.starPercentage(ratingsObj, '4')}%`
+        }}>
+        </div>
       </div>
+      <small> {ratingsObj['4']} votes</small>
 
-      <div id="starBreakdown"><u>1 star</u>
-      {this.totalStars(ratingsObj, '1')}
-      <div>{ratingsObj['1']}</div>
-      <img src=""></img>
+      </div>
+      <br />
+
+      <div id="starBreakdown" style={starBarFlex}>
+
+      <small><u>3 stars</u></small>
+      <div style={starBar}>
+        <div style={{
+          background: 'rgba(51, 170, 51, .8)',
+          height: '100%',
+          borderRadius: 'inherit',
+          width: `${this.starPercentage(ratingsObj, '3')}%`
+        }}>
+        </div>
+      </div>
+      <small>{ratingsObj['3']} votes</small>
+
+      </div>
+      <br />
+
+      <div id="starBreakdown" style={starBarFlex}>
+
+      <small><u>2 stars</u></small>
+      <div style={starBar}>
+        <div style={{
+          background: 'rgba(51, 170, 51, .8)',
+          height: '100%',
+          borderRadius: 'inherit',
+          width: `${this.starPercentage(ratingsObj, '2')}%`
+        }}>
+        </div>
+      </div>
+      <small>{ratingsObj['2']} votes</small>
+
+      </div>
+      <br />
+
+      <div id="starBreakdown" style={starBarFlex}>
+
+      <small><u>1 star</u></small>
+      <div style={starBar}>
+        <div style={{
+          background: 'rgba(51, 170, 51, .8)',
+          height: '100%',
+          borderRadius: 'inherit',
+          width: `${this.starPercentage(ratingsObj, '1')}%`
+        }}>
+        </div>
+      </div>
+      <small>{ratingsObj['1']} votes</small>
+
       </div>
 
     </div>

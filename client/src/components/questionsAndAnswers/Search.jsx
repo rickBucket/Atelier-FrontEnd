@@ -8,7 +8,7 @@ const Container = styled.div`
 `;
 
 const SearchDiv = styled.div`
-  width: 100%;
+  width: 60%;
   position: relative;
   display: flex;
 `;

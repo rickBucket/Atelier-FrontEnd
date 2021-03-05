@@ -93,11 +93,6 @@ class QuestionModal extends React.Component {
         newQuestion: event.target.value,
       });
     }
-    if ((this.state.newEmail.length > 0 && this.state.newEmail.includes('@')) && this.state.newName.length > 0 && this.state.newQuestion.length > 0) {
-      this.setState({
-        send: true,
-      });
-    }
   }
 
   postQuestion() {
@@ -132,7 +127,7 @@ class QuestionModal extends React.Component {
             <NewQueB placeholder="Examples: jackson11!" type="text" value={this.state.newName} onChange={(event) => { this.type(event); }} />
             <p>For privacy reasons, do not use your full name or email address</p>
             <NewQueC placeholder="Enter Question Here..." type="text" value={this.state.newQuestion} onChange={(event) => { this.type(event); }} />
-            <Button onClick={this.state.send ? (this.postQuestion) : (this.rejectQuestion)}> Submit Question </Button>
+            <Button onSubmit={this.postQuestion}> Submit Question </Button>
           </NewForm>
         </Modal_Con>
       </Modal>

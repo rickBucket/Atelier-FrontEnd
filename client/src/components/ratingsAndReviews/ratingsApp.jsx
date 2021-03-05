@@ -230,7 +230,7 @@ class RatingsApp extends React.Component {
     return(
       <div style={{
         maxWidth: '80%',
-        maxHeight: '70%',
+        maxHeight: '60%',
         margin: 'auto'
 
       }}>

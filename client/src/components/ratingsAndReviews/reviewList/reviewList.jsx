@@ -8,7 +8,7 @@ const gridLayout = {
   alignItems: 'center'
 };
 
-const reviewList = ({ reviewList, reviewEnd, handlePut}) => {
+const reviewList = ({ reviewList, reviewEnd, handlePut }) => {
   return(
     <div>
       Review List Component

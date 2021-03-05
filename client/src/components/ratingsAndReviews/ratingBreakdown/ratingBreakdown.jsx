@@ -1,10 +1,11 @@
 import React from 'react';
-import RatingsBreakdownList from './ratingsBreakdownList.jsx'
+import RatingsBreakdownList from './ratingsBreakdownList.jsx';
+import StarRating from '../../shared/starRating.jsx';
 
 const gridLayout = {
   display: 'grid',
-  gridTemplateColumns: 'repeat(2 1fr)',
-  gridTemplateRows: 'minwidth(4 1fr) 100px',
+  gridTemplateColumns: 'repeat(1 1fr)',
+  gridTemplateRows: 'minwidth(5 1fr) 100px',
   padding: '10px',
   gridGap: '5px',
   alignItems: 'center'
@@ -49,29 +50,18 @@ class RatingBreakdown extends React.Component {
 
     const ratingsObj = this.props.metaData.ratings;
     const recommendedObj = this.props.metaData.recommended;
-    console.log(Math.abs(0.5 - .25))
+    console.log(this.props.metaData)
 
     return(
       <div style={gridLayout}>
         <div style={{
           gridRow: '1',
-          gridColumn: '1/-1',
+          gridColumn: '1',
           color: 'grey'
         }}>
           {`Ratings & Reviews`}
         </div>
-        <div style={{
-          gridColumn: '2',
-          gridRow: '2',
-        }}>
-          <div style={{backgroundColor: 'red'}}>
-          <span className="fa fa-star-o" style={{background: 'rgba(0,0,0,0)'}}></span>
-          <span className="fa fa-star-o" ></span>
-          <span className="fa fa-star-o"></span>
-          <span className="fa fa-star-o"></span>
-          <span className="fa fa-star-o"></span>
-          </div>
-        </div>
+
         <div style={{
           gridColumn: '1',
           gridRow: '2',
@@ -79,16 +69,24 @@ class RatingBreakdown extends React.Component {
         }}>
           {this.averageRating(ratingsObj)}
         </div>
+
         <div style={{
-          gridColumn: '1/-1',
-          gridRow: '3',
+          gridColumn: '1',
+          gridRow: '3'
+          }}>
+          <StarRating averageRating={this.averageRating(ratingsObj)}/>
+        </div>
+
+        <div style={{
+          gridColumn: '1',
+          gridRow: '4',
           color: 'grey'
         }}>
           {`${this.recommendedAverage(recommendedObj)}% of reviews recommend this product`}
         </div>
         <div style={{
-          gridColumn: '1/-1',
-          gridRow: '4',
+          gridColumn: '1',
+          gridRow: '5',
         }}>
           <RatingsBreakdownList metaData={this.props.metaData} reviewList={this.props.reviewList}/>
         </div>

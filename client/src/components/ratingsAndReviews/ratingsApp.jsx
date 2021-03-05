@@ -10,7 +10,7 @@ const gridLayout = {
   display: 'grid',
   gridTemplateColumns: 'repeat(3, 1fr)',
   gridTemplateRows: 'minmax(8, 1fr) 200px',
-  gridGap: '20px',
+  gridGap: '10px',
   rowGap: '20px',
   borderRadius: '20px',
   padding: '20px',
@@ -18,15 +18,11 @@ const gridLayout = {
 };
 
 const ratingGrid = {
-  padding: '10px',
-  boxShadow: '5px 5px 10px gold',
-  borderRadius: '20px',
   gridColumn: '1',
-  gridRow: '1/4',
+  gridRow: '1/3',
 };
 
 const addReviewBtnStyle = {
-  borderRadius: '20px',
   boxShadow: '5px 5px 10px green',
   padding: '10px',
 };
@@ -59,25 +55,16 @@ const innerModalStyle = {
 };
 
 const productStyle = {
-  boxShadow: '5px 5px 10px orange',
-  borderRadius: '20px',
-  padding: '20px',
   gridColumn: '1',
-  gridRow: '4/7',
+  gridRow: '3/6',
 };
 
 const sortOptionsStyle = {
-  boxShadow: '5px 5px 10px teal',
-  borderRadius: '20px',
-  padding: '20px',
   gridColumn: '2/-1',
   gridRow: '1'
 };
 
 const reviewListStyle = {
-  borderRadius: '20px',
-  padding: '20px',
-  boxShadow: '5px 5px 10px purple',
   gridColumn: '2/5',
   gridRow: '2/8',
   overflow: 'auto',
@@ -85,18 +72,12 @@ const reviewListStyle = {
 };
 
 const writeReviewStyle = {
-  boxShadow: '5px 5px 10px green',
-  borderRadius: '20px',
-  padding: '20px',
   margin: 'auto',
   gridColumn: '2/3',
   gridRow: '8'
 };
 
 const moreReviewsStyle = {
-  borderRadius: '20px',
-  boxShadow: '5px 5px 10px pink',
-  padding: '20px',
   margin: 'auto',
   gridColumn: '3',
   gridRow: '8',
@@ -229,7 +210,7 @@ class RatingsApp extends React.Component {
     }
     return(
       <div style={{
-        maxWidth: '80%',
+        maxWidth: '70%',
         maxHeight: '60%',
         margin: 'auto'
 
@@ -282,7 +263,6 @@ class RatingsApp extends React.Component {
           this.state.reviewList.length > 2 && this.state.hideMoreReviews === false &&
         <div style={moreReviewsStyle}>
           <button id="moreReviews" style={{
-            borderRadius: '20px',
             boxShadow: '5px 5px 10px pink',
             padding: '10px',
           }} onClick={this.moreReviewsClick}>MORE REVIEWS</button>

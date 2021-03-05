@@ -30,7 +30,7 @@ class RatingBreakdown extends React.Component {
     if (isNaN((Math.round(result * 4) / 4).toFixed(1))) {
       return 0
     } else {
-      return (Math.round(result * 4) / 4).toFixed(1);
+      return result.toFixed(1);
     }
   }
 
@@ -49,6 +49,7 @@ class RatingBreakdown extends React.Component {
 
     const ratingsObj = this.props.metaData.ratings;
     const recommendedObj = this.props.metaData.recommended;
+    console.log(Math.abs(0.5 - .25))
 
     return(
       <div style={gridLayout}>
@@ -63,11 +64,13 @@ class RatingBreakdown extends React.Component {
           gridColumn: '2',
           gridRow: '2',
         }}>
-          <span className="fa fa-star"></span>
-          <span className="fa fa-star"></span>
-          <span className="fa fa-star"></span>
-          <span className="fa fa-star"></span>
-          <span className="fa fa-star"></span>
+          <div style={{backgroundColor: 'red'}}>
+          <span className="fa fa-star-o" style={{background: 'rgba(0,0,0,0)'}}></span>
+          <span className="fa fa-star-o" ></span>
+          <span className="fa fa-star-o"></span>
+          <span className="fa fa-star-o"></span>
+          <span className="fa fa-star-o"></span>
+          </div>
         </div>
         <div style={{
           gridColumn: '1',
@@ -87,7 +90,7 @@ class RatingBreakdown extends React.Component {
           gridColumn: '1/-1',
           gridRow: '4',
         }}>
-          <RatingsBreakdownList metaData={this.props.metaData}/>
+          <RatingsBreakdownList metaData={this.props.metaData} reviewList={this.props.reviewList}/>
         </div>
       </div>
     )

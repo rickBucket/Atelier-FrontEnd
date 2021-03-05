@@ -6,7 +6,7 @@ const gridLayout = {
   boxShadow: '5px 5px 10px grey',
   borderRadius: '20px',
   padding: '10px',
-  gridGap: '20px',
+  // gridGap: '20px',
   gridTemplateColumns: 'repeat(2, 1fr)',
   gridTemplateRows: 'minwidth(6, 1fr) 200px',
   alignItems: 'center',
@@ -14,8 +14,8 @@ const gridLayout = {
 };
 
 const starStyle = {
-  borderRadius: '20px',
-  boxShadow: '5px 5px 10px grey',
+  // borderRadius: '20px',
+  // boxShadow: '5px 5px 10px grey',
   padding: '10px',
   textAlign: 'center',
   gridColumn: '1',
@@ -23,8 +23,8 @@ const starStyle = {
 };
 
 const recommendStyle = {
-  borderRadius: '20px',
-  boxShadow: '5px 5px 10px grey',
+  // borderRadius: '20px',
+  // boxShadow: '5px 5px 10px grey',
   padding: '10px',
   textAlign: 'center',
   gridColumn: '2',
@@ -32,8 +32,8 @@ const recommendStyle = {
 };
 
 const characteristicsStyle = {
-  borderRadius: '20px',
-  boxShadow: '5px 5px 10px grey',
+  // borderRadius: '20px',
+  // boxShadow: '5px 5px 10px grey',
   padding: '10px',
   textAlign: 'center',
   gridColumn: '1/-1',
@@ -41,8 +41,8 @@ const characteristicsStyle = {
 };
 
 const summaryStyle = {
-  borderRadius: '20px',
-  boxShadow: '5px 5px 10px grey',
+  // borderRadius: '20px',
+  // boxShadow: '5px 5px 10px grey',
   padding: '10px',
   textAlign: 'center',
   gridColumn: '1',
@@ -50,8 +50,8 @@ const summaryStyle = {
 };
 
 const nameStyle = {
-  borderRadius: '20px',
-  boxShadow: '5px 5px 10px grey',
+  // borderRadius: '20px',
+  // boxShadow: '5px 5px 10px grey',
   padding: '10px',
   textAlign: 'center',
   gridColumn: '2',
@@ -59,8 +59,8 @@ const nameStyle = {
 };
 
 const reviewStyle = {
-  borderRadius: '20px',
-  boxShadow: '5px 5px 10px grey',
+  // borderRadius: '20px',
+  // boxShadow: '5px 5px 10px grey',
   padding: '10px',
   textAlign: 'center',
   gridColumn: '1/-1',
@@ -68,8 +68,8 @@ const reviewStyle = {
 };
 
 const photoStyle = {
-  borderRadius: '20px',
-  boxShadow: '5px 5px 10px grey',
+  // borderRadius: '20px',
+  // boxShadow: '5px 5px 10px grey',
   padding: '10px',
   textAlign: 'center',
   gridColumn: '2',
@@ -77,8 +77,8 @@ const photoStyle = {
 };
 
 const emailStyle = {
-  borderRadius: '20px',
-  boxShadow: '5px 5px 10px grey',
+  // borderRadius: '20px',
+  // boxShadow: '5px 5px 10px grey',
   padding: '10px',
   textAlign: 'center',
   gridColumn: '1',
@@ -86,8 +86,8 @@ const emailStyle = {
 };
 
 const submitStyle = {
-  borderRadius: '20px',
-  boxShadow: '5px 5px 10px grey',
+  // borderRadius: '20px',
+  // boxShadow: '5px 5px 10px grey',
   padding: '10px',
   gridColumn: '1/-1',
   gridRow: '7',

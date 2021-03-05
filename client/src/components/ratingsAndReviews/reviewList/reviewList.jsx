@@ -4,7 +4,7 @@ import ReviewListEntry from './reviewListEntry.jsx'
 const gridLayout = {
   display: 'grid',
   padding: '10px',
-  gridGap: '20px',
+  gridGap: '10px',
   alignItems: 'center'
 };
 

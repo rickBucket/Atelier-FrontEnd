@@ -4,14 +4,12 @@ import PrimaryImageView from './primaryImageView.jsx';
 import styled from 'styled-components';
 
 const FlexDiv = styled.div`
-  border: 0px solid grey;
-  border-radius: 14px;
-  padding: auto;
-  margin: 12px 12px 12px -48px;
-  box-shadow: 3px 3px 8px rgba(0,0,0,0.5);
+  border-radius: 8px;
+  margin: 64px 12px 12px -32px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
   overflow-x: hidden;
-  width: 101px;
-  height: 540px;
+  width: 77px;
+  height: 480px;
   display: flex;
   flex-wrap: wrap;
   float: left;
@@ -32,73 +30,48 @@ const InvisDiv = styled.div`
   margin: 5px;
 `
 const Img = styled.img`
-  border: 0px solid black;
-  border-radius: 14px;
-  margin: 8px;
-  height: 85px;
-  width: 85px;
+  border-radius: 8px;
+  margin: 6px;
+  height: 64px;
+  width: 64px;
   object-fit: cover;
   cursor: pointer;
-  box-shadow: 3px 3px 8px rgba(0,0,0,0.5);
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
 `
 const ExpandButton = styled.div`
-  color: black;
-  text-shadow: 0px 0px 2px grey;
-  border: 0px solid black;
   border-radius: 50%;
   margin: 84px 16px -64px -72px;
-  padding: 12px;
+  padding: 12px 14px 12px 14px;
   cursor: pointer;
-  height: 16px;
-  width: 16px;
-  object-fit: cover;
-  box-shadow: 3px 3px 8px rgba(0,0,0,0.5);
-  display: flex;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
   float: right;
-  justify-content: center;
   position: relative;
   z-index: 20;
   background: rgba(255,255,255,0.25);
   backdrop-filter: blur(8px);
 `
 const RightButton = styled.div`
-  color: black;
-  text-shadow: 0px 0px 2px grey;
-  border: 0px solid black;
   border-radius: 50%;
   margin: 276px 16px -64px -72px;
-  padding: 12px;
+  padding: 12px 14px 12px 14px;
   cursor: pointer;
-  height: 16px;
-  width: 16px;
-  object-fit: cover;
-  box-shadow: 3px 3px 8px rgba(0,0,0,0.5);
-  display: flex;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
   float: right;
-  justify-content: center;
   position: relative;
   z-index: 20;
-  background: rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.25);
   backdrop-filter: blur(8px);
 `
 const LeftButton = styled.div`
-  color: black;
-  text-shadow: 0px 0px 2px grey;
-  border: 0px solid black;
   border-radius: 50%;
-  margin: 276px 496px -64px -548px;
-  padding: 12px;
+  margin: 276px 474px -64px -548px;
+  padding: 12px 14px 12px 14px;
   cursor: pointer;
-  height: 16px;
-  width: 16px;
-  object-fit: cover;
-  box-shadow: 3px 3px 8px rgba(0,0,0,0.5);
-  display: flex;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
   float: right;
-  justify-content: center;
   position: relative;
   z-index: 20;
-  background: rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.25);
   backdrop-filter: blur(8px);
 `
 

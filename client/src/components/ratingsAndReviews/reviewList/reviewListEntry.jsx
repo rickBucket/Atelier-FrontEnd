@@ -34,7 +34,9 @@ const nameLayout = {
   padding: '5px',
   textAlign: 'right',
   gridRow: '1',
-  gridColumn: '2'
+  gridColumn: '2',
+  color: 'grey',
+  fontSize: '13px'
 };
 
 const dateLayout = {
@@ -43,7 +45,9 @@ const dateLayout = {
   padding: '5px',
   textAlign: 'center',
   gridRow: '1',
-  gridColumn: '3'
+  gridColumn: '3',
+  color: 'grey',
+  fontSize: '13px'
 };
 
 const reviewLayout = {
@@ -60,6 +64,7 @@ const bodyLayout = {
   // boxShadow: '5px 5px 10px grey',
   // borderRadius: '10px',
   padding: '5px',
+  fontSize: '13px',
   gridRow: '3',
   gridColumnEnd: 'span 3'
 }
@@ -68,6 +73,7 @@ const responseLayout = {
   // boxShadow: '5px 5px 10px grey',
   // borderRadius: '10px',
   padding: '5px',
+  fontSize: '13px',
   gridRow: '5',
   gridColumn: '1/-1',
   backgroundColor: 'lightgrey'
@@ -77,6 +83,7 @@ const recommendLayout = {
   // boxShadow: '5px 5px 10px grey',
   // borderRadius: '10px',
   padding: '5px',
+  fontSize: '13px',
   gridRow: '4',
   gridColumn: '1/-1'
 };
@@ -85,9 +92,10 @@ const helpfulnessLayout = {
   // boxShadow: '5px 5px 10px grey',
   // borderRadius: '10px',
   padding: '5px',
+  color: 'grey',
+  fontSize: '11px',
   gridRow: '6',
   gridColumn: '1/-1',
-  fontSize: '12px'
 };
 
 
@@ -142,7 +150,7 @@ class ReviewListEntry extends React.Component {
         <br />
 
         <div style={nameLayout}>
-          <b>{review.reviewer_name}</b>
+          {review.reviewer_name},
         </div>
         <br />
 
@@ -167,7 +175,9 @@ class ReviewListEntry extends React.Component {
         {
         review.response !== null &&
         <div style={responseLayout}>
-          <b>Response from seller: </b>{review.response}
+          <b>Response from seller: </b>
+          <br />
+          <div>{review.response}</div>
         </div>
         }
         <br />

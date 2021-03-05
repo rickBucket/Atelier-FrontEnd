@@ -7,7 +7,7 @@ const Div = styled.div`
   border-radius: 8px;
   margin: 8px;
   padding: 0px 32px 0px 32px;
-  max-width: 540px;
+  max-width: 480px;
 `
 const FlexDiv = styled.div`
   border-radius: 8px;
@@ -53,14 +53,14 @@ class ProductDescription extends React.Component {
       <FlexDiv>
         <Div>
           <h3>{this.state.slogan}</h3>
-          <h5>{this.state.description}</h5>
+          <p>{this.state.description}</p>
         </Div>
         <Separator>|</Separator>
         <Div>
           {
             this.state.features.map((element) => {
               return (
-                <h4 key={element}>{element}</h4>
+                <p key={element}>{element}</p>
               );
             })
           }

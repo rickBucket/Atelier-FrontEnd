@@ -2,33 +2,24 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Div = styled.div`
-  border: 0px solid grey;
-  border-radius: 12px;
-  padding: 12px;
-  margin: 12px;
-  box-shadow: 3px 3px 8px rgba(0,0,0,0.5);
+const InvisDiv = styled.div`
+  border-radius: 8px;
+  padding: 12px 12px 0px 12px;
+  margin: 12px 12px 0px 12px;
   background: rgba(255,255,255,0.1);
 `
-const InvisDiv = styled.div`
-  border-radius: 10px;
-  padding: 5px;
-  margin: 5px;
-`
 const Img = styled.img`
-  border: 0px solid black;
   border-radius: 50%;
   margin: 5px;
   cursor: pointer;
-  box-shadow: 3px 3px 8px rgba(0,0,0,0.5);
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
   height: 70px;
   width: 70px;
   object-fit: cover;
 `
 const FlexStyleDiv = styled.div`
-  border-radius: 12px;
-  padding: 0px;
-  margin: 0px;
+  border-radius: 8px;
+  margin-top: 8px;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -52,7 +43,7 @@ class StyleSelector extends React.Component {
 
   render() {
     return (
-      <Div>
+      <InvisDiv>
         {`Style > ${this.state.selectedStyle}`}
         <FlexStyleDiv>
           {
@@ -63,7 +54,7 @@ class StyleSelector extends React.Component {
             })
           }
         </FlexStyleDiv>
-      </Div>
+      </InvisDiv>
     );
   }
 }

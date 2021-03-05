@@ -10,15 +10,18 @@ import ExpandedView from './gallery/expandedView.jsx';
 import styled from 'styled-components';
 
 const Div = styled.div`
-  border-radius: 10px;
-  margin: 0px;
-  padding: 0px;
+  border-radius: 8px;
+  margin: 12px;
+  padding: 2px;
   min-width: 400px;
   font-family: Arial;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
 `
 const InvisDiv = styled.div`
   border-radius: 10px;
-  padding: 5px;
+  padding: 0px;
+  margin: 4px;
+  min-width: 400px;
   font-family: Arial;
 `
 const FlexDiv = styled.div`
@@ -106,22 +109,24 @@ class ProductMainView extends React.Component {
                 photos={this.state.selectedStyle.photos}
                 selectPhoto={this.selectPhoto}
               />
-              <Div>
+              <InvisDiv>
                 <ProductInfo
                   name={this.state.currentProduct.name}
                   category={this.state.currentProduct.category}
                   price={this.state.currentProduct.default_price}
                 />
-                <StyleSelector
-                  styles={this.state.styles}
-                  changeStyle={this.changeStyle}
-                  selectedStyle={this.state.selectedStyle}
-                />
-                <Checkout
-                  key={this.state.selectedStyle.style_id}
-                  skus={this.state.selectedStyle.skus}
-                />
-              </Div>
+                <Div>
+                  <StyleSelector
+                    styles={this.state.styles}
+                    changeStyle={this.changeStyle}
+                    selectedStyle={this.state.selectedStyle}
+                  />
+                  <Checkout
+                    key={this.state.selectedStyle.style_id}
+                    skus={this.state.selectedStyle.skus}
+                  />
+                </Div>
+              </InvisDiv>
             </FlexDiv>
             <ProductDescription
               slogan={this.state.currentProduct.slogan}

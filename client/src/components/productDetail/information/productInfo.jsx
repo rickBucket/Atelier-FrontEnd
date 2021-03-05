@@ -4,17 +4,12 @@ import styled from 'styled-components';
 
 const Div = styled.div`
   border: 0px solid grey;
-  border-radius: 12px;
-  padding: 1px 16px 16px 16px;
+  border-radius: 8px;
+  padding: 16px 32px 16px 32px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
   margin: 16px 12px 16px 12px;
-  box-shadow: 3px 3px 8px rgba(0,0,0,0.5);
   max-width: 540px;
   background: rgba(255,255,255,0.1);
-`
-const InvisDiv = styled.div`
-  border-radius: 10px;
-  padding: 5px;
-  margin: 5px;
 `
 
 // needs: rating, review link, category, name. price

@@ -2,42 +2,41 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Div = styled.div`
-  border-radius: 12px;
-  padding: 4px 0px 4px 0px;
-  margin: 20px 12px 12px 12px;
-  box-shadow: 3px 3px 8px rgba(0,0,0,0.5);
+const InvisDiv = styled.div`
+  border-radius: 8px;
+  padding-bottom: 4px;
+  margin-bottom: 10px;
   background: rgba(255,255,255,0.1);
 `
 const ButtonCheckout = styled.button`
   border: 0px solid grey;
   background: white;
-  border-radius: 5px;
+  border-radius: 4px;
   margin: 5px 12px 12px 12px;
   padding: 8px;
   cursor: pointer;
   width: 60%;
-  box-shadow: 3px 3px 8px rgba(0,0,0,0.5);
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
 `
 const ButtonFav = styled.button`
   border: 0px solid grey;
   background: white;
-  border-radius: 5px;
+  border-radius: 4px;
   padding: 8px;
   margin: 5px 12px 12px 12px;
   cursor: pointer;
   width: 20%;
-  box-shadow: 3px 3px 8px rgba(0,0,0,0.5);
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
 `
 const Selector = styled.select`
   border: 0px solid grey;
   background: white;
-  border-radius: 5px;
+  border-radius: 4px;
   padding: 8px;
   margin: 12px;
   cursor: pointer;
   width: 40%;
-  box-shadow: 3px 3px 8px rgba(0,0,0,0.5);
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
 `
 const FlexDiv = styled.div`
   border-radius: 8px;
@@ -85,7 +84,7 @@ class Checkout extends React.Component {
 
   render() {
     return (
-      <Div>
+      <InvisDiv>
         <form>
           <FlexDiv>
             <Selector name="size" onChange={this.handleChange}>
@@ -119,7 +118,7 @@ class Checkout extends React.Component {
             <ButtonFav onClick={this.handleSubmit}>STAR</ButtonFav>
           </FlexDiv>
         </form>
-      </Div>
+      </InvisDiv>
     );
   }
 }

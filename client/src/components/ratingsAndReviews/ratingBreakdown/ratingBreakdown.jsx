@@ -74,7 +74,7 @@ class RatingBreakdown extends React.Component {
           gridColumn: '1',
           gridRow: '3'
           }}>
-          <StarRating averageRating={this.averageRating(ratingsObj)}/>
+          <StarRating averageRating={this.averageRating(ratingsObj)} height={36} width={31}/>
         </div>
 
         <div style={{

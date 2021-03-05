@@ -19,11 +19,10 @@ const gridLayout = {
 
 const ratingGrid = {
   gridColumn: '1',
-  gridRow: '1/4',
+  gridRow: '1/3',
 };
 
 const addReviewBtnStyle = {
-  borderRadius: '20px',
   boxShadow: '5px 5px 10px green',
   padding: '10px',
 };
@@ -56,11 +55,8 @@ const innerModalStyle = {
 };
 
 const productStyle = {
-  boxShadow: '5px 5px 10px orange',
-  borderRadius: '20px',
-  padding: '20px',
   gridColumn: '1',
-  gridRow: '4/7',
+  gridRow: '3/6',
 };
 
 const sortOptionsStyle = {
@@ -267,7 +263,6 @@ class RatingsApp extends React.Component {
           this.state.reviewList.length > 2 && this.state.hideMoreReviews === false &&
         <div style={moreReviewsStyle}>
           <button id="moreReviews" style={{
-            borderRadius: '20px',
             boxShadow: '5px 5px 10px pink',
             padding: '10px',
           }} onClick={this.moreReviewsClick}>MORE REVIEWS</button>

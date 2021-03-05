@@ -9,8 +9,8 @@ const gridLayout = {
 const starBar = {
   position: 'relative',
   height: '10px',
-  width: '150px',
-  borderRadius: '10px',
+  margin: '15px',
+  width: '100px',
   border: 'none',
   backgroundColor: 'rgba(232, 232, 232, .8)',
   boxShadow: '2px 2px 4px gold'

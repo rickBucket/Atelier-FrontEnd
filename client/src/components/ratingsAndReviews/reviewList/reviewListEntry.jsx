@@ -10,11 +10,13 @@ const gridLayout = {
   //gridTemplateRows: 'minmax(5, 1fr) 200px',
   gridAutoRows: 'auto',
   // borderRadius: '20px',
-  border: 'solid',
-  borderWidth: '2px',
+  border: '1px solid grey',
+  // borderColor: 'grey',
+  // borderWidth: '1px',
   // boxShadow: '5px 5px 10px grey',
   // gridGap: '20px',
   padding: '10px',
+  wrap: 'nowrap',
   alignItems: 'center'
 };
 
@@ -144,8 +146,8 @@ class ReviewListEntry extends React.Component {
     return(
       <div className="ratings-flexbox-container" style={gridLayout}>
 
-          <div>
-           <StarRating averageRating={review.rating}/>
+          <div style={{display: 'flex', wrap: 'nowrap'}}>
+           <StarRating averageRating={review.rating} height={15} width={13}/>
           </div>
         <br />
 

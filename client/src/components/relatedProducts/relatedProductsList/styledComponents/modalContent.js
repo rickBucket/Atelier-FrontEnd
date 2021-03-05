@@ -11,7 +11,7 @@ align-items: center;
 padding: 10px;
 border: 1px solid black;
 border-radius: 20px; /* Optional. Rounds container corners */
-overflow: auto
+overflow: auto;
 `;
 
 export default ModalContent;

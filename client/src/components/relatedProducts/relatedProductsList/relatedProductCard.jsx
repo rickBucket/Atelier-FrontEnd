@@ -76,13 +76,6 @@ class RelatedProductCard extends React.Component {
         }
       })
 
-      // testing cart api
-      // axios.post('/cart', {
-      //   sku_id: 420346
-      // })
-      //   .then(({ data }) => {
-      //     console.log('this is data', data);
-      //   });
   }
 
   combineFeatures (parentProduct, currentProduct) {

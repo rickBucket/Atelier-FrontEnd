@@ -14,6 +14,7 @@ class ratingsBreakdownList extends React.Component {
     }
 
     this.totalStars = this.totalStars.bind(this);
+    this.sortByStar = this.sortByStar.bind(this);
   }
 
   totalStars(obj, key){
@@ -28,6 +29,14 @@ class ratingsBreakdownList extends React.Component {
     }
   }
 
+  sortByStar(e) {
+    //when clicked
+    //take certain star rating
+    //apply filter to each object
+    //return array of only objects with that star rating
+    console.log(e.target.id)
+  }
+
 render() {
 
   const ratingsObj = this.props.metaData.ratings;
@@ -35,8 +44,8 @@ render() {
   return(
     <div style={gridLayout}>
 
-      <div id="starBreakdown"><u>5 stars</u>
-      {this.totalStars(ratingsObj['5'], '5')}
+      <div id="5" style={{cursor: 'pointer'}} onClick={this.sortByStar}><u>5 stars</u>
+      {this.totalStars(ratingsObj, '5')}
       <div>{ratingsObj['5']}</div>
       <img src=""></img>
       </div>

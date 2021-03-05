@@ -4,18 +4,20 @@ import axios from 'axios';
 
 const gridLayout = {
   display: 'grid',
-  gridTemplateColumns: 'repeat(4, 1fr)',
+  gridTemplateColumns: 'repeat(3, 1fr)',
   gridTemplateRows: 'minmax(5, 1fr) 200px',
-  borderRadius: '20px',
-  boxShadow: '5px 5px 10px grey',
-  gridGap: '20px',
+  // borderRadius: '20px',
+  border: 'solid',
+  borderWidth: '2px',
+  // boxShadow: '5px 5px 10px grey',
+  // gridGap: '20px',
   padding: '10px',
   alignItems: 'center'
 };
 
 const starLayout = {
-  boxShadow: '5px 5px 10px grey',
-  borderRadius: '10px',
+  // boxShadow: '5px 5px 10px grey',
+  // borderRadius: '10px',
   padding: '5px',
   alignContent: 'center',
   gridRow: '1',
@@ -23,8 +25,8 @@ const starLayout = {
 };
 
 const nameLayout = {
-  boxShadow: '5px 5px 10px grey',
-  borderRadius: '10px',
+  // boxShadow: '5px 5px 10px grey',
+  // borderRadius: '10px',
   padding: '5px',
   justifyContent: 'center',
   gridRow: '1',
@@ -32,8 +34,8 @@ const nameLayout = {
 };
 
 const dateLayout = {
-  boxShadow: '5px 5px 10px grey',
-  borderRadius: '10px',
+  // boxShadow: '5px 5px 10px grey',
+  // borderRadius: '10px',
   padding: '5px',
   justifyContent: 'center',
   gridRow: '1',
@@ -41,8 +43,8 @@ const dateLayout = {
 };
 
 const reviewLayout = {
-  boxShadow: '5px 5px 10px grey',
-  borderRadius: '10px',
+  // boxShadow: '5px 5px 10px grey',
+  // borderRadius: '10px',
   padding: '5px',
   justifyContent: 'center',
   gridRow: '2',
@@ -51,16 +53,16 @@ const reviewLayout = {
 };
 
 const bodyLayout = {
-  boxShadow: '5px 5px 10px grey',
-  borderRadius: '10px',
+  // boxShadow: '5px 5px 10px grey',
+  // borderRadius: '10px',
   padding: '5px',
   gridRow: '3',
   gridColumn: '1/-1'
 }
 
 const responseLayout = {
-  boxShadow: '5px 5px 10px grey',
-  borderRadius: '10px',
+  // boxShadow: '5px 5px 10px grey',
+  // borderRadius: '10px',
   padding: '5px',
   gridRow: '5',
   gridColumn: '1/-1',
@@ -68,16 +70,16 @@ const responseLayout = {
 };
 
 const recommendLayout = {
-  boxShadow: '5px 5px 10px grey',
-  borderRadius: '10px',
+  // boxShadow: '5px 5px 10px grey',
+  // borderRadius: '10px',
   padding: '5px',
   gridRow: '4',
   gridColumn: '1/-1'
 };
 
 const helpfulnessLayout = {
-  boxShadow: '5px 5px 10px grey',
-  borderRadius: '10px',
+  // boxShadow: '5px 5px 10px grey',
+  // borderRadius: '10px',
   padding: '5px',
   gridRow: '6',
   gridColumn: '1/-1',

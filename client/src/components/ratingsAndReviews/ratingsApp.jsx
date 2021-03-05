@@ -32,6 +32,7 @@ const addReviewBtnStyle = {
 };
 
 const modalStyle = {
+  backdropFilter: 'blur(8px) contrast(70%)',
   backgroundColor: 'rgb(0,0,0)', /* Fallback color */
   backgroundColor: 'rgba(0,0,0,0.4)', /* Overlay effect: translucent background: black w/ partial opacity */
   zIndex: '1', /* Overlay effect: positioned over other containers */
@@ -236,12 +237,12 @@ class RatingsApp extends React.Component {
 
         {
           this.state.reviewsReady === true &&
-      <div className="reviewsGridContainer" style={gridLayout}>
+      <div style={gridLayout}>
 
         {
          this.state.metaReady === true &&
-        <div className="ratingBreakdownGridBox" style={ratingGrid}>
-          <RatingBreakdown metaData={this.state.metaData}/>
+        <div style={ratingGrid}>
+          <RatingBreakdown metaData={this.state.metaData}  reviewList={this.state.reviewList}/>
         </div>
         }
 
@@ -257,29 +258,29 @@ class RatingsApp extends React.Component {
 
         {
           this.state.metaReady === true &&
-          <div className="productBreakdownGridBox" style={productStyle}>
+          <div style={productStyle}>
           <ProductBreakdown metaData={this.state.metaData}/>
         </div>
         }
 
         {
           this.state.metaReady === true &&
-        <div className="sortOptionsBreakdownGridBox" style={sortOptionsStyle}>
-          <SortOptions metaData={this.state.metaData}/>
+        <div style={sortOptionsStyle}>
+          <SortOptions metaData={this.state.metaData} reviewList={this.state.reviewList}/>
         </div>
         }
 
-        <div className="reviewListGridBox" style={reviewListStyle}>
+        <div style={reviewListStyle}>
           <ReviewList reviewList={this.state.reviewList} reviewEnd={this.state.reviewEnd} handlePut={this.handlePut}/>
         </div>
 
-        <div className="writeReviewGridBox" style={writeReviewStyle}>
+        <div style={writeReviewStyle}>
           <button id="addReview" onClick={this.writeReviewClick} style={addReviewBtnStyle}>ADD A REVIEW +</button>
         </div>
 
         {
           this.state.reviewList.length > 2 && this.state.hideMoreReviews === false &&
-        <div className="viewMoreReviewsGridBox" style={moreReviewsStyle}>
+        <div style={moreReviewsStyle}>
           <button id="moreReviews" style={{
             borderRadius: '20px',
             boxShadow: '5px 5px 10px pink',
@@ -292,7 +293,7 @@ class RatingsApp extends React.Component {
     }
     </div>
     )
-  }
+   }
 }
 
 export default RatingsApp

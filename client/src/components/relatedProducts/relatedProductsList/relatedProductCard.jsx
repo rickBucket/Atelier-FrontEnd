@@ -36,6 +36,7 @@ class RelatedProductCard extends React.Component {
     height: 100%;
     width: 100%;
     object-fit: contain;
+    object-position: 50% 0;
     z-index: 0;
   `;
   }
@@ -169,15 +170,22 @@ class RelatedProductCard extends React.Component {
       textDecoration: this.state.salePrice ? 'line-through' : 'none',
       color: this.state.salePrice ? 'red' : 'black'
     }
+    var loading = {
+      backgroundImage: 'url("https://mk0wwwpoqcommervacts.kinstacdn.com/wp-content/uploads/2018/11/image3.gif")',
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'contain'
+      // backgroundColor: '#D3D3D3'
+    }
     return (
       <div>
         {
           this.state.loaded < 2 &&
-          <img src="https://www.bluechipexterminating.com/wp-content/uploads/2020/02/loading-gif-png-5.gif" width="300"></img>
+          <CardContainer style={loading}>
+          </CardContainer>
         }
         {
           this.state.loaded === 2 &&
-          <CardContainer>
+          <CardContainer >
               <ButtonWrapper>
               <CompareButton
                 onClick={this.handleCompareClick}
@@ -185,7 +193,7 @@ class RelatedProductCard extends React.Component {
               </ButtonWrapper>
 
             <this.ImageWrapper>
-              <this.Image src={this.state.featuredURL} width="100%" height="auto"></this.Image>
+              <this.Image src={this.state.featuredURL} ></this.Image>
             </this.ImageWrapper>
 
             <ProductContentWrapper>{this.state.productIDInfo.category}</ProductContentWrapper>

@@ -7,7 +7,7 @@ const ComparisonTitle = styled.div`
   justify-items: center;
   align-items: center;
   font-size: 15px;
-  background-color: #FFFBF7;
+  background-color: white;
 `;
 
 export default ComparisonTitle;

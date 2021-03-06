@@ -192,6 +192,7 @@ class WriteReview extends React.Component {
   }
 
   render() {
+    console.log(this.state.rating)
     return(
       <div >
         <form onSubmit={this.handleReviewData} id="reviewForm" style={gridLayout}>
@@ -209,27 +210,27 @@ class WriteReview extends React.Component {
 
              {
                this.state.mouseOver[0] === 1
-               ? <span className="fa fa-star" onMouseLeave={() => {this.setState({mouseOver: [0, 0, 0, 0, 0]})}} onClick={() => {this.setState({rating: 1})}}></span>
+               ? <span className="fa fa-star" onMouseEnter={() => {this.setState({mouseOver: [1, 0, 0, 0, 0]})}} onClick={() => {this.setState({rating: 1, mouseOver: [1, 0, 0, 0, 0]})}}></span>
                : <span className="fa fa-star-o" onMouseEnter={() => {this.setState({mouseOver: [1, 0, 0, 0, 0]})}}></span>
              }
              {
              this.state.mouseOver[1] === 1
-               ? <span className="fa fa-star" onMouseLeave={() => {this.setState({mouseOver: [1, 0, 0, 0, 0]})}} onClick={() => {this.setState({rating: 2})}}></span>
+               ? <span className="fa fa-star" onMouseEnter={() => {this.setState({mouseOver: [1, 1, 0, 0, 0]})}} onClick={() => {this.setState({rating: 2, mouseOver: [1, 1, 0, 0, 0]})}}></span>
                : <span className="fa fa-star-o" onMouseEnter={() => {this.setState({mouseOver: [1, 1, 0, 0, 0]})}}></span>
              }
              {
              this.state.mouseOver[2] === 1
-               ? <span className="fa fa-star" onMouseLeave={() => {this.setState({mouseOver: [1, 1, 0, 0, 0]})}} onClick={() => {this.setState({rating: 3})}}></span>
+               ? <span className="fa fa-star" onMouseEnter={() => {this.setState({mouseOver: [1, 1, 1, 0, 0]})}} onClick={() => {this.setState({rating: 3,  mouseOver: [1, 1, 1, 0, 0]})}}></span>
                : <span className="fa fa-star-o" onMouseEnter={() => {this.setState({mouseOver: [1, 1, 1, 0, 0]})}}></span>
              }
              {
              this.state.mouseOver[3] === 1
-               ? <span className="fa fa-star" onMouseLeave={() => {this.setState({mouseOver: [1, 1, 1, 0, 0]})}} onClick={() => {this.setState({rating: 4})}}></span>
+               ? <span className="fa fa-star" onMouseEnter={() => {this.setState({mouseOver: [1, 1, 1, 1, 0]})}} onClick={() => {this.setState({rating: 4,  mouseOver: [1, 1, 1, 1, 0]})}}></span>
                : <span className="fa fa-star-o" onMouseEnter={() => {this.setState({mouseOver: [1, 1, 1, 1, 0]})}}></span>
              }
              {
              this.state.mouseOver[4] === 1
-               ? <span className="fa fa-star" onClick={() => {this.setState({rating: 5})}}></span>
+               ? <span className="fa fa-star" onClick={() => {this.setState({rating: 5,  mouseOver: [1, 1, 1, 1, 1]})}}></span>
                : <span className="fa fa-star-o" onMouseEnter={() => {this.setState({mouseOver: [1, 1, 1, 1, 1]})}}></span>
              }
               {/* {

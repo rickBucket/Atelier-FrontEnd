@@ -2,12 +2,13 @@ import React from 'react';
 import ReviewList from './reviewList.jsx';
 import axios from 'axios';
 import StarRating from '../../shared/starRating.jsx';
+import PhotosMap from './photosMap.jsx';
 
 const gridLayout = {
   display: 'grid',
   gridTemplateColumns: 'repeat(2, 1fr)',
-  gridTemplatRows: 'repeat(5, 1fr)',
-  border: '1px solid grey',
+  gridTemplatRows: 'repeat(7, 1fr)',
+  borderBottom: '1px solid grey',
   padding: '10px',
 };
 
@@ -52,28 +53,41 @@ const bodyLayout = {
   gridColumnEnd: 'span 3'
 }
 
+const recommendLayout = {
+  padding: '5px',
+  color: 'grey',
+  fontSize: '12px',
+  gridRow: '4',
+  gridColumn: '1/-1'
+};
+
 const responseLayout = {
   padding: '5px',
   fontSize: '13px',
   gridRow: '5',
-  gridColumn: '1/-1',
+  gridColumnEnd: 'span 3',
   backgroundColor: 'lightgrey'
 };
 
-const recommendLayout = {
-  padding: '5px',
-  fontSize: '13px',
-  gridRow: '4',
-  gridColumn: '1/-1'
-};
+const photoLayout = {
+  gridRow: '6',
+  alignContent: 'left',
+  float: 'left',
+  gridColumnEnd: 'span 3'
+}
 
 const helpfulnessLayout = {
   padding: '5px',
   color: 'grey',
   fontSize: '11px',
-  gridRow: '6',
+  gridRow: '8',
   gridColumn: '1/-1',
 };
+
+const emptyDiv = {
+  height: '0px',
+  width: '0px'
+}
 
 
 
@@ -117,11 +131,12 @@ class ReviewListEntry extends React.Component {
 
   render() {
     var review = this.props.review
+    console.log(review.summary)
     return(
       <div className="ratings-flexbox-container" style={gridLayout}>
 
-          <div style={{display: 'flex', wrap: 'nowrap'}}>
-           <StarRating averageRating={review.rating} height={15} width={13}/>
+          <div style={{display: 'flex', wrap: 'nowrap', zIndex: '-1'}}>
+           <StarRating averageRating={review.rating} height={16} width={13}/>
           </div>
         <br />
 
@@ -136,10 +151,11 @@ class ReviewListEntry extends React.Component {
         <br />
 
         {
-          review.summary &&
-        <div style={reviewLayout}>
+          review.summary
+        ? <div style={reviewLayout}>
           {review.summary}
-        </div>
+         </div>
+        : <div style={emptyDiv}></div>
         }
         <br />
 
@@ -155,7 +171,7 @@ class ReviewListEntry extends React.Component {
           <br />
           <div>{review.response}</div>
         </div>
-        : <div style={{height: '0px', width: '0px'}}></div>
+        : <div style={emptyDiv}></div>
         }
         <br />
 
@@ -164,9 +180,15 @@ class ReviewListEntry extends React.Component {
         ? <div style={recommendLayout}>
           {`✓ I recommend this product`}
         </div>
-        : <div style={{height: '0px', width: '0px'}}></div>
+        : <div style={emptyDiv}></div>
         }
         <br />
+
+        {
+          review.photos.length > 0
+          ? <PhotosMap photos={review.photos} style={photoLayout}/>
+          : <div style={emptyDiv}></div>
+        }
 
         <div style={helpfulnessLayout}>
           {`Helpful?`} <u onClick={this.handlePutEntry} id="helpful">Yes</u> {`(${review.helpfulness}) | `}<u onClick={this.handlePutEntry} id="report">Report</u>

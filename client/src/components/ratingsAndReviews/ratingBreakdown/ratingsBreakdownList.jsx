@@ -4,7 +4,7 @@ const gridLayout = {
   display: 'grid',
   gridTemplateColumns: '1fr',
   gridTemplateRows: 'minwidth(5, 1fr) 50px',
-  justifyContent: 'center'
+  margin: 'auto'
 }
 
 const starBar = {
@@ -20,7 +20,7 @@ const starBar = {
 
 const starBarFlex = {
   display: 'flex',
-  // wrap: 'wrap'
+  margin: 'auto',
   cursor: 'pointer'
   }
 

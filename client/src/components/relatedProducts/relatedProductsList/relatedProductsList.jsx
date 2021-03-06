@@ -106,7 +106,7 @@ const LeftButtonWrapper = styled.div`
   height: 89%;
   border: none;
   cursor: pointer;
-  z-index: 1;
+  z-index: 0;
   outline: 0;
 `;
 
@@ -129,7 +129,7 @@ const LeftButton = styled.button`
   background-color: white;
   border: 1px solid black;
   cursor: pointer;
-  z-index: 100;
+  z-index: 10;
   font-size: 40px;
   &:hover {
     background-color: black;
@@ -144,7 +144,7 @@ const RightButton = styled.button`
   background-color: white;
   border: 1px solid black;
   cursor: pointer;
-  z-index: 100;
+  z-index: 10;
   font-size: 40px;
   &:hover {
     background-color: black;

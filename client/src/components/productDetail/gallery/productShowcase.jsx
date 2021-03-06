@@ -4,7 +4,7 @@ import PrimaryImageView from './primaryImageView.jsx';
 import styled from 'styled-components';
 
 const FlexDiv = styled.div`
-  border: 1px solid grey;
+  border: 1px solid lightgrey;
   margin: 64px 12px 12px -32px;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
   overflow-x: hidden;

@@ -96,8 +96,7 @@ class ProductShowcase extends React.Component {
             onClick={this.nextPhoto.bind(this, 1)}
             className="fa fa-arrow-right"
           />
-        }
-        {
+        } {
           this.state.currentPhoto.url !== this.state.photos[0].url &&
           <Button
             style={{margin: "276px 488px -64px -552px"}}

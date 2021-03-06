@@ -6,7 +6,7 @@ const Div = styled.div`
   background: rgba(0,0,0,0.55);
   margin: -55px -15px;
   height: 100%;
-  width: 99.95%;
+  width: 99.9%;
   position: absolute;
   z-index: 50;
   display: flex;

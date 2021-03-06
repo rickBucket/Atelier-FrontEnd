@@ -9,12 +9,12 @@ import SortOptions from './sortOptions/sortOptions.jsx';
 const gridLayout = {
   display: 'grid',
   gridTemplateColumns: 'repeat(3, 1fr)',
-  gridTemplateRows: 'minmax(8, 1fr) 200px',
+  gridTemplateRows: 'minmax(6, 1fr) 200px',
   gridGap: '10px',
   rowGap: '20px',
   borderRadius: '20px',
   padding: '20px',
-  height: '85vh'
+  height: '70vh'
 };
 
 const ratingGrid = {
@@ -66,7 +66,7 @@ const sortOptionsStyle = {
 
 const reviewListStyle = {
   gridColumn: '2/5',
-  gridRow: '2/8',
+  gridRow: '2/6',
   overflow: 'auto',
   listStyle: 'none'
 };
@@ -74,13 +74,13 @@ const reviewListStyle = {
 const writeReviewStyle = {
   margin: 'auto',
   gridColumn: '2/3',
-  gridRow: '8'
+  gridRow: '6'
 };
 
 const moreReviewsStyle = {
   margin: 'auto',
   gridColumn: '3',
-  gridRow: '8',
+  gridRow: '6',
 };
 
 class RatingsApp extends React.Component {
@@ -212,8 +212,8 @@ class RatingsApp extends React.Component {
       <div style={{
         maxWidth: '70%',
         maxHeight: '60%',
-        margin: 'auto'
-
+        margin: 'auto',
+        fontFamily: 'helvetica'
       }}>
 
         {
@@ -263,7 +263,7 @@ class RatingsApp extends React.Component {
           this.state.reviewList.length > 2 && this.state.hideMoreReviews === false &&
         <div style={moreReviewsStyle}>
           <button id="moreReviews" style={{
-            boxShadow: '5px 5px 10px pink',
+            boxShadow: '5px 5px 10px grey',
             padding: '10px',
           }} onClick={this.moreReviewsClick}>MORE REVIEWS</button>
         </div>

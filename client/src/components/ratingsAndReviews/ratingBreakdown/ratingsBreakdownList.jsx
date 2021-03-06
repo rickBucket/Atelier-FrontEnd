@@ -3,14 +3,16 @@ import React from 'react';
 const gridLayout = {
   display: 'grid',
   gridTemplateColumns: '1fr',
-  gridTemplateRows: 'minwidth(5, 1fr) 100px',
+  gridTemplateRows: 'minwidth(5, 1fr) 50px',
+  justifyContent: 'center'
 }
 
 const starBar = {
-  position: 'relative',
-  height: '10px',
-  margin: '15px',
-  width: '100px',
+  // position: 'relative',
+  height: '8px',
+  marginLeft: '8px',
+  marginRight: '10px',
+  width: '130px',
   border: 'none',
   backgroundColor: 'rgba(232, 232, 232, .8)',
   boxShadow: '2px 2px 4px gold'
@@ -18,8 +20,7 @@ const starBar = {
 
 const starBarFlex = {
   display: 'flex',
-  wrap: 'wrap',
-  padding: '3px',
+  // wrap: 'wrap'
   cursor: 'pointer'
   }
 
@@ -64,7 +65,7 @@ render() {
 
       <div id="5" style={starBarFlex} onClick={this.sortByStar}>
 
-        <small><u>5 stars</u></small>
+        <u style={{fontSize: '12px', color: 'grey'}}>5 stars</u>
         <div style={starBar}>
           <div style={{
             background: 'rgba(51, 170, 51, .8)',
@@ -74,14 +75,19 @@ render() {
           }}>
           </div>
         </div>
-        <small>{ratingsObj['5']} votes</small>
+
+        {
+        ratingsObj['5'] > 0
+        ? <div style={{fontSize: '12px', color: 'grey'}}>{ratingsObj['5']}</div>
+        : <div style={{fontSize: '12px', color: 'grey'}}>0</div>
+        }
 
       </div>
       <br />
 
       <div id="starBreakdown" style={starBarFlex}>
 
-      <small><u>4 stars </u></small>
+      <u style={{fontSize: '12px', color: 'grey'}}>4 stars </u>
       <div style={starBar}>
         <div style={{
           background: 'rgba(51, 170, 51, .8)',
@@ -91,14 +97,19 @@ render() {
         }}>
         </div>
       </div>
-      <small> {ratingsObj['4']} votes</small>
+
+        {
+        ratingsObj['4'] > 0
+        ? <div style={{fontSize: '12px', color: 'grey'}}>{ratingsObj['4']}</div>
+        : <div style={{fontSize: '12px', color: 'grey'}}>0</div>
+        }
 
       </div>
       <br />
 
       <div id="starBreakdown" style={starBarFlex}>
 
-      <small><u>3 stars</u></small>
+      <u style={{fontSize: '12px', color: 'grey'}}>3 stars</u>
       <div style={starBar}>
         <div style={{
           background: 'rgba(51, 170, 51, .8)',
@@ -108,14 +119,19 @@ render() {
         }}>
         </div>
       </div>
-      <small>{ratingsObj['3']} votes</small>
+
+        {
+        ratingsObj['3'] > 0
+        ? <div style={{fontSize: '12px', color: 'grey'}}>{ratingsObj['3']}</div>
+        : <div style={{fontSize: '12px', color: 'grey'}}>0</div>
+        }
 
       </div>
       <br />
 
       <div id="starBreakdown" style={starBarFlex}>
 
-      <small><u>2 stars</u></small>
+      <u style={{fontSize: '12px', color: 'grey'}}>2 stars</u>
       <div style={starBar}>
         <div style={{
           background: 'rgba(51, 170, 51, .8)',
@@ -125,14 +141,19 @@ render() {
         }}>
         </div>
       </div>
-      <small>{ratingsObj['2']} votes</small>
+
+        {
+        ratingsObj['2'] > 0
+        ? <div style={{fontSize: '12px', color: 'grey'}}>{ratingsObj['2']}</div>
+        : <div style={{fontSize: '12px', color: 'grey'}}>0</div>
+        }
 
       </div>
       <br />
 
       <div id="starBreakdown" style={starBarFlex}>
 
-      <small><u>1 star</u></small>
+      <u style={{fontSize: '12px', color: 'grey'}}>1 star</u>
       <div style={starBar}>
         <div style={{
           background: 'rgba(51, 170, 51, .8)',
@@ -142,7 +163,12 @@ render() {
         }}>
         </div>
       </div>
-      <small>{ratingsObj['1']} votes</small>
+
+        {
+        ratingsObj['1'] > 0
+        ? <div style={{fontSize: '12px', color: 'grey'}}>{ratingsObj['1']}</div>
+        : <div style={{fontSize: '12px', color: 'grey'}}>0</div>
+        }
 
       </div>
 

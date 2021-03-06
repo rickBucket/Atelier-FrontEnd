@@ -68,6 +68,8 @@ const ScrollList = styled.ul`
   padding:0;
   text-indent:10px;
 `;
+//change my scroll list to where it only shows after you click show more!
+//always show two with no scroll
 
 
 // CLASS STARTS HERE ------------------------//

@@ -131,7 +131,7 @@ class ReviewListEntry extends React.Component {
 
   render() {
     var review = this.props.review
-    console.log(review)
+    console.log(review.summary)
     return(
       <div className="ratings-flexbox-container" style={gridLayout}>
 
@@ -151,7 +151,7 @@ class ReviewListEntry extends React.Component {
         <br />
 
         {
-          review.summary.length > 0
+          review.summary
         ? <div style={reviewLayout}>
           {review.summary}
          </div>

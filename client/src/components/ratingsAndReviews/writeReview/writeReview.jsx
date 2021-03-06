@@ -192,7 +192,6 @@ class WriteReview extends React.Component {
   }
 
   render() {
-    console.log(this.state.rating)
     return(
       <div >
         <form onSubmit={this.handleReviewData} id="reviewForm" style={gridLayout}>

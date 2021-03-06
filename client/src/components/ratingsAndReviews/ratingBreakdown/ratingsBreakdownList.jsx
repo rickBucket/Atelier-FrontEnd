@@ -58,7 +58,6 @@ class ratingsBreakdownList extends React.Component {
 render() {
 
   const ratingsObj = this.props.metaData.ratings;
-  console.log(this.starPercentage(ratingsObj, '5'))
 
   return(
     <div style={gridLayout}>

@@ -32,6 +32,7 @@ const ratingGrid = {
 const addReviewBtnStyle = {
   boxShadow: '5px 5px 10px green',
   padding: '10px',
+  margin: 'auto'
 };
 
 const modalStyle = {
@@ -209,7 +210,8 @@ class RatingsApp extends React.Component {
     //no reviews edge
     if (this.state.noReviews) {
       return(
-        <div>
+        <div style={{display: 'flex', alignContent:
+        'center', wrap: 'wrap'}}>
           <h1 style={{textAlign: 'center'}}>Be the first to write a review!</h1>
           <button id="addReview" onClick={this.writeReviewClick} style={addReviewBtnStyle}>ADD A REVIEW +</button>
         </div>

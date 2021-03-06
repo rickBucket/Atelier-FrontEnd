@@ -4,11 +4,11 @@ import PrimaryImageView from './primaryImageView.jsx';
 import styled from 'styled-components';
 
 const FlexDiv = styled.div`
-  border-radius: 8px;
+  border: 1px solid grey;
   margin: 64px 12px 12px -32px;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
   overflow-x: hidden;
-  width: 77px;
+  width: 78px;
   height: 480px;
   display: flex;
   flex-wrap: wrap;
@@ -30,7 +30,8 @@ const InvisDiv = styled.div`
   margin: 5px;
 `
 const Img = styled.img`
-  border-radius: 8px;
+  border: 1px solid grey;
+  border-radius: 2px;
   margin: 6px;
   height: 64px;
   width: 64px;
@@ -43,36 +44,33 @@ const ExpandButton = styled.div`
   margin: 84px 16px -64px -72px;
   padding: 12px 14px 12px 14px;
   cursor: pointer;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
   float: right;
   position: relative;
   z-index: 20;
   background: rgba(255,255,255,0.25);
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px) contrast(80%);
 `
 const RightButton = styled.div`
   border-radius: 50%;
   margin: 276px 16px -64px -72px;
   padding: 12px 14px 12px 14px;
   cursor: pointer;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
   float: right;
   position: relative;
   z-index: 20;
   background: rgba(255,255,255,0.25);
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px) contrast(80%);
 `
 const LeftButton = styled.div`
   border-radius: 50%;
-  margin: 276px 474px -64px -548px;
+  margin: 276px 470px -64px -548px;
   padding: 12px 14px 12px 14px;
   cursor: pointer;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
   float: right;
   position: relative;
   z-index: 20;
   background: rgba(255,255,255,0.25);
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px) contrast(80%);
 `
 
 class ProductShowcase extends React.Component {
@@ -96,6 +94,12 @@ class ProductShowcase extends React.Component {
     this.props.selectPhoto(this.state.currentPhoto.url);
   }
 
+  nextPhoto(flag) {
+    this.setState({
+      currentPhoto: this.state.photos[(this.state.photos.indexOf(this.state.currentPhoto) + flag + this.state.photos.length) % this.state.photos.length]
+    });
+  }
+
   render() {
     return (
       <InvisDiv>
@@ -103,10 +107,10 @@ class ProductShowcase extends React.Component {
           className="fa fa-expand"
           onClick={this.handleExpand}
         />
-        <RightButton
+        <RightButton onClick={this.nextPhoto.bind(this, 1)}
           className="fa fa-arrow-right"
         />
-        <LeftButton
+        <LeftButton onClick={this.nextPhoto.bind(this, -1)}
           className="fa fa-arrow-left"
         />
         <PrimaryImageView

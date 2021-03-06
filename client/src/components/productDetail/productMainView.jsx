@@ -10,7 +10,7 @@ import ExpandedView from './gallery/expandedView.jsx';
 import styled from 'styled-components';
 
 const Div = styled.div`
-  border-radius: 8px;
+  border: 1px solid grey;
   margin: 12px;
   padding: 2px;
   min-width: 400px;
@@ -18,14 +18,12 @@ const Div = styled.div`
   box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
 `
 const InvisDiv = styled.div`
-  border-radius: 10px;
   padding: 0px;
   margin: 4px;
   min-width: 400px;
   font-family: Arial;
 `
 const FlexDiv = styled.div`
-  border-radius: 10px;
   padding: 5px;
   margin: 5px;
   display: flex;

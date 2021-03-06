@@ -3,15 +3,13 @@ import React from 'react';
 import styled from 'styled-components';
 
 const InvisDiv = styled.div`
-  border-radius: 8px;
   padding-bottom: 4px;
   margin-bottom: 10px;
   background: rgba(255,255,255,0.1);
 `
 const ButtonCheckout = styled.button`
-  border: 0px solid grey;
+  border: 1px solid grey;
   background: white;
-  border-radius: 4px;
   margin: 5px 12px 12px 12px;
   padding: 8px;
   cursor: pointer;
@@ -19,9 +17,8 @@ const ButtonCheckout = styled.button`
   box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
 `
 const ButtonFav = styled.button`
-  border: 0px solid grey;
+  border: 1px solid grey;
   background: white;
-  border-radius: 4px;
   padding: 8px;
   margin: 5px 12px 12px 12px;
   cursor: pointer;
@@ -29,9 +26,8 @@ const ButtonFav = styled.button`
   box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
 `
 const Selector = styled.select`
-  border: 0px solid grey;
+  border: 1px solid grey;
   background: white;
-  border-radius: 4px;
   padding: 8px;
   margin: 12px;
   cursor: pointer;
@@ -39,7 +35,6 @@ const Selector = styled.select`
   box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
 `
 const FlexDiv = styled.div`
-  border-radius: 8px;
   margin: 5px;
   display: flex;
   justify-content: center;

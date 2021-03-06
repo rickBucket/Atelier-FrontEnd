@@ -6,7 +6,7 @@ const Div = styled.div`
   background: rgba(0,0,0,0.55);
   margin: -55px -15px;
   height: 100%;
-  width: 99.9%;
+  width: 99.95%;
   position: absolute;
   z-index: 50;
   display: flex;
@@ -14,7 +14,8 @@ const Div = styled.div`
   backdrop-filter: blur(8px) contrast(70%);
 `
 const Img = styled.img`
-  border-radius: 16px;
+  border: 1px solid grey;
+  border-radius: 4px;
   margin: auto;
   max-height: 920px;
   max-width: 1280px;

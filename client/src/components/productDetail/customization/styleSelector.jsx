@@ -9,6 +9,7 @@ const InvisDiv = styled.div`
   background: rgba(255,255,255,0.1);
 `
 const Img = styled.img`
+  border: 1px solid grey;
   border-radius: 50%;
   margin: 5px;
   cursor: pointer;
@@ -18,7 +19,6 @@ const Img = styled.img`
   object-fit: cover;
 `
 const FlexStyleDiv = styled.div`
-  border-radius: 8px;
   margin-top: 8px;
   display: flex;
   justify-content: center;

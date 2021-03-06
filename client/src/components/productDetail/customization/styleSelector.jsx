@@ -9,16 +9,20 @@ const InvisDiv = styled.div`
   background: rgba(255,255,255,0.1);
 `
 const Img = styled.img`
+  border: 2px solid rgba(0,0,0,0);
   border-radius: 50%;
-  margin: 5px;
+  margin: 4px;
   cursor: pointer;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
-  height: 70px;
-  width: 70px;
+  height: 68px;
+  width: 68px;
   object-fit: cover;
+  &:hover {
+    border: 0px solid black;
+    height: 72px;
+    width: 72px;
+  }
 `
 const FlexStyleDiv = styled.div`
-  border-radius: 8px;
   margin-top: 8px;
   display: flex;
   justify-content: center;
@@ -49,7 +53,11 @@ class StyleSelector extends React.Component {
           {
             this.props.styles.map((style) => {
               return (
-                <Img key={style.style_id} src={style.photos[0].thumbnail_url} onClick={this.handleClick.bind(this, style.style_id, style.name)} a=''></Img>
+                <Img key={style.style_id}
+                  src={style.photos[0].thumbnail_url}
+                  onClick={this.handleClick.bind(this, style.style_id, style.name)}
+                  a=''
+                ></Img>
               );
             })
           }

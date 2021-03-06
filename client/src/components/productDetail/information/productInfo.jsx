@@ -1,10 +1,10 @@
 /* eslint-disable */
 import React from 'react';
 import styled from 'styled-components';
+import StarRating from '../../shared/starRating.jsx';
 
 const Div = styled.div`
-  border: 0px solid grey;
-  border-radius: 8px;
+  border: 1px solid grey;
   padding: 16px 32px 16px 32px;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
   margin: 16px 12px 16px 12px;
@@ -21,7 +21,8 @@ class ProductInfo extends React.Component {
   render() {
     return (
       <Div>
-        <h5>*Rating and Review Link Here*</h5>
+        <h5 style={{float: "right"}}>Review Link Here</h5>
+        <StarRating averageRating={4.5} height={21} width={18} />
         <h3>{this.props.category}</h3>
         <h1>{this.props.name}</h1>
         <h4>${this.props.price}</h4>

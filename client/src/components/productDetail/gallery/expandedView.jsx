@@ -14,7 +14,7 @@ const Div = styled.div`
   backdrop-filter: blur(8px) contrast(70%);
 `
 const Img = styled.img`
-  border-radius: 16px;
+  border-radius: 4px;
   margin: auto;
   max-height: 920px;
   max-width: 1280px;

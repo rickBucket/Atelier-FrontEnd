@@ -8,11 +8,11 @@ import QuestionModal from './QuestionModal.jsx';
 import Question from './Question.jsx';
 
 const Container = styled.div`
-  border: 2px solid black;
   border-radius: 10px;
   padding: 5px;
   margin: 5px;
   font-family: Arial;
+  max-width: 1280px;
 `;
 
 const ButtonA = styled.button`
@@ -23,7 +23,7 @@ const ButtonA = styled.button`
   margin-left: 25px;
 
   &:hover {
-    background-color: grey;
+    background-color: lightgrey;
     border: 1px solid black;
   border-radius: 5px;
   transition: all ease 0.3s;
@@ -38,7 +38,7 @@ const ButtonB = styled.button`
   margin-left: 10px;
 
   &:hover {
-    background-color: grey;
+    background-color: lightgrey;
     border: 1px solid black;
   border-radius: 5px;
   transition: all ease 0.3s;

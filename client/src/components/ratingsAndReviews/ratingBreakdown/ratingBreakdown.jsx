@@ -50,7 +50,6 @@ class RatingBreakdown extends React.Component {
 
     const ratingsObj = this.props.metaData.ratings;
     const recommendedObj = this.props.metaData.recommended;
-    console.log(this.props.metaData)
 
     return(
       <div style={gridLayout}>

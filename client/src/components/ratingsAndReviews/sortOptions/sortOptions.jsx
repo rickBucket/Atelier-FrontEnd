@@ -1,11 +1,9 @@
 import React from 'react';
 
 const optionsBar = {
-  width: '20%',
+  width: '25%',
   border: 'none',
   textAlign: 'center',
-  borderRadius: '5px',
-  boxShadow: '5px 5px 5px teal',
   cursor: 'pointer'
 }
 

@@ -10,8 +10,9 @@ const ContainerA = styled.div`
   border-radius: 12px;
   margin: 12px;
   padding: 0px 20px 0px 20px;
-  box-shadow: 3px 3px 8px rgba(0,0,0,0.5);
-  max-width: 800px;
+  width: 60%;
+  max-width: 80%;
+  display: block;
 `;
 
 const EachQ = styled.div`

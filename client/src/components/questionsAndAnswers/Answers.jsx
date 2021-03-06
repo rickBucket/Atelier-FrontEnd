@@ -62,11 +62,7 @@ class Answers extends React.Component {
       });
   }
 
-
-
   render() {
-    console.log(this.props.item.answerer_name);
-    console.log(this.props.seller);
     return (
       <div>
         <AnwserDiv>

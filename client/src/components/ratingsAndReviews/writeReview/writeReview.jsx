@@ -97,6 +97,7 @@ class WriteReview extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      mouseOver: [0,0,0,0,0],
       product_id: this.props.productID,
       body: '',
       summary: '',
@@ -205,8 +206,37 @@ class WriteReview extends React.Component {
           <div>
               <b>* Overall</b>
               <br />
+
+             {
+               this.state.mouseOver[0] === 1
+               ? <span className="fa fa-star" onMouseEnter={() => {this.setState({mouseOver: [1, 0, 0, 0, 0]})}} onClick={() => {this.setState({rating: 1, mouseOver: [1, 0, 0, 0, 0]})}}></span>
+               : <span className="fa fa-star-o" onMouseEnter={() => {this.setState({mouseOver: [1, 0, 0, 0, 0]})}}></span>
+             }
+             {
+             this.state.mouseOver[1] === 1
+               ? <span className="fa fa-star" onMouseEnter={() => {this.setState({mouseOver: [1, 1, 0, 0, 0]})}} onClick={() => {this.setState({rating: 2, mouseOver: [1, 1, 0, 0, 0]})}}></span>
+               : <span className="fa fa-star-o" onMouseEnter={() => {this.setState({mouseOver: [1, 1, 0, 0, 0]})}}></span>
+             }
+             {
+             this.state.mouseOver[2] === 1
+               ? <span className="fa fa-star" onMouseEnter={() => {this.setState({mouseOver: [1, 1, 1, 0, 0]})}} onClick={() => {this.setState({rating: 3,  mouseOver: [1, 1, 1, 0, 0]})}}></span>
+               : <span className="fa fa-star-o" onMouseEnter={() => {this.setState({mouseOver: [1, 1, 1, 0, 0]})}}></span>
+             }
+             {
+             this.state.mouseOver[3] === 1
+               ? <span className="fa fa-star" onMouseEnter={() => {this.setState({mouseOver: [1, 1, 1, 1, 0]})}} onClick={() => {this.setState({rating: 4,  mouseOver: [1, 1, 1, 1, 0]})}}></span>
+               : <span className="fa fa-star-o" onMouseEnter={() => {this.setState({mouseOver: [1, 1, 1, 1, 0]})}}></span>
+             }
+             {
+             this.state.mouseOver[4] === 1
+               ? <span className="fa fa-star" onClick={() => {this.setState({rating: 5,  mouseOver: [1, 1, 1, 1, 1]})}}></span>
+               : <span className="fa fa-star-o" onMouseEnter={() => {this.setState({mouseOver: [1, 1, 1, 1, 1]})}}></span>
+             }
+              {/* {
+              this.state.mouseOver &&
               <input type="radio" id="star1" name="rating" value="1" onClick={this.starRadioClick}></input>
-              <label for="star1"><span className="fa fa-star">1</span></label>
+            }
+            <label for="star1"><span className="fa fa-star" onMouseEnter={() => {this.setState({mouseOver: true})}} onMouseLeave={() => {this.setState({mouseOver: false})}}>1</span></label>
               <input type="radio" id="star2" name="rating" value="2" onClick={this.starRadioClick}></input>
               <label for="star2"><span className="fa fa-star">2</span></label>
               <input type="radio" id="star3" name="rating" value="3" onClick={this.starRadioClick}></input>
@@ -214,7 +244,7 @@ class WriteReview extends React.Component {
               <input type="radio" id="star4" name="rating" value="4" onClick={this.starRadioClick}></input>
               <label for="star4"><span className="fa fa-star">4</span></label>
               <input type="radio" id="star5" name="rating" value="5" onClick={this.starRadioClick}></input>
-              <label for="star5"><span className="fa fa-star">5</span></label>
+              <label for="star5"><span className="fa fa-star">5</span></label> */}
               <br />
               <small>
                 1 - Poor

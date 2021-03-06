@@ -13,14 +13,16 @@ const SearchDiv = styled.div`
   display: flex;
 `;
 const SearchBar = styled.input`
-  width: 100%;
-  border: 1px solid grey;
-  border-right: none;
-  padding: 5px;
-  border-radius: 5px 0 0 5px;
-  outline: none;
-  color: black;
-  font-size: 15px;
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    font-size: 16px;
+    background-color: none;
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    outline: none;
 `;
 
 const SearchBtn = styled.button`
@@ -64,7 +66,7 @@ class Search extends React.Component {
       <form onSubmit={event => {event.preventDefault(); }}>
         <SearchDiv className='searchBar'>
         <SearchBar placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...        ' type='text' value={this.state.text}  onChange={this.handleSubmit} ></SearchBar>
-        <SearchBtn className='search_button'> Go! </SearchBtn>
+        <SearchBtn >🔍</SearchBtn>
         </SearchDiv>
       </form>
       </Container>

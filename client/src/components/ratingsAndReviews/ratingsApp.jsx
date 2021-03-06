@@ -17,6 +17,13 @@ const gridLayout = {
   height: '70vh'
 };
 
+const mainDiv = {
+  maxWidth: '70%',
+  maxHeight: '60%',
+  margin: 'auto',
+  fontFamily: 'helvetica'
+}
+
 const ratingGrid = {
   gridColumn: '1',
   gridRow: '1/3',
@@ -30,7 +37,7 @@ const addReviewBtnStyle = {
 const modalStyle = {
   backdropFilter: 'blur(8px) contrast(70%)',
   backgroundColor: 'rgb(0,0,0)', /* Fallback color */
-  backgroundColor: 'rgba(0,0,0,0.4)', /* Overlay effect: translucent background: black w/ partial opacity */
+  backgroundColor: 'rgba(0,0,0,0.4)', /* Overlay effect: translucent
   zIndex: '1', /* Overlay effect: positioned over other containers */
   width: '100%', /* Full width */
   height: '100%', /* Full height */
@@ -209,12 +216,7 @@ class RatingsApp extends React.Component {
       )
     }
     return(
-      <div style={{
-        maxWidth: '70%',
-        maxHeight: '60%',
-        margin: 'auto',
-        fontFamily: 'helvetica'
-      }}>
+      <div style={mainDiv}>
 
         {
           this.state.reviewsReady === true &&

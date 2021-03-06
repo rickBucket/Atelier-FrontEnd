@@ -15,6 +15,22 @@ const characteristicsBar = {
   backgroundColor: 'rgba(232, 232, 232, .8)',
 }
 
+const marginLeft = {
+  marginLeft: 'auto',
+   position: 'relative'
+}
+
+const marginCenter = {
+  marginLeft: 'auto',
+  marginRight: 'auto',
+  position: 'relative'
+}
+
+const marginRight = {
+  marginRight: 'auto',
+  position: 'relative'
+}
+
 
 class ProductBreakdown extends React.Component {
   constructor(props) {
@@ -39,11 +55,11 @@ class ProductBreakdown extends React.Component {
             }}><div style={{fontSize: '13px', color: 'black'}}>Comfort</div>
 
 
-             <div style={{display: 'flex', justifyContent: 'space-evenly', fontSize: '11px', color: 'grey'}}>
-             <div>
+             <div style={{display: 'flex', fontSize: '11px', color: 'grey'}}>
+             <div style={marginRight}>
               Uncomfortable
              </div>
-             <div>
+             <div style={marginLeft}>
               Perfect
              </div>
              </div>
@@ -66,13 +82,13 @@ class ProductBreakdown extends React.Component {
         }}><div style={{fontSize: '13px', color: 'black'}}>Fit</div>
 
          <div style={{display: 'flex', justifyContent: 'space-evenly', fontSize: '11px', color: 'grey'}}>
-          <div>
+          <div style={marginRight}>
           Runs tight
           </div>
-          <div>
+          <div style={marginCenter}>
           Perfect
           </div>
-          <div>
+          <div style={marginLeft}>
            Runs long
           </div>
         </div>
@@ -95,13 +111,13 @@ class ProductBreakdown extends React.Component {
         }}><div style={{fontSize: '13px', color: 'black'}}>Length</div>
 
          <div style={{display: 'flex', justifyContent: 'space-evenly', fontSize: '11px', color: 'grey'}}>
-          <div>
+          <div style={marginRight}>
           Runs short
           </div>
-          <div>
+          <div style={marginCenter}>
           Perfect
           </div>
-          <div>
+          <div style={marginLeft}>
            Runs long
           </div>
         </div>
@@ -124,10 +140,10 @@ class ProductBreakdown extends React.Component {
         }}><div style={{fontSize: '13px', color: 'black'}}>Quality</div>
 
           <div style={{display: 'flex', justifyContent: 'space-evenly', fontSize: '11px', color: 'grey'}}>
-          <div>
+          <div style={marginRight}>
           Poor
           </div>
-          <div>
+          <div style={marginLeft}>
           Perfect
           </div>
           </div>
@@ -151,13 +167,13 @@ class ProductBreakdown extends React.Component {
 
 
           <div style={{display: 'flex', justifyContent: 'space-evenly', fontSize: '11px', color: 'grey'}}>
-          <div>
+          <div style={marginRight}>
           Too small
           </div>
-          <div>
+          <div style={marginCenter}>
           Perfect
           </div>
-          <div>
+          <div style={marginLeft}>
            Too wide
           </div>
         </div>
@@ -180,13 +196,13 @@ class ProductBreakdown extends React.Component {
         }}><div style={{fontSize: '13px', color: 'black'}}>Width</div>
 
           <div style={{display: 'flex', justifyContent: 'space-evenly', fontSize: '11px', color: 'grey'}}>>
-          <div>
+          <div style={marginRight}>
           Too narrow
           </div>
-          <div>
+          <div style={marginCenter}>
           Perfect
           </div>
-          <div>
+          <div style={marginLeft}>
            Too wide
           </div>
         </div>

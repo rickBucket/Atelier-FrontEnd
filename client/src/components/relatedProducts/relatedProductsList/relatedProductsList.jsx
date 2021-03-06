@@ -100,29 +100,25 @@ export default RelatedProductList;
 
 const LeftButtonWrapper = styled.div`
   position: absolute;
-  left: -3%;
+  left: 1%;
   top: 0px;
   padding-left: 60px;
   height: 89%;
-  background: white;
-  backdrop-filter: blur(15px) contrast(70%);
   border: none;
   cursor: pointer;
-  z-index: 0;
+  z-index: 1;
   outline: 0;
 `;
 
 const RightButtonWrapper = styled.div`
   position: absolute;
-  right: -3%;
+  right: -1%;
   top: 0px;
   padding-left: 60px;
   height: 89%;
-  background: white;
-  backdrop-filter: blur(8px) contrast(70%);
   border: none;
   cursor: pointer;
-  z-index: 0;
+  z-index: 1;
   outline: 0;
 `;
 
@@ -130,22 +126,28 @@ const LeftButton = styled.button`
   position: absolute;
   left: 2%;
   top: 25%;
-  background: none;
-  border: none;
+  background-color: white;
+  border: 1px solid black;
   cursor: pointer;
   z-index: 100;
-  font-size: 30px;
-  color: black;
-  outline: 0;
+  font-size: 40px;
+  &:hover {
+    background-color: black;
+    color: white;
+  }
 `;
 
 const RightButton = styled.button`
   position: absolute;
   right: 2%;
   top: 25%;
-  background: none;
-  border: none;
+  background-color: white;
+  border: 1px solid black;
   cursor: pointer;
   z-index: 100;
-  font-size: 30px;
+  font-size: 40px;
+  &:hover {
+    background-color: black;
+    color: white;
+  }
 `;

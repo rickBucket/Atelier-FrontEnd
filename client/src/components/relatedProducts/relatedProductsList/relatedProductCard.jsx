@@ -36,6 +36,7 @@ class RelatedProductCard extends React.Component {
     height: 100%;
     width: 100%;
     object-fit: contain;
+    object-position: 50% 0;
     z-index: 0;
   `;
   }
@@ -184,7 +185,7 @@ class RelatedProductCard extends React.Component {
         }
         {
           this.state.loaded === 2 &&
-          <CardContainer>
+          <CardContainer >
               <ButtonWrapper>
               <CompareButton
                 onClick={this.handleCompareClick}
@@ -192,7 +193,7 @@ class RelatedProductCard extends React.Component {
               </ButtonWrapper>
 
             <this.ImageWrapper>
-              <this.Image src={this.state.featuredURL} width="100%" height="auto"></this.Image>
+              <this.Image src={this.state.featuredURL} ></this.Image>
             </this.ImageWrapper>
 
             <ProductContentWrapper>{this.state.productIDInfo.category}</ProductContentWrapper>

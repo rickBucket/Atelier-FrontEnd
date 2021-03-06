@@ -8,7 +8,7 @@ const FlexDiv = styled.div`
   margin: 64px 12px 12px -32px;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
   overflow-x: hidden;
-  width: 78px;
+  width: 77px;
   height: 480px;
   display: flex;
   flex-wrap: wrap;
@@ -31,6 +31,12 @@ const Img = styled.img`
   object-fit: cover;
   cursor: pointer;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+  transition-duration: 0.2s;
+  &:hover {
+    margin: 4px;
+    height: 68px;
+    width: 69px;
+  }
 `
 const Button = styled.div`
   border-radius: 50%;
@@ -41,6 +47,9 @@ const Button = styled.div`
   z-index: 20;
   background: rgba(255,255,255,0.25);
   backdrop-filter: blur(8px) contrast(80%);
+  &:hover {
+    background: rgba(255,255,255,0.4);
+  }
 `
 
 class ProductShowcase extends React.Component {
@@ -65,6 +74,8 @@ class ProductShowcase extends React.Component {
   }
 
   nextPhoto(flag) {
+    console.log(this.state.photos);
+    console.log(this.state.currentPhoto);
     this.setState({
       currentPhoto: this.state.photos[(this.state.photos.indexOf(this.state.currentPhoto) + flag + this.state.photos.length) % this.state.photos.length]
     });
@@ -78,16 +89,22 @@ class ProductShowcase extends React.Component {
           className="fa fa-expand"
           onClick={this.handleExpand}
         />
-        <Button
-          style={{margin: "276px 20px -64px -76px"}}
-          onClick={this.nextPhoto.bind(this, 1)}
-          className="fa fa-arrow-right"
-        />
-        <Button
-          style={{margin: "276px 488px -64px -552px"}}
-          onClick={this.nextPhoto.bind(this, -1)}
-          className="fa fa-arrow-left"
-        />
+        {
+          this.state.currentPhoto.url !== this.state.photos[this.state.photos.length - 1].url &&
+          <Button
+            style={{margin: "276px 20px -64px -76px"}}
+            onClick={this.nextPhoto.bind(this, 1)}
+            className="fa fa-arrow-right"
+          />
+        }
+        {
+          this.state.currentPhoto.url !== this.state.photos[0].url &&
+          <Button
+            style={{margin: "276px 488px -64px -552px"}}
+            onClick={this.nextPhoto.bind(this, -1)}
+            className="fa fa-arrow-left"
+          />
+        }
         <PrimaryImageView
           handleExpand={this.handleExpand}
           photo={this.state.currentPhoto.url}

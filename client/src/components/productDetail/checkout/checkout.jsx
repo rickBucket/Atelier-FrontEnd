@@ -33,6 +33,9 @@ const Selector = styled.select`
   cursor: pointer;
   width: 40%;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+  &:hover {
+
+  }
 `
 const FlexDiv = styled.div`
   margin: 5px;

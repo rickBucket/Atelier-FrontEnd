@@ -2,27 +2,17 @@ import React from 'react';
 import ReviewList from './reviewList.jsx';
 import axios from 'axios';
 import StarRating from '../../shared/starRating.jsx';
+import PhotosMap from './photosMap.jsx';
 
 const gridLayout = {
   display: 'grid',
   gridTemplateColumns: 'repeat(2, 1fr)',
-  gridAutoFlow: 'dense',
-  //gridTemplateRows: 'minmax(5, 1fr) 200px',
-  gridAutoRows: 'auto',
-  // borderRadius: '20px',
-  border: '1px solid grey',
-  // borderColor: 'grey',
-  // borderWidth: '1px',
-  // boxShadow: '5px 5px 10px grey',
-  // gridGap: '20px',
+  gridTemplatRows: 'repeat(7, 1fr)',
+  borderBottom: '1px solid grey',
   padding: '10px',
-  wrap: 'nowrap',
-  alignItems: 'center'
 };
 
 const starLayout = {
-  // boxShadow: '5px 5px 10px grey',
-  // borderRadius: '10px',
   gridColumn: '1/3',
   fontSize: '20px',
   display: 'flex',
@@ -31,8 +21,6 @@ const starLayout = {
 };
 
 const nameLayout = {
-  // boxShadow: '5px 5px 10px grey',
-  // borderRadius: '10px',
   padding: '5px',
   textAlign: 'right',
   gridRow: '1',
@@ -42,8 +30,6 @@ const nameLayout = {
 };
 
 const dateLayout = {
-  // boxShadow: '5px 5px 10px grey',
-  // borderRadius: '10px',
   padding: '5px',
   textAlign: 'center',
   gridRow: '1',
@@ -53,8 +39,6 @@ const dateLayout = {
 };
 
 const reviewLayout = {
-  // boxShadow: '5px 5px 10px grey',
-  // borderRadius: '10px',
   padding: '5px',
   justifyContent: 'center',
   gridRow: '2',
@@ -63,42 +47,47 @@ const reviewLayout = {
 };
 
 const bodyLayout = {
-  // boxShadow: '5px 5px 10px grey',
-  // borderRadius: '10px',
   padding: '5px',
   fontSize: '13px',
   gridRow: '3',
   gridColumnEnd: 'span 3'
 }
 
-const responseLayout = {
-  // boxShadow: '5px 5px 10px grey',
-  // borderRadius: '10px',
-  padding: '5px',
-  fontSize: '13px',
-  gridRow: '5',
-  gridColumn: '1/-1',
-  backgroundColor: 'lightgrey'
-};
-
 const recommendLayout = {
-  // boxShadow: '5px 5px 10px grey',
-  // borderRadius: '10px',
   padding: '5px',
-  fontSize: '13px',
+  color: 'grey',
+  fontSize: '12px',
   gridRow: '4',
   gridColumn: '1/-1'
 };
 
+const responseLayout = {
+  padding: '5px',
+  fontSize: '13px',
+  gridRow: '5',
+  gridColumnEnd: 'span 3',
+  backgroundColor: 'lightgrey'
+};
+
+const photoLayout = {
+  gridRow: '6',
+  alignContent: 'left',
+  float: 'left',
+  gridColumnEnd: 'span 3'
+}
+
 const helpfulnessLayout = {
-  // boxShadow: '5px 5px 10px grey',
-  // borderRadius: '10px',
   padding: '5px',
   color: 'grey',
   fontSize: '11px',
-  gridRow: '6',
+  gridRow: '8',
   gridColumn: '1/-1',
 };
+
+const emptyDiv = {
+  height: '0px',
+  width: '0px'
+}
 
 
 
@@ -142,11 +131,12 @@ class ReviewListEntry extends React.Component {
 
   render() {
     var review = this.props.review
+    console.log(review.summary)
     return(
       <div className="ratings-flexbox-container" style={gridLayout}>
 
-          <div style={{display: 'flex', wrap: 'nowrap'}}>
-           <StarRating averageRating={review.rating} height={15} width={13}/>
+          <div style={{display: 'flex', wrap: 'nowrap', zIndex: '-1'}}>
+           <StarRating averageRating={review.rating} height={16} width={13}/>
           </div>
         <br />
 
@@ -161,10 +151,11 @@ class ReviewListEntry extends React.Component {
         <br />
 
         {
-          review.summary &&
-        <div style={reviewLayout}>
+          review.summary
+        ? <div style={reviewLayout}>
           {review.summary}
-        </div>
+         </div>
+        : <div style={emptyDiv}></div>
         }
         <br />
 
@@ -174,22 +165,30 @@ class ReviewListEntry extends React.Component {
         <br />
 
         {
-        review.response !== null &&
-        <div style={responseLayout}>
+        review.response !== null
+        ? <div style={responseLayout}>
           <b>Response from seller: </b>
           <br />
           <div>{review.response}</div>
         </div>
+        : <div style={emptyDiv}></div>
         }
         <br />
 
         {
-        review.recommend === true &&
-        <div style={recommendLayout}>
+        review.recommend === true
+        ? <div style={recommendLayout}>
           {`✓ I recommend this product`}
         </div>
+        : <div style={emptyDiv}></div>
         }
         <br />
+
+        {
+          review.photos.length > 0
+          ? <PhotosMap photos={review.photos} style={photoLayout}/>
+          : <div style={emptyDiv}></div>
+        }
 
         <div style={helpfulnessLayout}>
           {`Helpful?`} <u onClick={this.handlePutEntry} id="helpful">Yes</u> {`(${review.helpfulness}) | `}<u onClick={this.handlePutEntry} id="report">Report</u>

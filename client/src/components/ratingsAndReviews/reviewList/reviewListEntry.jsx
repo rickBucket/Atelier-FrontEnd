@@ -6,23 +6,12 @@ import StarRating from '../../shared/starRating.jsx';
 const gridLayout = {
   display: 'grid',
   gridTemplateColumns: 'repeat(2, 1fr)',
-  gridAutoFlow: 'dense',
-  //gridTemplateRows: 'minmax(5, 1fr) 200px',
-  gridAutoRows: 'auto',
-  // borderRadius: '20px',
+  gridTemplatRows: 'repeat(5, 1fr)',
   border: '1px solid grey',
-  // borderColor: 'grey',
-  // borderWidth: '1px',
-  // boxShadow: '5px 5px 10px grey',
-  // gridGap: '20px',
   padding: '10px',
-  wrap: 'nowrap',
-  alignItems: 'center'
 };
 
 const starLayout = {
-  // boxShadow: '5px 5px 10px grey',
-  // borderRadius: '10px',
   gridColumn: '1/3',
   fontSize: '20px',
   display: 'flex',
@@ -31,8 +20,6 @@ const starLayout = {
 };
 
 const nameLayout = {
-  // boxShadow: '5px 5px 10px grey',
-  // borderRadius: '10px',
   padding: '5px',
   textAlign: 'right',
   gridRow: '1',
@@ -42,8 +29,6 @@ const nameLayout = {
 };
 
 const dateLayout = {
-  // boxShadow: '5px 5px 10px grey',
-  // borderRadius: '10px',
   padding: '5px',
   textAlign: 'center',
   gridRow: '1',
@@ -53,8 +38,6 @@ const dateLayout = {
 };
 
 const reviewLayout = {
-  // boxShadow: '5px 5px 10px grey',
-  // borderRadius: '10px',
   padding: '5px',
   justifyContent: 'center',
   gridRow: '2',
@@ -63,8 +46,6 @@ const reviewLayout = {
 };
 
 const bodyLayout = {
-  // boxShadow: '5px 5px 10px grey',
-  // borderRadius: '10px',
   padding: '5px',
   fontSize: '13px',
   gridRow: '3',
@@ -72,8 +53,6 @@ const bodyLayout = {
 }
 
 const responseLayout = {
-  // boxShadow: '5px 5px 10px grey',
-  // borderRadius: '10px',
   padding: '5px',
   fontSize: '13px',
   gridRow: '5',
@@ -82,8 +61,6 @@ const responseLayout = {
 };
 
 const recommendLayout = {
-  // boxShadow: '5px 5px 10px grey',
-  // borderRadius: '10px',
   padding: '5px',
   fontSize: '13px',
   gridRow: '4',
@@ -91,8 +68,6 @@ const recommendLayout = {
 };
 
 const helpfulnessLayout = {
-  // boxShadow: '5px 5px 10px grey',
-  // borderRadius: '10px',
   padding: '5px',
   color: 'grey',
   fontSize: '11px',
@@ -174,20 +149,22 @@ class ReviewListEntry extends React.Component {
         <br />
 
         {
-        review.response !== null &&
-        <div style={responseLayout}>
+        review.response !== null
+        ? <div style={responseLayout}>
           <b>Response from seller: </b>
           <br />
           <div>{review.response}</div>
         </div>
+        : <div style={{height: '0px', width: '0px'}}></div>
         }
         <br />
 
         {
-        review.recommend === true &&
-        <div style={recommendLayout}>
+        review.recommend === true
+        ? <div style={recommendLayout}>
           {`✓ I recommend this product`}
         </div>
+        : <div style={{height: '0px', width: '0px'}}></div>
         }
         <br />
 

@@ -56,7 +56,8 @@ class RatingBreakdown extends React.Component {
         <div style={{
           gridRow: '1',
           gridColumn: '1',
-          color: 'grey'
+          color: 'grey',
+          textAlign: 'center'
         }}>
           {`Ratings & Reviews`}
         </div>
@@ -65,21 +66,25 @@ class RatingBreakdown extends React.Component {
           gridColumn: '1',
           gridRow: '2',
           fontSize: '80px',
+          textAlign: 'center'
         }}>
           {this.averageRating(ratingsObj)}
         </div>
 
         <div style={{
           gridColumn: '1',
-          gridRow: '3'
+          gridRow: '3',
           }}>
+          <div style={{display: 'flex', justifyContent: 'space-around'}}>
           <StarRating averageRating={this.averageRating(ratingsObj)} height={36} width={31}/>
+          </div>
         </div>
 
         <div style={{
           gridColumn: '1',
           gridRow: '4',
-          color: 'grey'
+          color: 'grey',
+          textAlign: 'center'
         }}>
           {`${this.recommendedAverage(recommendedObj)}% of reviews recommend this product`}
         </div>

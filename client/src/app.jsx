@@ -6,6 +6,9 @@ import ProductMainView from './components/productDetail/productMainView.jsx';
 import RelatedProductsMainView from './components/relatedProducts/relatedProductsMainView.jsx';
 // IMPORT YOUR TOP LEVEL COMPONENTS HERE
 import QuestionMaster from './components/questionsAndAnswers/QuestionMaster.jsx';
+import styled from 'styled-components';
+
+
 
 class App extends React.Component {
   constructor(props) {
@@ -16,7 +19,6 @@ class App extends React.Component {
       loadedID: 0,
       productIndex: 0
     };
-    this.widgetSelect = this.widgetSelect.bind(this);
     this.nextProduct = this.nextProduct.bind(this);
     this.fetchProductID = this.fetchProductID.bind(this);
   }
@@ -39,13 +41,6 @@ class App extends React.Component {
       });
   }
 
-  widgetSelect(e) {
-    e.preventDefault();
-    this.setState({
-      widget_id: e.target.value,
-    });
-  }
-
   nextProduct(e) {
     e.preventDefault();
     this.setState({
@@ -58,33 +53,24 @@ class App extends React.Component {
   render() {
     return (
       <div>
+
         <button type="submit" id="clear" value="0" onClick={this.widgetSelect}>CLEAR</button>
         <button type="submit" id="next" onClick={this.nextProduct}>Next Product</button>
-        {
-          this.state.loadedID === 1 &&
+        { this.state.loadedID === 1 &&
+        <div>
           <div>
-            <button type="submit" value="1" onClick={this.widgetSelect}>Product Detail</button>
-            <button type="submit" value="2" onClick={this.widgetSelect}>Related Products</button>
-            <button type="submit" value="3" onClick={this.widgetSelect}>Questionable Answers</button>
-            <button type="submit" value="4" onClick={this.widgetSelect}>Ratings and Reviews</button>
-        </div>
-        } {
-          this.state.loadedID === 1 && this.state.widget_id === '1' &&
-          <div className="productDetail">
-            <ProductMainView productID={this.state.productID}/>
+          <ProductMainView productID={this.state.productID}/>
           </div>
-        } {
-          this.state.loadedID === 1 && this.state.widget_id === "2" &&
-          // <div>RENDER RELATED PRODUCTS HERE</div>
+          <div>
           <RelatedProductsMainView productID={this.state.productID}/>
-        } {
-          this.state.loadedID === 1 && this.state.widget_id === "3" &&
-          <QuestionMaster productID={this.state.productID}/>
-        } {
-          this.state.loadedID === 1 && this.state.widget_id === "4" &&
-          <div>
-            <RatingsApp productID={this.state.productID}/>
           </div>
+          <div>
+          <QuestionMaster productID={this.state.productID}/>
+          </div>
+          <div>
+          <RatingsApp productID={this.state.productID}/>
+          </div>
+        </div>
         }
       </div>
     );

@@ -7,6 +7,14 @@ import styled from 'styled-components';
 import QuestionModal from './QuestionModal.jsx';
 import Question from './Question.jsx';
 
+
+//justify content center
+//need another outermost container for flex and justiify
+const FlexContainer = styled.div`
+display: flex;
+justify-content: center;
+`;
+
 const Container = styled.div`
   border-radius: 10px;
   padding: 5px;
@@ -107,6 +115,7 @@ class QuestionMaster extends React.Component {
 
   render() {
     return (
+    <FlexContainer>
       <Container>
         <h1>Question's and Answers</h1>
         <Search />
@@ -131,6 +140,7 @@ class QuestionMaster extends React.Component {
         closeModal={this.selectModal}
         product_id={this.props.productID}/>
       </Container>
+    </FlexContainer>
     );
   }
 }

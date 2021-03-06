@@ -10,8 +10,7 @@ const ContainerA = styled.div`
   border-radius: 12px;
   margin: 12px;
   padding: 0px 20px 0px 20px;
-  width: 60%;
-  max-width: 80%;
+  width: 100%;
   display: block;
 `;
 

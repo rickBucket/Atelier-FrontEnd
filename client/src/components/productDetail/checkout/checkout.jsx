@@ -51,6 +51,7 @@ class Checkout extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleQuantity = this.handleQuantity.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleFav = this.handleFav.bind(this);
   }
 
   handleChange(e) {
@@ -74,6 +75,10 @@ class Checkout extends React.Component {
   }
 
   handleSubmit(e) {
+    e.preventDefault();
+  }
+
+  handleFav(e) {
     e.preventDefault();
   }
 
@@ -110,7 +115,7 @@ class Checkout extends React.Component {
           </FlexDiv>
           <FlexDiv>
             <ButtonCheckout onClick={this.handleSubmit}>Add to Bag</ButtonCheckout>
-            <ButtonFav onClick={this.handleSubmit}>STAR</ButtonFav>
+            <ButtonFav onClick={this.handleFav}>STAR</ButtonFav>
           </FlexDiv>
         </form>
       </InvisDiv>

@@ -24,14 +24,7 @@ const FlexDiv = styled.div`
     background: transparent; /* Chrome/Safari/Webkit */
   }
 `
-const InvisDiv = styled.div`
-  border-radius: 12px;
-  padding: 5px;
-  margin: 5px;
-`
 const Img = styled.img`
-  border: 1px solid grey;
-  border-radius: 2px;
   margin: 6px;
   height: 64px;
   width: 64px;
@@ -39,31 +32,8 @@ const Img = styled.img`
   cursor: pointer;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
 `
-const ExpandButton = styled.div`
+const Button = styled.div`
   border-radius: 50%;
-  margin: 84px 16px -64px -72px;
-  padding: 12px 14px 12px 14px;
-  cursor: pointer;
-  float: right;
-  position: relative;
-  z-index: 20;
-  background: rgba(255,255,255,0.25);
-  backdrop-filter: blur(8px) contrast(80%);
-`
-const RightButton = styled.div`
-  border-radius: 50%;
-  margin: 276px 16px -64px -72px;
-  padding: 12px 14px 12px 14px;
-  cursor: pointer;
-  float: right;
-  position: relative;
-  z-index: 20;
-  background: rgba(255,255,255,0.25);
-  backdrop-filter: blur(8px) contrast(80%);
-`
-const LeftButton = styled.div`
-  border-radius: 50%;
-  margin: 276px 470px -64px -548px;
   padding: 12px 14px 12px 14px;
   cursor: pointer;
   float: right;
@@ -102,15 +72,20 @@ class ProductShowcase extends React.Component {
 
   render() {
     return (
-      <InvisDiv>
-        <ExpandButton
+      <div>
+        <Button
+          style={{margin: "84px 16px -64px -72px"}}
           className="fa fa-expand"
           onClick={this.handleExpand}
         />
-        <RightButton onClick={this.nextPhoto.bind(this, 1)}
+        <Button
+          style={{margin: "276px 20px -64px -76px"}}
+          onClick={this.nextPhoto.bind(this, 1)}
           className="fa fa-arrow-right"
         />
-        <LeftButton onClick={this.nextPhoto.bind(this, -1)}
+        <Button
+          style={{margin: "276px 488px -64px -552px"}}
+          onClick={this.nextPhoto.bind(this, -1)}
           className="fa fa-arrow-left"
         />
         <PrimaryImageView
@@ -124,7 +99,7 @@ class ProductShowcase extends React.Component {
             })
           }
         </FlexDiv>
-      </InvisDiv>
+      </div>
     );
   }
 }

@@ -9,7 +9,6 @@ const InvisDiv = styled.div`
   background: rgba(255,255,255,0.1);
 `
 const Img = styled.img`
-  border: 1px solid grey;
   border-radius: 50%;
   margin: 5px;
   cursor: pointer;

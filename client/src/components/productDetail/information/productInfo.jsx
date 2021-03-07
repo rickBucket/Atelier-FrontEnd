@@ -22,7 +22,7 @@ class ProductInfo extends React.Component {
     return (
       <Div>
         <h5 style={{float: "right", "marginTop": "4px"}}>
-          <a href="#moreReviews">
+          <a href="#addReview">
             Read Reviews
           </a>
         </h5>

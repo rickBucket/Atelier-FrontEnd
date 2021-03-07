@@ -233,7 +233,7 @@ const CompareButton = styled.button`
 
 const ButtonWrapper = styled.div`
   position: absolute;
-  z-index: 1;
+  z-index: 10;
 `;
 
 const ProductContentWrapper = styled.div`

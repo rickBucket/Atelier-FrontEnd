@@ -12,10 +12,12 @@ class RelatedProductList extends React.Component {
       relatedProducts: this.props.relatedProducts,
       parentProductIDInfo: '',
       imagesToTheLeft: false,
-      imagesToTheRight: true
+      imagesToTheRight: true,
+      cardOverflow: false,
     }
     this.scrollRight = this.scrollRight.bind(this);
     this.scrollLeft = this.scrollLeft.bind(this);
+    this.isOverflowing = this.isOverflowing.bind(this);
   }
 
   componentDidMount() {
@@ -32,8 +34,9 @@ class RelatedProductList extends React.Component {
       imagesToTheRight: true
     })
     const carousel = document.getElementById('productCarousel');
+    const scrollLeftMax = carousel.scrollWidth - carousel.clientWidth;
     carousel.scrollLeft -= 316;
-    if (carousel.scrollLeft <= 50) {
+    if (carousel.scrollLeft <= 316) {
       this.setState({
         imagesToTheLeft: false,
       });
@@ -47,11 +50,20 @@ class RelatedProductList extends React.Component {
     const carousel = document.getElementById('productCarousel');
     const amountLeftToScroll = carousel.scrollWidth - carousel.clientWidth;
     carousel.scrollLeft += 316;
-    if (carousel.scrollLeft >= amountLeftToScroll) {
+    if (carousel.scrollLeft >= amountLeftToScroll - 316) {
       this.setState({
         imagesToTheRight: false,
       });
     }
+  }
+
+  isOverflowing() {
+    const carousel = document.getElementById('productCarousel');
+    const bool = carousel.scrollHeight > carousel.clientHeight || carousel.scrollWidth > carousel.clientWidth;
+    this.setState({
+      cardOverflow: bool,
+      imagesToTheRight: bool
+    })
   }
 
   render() {
@@ -62,33 +74,25 @@ class RelatedProductList extends React.Component {
     } else {
       return (
         <div>
-
           {this.state.imagesToTheRight ?
             <RightButtonWrapper>
               <RightButton onClick={this.scrollRight}>
                 &#8250;
           </RightButton>
           </RightButtonWrapper> : null
-
         }
-
-          <ListContainer id="productCarousel">
+          <ListContainer id="productCarousel" onLoad={this.isOverflowing}>
             {this.props.relatedProducts.map((product) => {
               return <RelatedProductCard parentProductID={this.props.productID} productID={product}
                 parentProductIDInfo={this.state.parentProductIDInfo}
                 key={product} />
             })}
           </ListContainer>
-
-
             {this.state.imagesToTheLeft ? <LeftButtonWrapper>
               <LeftButton onClick={this.scrollLeft}>
               &#8249;
         </LeftButton>
         </LeftButtonWrapper>: null}
-
-
-
         </div>
 
       )
@@ -151,3 +155,9 @@ const RightButton = styled.button`
     color: white;
   }
 `;
+
+// const OutsideDiv = styled.div`
+//   display: flex;
+//   max-width: 1000px;
+//   justify-content: center;
+// `;

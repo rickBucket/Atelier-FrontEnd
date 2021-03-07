@@ -7,7 +7,7 @@ import PhotosMap from './photosMap.jsx';
 const gridLayout = {
   display: 'grid',
   gridTemplateColumns: 'repeat(2, 1fr)',
-  gridTemplatRows: 'repeat(7, 1fr)',
+  gridTemplatRows: 'repeat(5, 1fr)',
   borderBottom: '1px solid grey',
   padding: '10px',
 };
@@ -70,18 +70,16 @@ const responseLayout = {
 };
 
 const photoLayout = {
-  gridRow: '6',
-  alignContent: 'left',
-  float: 'left',
-  gridColumnEnd: 'span 3'
+  display: 'flex',
 }
 
 const helpfulnessLayout = {
+  display: 'flex',
   padding: '5px',
   color: 'grey',
   fontSize: '11px',
-  gridRow: '8',
-  gridColumn: '1/-1',
+  gridRowEnd: '6',
+  gridColumn: '1',
 };
 
 const emptyDiv = {
@@ -136,7 +134,7 @@ class ReviewListEntry extends React.Component {
       <div className="ratings-flexbox-container" style={gridLayout}>
 
           <div style={{display: 'flex', wrap: 'nowrap', zIndex: '-1'}}>
-           <StarRating averageRating={review.rating} height={16} width={13}/>
+           <StarRating averageRating={review.rating} height={18} width={15}/>
           </div>
         <br />
 

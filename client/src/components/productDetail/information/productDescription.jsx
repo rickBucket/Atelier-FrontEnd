@@ -15,7 +15,7 @@ const FlexDiv = styled.div`
 `
 const Separator = styled.div`
   margin: 20px;
-  background: rgba(0,0,0,0.4);
+  background: rgba(0,0,0,0.7);
   color: rgba(0,0,0,0);
 `
 

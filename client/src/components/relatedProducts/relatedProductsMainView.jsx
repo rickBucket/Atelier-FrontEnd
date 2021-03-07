@@ -29,15 +29,15 @@ class RelatedProductsMainView extends React.Component {
   // add condititonal rendering in case relatedProducts hasn't been defined yet
   render() {
     return (
-      <AllEncompassing>
+      <AllEncompassing id="AllEncompassing">
         <div>
-          Related Products
+          <h3>YOU MAY ALSO LIKE</h3>
         </div>
         <ListWrapper>
           <RelatedProductsList productID={this.props.productID} relatedProducts={this.state.relatedProducts} />
         </ListWrapper>
         <div>
-          Your Outfit
+          <h3>YOUR OUTFIT</h3>
         </div>
         <ListWrapper>
           <YourOutfitList parentProductID={this.props.productID}/>
@@ -51,31 +51,14 @@ export default RelatedProductsMainView;
 
 const AllEncompassing = styled.div`
   padding: 5px 40px 0px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 10px 15%;
+
 `;
 
-// const LeftButton = styled.button`
-//   position: absolute;
-//   left: 2%;
-//   top: 25%;
-//   background: none;
-//   border: none;
-//   cursor: pointer;
-//   z-index: 100;
-//   font-size: 30px;
-// `;
-
-// const RightButton = styled.button`
-//   position: absolute;
-//   right: 2%;
-//   top: 25%;
-//   background: none;
-//   border: none;
-//   cursor: pointer;
-//   z-index: 100;
-//   font-size: 30px;
-// `;
-
 const ListWrapper = styled.div`
-  margin: 10px;
+  margin: 10px 0px 0px;
   position: relative;
 `;

@@ -16,6 +16,7 @@ overflow: auto; /* Enable scroll if needed */
 padding-top: 80px; /* Location of the content container */
 font-size: calc(10px + 2vmin);
 color: black;
+z-index: 150;
 `;
 
 export default ModalWrapper;

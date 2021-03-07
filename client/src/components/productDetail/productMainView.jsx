@@ -91,16 +91,16 @@ class ProductMainView extends React.Component {
     return (
       <div>
         {
+          this.state.selectedPhoto &&
+          <ExpandedView
+            key={this.state.selectedStyle.style_id}
+            photo={this.state.selectedPhoto}
+            unselectPhoto={this.unselectPhoto}
+          />
+        }
+        {
           this.state.loaded === 2 &&
           <InvisDiv>
-            {
-              this.state.selectedPhoto &&
-              <ExpandedView
-                key={this.state.selectedStyle.style_id}
-                photo={this.state.selectedPhoto}
-                unselectPhoto={this.unselectPhoto}
-              />
-            }
             <FlexDiv>
               <ProductShowcase
                 key={this.state.selectedStyle.style_id}

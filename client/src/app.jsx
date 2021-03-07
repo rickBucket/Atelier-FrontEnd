@@ -56,21 +56,14 @@ class App extends React.Component {
 
         <button type="submit" id="clear" value="0" onClick={this.widgetSelect}>CLEAR</button>
         <button type="submit" id="next" onClick={this.nextProduct}>Next Product</button>
-        { this.state.loadedID === 1 &&
-        <div>
+        {
+          this.state.loadedID === 1 &&
           <div>
-          <ProductMainView productID={this.state.productID}/>
+            <ProductMainView productID={this.state.productID}/>
+            <RelatedProductsMainView productID={this.state.productID}/>
+            <QuestionMaster productID={this.state.productID}/>
+            <RatingsApp productID={this.state.productID}/>
           </div>
-          <div>
-          <RelatedProductsMainView productID={this.state.productID}/>
-          </div>
-          <div>
-          <QuestionMaster productID={this.state.productID}/>
-          </div>
-          <div>
-          <RatingsApp productID={this.state.productID}/>
-          </div>
-        </div>
         }
       </div>
     );

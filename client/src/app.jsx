@@ -29,7 +29,7 @@ class App extends React.Component {
   }
 
   fetchProductID() {
-    axios.get('/products/?count=20')
+    axios.get('/products/?count=5&page=4')
       .then(({data})=> {
         this.setState({
           productID: data[this.state.productIndex].id,
@@ -53,7 +53,6 @@ class App extends React.Component {
   render() {
     return (
       <div>
-
         <button type="submit" id="clear" value="0" onClick={this.widgetSelect}>CLEAR</button>
         <button type="submit" id="next" onClick={this.nextProduct}>Next Product</button>
         {

@@ -74,8 +74,6 @@ class ProductShowcase extends React.Component {
   }
 
   nextPhoto(flag) {
-    console.log(this.state.photos);
-    console.log(this.state.currentPhoto);
     this.setState({
       currentPhoto: this.state.photos[(this.state.photos.indexOf(this.state.currentPhoto) + flag + this.state.photos.length) % this.state.photos.length]
     });

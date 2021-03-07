@@ -3,7 +3,10 @@ import React from 'react';
 const imgStyle = {
   height: '60px',
   width: '60px',
-  margin: 'auto',
+  // margin: 'auto',
+  // paddingLeft: '10px',
+  // paddingRight: '10px',
+  // paddingTop: '10px',
   borderRadius: '40px',
   objectFit: 'cover',
   cursor: 'pointer'
@@ -13,8 +16,8 @@ const modalStyle = {
   display: 'flex',
   backdropFilter: 'blur(8px) contrast(70%)',
   backgroundColor: 'rgb(0,0,0)', /* Fallback color */
-  backgroundColor: 'rgba(0,0,0,0.4)', /* Overlay effect: translucent
-  zIndex: '1', /* Overlay effect: positioned over other containers */
+  backgroundColor: 'rgba(0,0,0,0.4)',
+  zIndex: '150',
   width: '100%', /* Full width */
   height: '100%', /* Full height */
   position: 'fixed', /* Fix position on the top-left corner*/
@@ -44,7 +47,7 @@ class PhotoMapEntry extends React.Component {
   render(){
      const url = this.props.photo.url
     return (
-      <div style={{margin: 'auto'}}>
+      <div>
         {
           this.state.expand === true &&
           <div style={modalStyle} onClick={() => {this.setState({expand: false})}}>

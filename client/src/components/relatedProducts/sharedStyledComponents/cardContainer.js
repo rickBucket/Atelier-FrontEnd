@@ -5,8 +5,9 @@ height: 400px;
 width: 275px;
 flex-shrink: 0;
 margin: 0px 10px;
-border: 1px solid grey;
-border-radius: 5px;
+
+border-bottom: 2px solid grey;
+
 background: rgba(255,255,255,0.1);
 &:hover {
   box-shadow: 2px 2px 4px rgba(0,0,0,0.5);
@@ -15,5 +16,5 @@ background: rgba(255,255,255,0.1);
 
 export default CardContainer;
 
-// border: 0px solid grey;
-// box-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+// border-radius: 5px;
+// border-top: 1px solid grey;

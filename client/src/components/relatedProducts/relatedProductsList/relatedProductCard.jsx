@@ -210,7 +210,6 @@ class RelatedProductCard extends React.Component {
           <div>
               <ComparisonModal
             closeModal={this.handleCompareClick}
-            productFeatures={this.state.compareProductsFeatures}
             parentProduct={this.state.parentProductIDInfo.name}
             compareProduct={this.state.productIDInfo.name}
             combinedFeatures={this.state.combinedFeatures}

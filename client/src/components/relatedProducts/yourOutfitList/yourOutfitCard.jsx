@@ -69,7 +69,7 @@ class YourOutfitCard extends React.Component {
           <div>
               <ButtonWrapper>
               <DeleteButton
-                onClick={this.removeOutfit}
+                onClick={this.removeOutfit} style={{fontColor: 'white'}}
               >&#9747;</DeleteButton>
               </ButtonWrapper>
 

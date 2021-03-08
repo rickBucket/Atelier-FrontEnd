@@ -1,6 +1,6 @@
 import React from 'react';
-import ReviewList from './reviewList.jsx';
 import axios from 'axios';
+import ReviewList from './reviewList.jsx';
 import StarRating from '../../shared/starRating.jsx';
 import PhotosMap from './photosMap.jsx';
 
@@ -9,15 +9,17 @@ const gridLayout = {
   gridTemplateColumns: 'repeat(2, 1fr)',
   gridTemplatRows: 'repeat(5, 1fr)',
   borderBottom: '1px solid grey',
-  padding: '10px',
+  paddingTop: '10px',
+  paddingBottom: '10px',
 };
 
 const starLayout = {
   gridColumn: '1/3',
   fontSize: '20px',
   display: 'flex',
-  flexWrap: 'nowrap',
-  width: '100%'
+  wrap: 'nowrap',
+  zIndex: '-1',
+  width: '100%',
 };
 
 const nameLayout = {
@@ -26,7 +28,7 @@ const nameLayout = {
   gridRow: '1',
   gridColumn: '2',
   color: 'grey',
-  fontSize: '13px'
+  fontSize: '13px',
 };
 
 const dateLayout = {
@@ -35,7 +37,7 @@ const dateLayout = {
   gridRow: '1',
   gridColumn: '3',
   color: 'grey',
-  fontSize: '13px'
+  fontSize: '13px',
 };
 
 const reviewLayout = {
@@ -43,22 +45,22 @@ const reviewLayout = {
   justifyContent: 'center',
   gridRow: '2',
   gridColumnEnd: 'span 3',
-  fontWeight: 'bold'
+  fontWeight: 'bold',
 };
 
 const bodyLayout = {
   padding: '5px',
   fontSize: '13px',
   gridRow: '3',
-  gridColumnEnd: 'span 3'
-}
+  gridColumnEnd: 'span 3',
+};
 
 const recommendLayout = {
   padding: '5px',
   color: 'grey',
   fontSize: '12px',
   gridRow: '4',
-  gridColumn: '1/-1'
+  gridColumn: '1/-1',
 };
 
 const responseLayout = {
@@ -66,12 +68,12 @@ const responseLayout = {
   fontSize: '13px',
   gridRow: '5',
   gridColumnEnd: 'span 3',
-  backgroundColor: 'lightgrey'
+  backgroundColor: 'lightgrey',
 };
 
 const photoLayout = {
   display: 'flex',
-}
+};
 
 const helpfulnessLayout = {
   display: 'flex',
@@ -84,76 +86,74 @@ const helpfulnessLayout = {
 
 const emptyDiv = {
   height: '0px',
-  width: '0px'
-}
-
-
+  width: '0px',
+};
 
 class ReviewListEntry extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.handlePutEntry = this.handlePutEntry.bind(this);
     this.averageRating = this.averageRating.bind(this);
   }
 
-  averageRating(obj){
-    var wholeTotal = 0;
-    var responseTotal = 0;
-    for (var star in obj) {
-      wholeTotal += (Number(obj[star]) * Number(star))
-      responseTotal += Number(obj[star])
+  averageRating(obj) {
+    let wholeTotal = 0;
+    let responseTotal = 0;
+    for (const star in obj) {
+      wholeTotal += (Number(obj[star]) * Number(star));
+      responseTotal += Number(obj[star]);
     }
-    var result = wholeTotal / responseTotal;
+    const result = wholeTotal / responseTotal;
     if (isNaN((Math.round(result * 4) / 4).toFixed(1))) {
-      return 0
-    } else {
-      return result.toFixed(1);
+      return 0;
     }
+    return result.toFixed(1);
   }
 
-  handlePutEntry(e){
-    axios.put(`/reviews`, {
+  handlePutEntry(e) {
+    axios.put('/reviews', {
       review_id: this.props.review.review_id,
-      type: e.target.id
+      type: e.target.id,
     })
       .then((results) => {
-        alert('Your request has been received!')
+        alert('Your request has been received!');
       })
       .catch((err) => {
-        console.log(err)
-        alert(`There's been an issue with your request`)
-      })
+        console.log(err);
+        alert('There\'s been an issue with your request');
+      });
   }
 
-
   render() {
-    var review = this.props.review
-    console.log(review.summary)
-    return(
+    const { review } = this.props;
+    return (
       <div className="ratings-flexbox-container" style={gridLayout}>
 
-          <div style={{display: 'flex', wrap: 'nowrap', zIndex: '-1'}}>
-           <StarRating averageRating={review.rating} height={18} width={15}/>
-          </div>
+        <div style={{ display: 'flex', wrap: 'nowrap', zIndex: '-1' }}>
+          <StarRating averageRating={review.rating} height={18} width={15} />
+        </div>
         <br />
 
         <div style={nameLayout}>
-          {review.reviewer_name},
+          {review.reviewer_name}
+          ,
         </div>
         <br />
 
         <div style={dateLayout}>
-          {new Date(review.date).toLocaleDateString(undefined, {year: 'numeric', month: 'long', day: 'numeric' })}
+          {new Date(review.date).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}
         </div>
         <br />
 
         {
           review.summary
-        ? <div style={reviewLayout}>
-          {review.summary}
-         </div>
-        : <div style={emptyDiv}></div>
+            ? (
+              <div style={reviewLayout}>
+                {review.summary}
+              </div>
+            )
+            : <div style={emptyDiv} />
         }
         <br />
 
@@ -164,37 +164,46 @@ class ReviewListEntry extends React.Component {
 
         {
         review.response !== null
-        ? <div style={responseLayout}>
-          <b>Response from seller: </b>
-          <br />
-          <div>{review.response}</div>
-        </div>
-        : <div style={emptyDiv}></div>
+          ? (
+            <div style={responseLayout}>
+              <b>Response from seller: </b>
+              <br />
+              <div>{review.response}</div>
+            </div>
+          )
+          : <div style={emptyDiv} />
         }
         <br />
 
         {
         review.recommend === true
-        ? <div style={recommendLayout}>
-          {`✓ I recommend this product`}
-        </div>
-        : <div style={emptyDiv}></div>
+          ? (
+            <div style={recommendLayout}>
+              ✓ I recommend this product
+            </div>
+          )
+          : <div style={emptyDiv} />
         }
         <br />
 
         {
           review.photos.length > 0
-          ? <PhotosMap photos={review.photos} style={photoLayout}/>
-          : <div style={emptyDiv}></div>
+            ? <PhotosMap photos={review.photos} style={photoLayout} />
+            : <div style={emptyDiv} />
         }
 
         <div style={helpfulnessLayout}>
-          {`Helpful?`} <u onClick={this.handlePutEntry} id="helpful">Yes</u> {`(${review.helpfulness}) | `}<u onClick={this.handlePutEntry} id="report">Report</u>
+          Helpful?
+          {' '}
+          <u onClick={this.handlePutEntry} id="helpful">Yes</u>
+          {' '}
+          {`(${review.helpfulness}) | `}
+          <u onClick={this.handlePutEntry} id="report">Report</u>
         </div>
 
       </div>
-    )
+    );
   }
 }
 
-export default ReviewListEntry
+export default ReviewListEntry;

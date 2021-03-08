@@ -5,7 +5,7 @@ const Modal = styled.div`
 background-color: rgb(0,0,0); /* Fallback color */
 backdrop-filter: blur(4px);
 background-color: rgba(0,0,0,0.4); /* Overlay effect: translucent background: black w/ partial opacity */
-z-index: 1; /* Overlay effect: positioned over other containers */
+z-index: 150; /* Overlay effect: positioned over other containers */
 top: 0;
 left: 0;
 width: 100%; /* Full width */

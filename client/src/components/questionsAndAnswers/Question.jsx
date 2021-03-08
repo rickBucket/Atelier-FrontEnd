@@ -20,6 +20,7 @@ const EachQ = styled.div`
 `;
 
 const MoveRight = styled.div`
+  margin-left: auto;
   display: flex;
   float: right;
 `;
@@ -62,7 +63,7 @@ const Divide = styled.span`
 
 const ScrollList = styled.ul`
   list-style:none;
-  max-height:200px;
+  max-height:350px;
   margin:0;
   overflow:auto;
   padding:0;
@@ -164,6 +165,18 @@ class Question extends React.Component {
 
 
         <div>
+
+        {this.state.itemsToShow <=2 ?
+        <div>
+        {this.state.answers.slice(0,this.state.itemsToShow).map((answer, i) => {
+          return (
+            <ContainerB>
+            <Answers item={answer} key={i} seller={this.props.item.asker_name} reportItem={this.props.item.reported}/>
+            </ContainerB>
+          )
+        })}
+        </div>
+         :
           <ScrollList>
         {this.state.answers.slice(0,this.state.itemsToShow).map((answer, i) => {
           return (
@@ -172,12 +185,14 @@ class Question extends React.Component {
             </ContainerB>
           )
         })}
-        </ScrollList>
+          </ScrollList>
+            }
         {this.state.answers.length >= 2 && !(this.state.expanded) ? (
           <LoadButton onClick={(event) => { this.showMore(); } }> LOAD MORE ANSWERS </LoadButton>
           ) : (
           <LoadButton onClick={(event) => { this.showMore(); }}> Collapse List </LoadButton>
           )}
+
         </div>
           <AnswerModal displayModal={this.state.modal} closeModal={this.selectModal} question_id={this.props.item.question_id}/>
     </ContainerA>

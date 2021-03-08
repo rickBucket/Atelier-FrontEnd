@@ -168,13 +168,13 @@ class RelatedProductCard extends React.Component {
   render() {
     var sale = {
       textDecoration: this.state.salePrice ? 'line-through' : 'none',
-      color: this.state.salePrice ? 'red' : 'black'
+      color: this.state.salePrice ? 'red' : 'black',
+      fontSize: '15px'
     }
     var loading = {
       backgroundImage: 'url("https://mk0wwwpoqcommervacts.kinstacdn.com/wp-content/uploads/2018/11/image3.gif")',
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'contain'
-      // backgroundColor: '#D3D3D3'
     }
     return (
       <div>
@@ -196,13 +196,16 @@ class RelatedProductCard extends React.Component {
               <this.Image src={this.state.featuredURL} ></this.Image>
             </this.ImageWrapper>
 
-            <ProductContentWrapper>{this.state.productIDInfo.category}</ProductContentWrapper>
-            <ProductContentWrapper>{this.state.productIDInfo.name}</ProductContentWrapper>
+            <ProductContentWrapper style={{fontSize: '12px'}}>{this.state.productIDInfo.category}</ProductContentWrapper>
+            <ProductContentWrapper style={{fontSize: '17px', fontWeight: 'bold'}}>{this.state.productIDInfo.name}</ProductContentWrapper>
             <ProductContentWrapper style={sale}>${this.state.productIDInfo.default_price}</ProductContentWrapper>
-            {this.state.salePrice ? <ProductContentWrapper>{this.state.salePrice}</ProductContentWrapper> : null}
+            {this.state.salePrice ? <ProductContentWrapper style={{fontSize: '15px'}}>{this.state.salePrice}</ProductContentWrapper> : null}
             <ProductContentWrapper>
             {this.state.averageRatingLoaded ? <StarRating averageRating={this.state.averageRating} height={18} width={15}/> : null}
             </ProductContentWrapper>
+            <LowerDiv>
+
+            </LowerDiv>
           </CardContainer>
         }
         {
@@ -220,6 +223,17 @@ class RelatedProductCard extends React.Component {
     );
   }
 }
+
+const LowerDiv = styled.div`
+border-bottom: 2px solid grey;
+align: center;
+width: 90%;
+margin-top: 72px;
+margin-left: 5%;
+margin-right: 5%;
+position: relative;
+bottom: 0px;
+`;
 
 const CompareButton = styled.button`
   right: 20%;

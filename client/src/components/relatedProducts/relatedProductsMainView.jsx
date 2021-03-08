@@ -54,11 +54,13 @@ const AllEncompassing = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 10px 15%;
+  margin: 10px auto;
+  max-width: 1200px;
 
 `;
 
 const ListWrapper = styled.div`
   margin: 10px 0px 0px;
   position: relative;
+  width: 100%;
 `;

@@ -14,6 +14,7 @@ const ComparisonModal = (props) => {
     props.closeModal()
   }
 
+
   return (
      <ModalWrapper className="modal"
      onClick={ closeModal }>
@@ -32,6 +33,7 @@ const ComparisonModal = (props) => {
        <CompareWrapper>
           {props.combinedFeatures.map((feature, i) => {
             if (feature) {
+              // console.log(feature.match(/[A-Z][a-z]+/g))
               if (feature[0] === '"') {
                 var cleanFeature = feature.substring(1, feature.length-1)
                 return <TestDiv key={i}>{cleanFeature}</TestDiv>

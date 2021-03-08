@@ -9,6 +9,9 @@ const imgStyle = {
   // paddingTop: '10px',
   borderRadius: '40px',
   objectFit: 'cover',
+  marginLeft: '4px',
+  marginRight: '4px',
+  marginTop: '4px',
   cursor: 'pointer'
 }
 

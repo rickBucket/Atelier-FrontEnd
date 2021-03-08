@@ -7,19 +7,15 @@ import PhotosMap from './photosMap.jsx';
 const gridLayout = {
   display: 'grid',
   gridTemplateColumns: 'repeat(2, 1fr)',
-  gridTemplatRows: 'repeat(5, 1fr)',
+  gridTemplatRows: 'repeat(6, 1fr)',
   borderBottom: '1px solid grey',
   paddingTop: '10px',
-  paddingBottom: '10px',
+  paddingBottom: '8px',
 };
 
 const starLayout = {
   gridColumn: '1/3',
-  fontSize: '20px',
-  display: 'flex',
-  wrap: 'nowrap',
-  zIndex: '-1',
-  width: '100%',
+  gridRow: '1',
 };
 
 const nameLayout = {
@@ -42,7 +38,6 @@ const dateLayout = {
 
 const reviewLayout = {
   padding: '5px',
-  justifyContent: 'center',
   gridRow: '2',
   gridColumnEnd: 'span 3',
   fontWeight: 'bold',
@@ -71,17 +66,17 @@ const responseLayout = {
   backgroundColor: 'lightgrey',
 };
 
-const photoLayout = {
-  display: 'flex',
-};
+// const photoLayout = {
+//   gridRow: '7',
+//   gridColumn: '3',
+// };
 
 const helpfulnessLayout = {
-  display: 'flex',
   padding: '5px',
   color: 'grey',
   fontSize: '11px',
-  gridRowEnd: '6',
-  gridColumn: '1',
+  gridRowEnd: '7',
+  gridColumnEnd: 'span 3',
 };
 
 const emptyDiv = {
@@ -130,77 +125,89 @@ class ReviewListEntry extends React.Component {
     return (
       <div className="ratings-flexbox-container" style={gridLayout}>
 
-        <div style={{ display: 'flex', wrap: 'nowrap', zIndex: '-1' }}>
-          <StarRating averageRating={review.rating} height={18} width={15} />
+        <div style={starLayout}>
+          <div style={{ display: 'flex', wrap: 'nowrap', zIndex: '-1' }}>
+            <StarRating averageRating={review.rating} height={18} width={15} />
+          </div>
         </div>
-        <br />
 
         <div style={nameLayout}>
-          {review.reviewer_name}
-          ,
+          <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+            {review.reviewer_name}
+            ,
+          </div>
         </div>
-        <br />
 
         <div style={dateLayout}>
-          {new Date(review.date).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}
+          <div style={{ display: 'flex' }}>
+            {new Date(review.date).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}
+          </div>
         </div>
-        <br />
 
         {
           review.summary
             ? (
               <div style={reviewLayout}>
-                {review.summary}
+                <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+                  {review.summary}
+                </div>
               </div>
             )
             : <div style={emptyDiv} />
         }
-        <br />
 
         <div style={bodyLayout}>
-          {review.body}
+          <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+            {review.body}
+          </div>
         </div>
-        <br />
 
         {
         review.response !== null
           ? (
             <div style={responseLayout}>
-              <b>Response from seller: </b>
-              <br />
-              <div>{review.response}</div>
+              <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+                <b>{`Response from seller: ${review.response}`}</b>
+              </div>
             </div>
           )
           : <div style={emptyDiv} />
         }
-        <br />
 
         {
         review.recommend === true
           ? (
             <div style={recommendLayout}>
-              ✓ I recommend this product
+              <div style={{ display: 'flex'}}>
+                ✓ I recommend this product
+              </div>
             </div>
           )
           : <div style={emptyDiv} />
         }
-        <br />
-
-        {
-          review.photos.length > 0
-            ? <PhotosMap photos={review.photos} style={photoLayout} />
-            : <div style={emptyDiv} />
-        }
 
         <div style={helpfulnessLayout}>
-          Helpful?
-          {' '}
-          <u onClick={this.handlePutEntry} id="helpful">Yes</u>
-          {' '}
-          {`(${review.helpfulness}) | `}
-          <u onClick={this.handlePutEntry} id="report">Report</u>
+          <div style={{ display: 'flex', justifyContent: 'flex-start'}}>
+            {
+          review.photos.length > 0
+            ? (
+          // <div style={photoLayout}>
+              <div style={{ display: 'flex', justifyContent: 'flex-start'}}>
+                <PhotosMap photos={review.photos} />
+                {/* </div> */}
+              </div>
+            )
+            : <div style={emptyDiv} />
+          }
+            <div style={{ display: 'flex', justifyContent: 'flex-end', float: 'right', marginLeft: 'auto', marginTop: 'auto'}}>
+              {'Helpful? '}
+              <u onClick={this.handlePutEntry} id="helpful">Yes</u>
+              {' '}
+              {`(${review.helpfulness}) | `}
+              <u onClick={this.handlePutEntry} id="report">Report</u>
+            </div>
+          </div>
         </div>
-
       </div>
     );
   }

@@ -73,7 +73,6 @@ class YourOutfitList extends React.Component {
           <AddOutfitContent>
             + Add To Your Outfit
           </AddOutfitContent>
-
         </CardContainer>
         {this.state.outfits.length ? <CardContainer>
           {this.state.outfits.map((outfit, i)=> {
@@ -83,7 +82,6 @@ class YourOutfitList extends React.Component {
               key={i} />
           })}
         </CardContainer> : null}
-
       </ListContainer>
     )
   }

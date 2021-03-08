@@ -115,6 +115,36 @@ app.post('/cart', (req, res)=>{
   })
 })
 
+app.get('/outfit', (req, res) => {
+  outfit.getAllOutfits((err, data) => {
+    if (err) {
+      res.status(404).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  })
+})
+
+app.post('/outfit', (req, res)=> {
+  outfit.saveAnOutfit(req.body, (err, data) => {
+    if (err) {
+      res.status(404).send(err);
+    } else {
+      res.status(201).send(data);
+    }
+  })
+})
+
+app.delete('/outfit', (req, res) => {
+  outfit.deleteAnOutfit(req.body.ID, (err, data) => {
+    if (err) {
+      res.status(404).send(err);
+    } else {
+      res.status(204).send(data);
+    }
+  })
+})
+
 app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}`);
 });

@@ -3,8 +3,6 @@ import PhotoMapEntry from './photoMapEntry.jsx';
 
 const imgContainer = {
   display: 'flex',
-  alignContent: 'flex-start',
-  float: 'left'
 }
 
 const PhotosMap = ({ photos }) => {

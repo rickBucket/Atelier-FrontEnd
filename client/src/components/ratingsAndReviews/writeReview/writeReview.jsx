@@ -14,6 +14,7 @@ const gridLayout = {
 };
 
 const starStyle = {
+  fontSize: '12px',
   textAlign: 'center',
   padding: '3px',
   gridColumn: '1',
@@ -21,6 +22,7 @@ const starStyle = {
 };
 
 const recommendStyle = {
+  fontSize: '12px',
   textAlign: 'center',
   padding: '3px',
   gridColumn: '2',
@@ -28,6 +30,7 @@ const recommendStyle = {
 };
 
 const characteristicsStyle = {
+  fontSize: '12px',
   textAlign: 'center',
   padding: '3px',
   gridColumn: '1/-1',
@@ -35,6 +38,7 @@ const characteristicsStyle = {
 };
 
 const summaryStyle = {
+  fontSize: '12px',
   textAlign: 'center',
   padding: '3px',
   gridColumn: '1',
@@ -42,6 +46,7 @@ const summaryStyle = {
 };
 
 const nameStyle = {
+  fontSize: '12px',
   textAlign: 'center',
   padding: '3px',
   gridColumn: '2',
@@ -49,6 +54,7 @@ const nameStyle = {
 };
 
 const reviewStyle = {
+  fontSize: '12px',
   textAlign: 'center',
   padding: '3px',
   gridColumn: '1/-1',
@@ -56,6 +62,7 @@ const reviewStyle = {
 };
 
 const photoStyle = {
+  fontSize: '12px',
   textAlign: 'center',
   padding: '3px',
   gridColumn: '2',
@@ -63,6 +70,7 @@ const photoStyle = {
 };
 
 const emailStyle = {
+  fontSize: '12px',
   textAlign: 'center',
   padding: '3px',
   gridColumn: '1',
@@ -70,6 +78,9 @@ const emailStyle = {
 };
 
 const submitStyle = {
+  boxShadow: '2px 2px 4px green',
+  width: '300px',
+  margin: 'auto',
   padding: '10px',
   gridColumn: '1/-1',
   gridRow: '7',
@@ -217,13 +228,13 @@ class WriteReview extends React.Component {
                : <span className="fa fa-star-o" onMouseEnter={() => {this.setState({mouseOver: [1, 1, 1, 1, 1]})}}></span>
              }
               <br />
-              <small>
+              <div style={{display: 'flex', wrap: 'nowrap', textAlign: 'center'}}>
                 1 - Poor
                 2 - Fair
                 3 - Average
                 4 - Good
                 5 - Great
-              </small>
+              </div>
 
             </div>
           </div>

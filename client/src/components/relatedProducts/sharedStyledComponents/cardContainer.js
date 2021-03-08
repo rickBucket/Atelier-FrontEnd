@@ -4,7 +4,7 @@ const CardContainer = styled.div`
 height: 400px;
 width: 275px;
 flex-shrink: 0;
-margin: 10px;
+margin: 0px 10px;
 border: 1px solid grey;
 border-radius: 5px;
 background: rgba(255,255,255,0.1);

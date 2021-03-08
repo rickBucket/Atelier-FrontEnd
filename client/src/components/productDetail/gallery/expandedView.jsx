@@ -4,10 +4,10 @@ import styled from 'styled-components';
 
 const Div = styled.div`
   background: rgba(0,0,0,0.55);
-  margin: -55px -15px;
+  margin: -36px -8px;
   height: 100%;
-  width: 99.9%;
-  position: absolute;
+  width: 100%;
+  position: fixed;
   z-index: 50;
   display: flex;
   justify-content: center;

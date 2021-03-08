@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const InvisDiv = styled.div`
   border-radius: 8px;
-  padding: 12px 12px 0px 12px;
+  padding: 8px 12px 0px 12px;
   margin: 12px 12px 0px 12px;
   background: rgba(255,255,255,0.1);
 `
@@ -48,7 +48,7 @@ class StyleSelector extends React.Component {
   render() {
     return (
       <InvisDiv>
-        {`Style > ${this.state.selectedStyle}`}
+        <h3 style={{margin: "0px"}}>{`Style > ${this.state.selectedStyle}`}</h3>
         <FlexStyleDiv>
           {
             this.props.styles.map((style) => {

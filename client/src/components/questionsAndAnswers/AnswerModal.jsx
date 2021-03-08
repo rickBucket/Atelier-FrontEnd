@@ -5,14 +5,14 @@ import axios from 'axios';
 const Modal = styled.div`
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Overlay effect: translucent background: black w/ partial opacity */
-    z-index: 1; /* Overlay effect: positioned over other containers */
+    z-index: 150; /* Overlay effect: positioned over other containers */
     width: 100%; /* Full width */
     height: 100%; /* Full height */
     position: fixed; /* Fix position on the top-left corner*/
     top: 0;
     left: 0;
-    overflow: auto; /* Enable scroll if needed */
-    padding-top: 40px; /* Location of the content container */
+    overflow: auto; //Enable scroll if needed
+    padding-top: 150px; /* Location of the content container */
 `;
 
 const Modal_Con = styled.div`
@@ -55,8 +55,7 @@ const NewQueC = styled.textarea`
   width: 200px;
 `;
 
-const Button = styled.button`
-
+const AddImg = styled.input`
 `;
 
 // CLASS STARTS HERE ---------------------------//
@@ -68,10 +67,12 @@ class AnswerModal extends React.Component {
       newName: '',
       newEmail: '',
       newAnswer: '',
+      image: [],
     };
     this.selectModal = this.selectModal.bind(this);
     this.postAnswer = this.postAnswer.bind(this);
     this.type = this.type.bind(this);
+    this.addImg = this.addImg.bind(this);
   }
   selectModal(event) {
     event.stopPropagation();
@@ -99,12 +100,20 @@ class AnswerModal extends React.Component {
       body: this.state.newAnswer,
       name: this.state.newName,
       email: this.state.newEmail,
-      photos: [''],
+      photos: this.state.image,
       question_id: this.props.question_id,
     })
       .then(response => {
         console.log('successful answer post', response.data);
       });
+  }
+
+  addImg(event) {
+    let array = [];
+    array.push(URL.createObjectURL(event.target.files[0]));
+    this.setState({
+      images: array,
+    });
   }
 
   render() {
@@ -122,7 +131,8 @@ class AnswerModal extends React.Component {
               <NewQueB placeholder="Examples: jackson11!" type="text" value={this.state.newName} onChange={event => {event.preventDefault(); this.type(event); }} />
               <p>For privacy reasons, do not use your full name or email address</p>
               <NewQueC placeholder="Enter Answer Here..." type="text" value={this.state.newAnswer} onChange={event => {event.preventDefault(); this.type(event); }} />
-              <Button onClick={() => { this.postAnswer(); }}> Submit Answer </Button>
+              <AddImg type='file'onChange={this.addImg}/>
+              <button onClick={() => { this.postAnswer(); }}> Submit Answer </button>
             </NewForm>
           </Modal_Con>
       </Modal>

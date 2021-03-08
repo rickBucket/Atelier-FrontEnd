@@ -8,16 +8,14 @@ const Div = styled.div`
   max-width: 480px;
 `
 const FlexDiv = styled.div`
-  border: 1px solid grey;
   display: flex;
   justify-content: center;
   max-width: 920px;
-  margin: auto;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+  margin: 32px auto 32px auto;
 `
 const Separator = styled.div`
   margin: 20px;
-  background: rgba(0,0,0,0.4);
+  background: rgba(0,0,0,0.7);
   color: rgba(0,0,0,0);
 `
 

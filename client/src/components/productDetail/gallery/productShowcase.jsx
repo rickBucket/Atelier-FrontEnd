@@ -4,7 +4,7 @@ import PrimaryImageView from './primaryImageView.jsx';
 import styled from 'styled-components';
 
 const FlexDiv = styled.div`
-  border: 1px solid grey;
+  border: 1px solid lightgrey;
   margin: 64px 12px 12px -32px;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
   overflow-x: hidden;
@@ -74,8 +74,6 @@ class ProductShowcase extends React.Component {
   }
 
   nextPhoto(flag) {
-    console.log(this.state.photos);
-    console.log(this.state.currentPhoto);
     this.setState({
       currentPhoto: this.state.photos[(this.state.photos.indexOf(this.state.currentPhoto) + flag + this.state.photos.length) % this.state.photos.length]
     });

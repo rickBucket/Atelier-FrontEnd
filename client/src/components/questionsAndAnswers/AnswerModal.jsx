@@ -55,8 +55,7 @@ const NewQueC = styled.textarea`
   width: 200px;
 `;
 
-const Button = styled.button`
-
+const AddImg = styled.input`
 `;
 
 // CLASS STARTS HERE ---------------------------//
@@ -68,10 +67,12 @@ class AnswerModal extends React.Component {
       newName: '',
       newEmail: '',
       newAnswer: '',
+      image: [],
     };
     this.selectModal = this.selectModal.bind(this);
     this.postAnswer = this.postAnswer.bind(this);
     this.type = this.type.bind(this);
+    this.addImg = this.addImg.bind(this);
   }
   selectModal(event) {
     event.stopPropagation();
@@ -99,12 +100,20 @@ class AnswerModal extends React.Component {
       body: this.state.newAnswer,
       name: this.state.newName,
       email: this.state.newEmail,
-      photos: [''],
+      photos: this.state.image,
       question_id: this.props.question_id,
     })
       .then(response => {
         console.log('successful answer post', response.data);
       });
+  }
+
+  addImg(event) {
+    let array = [];
+    array.push(URL.createObjectURL(event.target.files[0]));
+    this.setState({
+      images: array,
+    });
   }
 
   render() {
@@ -122,7 +131,8 @@ class AnswerModal extends React.Component {
               <NewQueB placeholder="Examples: jackson11!" type="text" value={this.state.newName} onChange={event => {event.preventDefault(); this.type(event); }} />
               <p>For privacy reasons, do not use your full name or email address</p>
               <NewQueC placeholder="Enter Answer Here..." type="text" value={this.state.newAnswer} onChange={event => {event.preventDefault(); this.type(event); }} />
-              <Button onClick={() => { this.postAnswer(); }}> Submit Answer </Button>
+              <AddImg type='file'onChange={this.addImg}/>
+              <button onClick={() => { this.postAnswer(); }}> Submit Answer </button>
             </NewForm>
           </Modal_Con>
       </Modal>

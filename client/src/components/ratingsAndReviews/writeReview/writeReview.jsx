@@ -78,7 +78,8 @@ const emailStyle = {
 };
 
 const submitStyle = {
-  boxShadow: '2px 2px 4px green',
+  boxShadow: '2px 2px 4px grey',
+  backgroundColor: 'white',
   width: '300px',
   margin: 'auto',
   padding: '10px',

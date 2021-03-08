@@ -30,9 +30,9 @@ const noReviewsGrid = {
 };
 
 const mainDiv = {
-  paddingTop: '30px',
+  paddingTop: '100px',
   paddingBottom: '30px',
-  maxWidth: '70%',
+  maxWidth: '80%',
   maxHeight: '70%',
   margin: 'auto',
 };
@@ -43,14 +43,16 @@ const ratingGrid = {
 };
 
 const addReviewBtnStyle = {
-  boxShadow: '5px 5px 10px green',
+  boxShadow: '5px 5px 10px grey',
+  backgroundColor: 'white',
   padding: '10px',
   width: '300px',
   margin: 'auto',
 };
 
 const noReviewsAddBtn = {
-  boxShadow: '5px 5px 10px green',
+  boxShadow: '5px 5px 10px grey',
+  backgroundColor: 'white',
   padding: '10px',
   width: '300px',
   margin: 'auto',
@@ -102,21 +104,22 @@ const reviewListStyle = {
   gridColumn: '2/5',
   gridRow: '2/6',
   overflow: 'auto',
-  maxWidth: '80%',
+  maxWidth: '90%',
   marginLeft: '20px',
   listStyle: 'none',
 };
 
 const writeReviewStyle = {
   marginLeft: '30px',
+  paddingBottom: '30px',
   // marginLeft: '50%',
-  gridColumn: '2/3',
+  gridColumn: '2',
   gridRow: '6',
 };
 
 const moreReviewsStyle = {
   marginLeft: '30px',
-  maxHeight: '38px',
+  paddingBottom: '30px',
   gridColumn: '3',
   gridRow: '6',
 };
@@ -326,6 +329,7 @@ class RatingsApp extends React.Component {
             id="moreReviews"
             style={{
               boxShadow: '5px 5px 10px grey',
+              backgroundColor: 'white',
               padding: '10px',
             }}
             onClick={this.moreReviewsClick}

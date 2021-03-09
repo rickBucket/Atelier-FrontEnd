@@ -12,7 +12,7 @@ const imgStyle = {
   marginLeft: '4px',
   marginRight: '4px',
   marginTop: '4px',
-  cursor: 'pointer'
+  cursor: 'pointer',
 }
 
 const modalStyle = {

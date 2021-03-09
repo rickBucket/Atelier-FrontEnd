@@ -181,12 +181,14 @@ class WriteReview extends React.Component {
       e.preventDefault();
       return false;
     }
+    console.log('i made it!')
 
     alert('Your review has been submitted!');
     this.props.handleReviewData(this.state);
   }
 
   render() {
+
     return (
       <div>
         <form onSubmit={this.HandleReviewData} id="reviewForm" style={gridLayout}>
@@ -257,19 +259,19 @@ class WriteReview extends React.Component {
 
           <div style={summaryStyle}>
             <label htmlFor="summary">Review Summary (optional): </label>
-            <textarea id="summaryInput" type="text" value={this.state.summary} style={{ width: '90%', height: '60px', border: '1px solid grey', resize: 'none'}} name="summary" onChange={this.onInputChange} placeholder="Example: Best purchase ever!" />
+            <textarea id="summaryInput" type="text" value={this.state.summary} style={{ width: '90%', height: '60px', border: '1px solid grey', fontFamily: 'Open sans', resize: 'none'}} name="summary" onChange={this.onInputChange} placeholder="Example: Best purchase ever!" />
           </div>
 
           <div style={nameStyle}>
             <label htmlFor="name"><b>* Your Name: </b></label>
-            <input type="text" name="name" style={{ width: '90%', height: '30px', border: '1px solid grey'}} value={this.state.name} onChange={this.onInputChange} placeholder="Example: jackson11!" />
+            <input type="text" name="name" style={{ width: '90%', height: '30px', fontFamily: 'Open sans', border: '1px solid grey'}} value={this.state.name} onChange={this.onInputChange} placeholder="Example: jackson11!" />
             <br />
             <small><i>For privacy reasons, do not use your full name or email address.</i></small>
           </div>
 
           <div style={reviewStyle}>
             <label htmlFor="body"><b>* Your Review: </b></label>
-            <textarea type="text" style={{ width: '95%', height: '80px', border: '1px solid grey', resize: 'none'}} value={this.state.body} name="body" onChange={this.onInputChange} placeholder="What did you like/dislike about the product?" />
+            <textarea type="text" style={{ width: '95%', height: '80px', border: '1px solid grey', fontFamily: 'Open sans', resize: 'none'}} value={this.state.body} name="body" onChange={this.onInputChange} placeholder="What did you like/dislike about the product?" />
             <br />
             <small>{this.minimumCharCount()}</small>
           </div>
@@ -281,7 +283,7 @@ class WriteReview extends React.Component {
 
           <div style={emailStyle}>
             <label htmlFor="email"><b>* Email: </b></label>
-            <input type="text" style={{ width: '90%', height: '30px', border: '1px solid grey' }} name="email" value={this.state.email} onChange={this.onInputChange} placeholder="Example: jackson11@email.com" />
+            <input type="text" style={{ width: '90%', height: '30px', fontFamily: 'Open sans', border: '1px solid grey' }} name="email" value={this.state.email} onChange={this.onInputChange} placeholder="Example: jackson11@email.com" />
             <br />
             <small><i>For authentication reasons, you will not be emailed.</i></small>
           </div>

@@ -286,6 +286,10 @@ class RatingsApp extends React.Component {
           <RatingBreakdown metaData={this.state.metaData} reviewList={this.state.reviewList}/>
         </div>
 
+          <div style={productStyle}>
+            <ProductBreakdown metaData={this.state.metaData} />
+          </div>
+
         {
           this.state.writeReviewModal
           && (
@@ -298,9 +302,6 @@ class RatingsApp extends React.Component {
           )
         }
 
-          <div style={productStyle}>
-            <ProductBreakdown metaData={this.state.metaData} />
-          </div>
 
 
         <div style={sortOptionsStyle}>

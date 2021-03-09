@@ -10,8 +10,8 @@ const Div = styled.div`
 const FlexDiv = styled.div`
   display: flex;
   justify-content: center;
-  max-width: 920px;
-  margin: 32px auto 32px auto;
+  max-width: 960px;
+  margin: 48px auto 96px auto;
 `
 const Separator = styled.div`
   margin: 20px;

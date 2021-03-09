@@ -79,16 +79,40 @@ class YourOutfitCard extends React.Component {
               <Image src={this.state.featuredURL} width="100%" height="auto"></Image>
             </ImageWrapper>
 
-            <ProductContentWrapper>{this.state.productIDInfo.category}</ProductContentWrapper>
-            <ProductContentWrapper>{this.state.productIDInfo.name}</ProductContentWrapper>
+            <ProductContentWrapper style={{fontSize: '12px'}}>{this.state.productIDInfo.category}</ProductContentWrapper>
+            <ProductContentWrapper style={{fontSize: '17px', fontWeight: 'bold'}}>{this.state.productIDInfo.name}</ProductContentWrapper>
             <ProductContentWrapper style={sale}>${this.state.productIDInfo.default_price}</ProductContentWrapper>
-            {this.state.salePrice ? <ProductContentWrapper>{this.state.salePrice}</ProductContentWrapper> : null}
+            {this.state.salePrice ? <ProductContentWrapper style={{fontSize: '15px'}}>{this.state.salePrice}</ProductContentWrapper> : null}
+            {this.state.salePrice ? <LowerBorderDiv></LowerBorderDiv> : <BorderDiv></BorderDiv>}
           </CardContainer>
+
         }
       </>
     );
   }
 }
+
+const BorderDiv = styled.div`
+border-bottom: 2px solid grey;
+align: center;
+width: 90%;
+margin-top: 102px;
+margin-left: 5%;
+margin-right: 5%;
+position: relative;
+bottom: 0px;
+`;
+
+const LowerBorderDiv = styled.div`
+border-bottom: 2px solid grey;
+align: center;
+width: 90%;
+margin-top: 47px;
+margin-left: 5%;
+margin-right: 5%;
+position: relative;
+bottom: 0px;
+`;
 
 const ImageWrapper = styled.div`
 height: 200px;
@@ -102,10 +126,6 @@ width: 100%;
 object-fit: contain;
 z-index: 0;
 `;
-
-// const ButtonWrapper = styled.div`
-//   position: absolute;
-// `;
 
 const DeleteButton = styled.button`
   right: 20%;

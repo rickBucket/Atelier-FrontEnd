@@ -47,23 +47,33 @@ class YourOutfitList extends React.Component {
   }
 
   addOutfit() {
-    const newOutfitInfoArray = [{
-      info: this.state.parentProductInfo,
-      styles: this.state.parentProductStyles
-    }]
-    const newOutfitInfoObj = newOutfitInfoArray[0];
-
-    this.setState({
-      outfits: []
+    const outfitToAddID = this.state.parentProductStyles.product_id;
+    let index;
+    this.state.outfits.forEach((element, i) => {
+      if (element.styles.product_id === outfitToAddID) {
+        index = i;
+      }
     })
-    axios.post('/outfit', newOutfitInfoObj)
-    .then(({ data }) => {
+    if (index >= 0) {
+      console.log('Outfit already added')
+    } else {
+      const newOutfitInfoArray = [{
+        info: this.state.parentProductInfo,
+        styles: this.state.parentProductStyles
+      }]
+      const newOutfitInfoObj = newOutfitInfoArray[0];
+
       this.setState({
-        outfits: data,
-        outfitsLoaded: true
+        outfits: []
       })
-    })
-
+      axios.post('/outfit', newOutfitInfoObj)
+      .then(({ data }) => {
+        this.setState({
+          outfits: data,
+          outfitsLoaded: true
+        })
+      })
+    }
   }
 
   deleteOutfit(productID) {

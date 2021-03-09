@@ -126,22 +126,24 @@ class ReviewListEntry extends React.Component {
       <div className="ratings-flexbox-container" style={gridLayout}>
 
         <div style={starLayout}>
-          <div style={{ display: 'flex', wrap: 'nowrap', zIndex: '-1' }}>
+          <div style={{ display: 'flex', zIndex: '-1', marginRight: 'auto'}}>
             <StarRating averageRating={review.rating} height={18} width={15} />
           </div>
         </div>
 
+        <div style={{display: 'flex', marginLeft: 'auto'}}>
         <div style={nameLayout}>
-          <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-            {review.reviewer_name}
-            ,
+          <div style={{ display: 'flex', marginLeft: 'auto'}}>
+            {review.reviewer_name},
           </div>
         </div>
 
         <div style={dateLayout}>
-          <div style={{ display: 'flex' }}>
+          <div style={{ display: 'flex'}}>
             {new Date(review.date).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}
           </div>
+        </div>
+
         </div>
 
         {

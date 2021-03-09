@@ -6,7 +6,6 @@ const gridLayout = {
   display: 'grid',
   gridTemplateColumns: '1fr',
   gridTemplateRows: 'minwidth(6, 1fr) 100px',
-  gridGap: '15px'
 };
 
 const characteristicsBar = {
@@ -54,11 +53,12 @@ class ProductBreakdown extends React.Component {
             <div style={{
               gridColumn: '1',
               gridRow: '1',
+              marginBottom: '10px',
             }}><div style={{fontSize: '13px', color: 'black'}}>Comfort</div>
 
 
              <div style={{display: 'flex', fontSize: '11px', color: 'grey'}}>
-             <div style={marginRight}>
+             <div style={{marginRight}}>
               Uncomfortable
              </div>
              <div style={marginLeft}>
@@ -81,7 +81,8 @@ class ProductBreakdown extends React.Component {
         <div style={{
           gridColumn: '1',
           gridRow: '2',
-        }}><div style={{fontSize: '13px', color: 'black'}}>Fit</div>
+          marginBottom: '10px',
+        }}><div style={{display: 'flex', fontSize: '13px', color: 'black'}}>Fit</div>
 
          <div style={{display: 'flex', justifyContent: 'space-evenly', fontSize: '11px', color: 'grey'}}>
           <div style={marginRight}>
@@ -110,6 +111,7 @@ class ProductBreakdown extends React.Component {
         <div style={{
           gridColumn: '1',
           gridRow: '3',
+          marginBottom: '10px',
         }}><div style={{fontSize: '13px', color: 'black'}}>Length</div>
 
          <div style={{display: 'flex', justifyContent: 'space-evenly', fontSize: '11px', color: 'grey'}}>
@@ -139,6 +141,7 @@ class ProductBreakdown extends React.Component {
         <div style={{
           gridColumn: '1',
           gridRow: '4',
+          marginBottom: '10px',
         }}><div style={{fontSize: '13px', color: 'black'}}>Quality</div>
 
           <div style={{display: 'flex', justifyContent: 'space-evenly', fontSize: '11px', color: 'grey'}}>
@@ -165,6 +168,7 @@ class ProductBreakdown extends React.Component {
         <div style={{
           gridColumn: '1',
           gridRow: '5',
+          marginBottom: '10px',
         }}><div style={{fontSize: '13px', color: 'black'}}>Size</div>
 
 
@@ -195,6 +199,7 @@ class ProductBreakdown extends React.Component {
         <div style={{
           gridColumn: '1',
           gridRow: '6',
+          marginBottom: '10px',
         }}><div style={{fontSize: '13px', color: 'black'}}>Width</div>
 
           <div style={{display: 'flex', justifyContent: 'space-evenly', fontSize: '11px', color: 'grey'}}>
@@ -219,7 +224,6 @@ class ProductBreakdown extends React.Component {
 
         </div>
         }
-
       </div>
     )
   }

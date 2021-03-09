@@ -19,7 +19,6 @@ class YourOutfitCard extends React.Component {
 
   componentDidMount() {
 
-    console.log('this is the id being mapped', this.props.outfit.styles.product_id)
 
     const defaultProduct = this.props.outfit.styles.results.find((product)=> {
       return product["default?"] === true

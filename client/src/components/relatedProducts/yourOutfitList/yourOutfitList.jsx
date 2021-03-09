@@ -45,18 +45,17 @@ class YourOutfitList extends React.Component {
   }
 
   addOutfit() {
-    // for now adding to outfit locally
-
     const newOutfitInfoArray = [{
       info: this.state.parentProductInfo,
       styles: this.state.parentProductStyles
     }]
     const newOutfitInfoObj = newOutfitInfoArray[0];
 
-    // eventually will need to send post to server
+    this.setState({
+      outfits: []
+    })
     axios.post('/outfit', newOutfitInfoObj)
     .then(({ data }) => {
-      console.log('this is data after adding an outfit', data)
       this.setState({
         outfits: data,
         outfitsLoaded: true
@@ -66,35 +65,29 @@ class YourOutfitList extends React.Component {
   }
 
   deleteOutfit(productID) {
-    // for now removing outfit locally
-
-    // const indexOfProduct = this.state.outfits.findIndex((outfit)=> {
-    //   return outfit.styles.product_id === productID
-    // })
-    // var arrayWithoutDeletedOutfit = [...this.state.outfits]
-    // arrayWithoutDeletedOutfit.splice(indexOfProduct, 1)
-    // this.setState({
-    //   outfits: arrayWithoutDeletedOutfit
-    // })
-    // eventually will need to send delete to server
     const outfitToDelete = {
       ID: productID
     }
-    axios.delete('/outfit', outfitToDelete)
+    this.setState({
+      outfits:[],
+    }, () => {
+      axios.delete('/outfit', { data: outfitToDelete})
       .then(({ data }) => {
-        data.length > 0 ?
-        this.setState({
-          outfits: data
-        })
-        : this.setState({
-          outfits: data,
-          outfitsLoaded: false
-        })
+        if (data.length > 0) {
+          this.setState({
+            outfits: data
+          })
+        } else {
+          this.setState({
+            outfits: data,
+            loaded: false
+          })
+        }
       })
+    })
   }
 
   render() {
-
     return (
       <ListContainer>
         <CardContainer onClick={this.addOutfit}>
@@ -106,7 +99,6 @@ class YourOutfitList extends React.Component {
 
           <>
           {this.state.outfits.map((outfit, i)=> {
-            console.log('Im being remapped')
              return <YourOutfitCard
               outfit={outfit}
               deleteOutfit={this.deleteOutfit}

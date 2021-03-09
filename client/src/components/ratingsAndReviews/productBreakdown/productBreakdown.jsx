@@ -1,4 +1,6 @@
+/* eslint-disable */
 import React from 'react';
+
 
 const gridLayout = {
   display: 'grid',
@@ -195,7 +197,7 @@ class ProductBreakdown extends React.Component {
           gridRow: '6',
         }}><div style={{fontSize: '13px', color: 'black'}}>Width</div>
 
-          <div style={{display: 'flex', justifyContent: 'space-evenly', fontSize: '11px', color: 'grey'}}>>
+          <div style={{display: 'flex', justifyContent: 'space-evenly', fontSize: '11px', color: 'grey'}}>
           <div style={marginRight}>
           Too narrow
           </div>

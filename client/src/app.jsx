@@ -10,12 +10,11 @@ import styled from 'styled-components';
 
 const Title = styled.div`
   width: 100%;
-  height: 84px;
+  height: 76px;
   margin: -8px;
   z-index: 250;
   position: fixed;
-  background: rgba(32,120,144,0.7);
-  background: linear-gradient(120deg, hsla(175,70%,60%,0.55), hsla(235,70%,60%,0.55));
+  background: linear-gradient(120deg, hsla(175,75%,45%,0.5), hsla(235,75%,45%,0.5));
   text-align: center;
   color: white;
   text-shadow: 1px 1px 2px black;
@@ -23,6 +22,11 @@ const Title = styled.div`
   font-weight: bold;
   backdrop-filter: blur(16px);
 `
+
+const Button = styled.button`
+  margin-top: 76px;
+`
+
 //background: linear-gradient(180deg, hsla(190,80%,85%,0.5), hsla(240,60%,100%,0));
 
 class App extends React.Component {
@@ -81,8 +85,8 @@ class App extends React.Component {
         <Title>
           <h1 style={{marginTop: "4px"}}>Observant Ostritches</h1>
         </Title>
-        <button type="submit" id="clear" value="0" onClick={this.widgetSelect}>CLEAR</button>
-        <button type="submit" id="next" onClick={this.nextProduct}>Next Product</button>
+        <Button type="submit" id="clear" value="0" onClick={this.widgetSelect}>CLEAR</Button>
+        <Button type="submit" id="next" onClick={this.nextProduct}>Next Product</Button>
         {
           this.state.loadedID === 2 &&
           <div>

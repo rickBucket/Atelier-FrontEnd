@@ -20,8 +20,13 @@ class RelatedProductsMainView extends React.Component {
   componentDidMount() {
     axios.get(`/products/?product_id=${this.props.productID}&flag=related`)
       .then(({data})=> {
+        const related = new Set();
+        data.forEach((element) => {
+          related.add(element);
+        })
+        const cleanData = Array.from(related);
         this.setState({
-          relatedProducts: data
+          relatedProducts: cleanData
         })
       })
   }

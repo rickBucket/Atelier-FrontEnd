@@ -18,6 +18,8 @@ class YourOutfitCard extends React.Component {
   }
 
   componentDidMount() {
+
+
     const defaultProduct = this.props.outfit.styles.results.find((product)=> {
       return product["default?"] === true
     })
@@ -59,17 +61,17 @@ class YourOutfitCard extends React.Component {
       color: this.state.salePrice ? 'red' : 'black'
     }
     return (
-      <div>
+      <>
         {
           this.state.loaded < 1 &&
           <img src="https://www.bluechipexterminating.com/wp-content/uploads/2020/02/loading-gif-png-5.gif" width="300"></img>
         }
         {
           this.state.loaded === 1 &&
-          <div>
+          <CardContainer>
               <ButtonWrapper>
               <DeleteButton
-                onClick={this.removeOutfit}
+                onClick={this.removeOutfit} style={{fontColor: 'white'}}
               >&#9747;</DeleteButton>
               </ButtonWrapper>
 
@@ -81,9 +83,9 @@ class YourOutfitCard extends React.Component {
             <ProductContentWrapper>{this.state.productIDInfo.name}</ProductContentWrapper>
             <ProductContentWrapper style={sale}>${this.state.productIDInfo.default_price}</ProductContentWrapper>
             {this.state.salePrice ? <ProductContentWrapper>{this.state.salePrice}</ProductContentWrapper> : null}
-          </div>
+          </CardContainer>
         }
-      </div>
+      </>
     );
   }
 }

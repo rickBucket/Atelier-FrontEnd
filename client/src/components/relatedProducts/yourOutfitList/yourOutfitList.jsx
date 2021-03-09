@@ -14,6 +14,7 @@ class YourOutfitList extends React.Component {
       parentProductStyles: '',
       parentProductInfo: '',
       outfits: [],
+      outfitsLoaded: false
     }
     this.addOutfit = this.addOutfit.bind(this);
     this.deleteOutfit = this.deleteOutfit.bind(this);
@@ -33,57 +34,78 @@ class YourOutfitList extends React.Component {
         parentProductStyles: data
       })
     })
+
+    axios.get('/outfit')
+      .then(({ data }) => {
+        this.setState({
+          outfits: data,
+          outfitsLoaded: true
+        })
+      })
   }
 
   addOutfit() {
-    // for now adding to outfit locally
-
-    const newOutfitInfo = [{
+    const newOutfitInfoArray = [{
       info: this.state.parentProductInfo,
       styles: this.state.parentProductStyles
     }]
+    const newOutfitInfoObj = newOutfitInfoArray[0];
+
     this.setState({
-      outfits: [... newOutfitInfo]
+      outfits: []
+    })
+    axios.post('/outfit', newOutfitInfoObj)
+    .then(({ data }) => {
+      this.setState({
+        outfits: data,
+        outfitsLoaded: true
+      })
     })
 
-
-    // eventually will need to send post to server
   }
 
   deleteOutfit(productID) {
-    // for now removing outfit locally
-
-    const indexOfProduct = this.state.outfits.findIndex((outfit)=> {
-      return outfit.styles.product_id === productID
-    })
-    var arrayWithoutDeletedOutfit = [...this.state.outfits]
-    arrayWithoutDeletedOutfit.splice(indexOfProduct, 1)
+    const outfitToDelete = {
+      ID: productID
+    }
     this.setState({
-      outfits: arrayWithoutDeletedOutfit
+      outfits:[],
+    }, () => {
+      axios.delete('/outfit', { data: outfitToDelete})
+      .then(({ data }) => {
+        if (data.length > 0) {
+          this.setState({
+            outfits: data
+          })
+        } else {
+          this.setState({
+            outfits: data,
+            loaded: false
+          })
+        }
+      })
     })
-    // eventually will need to send delete to server
-
   }
 
   render() {
-
     return (
       <ListContainer>
         <CardContainer onClick={this.addOutfit}>
           <AddOutfitContent>
             + Add To Your Outfit
           </AddOutfitContent>
-
         </CardContainer>
-        {this.state.outfits.length ? <CardContainer>
+        {this.state.outfitsLoaded ?
+
+          <>
           {this.state.outfits.map((outfit, i)=> {
              return <YourOutfitCard
               outfit={outfit}
               deleteOutfit={this.deleteOutfit}
               key={i} />
           })}
-        </CardContainer> : null}
-
+        </>
+         : null}
       </ListContainer>
     )
   }

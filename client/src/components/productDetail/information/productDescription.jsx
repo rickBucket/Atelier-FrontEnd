@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const Div = styled.div`
   margin: 8px;
-  padding: 0px 32px 0px 32px;
+  padding: 0px 64px 0px 32px;
   max-width: 480px;
 `
 const FlexDiv = styled.div`
@@ -58,7 +58,7 @@ class ProductDescription extends React.Component {
           {
             this.state.features.map((element) => {
               return (
-                <p key={element}>{element}</p>
+                <h5 key={element}>{element}</h5>
               );
             })
           }

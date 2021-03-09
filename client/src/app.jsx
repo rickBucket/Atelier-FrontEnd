@@ -17,15 +17,18 @@ class App extends React.Component {
       widget_id: '0', // 1 = product detail, 2 = related product, 3 = q&a, 4 = reviews
       productID: '',
       loadedID: 0,
+      metaData: [],
       productIndex: 0
     };
     this.nextProduct = this.nextProduct.bind(this);
     this.fetchProductID = this.fetchProductID.bind(this);
+    // this.fetchMetaData = this.fetchMetaData.bind(this);
   }
 
 // adding component did mount to choose productID
   componentDidMount() {
     this.fetchProductID();
+    // this.fetchMetaData();
   }
 
   fetchProductID() {
@@ -33,13 +36,36 @@ class App extends React.Component {
       .then(({data})=> {
         this.setState({
           productID: data[this.state.productIndex].id,
-          loadedID: 1
+          loadedID: this.state.loadedID + 1
         });
+        axios.get(`/reviews/?product_id=${data[this.state.productIndex].id}&meta=meta`)
+          .then((results) => {
+            this.setState({
+              metaData: results.data,
+              loadedID: this.state.loadedID + 1
+            });
+          })
+          .catch((err) => {
+            console.log('error on meta GET request', err);
+          });
       })
       .catch((error)=> {
         console.log('Error setting productID in App', error)
-      });
+      })
   }
+
+  // fetchMetaData(){
+  //   axios.get(`/reviews/?product_id=${this.state.productID}&meta=meta`)
+  //     .then((results) => {
+  //       this.setState({
+  //         metaData: results.data,
+  //         loadedID: this.state.loadedID + 1
+  //       });
+  //     })
+  //     .catch((err) => {
+  //       console.log('error on meta GET request', err);
+  //     });
+  // }
 
   nextProduct(e) {
     e.preventDefault();
@@ -50,18 +76,21 @@ class App extends React.Component {
     this.fetchProductID();
   }
 
+
+
+
   render() {
     return (
       <div>
         <button type="submit" id="clear" value="0" onClick={this.widgetSelect}>CLEAR</button>
         <button type="submit" id="next" onClick={this.nextProduct}>Next Product</button>
         {
-          this.state.loadedID === 1 &&
+          this.state.loadedID === 2 &&
           <div>
             <ProductMainView productID={this.state.productID}/>
             <RelatedProductsMainView productID={this.state.productID}/>
             <QuestionMaster productID={this.state.productID}/>
-            <RatingsApp productID={this.state.productID}/>
+            <RatingsApp productID={this.state.productID} metaData={this.state.metaData}/>
           </div>
         }
       </div>

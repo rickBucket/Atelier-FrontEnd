@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const ListContainer = styled.div`
 display: flex;
 justify-content: flex-start;
-overflow: hidden;
+overflow: scroll;
 position: relative;
 height: 415px;
 margin: 0px;

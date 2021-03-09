@@ -61,7 +61,6 @@ const AllEncompassing = styled.div`
   justify-content: center;
   margin: 10px auto;
   max-width: 1200px;
-
 `;
 
 const ListWrapper = styled.div`

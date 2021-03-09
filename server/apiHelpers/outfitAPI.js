@@ -6,7 +6,6 @@ module.exports = {
   },
   saveAnOutfit: (newOutfit, callback) => {
     outfit.unshift(newOutfit);
-    console.log(outfit);
     callback(null, outfit);
   },
   deleteAnOutfit: (productID, callback) => {
@@ -16,7 +15,6 @@ module.exports = {
       }
     });
     outfit.splice(index, 1);
-    console.log(outfit);
     callback(null, outfit);
   },
 };

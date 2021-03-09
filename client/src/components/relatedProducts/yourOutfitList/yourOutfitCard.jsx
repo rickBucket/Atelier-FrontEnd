@@ -66,7 +66,7 @@ class YourOutfitCard extends React.Component {
         }
         {
           this.state.loaded === 1 &&
-          <div>
+          <CardContainer>
               <ButtonWrapper>
               <DeleteButton
                 onClick={this.removeOutfit} style={{fontColor: 'white'}}
@@ -81,7 +81,7 @@ class YourOutfitCard extends React.Component {
             <ProductContentWrapper>{this.state.productIDInfo.name}</ProductContentWrapper>
             <ProductContentWrapper style={sale}>${this.state.productIDInfo.default_price}</ProductContentWrapper>
             {this.state.salePrice ? <ProductContentWrapper>{this.state.salePrice}</ProductContentWrapper> : null}
-          </div>
+          </CardContainer>
         }
       </div>
     );

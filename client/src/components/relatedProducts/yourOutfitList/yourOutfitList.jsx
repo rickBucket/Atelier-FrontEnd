@@ -44,12 +44,18 @@ class YourOutfitList extends React.Component {
     }]
     const newOutfitInfoObj = newOutfitInfoArray[0];
 
-    this.setState({
-      outfits: [... newOutfitInfoArray]
-    })
+    // this.setState({
+    //   outfits: [... newOutfitInfoArray]
+    // })
 
 
     // eventually will need to send post to server
+    axios.post('/outfit', newOutfitInfoObj)
+    .then(({ data }) => {
+      this.setState({
+        outfits: data
+      })
+    })
 
   }
 
@@ -77,14 +83,17 @@ class YourOutfitList extends React.Component {
             + Add To Your Outfit
           </AddOutfitContent>
         </CardContainer>
-        {this.state.outfits.length ? <CardContainer>
+        {this.state.outfits.length ?
+
+          <CardContainer>
           {this.state.outfits.map((outfit, i)=> {
              return <YourOutfitCard
               outfit={outfit}
               deleteOutfit={this.deleteOutfit}
               key={i} />
           })}
-        </CardContainer> : null}
+        </CardContainer>
+         : null}
       </ListContainer>
     )
   }

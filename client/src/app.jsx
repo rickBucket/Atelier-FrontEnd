@@ -14,9 +14,9 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      widget_id: '0', // 1 = product detail, 2 = related product, 3 = q&a, 4 = reviews
       productID: '',
       loadedID: 0,
+      metaData: {},
       productIndex: 0
     };
     this.nextProduct = this.nextProduct.bind(this);
@@ -29,22 +29,32 @@ class App extends React.Component {
   }
 
   fetchProductID() {
-    axios.get('/products/?count=5&page=4')
+    axios.get('/products/?count=4&page=8')
       .then(({data})=> {
         this.setState({
           productID: data[this.state.productIndex].id,
-          loadedID: 1
+          loadedID: this.state.loadedID + 1
         });
+        axios.get(`/reviews/?product_id=${data[this.state.productIndex].id}&meta=meta`)
+          .then((results) => {
+            this.setState({
+              metaData: results.data,
+              loadedID: this.state.loadedID + 1
+            });
+          })
+          .catch((err) => {
+            console.log('error on meta GET request', err);
+          });
       })
       .catch((error)=> {
         console.log('Error setting productID in App', error)
-      });
+      })
   }
 
   nextProduct(e) {
     e.preventDefault();
     this.setState({
-      productIndex: (this.state.productIndex + 1)%20,
+      productIndex: (this.state.productIndex + 1)%4,
       loadedID: 0
     });
     this.fetchProductID();
@@ -56,12 +66,12 @@ class App extends React.Component {
         <button type="submit" id="clear" value="0" onClick={this.widgetSelect}>CLEAR</button>
         <button type="submit" id="next" onClick={this.nextProduct}>Next Product</button>
         {
-          this.state.loadedID === 1 &&
+          this.state.loadedID === 2 &&
           <div>
-            <ProductMainView productID={this.state.productID}/>
+            <ProductMainView productID={this.state.productID} ratings={this.state.metaData.ratings}/>
             <RelatedProductsMainView productID={this.state.productID}/>
             <QuestionMaster productID={this.state.productID}/>
-            <RatingsApp productID={this.state.productID}/>
+            <RatingsApp productID={this.state.productID} metaData={this.state.metaData}/>
           </div>
         }
       </div>

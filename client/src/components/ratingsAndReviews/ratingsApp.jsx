@@ -2,6 +2,7 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable max-len */
 /* eslint-disable react/destructuring-assignment */
+/* eslint-disable */
 import React from 'react';
 import axios from 'axios';
 import ReviewList from './reviewList/reviewList.jsx';
@@ -30,10 +31,10 @@ const noReviewsGrid = {
 };
 
 const mainDiv = {
-  paddingTop: '100px',
+  paddingTop: '30px',
   paddingBottom: '30px',
   maxWidth: '80%',
-  maxHeight: '70%',
+  maxHeight: '80%',
   margin: 'auto',
 };
 
@@ -43,7 +44,8 @@ const ratingGrid = {
 };
 
 const addReviewBtnStyle = {
-  boxShadow: '5px 5px 10px grey',
+  border: '1px solid grey',
+  boxShadow: '2px 2px 4px grey',
   backgroundColor: 'white',
   padding: '10px',
   width: '300px',
@@ -51,7 +53,8 @@ const addReviewBtnStyle = {
 };
 
 const noReviewsAddBtn = {
-  boxShadow: '5px 5px 10px grey',
+  border: '1px solid grey',
+  boxShadow: '2px 2px 4px grey',
   backgroundColor: 'white',
   padding: '10px',
   width: '300px',
@@ -75,7 +78,8 @@ const modalStyle = {
 
 const innerModalStyle = {
   backgroundColor: 'white',
-  width: '40%', /* Width in proportion to its parent container */
+  width: '50%', /* Width in proportion to its parent container */
+  minWidth: '540px',
   maxWidth: '100%', /* Max width where it stops expanding */
   height: '80%', /* Height in proportion to its parent container */
   margin: 'auto', /* Auto margin according to the element width */
@@ -129,7 +133,7 @@ class RatingsApp extends React.Component {
     super(props);
     this.state = {
       reviewList: [],
-      metaData: [],
+      metaData: this.props.metaData,
       reviewEnd: 2,
       listSort: 0,
       reviewsReady: false,
@@ -165,16 +169,16 @@ class RatingsApp extends React.Component {
         console.log('error on review GET request', err);
       });
     /// /GET product meta data//////
-    axios.get(`/reviews/?product_id=${this.props.productID}&meta=meta`)
-      .then((results) => {
-        this.setState({
-          metaData: results.data,
-          metaReady: true,
-        });
-      })
-      .catch((err) => {
-        console.log('error on meta GET request', err);
-      });
+    // axios.get(`/reviews/?product_id=${this.props.productID}&meta=meta`)
+    //   .then((results) => {
+    //     this.setState({
+    //       metaData: results.data,
+    //       metaReady: true,
+    //     });
+    //   })
+    //   .catch((err) => {
+    //     console.log('error on meta GET request', err);
+    //   });
   }
 
   handleReviewData(reviewData) {
@@ -274,14 +278,10 @@ class RatingsApp extends React.Component {
       && (
       <div style={gridLayout}>
 
-        {
-         this.state.metaReady === true
-        && (
+
         <div style={ratingGrid}>
-          <RatingBreakdown metaData={this.state.metaData} reviewList={this.state.reviewList} />
+          <RatingBreakdown metaData={this.state.metaData} reviewList={this.state.reviewList}/>
         </div>
-        )
-        }
 
         {
           this.state.writeReviewModal
@@ -295,23 +295,14 @@ class RatingsApp extends React.Component {
           )
         }
 
-        {
-          this.state.metaReady === true
-          && (
           <div style={productStyle}>
             <ProductBreakdown metaData={this.state.metaData} />
           </div>
-          )
-        }
 
-        {
-          this.state.metaReady === true
-        && (
+
         <div style={sortOptionsStyle}>
           <SortOptions metaData={this.state.metaData} listSort={this.state.listSort} listSortChange={this.listSortChange}/>
         </div>
-        )
-        }
 
         <div style={reviewListStyle}>
           <ReviewList reviewList={this.state.reviewList} reviewEnd={this.state.reviewEnd} handlePut={this.handlePut} />
@@ -328,7 +319,8 @@ class RatingsApp extends React.Component {
           <button
             id="moreReviews"
             style={{
-              boxShadow: '5px 5px 10px grey',
+              border: '1px solid grey',
+              boxShadow: '2px 2px 4px grey',
               backgroundColor: 'white',
               padding: '10px',
             }}

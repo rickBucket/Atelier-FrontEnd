@@ -203,9 +203,7 @@ class RelatedProductCard extends React.Component {
             <ProductContentWrapper>
             {this.state.averageRatingLoaded ? <StarRating averageRating={this.state.averageRating} height={18} width={15}/> : null}
             </ProductContentWrapper>
-            <LowerDiv>
-
-            </LowerDiv>
+            {this.state.salePrice ? <LowerBorderDiv></LowerBorderDiv> : <BorderDiv></BorderDiv>}
           </CardContainer>
         }
         {
@@ -224,11 +222,22 @@ class RelatedProductCard extends React.Component {
   }
 }
 
-const LowerDiv = styled.div`
+const BorderDiv = styled.div`
 border-bottom: 2px solid grey;
 align: center;
 width: 90%;
 margin-top: 72px;
+margin-left: 5%;
+margin-right: 5%;
+position: relative;
+bottom: 0px;
+`;
+
+const LowerBorderDiv = styled.div`
+border-bottom: 2px solid grey;
+align: center;
+width: 90%;
+margin-top: 47px;
 margin-left: 5%;
 margin-right: 5%;
 position: relative;

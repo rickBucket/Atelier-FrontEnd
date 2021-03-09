@@ -16,20 +16,45 @@ const Div = styled.div`
 class ProductInfo extends React.Component {
   constructor(props) {
     super(props);
+    this.averageRating = this.averageRating.bind(this);
+    this.averageRating();
+  }
+
+  averageRating() {
+    var sum = 0;
+    var amount = 0;
+    Object.keys(this.props.ratings).forEach((key) => {
+      sum += parseInt(this.props.ratings[key]) * parseInt(key);
+      amount += parseInt(this.props.ratings[key]);
+    });
+    return sum / amount;
   }
 
   render() {
     return (
       <Div>
-        <h5 style={{float: "right", "marginTop": "4px"}}>
-          <a href="#addReview">
+        <h5 style={{float: "right", "marginTop": "8px"}}>
+          <a href="#addReview" style={{fontSize: "12px", color: "rgb(32,64,96)"}}>
             Read Reviews
           </a>
         </h5>
-        <StarRating averageRating={4.5} height={21} width={18} />
+        <StarRating
+          averageRating={this.averageRating()}
+          height={21}
+          width={18}
+        />
         <h3>{this.props.category}</h3>
         <h1>{this.props.name}</h1>
-        <h4>${this.props.price}</h4>
+        {
+          !!this.props.sale &&
+          <h4>
+            <a style={{"textDecoration": "line-through"}}>${this.props.price}</a>
+            <a style={{color: "red"}}> ${this.props.sale}</a>
+          </h4>
+        } {
+          !this.props.sale &&
+          <h4>${this.props.price}</h4>
+        }
       </Div>
     );
   }

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const Div = styled.div`
   margin: 8px;
-  padding: 0px 32px 0px 32px;
+  padding: 0px 64px 0px 32px;
   max-width: 480px;
 `
 const FlexDiv = styled.div`
@@ -33,6 +33,9 @@ class ProductDescription extends React.Component {
 
   formatFeatures(featureArray) {
     var features = [];
+    if (!featureArray) {
+      return [];
+    }
     featureArray.forEach((element) => {
       let feat = ' - ' + element.feature;
       let val = element.value;
@@ -47,16 +50,15 @@ class ProductDescription extends React.Component {
   render() {
     return (
       <FlexDiv>
-        <Div>
+        <Div style={{borderRight: "1px solid grey"}}>
           <h3>{this.state.slogan}</h3>
           <p>{this.state.description}</p>
         </Div>
-        <Separator>|</Separator>
         <Div>
           {
             this.state.features.map((element) => {
               return (
-                <p key={element}>{element}</p>
+                <h5 key={element}>{element}</h5>
               );
             })
           }

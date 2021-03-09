@@ -5,6 +5,7 @@ const products = require('./apiHelpers/productAPI.js');
 const reviews = require('./apiHelpers/reviewAPI.js');
 const questions = require('./apiHelpers/qandaAPI.js');
 const cart = require('./apiHelpers/cartAPI.js');
+const outfit = require('./apiHelpers/outfitAPI.js')
 
 const app = express();
 const port = 3000;
@@ -111,6 +112,36 @@ app.post('/cart', (req, res)=>{
       res.status(404).send(err)
     } else {
       res.status(201).send(data);
+    }
+  })
+})
+
+app.get('/outfit', (req, res) => {
+  outfit.getAllOutfits((err, data) => {
+    if (err) {
+      res.status(404).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  })
+})
+
+app.post('/outfit', (req, res)=> {
+  outfit.saveAnOutfit(req.body, (err, data) => {
+    if (err) {
+      res.status(404).send(err);
+    } else {
+      res.status(201).send(data);
+    }
+  })
+})
+
+app.delete('/outfit', (req, res) => {
+  outfit.deleteAnOutfit(req.body.ID, (err, data) => {
+    if (err) {
+      res.status(404).send(err);
+    } else {
+      res.status(200).send(data);
     }
   })
 })

@@ -14,76 +14,102 @@ class YourOutfitList extends React.Component {
       parentProductStyles: '',
       parentProductInfo: '',
       outfits: [],
+      outfitsLoaded: false
     }
     this.addOutfit = this.addOutfit.bind(this);
     this.deleteOutfit = this.deleteOutfit.bind(this);
   }
 
   componentDidMount() {
-    axios.get(`/products/?product_id=${this.props.parentProductID}`)
-    .then(({ data }) => {
-      this.setState({
-        parentProductInfo: data
+    if (this.props.parentProductID !== undefined) {
+      axios.get(`/products/?product_id=${this.props.parentProductID}`)
+      .then(({ data }) => {
+        this.setState({
+          parentProductInfo: data
+        })
       })
-    })
 
-    axios.get(`/products/?product_id=${this.props.parentProductID}&flag=styles`)
-    .then(({ data })=> {
-      this.setState({
-        parentProductStyles: data
+      axios.get(`/products/?product_id=${this.props.parentProductID}&flag=styles`)
+      .then(({ data })=> {
+        this.setState({
+          parentProductStyles: data
+        })
       })
-    })
+
+      axios.get('/outfit')
+        .then(({ data }) => {
+          this.setState({
+            outfits: data,
+            outfitsLoaded: true
+          })
+        })
+    }
   }
 
   addOutfit() {
-    // for now adding to outfit locally
-
-    const newOutfitInfo = [{
+    const newOutfitInfoArray = [{
       info: this.state.parentProductInfo,
       styles: this.state.parentProductStyles
     }]
+    const newOutfitInfoObj = newOutfitInfoArray[0];
+
     this.setState({
-      outfits: [... newOutfitInfo]
+      outfits: []
+    })
+    axios.post('/outfit', newOutfitInfoObj)
+    .then(({ data }) => {
+      this.setState({
+        outfits: data,
+        outfitsLoaded: true
+      })
     })
 
-
-    // eventually will need to send post to server
   }
 
   deleteOutfit(productID) {
-    // for now removing outfit locally
-
-    const indexOfProduct = this.state.outfits.findIndex((outfit)=> {
-      return outfit.styles.product_id === productID
-    })
-    var arrayWithoutDeletedOutfit = [...this.state.outfits]
-    arrayWithoutDeletedOutfit.splice(indexOfProduct, 1)
+    const outfitToDelete = {
+      ID: productID
+    }
     this.setState({
-      outfits: arrayWithoutDeletedOutfit
+      outfits:[],
+    }, () => {
+      axios.delete('/outfit', { data: outfitToDelete})
+      .then(({ data }) => {
+        if (data.length > 0) {
+          this.setState({
+            outfits: data
+          })
+        } else {
+          this.setState({
+            outfits: data,
+            loaded: false
+          })
+        }
+      })
     })
-    // eventually will need to send delete to server
-
   }
 
   render() {
-
     return (
       <ListContainer>
         <CardContainer onClick={this.addOutfit}>
           <AddOutfitContent>
             + Add To Your Outfit
-          </AddOutfitContent>
 
+          </AddOutfitContent>
+          <BorderDiv></BorderDiv>
         </CardContainer>
-        {this.state.outfits.length ? <CardContainer>
+        {this.state.outfitsLoaded ?
+
+          <>
           {this.state.outfits.map((outfit, i)=> {
              return <YourOutfitCard
               outfit={outfit}
               deleteOutfit={this.deleteOutfit}
               key={i} />
           })}
-        </CardContainer> : null}
-
+        </>
+         : null}
       </ListContainer>
     )
   }
@@ -91,10 +117,24 @@ class YourOutfitList extends React.Component {
 
 export default YourOutfitList;
 
+const BorderDiv = styled.div`
+border-bottom: 2px solid grey;
+align: center;
+width: 90%;
+margin-top: -50px;
+margin-left: 5%;
+margin-right: 5%;
+position: relative;
+bottom: 0px;
+`;
+
 const AddOutfitContent = styled.div`
   min-height: 450px;
   display: flex;
   justify-content: center;
   align-items: center;
   background: rgba(255,255,255,0.1);
+  &:hover {
+    opacity: 0.8
+  }
 `;

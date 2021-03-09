@@ -63,7 +63,6 @@ class YourOutfitList extends React.Component {
         outfitsLoaded: true
       })
     })
-
   }
 
   deleteOutfit(productID) {

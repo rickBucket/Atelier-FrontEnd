@@ -111,7 +111,9 @@ class ProductMainView extends React.Component {
                 <ProductInfo
                   name={this.state.currentProduct.name}
                   category={this.state.currentProduct.category}
-                  price={this.state.currentProduct.default_price}
+                  // price={this.state.currentProduct.default_price}
+                  price={this.state.selectedStyle.original_price}
+                  sale={this.state.selectedStyle.sale_price}
                   ratings={this.props.ratings}
                 />
                 <Div>

@@ -1,6 +1,7 @@
 /* eslint-disable */
 import React from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 
 const Button = styled.button`
   border: 1px solid grey;
@@ -30,8 +31,9 @@ class Checkout extends React.Component {
     super(props);
     this.state = {
       skus: this.props.skus,
-      selectedSKU: {quantity: -1},
-      quantity: 0
+      selectedSKU: ["", {quantity: -1}],
+      quantity: 0,
+      cartError: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleQuantity = this.handleQuantity.bind(this);
@@ -42,12 +44,13 @@ class Checkout extends React.Component {
   handleChange(e) {
     if (e.target.value === 'Size') {
       this.setState({
-        selectedSKU: {quantity: -1}
+        selectedSKU: ["", {quantity: -1}]
       });
     } else {
       this.setState({
-        selectedSKU: Object.values(this.state.skus).find((element) => {
-          return element.size === e.target.value;
+        cartError: false,
+        selectedSKU: Object.entries(this.state.skus).find((element) => {
+          return element[1].size === e.target.value;
         })
       });
     }
@@ -61,6 +64,22 @@ class Checkout extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    if (!this.state.selectedSKU[0]) {
+      this.setState({
+        cartError: true
+      });
+    } else {
+      axios({
+        url: '/cart',
+        method: 'POST',
+        data: {
+          sku_id: parseInt(this.state.selectedSKU[0])
+        }
+      })
+        .then(() => {
+          alert("Cart Updated!");
+        });
+    }
   }
 
   handleFav(e) {
@@ -81,17 +100,17 @@ class Checkout extends React.Component {
           </Selector>
           <Selector name="quantity" onChange={this.handleQuantity}>
             {
-              this.state.selectedSKU.quantity === -1 &&
+              this.state.selectedSKU[1].quantity === -1 &&
               <React.Fragment>
                 <option>Quantity</option>
                 <option>SIZE REQUIRED</option>
               </React.Fragment>
             } {
-              this.state.selectedSKU.quantity === 0 &&
+              this.state.selectedSKU[1].quantity === 0 &&
               <option>OUT OF STOCK</option>
             } {
-              this.state.selectedSKU.quantity > 0 &&
-              [...Array(Math.min(this.state.selectedSKU.quantity, 15) + 1).keys()].map((x) => {
+              this.state.selectedSKU[1].quantity > 0 &&
+              [...Array(Math.min(this.state.selectedSKU[1].quantity, 15) + 1).keys()].map((x) => {
                 return <option key={x}>{x}</option>
               })
             }
@@ -105,6 +124,14 @@ class Checkout extends React.Component {
             <img src="star.png" style={{height: "18px", width: "16px"}} a=""></img>
           </Button>
         </FlexDiv>
+        {
+          this.state.cartError &&
+          <div style={{
+            color: "red",
+            textAlign: "center",
+            padding: "8px"
+          }}>Please enter a valid configuration</div>
+        }
       </form>
     );
   }

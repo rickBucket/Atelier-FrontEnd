@@ -21,27 +21,29 @@ class YourOutfitList extends React.Component {
   }
 
   componentDidMount() {
-    axios.get(`/products/?product_id=${this.props.parentProductID}`)
-    .then(({ data }) => {
-      this.setState({
-        parentProductInfo: data
-      })
-    })
-
-    axios.get(`/products/?product_id=${this.props.parentProductID}&flag=styles`)
-    .then(({ data })=> {
-      this.setState({
-        parentProductStyles: data
-      })
-    })
-
-    axios.get('/outfit')
+    if (this.props.parentProductID !== undefined) {
+      axios.get(`/products/?product_id=${this.props.parentProductID}`)
       .then(({ data }) => {
         this.setState({
-          outfits: data,
-          outfitsLoaded: true
+          parentProductInfo: data
         })
       })
+
+      axios.get(`/products/?product_id=${this.props.parentProductID}&flag=styles`)
+      .then(({ data })=> {
+        this.setState({
+          parentProductStyles: data
+        })
+      })
+
+      axios.get('/outfit')
+        .then(({ data }) => {
+          this.setState({
+            outfits: data,
+            outfitsLoaded: true
+          })
+        })
+    }
   }
 
   addOutfit() {
@@ -93,7 +95,9 @@ class YourOutfitList extends React.Component {
         <CardContainer onClick={this.addOutfit}>
           <AddOutfitContent>
             + Add To Your Outfit
+
           </AddOutfitContent>
+          <BorderDiv></BorderDiv>
         </CardContainer>
         {this.state.outfitsLoaded ?
 
@@ -113,10 +117,24 @@ class YourOutfitList extends React.Component {
 
 export default YourOutfitList;
 
+const BorderDiv = styled.div`
+border-bottom: 2px solid grey;
+align: center;
+width: 90%;
+margin-top: -50px;
+margin-left: 5%;
+margin-right: 5%;
+position: relative;
+bottom: 0px;
+`;
+
 const AddOutfitContent = styled.div`
   min-height: 450px;
   display: flex;
   justify-content: center;
   align-items: center;
   background: rgba(255,255,255,0.1);
+  &:hover {
+    opacity: 0.8
+  }
 `;

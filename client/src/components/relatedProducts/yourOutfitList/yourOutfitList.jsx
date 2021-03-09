@@ -38,16 +38,19 @@ class YourOutfitList extends React.Component {
   addOutfit() {
     // for now adding to outfit locally
 
-    const newOutfitInfo = [{
+    const newOutfitInfoArray = [{
       info: this.state.parentProductInfo,
       styles: this.state.parentProductStyles
     }]
+    const newOutfitInfoObj = newOutfitInfoArray[0];
+
     this.setState({
-      outfits: [... newOutfitInfo]
+      outfits: [... newOutfitInfoArray]
     })
 
 
     // eventually will need to send post to server
+
   }
 
   deleteOutfit(productID) {

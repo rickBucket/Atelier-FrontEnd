@@ -5,6 +5,7 @@ const products = require('./apiHelpers/productAPI.js');
 const reviews = require('./apiHelpers/reviewAPI.js');
 const questions = require('./apiHelpers/qandaAPI.js');
 const cart = require('./apiHelpers/cartAPI.js');
+const outfit = require('./apiHelpers/outfitAPI.js')
 
 const app = express();
 const port = 3000;

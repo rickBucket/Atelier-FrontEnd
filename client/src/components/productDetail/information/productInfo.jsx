@@ -9,7 +9,7 @@ const Div = styled.div`
   box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
   margin: 32px 12px 24px 12px;
   max-width: 540px;
-  background: linear-gradient(0deg, hsl(190,70%,92%), hsl(240,60%,100%));
+  background: linear-gradient(0deg, hsl(190,70%,99%), hsl(240,60%,100%));
 `
 
 // needs: rating, review link, category, name. price
@@ -21,7 +21,6 @@ class ProductInfo extends React.Component {
       averageRating: 0
     };
     this.averageRating = this.averageRating.bind(this);
-    this.averageRating();
   }
 
   componentDidMount() {

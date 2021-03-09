@@ -10,17 +10,20 @@ import styled from 'styled-components';
 
 const Title = styled.div`
   width: 100%;
-  height: 520px;
+  height: 84px;
   margin: -8px;
-  z-index: -5;
-  position: absolute;
-  background: linear-gradient(180deg, hsl(190,80%,72%), hsl(240,60%,100%));
+  z-index: 250;
+  position: fixed;
+  background: rgba(32,120,144,0.7);
+  background: linear-gradient(120deg, hsla(175,70%,60%,0.55), hsla(235,70%,60%,0.55));
   text-align: center;
   color: white;
-  text-shadow: 2px 2px 3px black;
-  font-size: 32px;
+  text-shadow: 1px 1px 2px black;
+  font-size: 24px;
   font-weight: bold;
+  backdrop-filter: blur(16px);
 `
+//background: linear-gradient(180deg, hsla(190,80%,85%,0.5), hsla(240,60%,100%,0));
 
 class App extends React.Component {
   constructor(props) {
@@ -76,7 +79,7 @@ class App extends React.Component {
     return (
       <div>
         <Title>
-          <h1 style={{marginTop: "16px"}}>Observant Ostritches</h1>
+          <h1 style={{marginTop: "4px"}}>Observant Ostritches</h1>
         </Title>
         <button type="submit" id="clear" value="0" onClick={this.widgetSelect}>CLEAR</button>
         <button type="submit" id="next" onClick={this.nextProduct}>Next Product</button>

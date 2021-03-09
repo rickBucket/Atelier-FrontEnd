@@ -18,6 +18,9 @@ class YourOutfitCard extends React.Component {
   }
 
   componentDidMount() {
+
+    console.log('this is the id being mapped', this.props.outfit.styles.product_id)
+
     const defaultProduct = this.props.outfit.styles.results.find((product)=> {
       return product["default?"] === true
     })
@@ -59,7 +62,7 @@ class YourOutfitCard extends React.Component {
       color: this.state.salePrice ? 'red' : 'black'
     }
     return (
-      <div>
+      <>
         {
           this.state.loaded < 1 &&
           <img src="https://www.bluechipexterminating.com/wp-content/uploads/2020/02/loading-gif-png-5.gif" width="300"></img>
@@ -83,7 +86,7 @@ class YourOutfitCard extends React.Component {
             {this.state.salePrice ? <ProductContentWrapper>{this.state.salePrice}</ProductContentWrapper> : null}
           </CardContainer>
         }
-      </div>
+      </>
     );
   }
 }

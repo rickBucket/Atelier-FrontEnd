@@ -89,6 +89,28 @@ class Question extends React.Component {
     this.selectModal = this.selectModal.bind(this);
     this.showMore = this.showMore.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.oldRender = this.oldRender.bind(this);
+  }
+
+  oldRender() {
+    const object = this.props.item.answers
+    if (object.length <= 1) {
+      this.setState({
+        answers: Object.values(object).sort((a, b) => {
+          return b.helpfulness - a.helpfulness;
+        }),
+        loadedState: true,
+        loadMore: false
+      })
+    } else {
+      this.setState({
+        answers: Object.values(object).sort((a, b) => {
+          return b.helpfulness - a.helpfulness;
+        }),
+        loadedState: true,
+        loadMore: true
+      })
+    }
   }
 
   componentDidMount() {
@@ -111,11 +133,11 @@ class Question extends React.Component {
       })
     }
   }
-  // componentWillReceiveProps(nextProps) {
-  //   this.setState({
-  //     answers: nextProps.item.answers
-  //   })
-  // }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.item.id !== this.props.item.id) {
+      this.oldRender();
+    }
+  }
 
   selectModal() {
     this.setState({

@@ -18,6 +18,10 @@ class ProductInfo extends React.Component {
     super(props);
   }
 
+  averageRating(ratings) {
+    this.props.ratings
+  }
+
   render() {
     return (
       <Div>
@@ -26,7 +30,11 @@ class ProductInfo extends React.Component {
             Read Reviews
           </a>
         </h5>
-        <StarRating averageRating={4.5} height={21} width={18} />
+        <StarRating
+          averageRating={4}
+          height={21}
+          width={18}
+        />
         <h3>{this.props.category}</h3>
         <h1>{this.props.name}</h1>
         <h4>${this.props.price}</h4>

@@ -19,7 +19,7 @@ const gridLayout = {
   rowGap: '20px',
   borderRadius: '20px',
   padding: '20px',
-  height: '80vh',
+  height: '90vh',
 };
 
 const noReviewsGrid = {
@@ -48,8 +48,10 @@ const addReviewBtnStyle = {
   boxShadow: '2px 2px 4px grey',
   backgroundColor: 'white',
   padding: '10px',
-  width: '300px',
-  margin: 'auto',
+  marginLeft: '20px',
+  width: 'auto',
+  maxWidth: '300px',
+  minWidth: '150px',
 };
 
 const noReviewsAddBtn = {
@@ -79,7 +81,7 @@ const modalStyle = {
 const innerModalStyle = {
   backgroundColor: 'white',
   width: '50%', /* Width in proportion to its parent container */
-  minWidth: '540px',
+  minWidth: '580px',
   maxWidth: '100%', /* Max width where it stops expanding */
   height: '80%', /* Height in proportion to its parent container */
   margin: 'auto', /* Auto margin according to the element width */
@@ -113,20 +115,21 @@ const reviewListStyle = {
   listStyle: 'none',
 };
 
-const writeReviewStyle = {
-  marginLeft: '30px',
-  paddingBottom: '30px',
+const reviewButtonsStyle = {
+  // marginLeft: '30px',
+  // paddingBottom: '30px',
   // marginLeft: '50%',
-  gridColumn: '2',
+  width: '100%',
+  gridColumn: '2/-1',
   gridRow: '6',
 };
 
-const moreReviewsStyle = {
-  marginLeft: '30px',
-  paddingBottom: '30px',
-  gridColumn: '3',
-  gridRow: '6',
-};
+// const moreReviewsStyle = {
+//   marginLeft: '30px',
+//   paddingBottom: '30px',
+//   gridColumn: '3',
+//   gridRow: '6',
+// };
 
 class RatingsApp extends React.Component {
   constructor(props) {
@@ -308,18 +311,21 @@ class RatingsApp extends React.Component {
           <ReviewList reviewList={this.state.reviewList} reviewEnd={this.state.reviewEnd} handlePut={this.handlePut} />
         </div>
 
-        <div style={writeReviewStyle}>
-          <button id="addReview" onClick={this.writeReviewClick} style={addReviewBtnStyle}>ADD A REVIEW +</button>
-        </div>
+        <div style={reviewButtonsStyle}>
+          <div style={{display: 'flex', margin: 'auto', justifyContent: 'space-evenly'}}>
+            <div style={{display: 'flex'}}>
+            <button id="addReview" onClick={this.writeReviewClick} style={addReviewBtnStyle}>ADD A REVIEW +</button>
+            </div>
 
         {
           this.state.reviewList.length > 2 && this.state.hideMoreReviews === false
         && (
-        <div style={moreReviewsStyle}>
+          <div style={{display: 'flex'}}>
           <button
             id="moreReviews"
             style={{
               border: '1px solid grey',
+              width: '150px',
               boxShadow: '2px 2px 4px grey',
               backgroundColor: 'white',
               padding: '10px',
@@ -331,6 +337,8 @@ class RatingsApp extends React.Component {
         </div>
         )
         }
+        </div>
+        </div>
 
       </div>
       )

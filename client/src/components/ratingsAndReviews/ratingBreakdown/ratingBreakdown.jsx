@@ -31,7 +31,7 @@ averageRating(obj) {
   if (isNaN((Math.round(result * 4) / 4).toFixed(1))) {
     return 0;
   }
-  return result.toFixed(1);
+  return result;
 }
 
   recommendedAverage(obj) {
@@ -67,7 +67,7 @@ averageRating(obj) {
           textAlign: 'center',
         }}
         >
-          {this.averageRating(ratingsObj)}
+          {this.averageRating(ratingsObj).toFixed(1)}
         </div>
 
         <div style={{
@@ -87,7 +87,9 @@ averageRating(obj) {
           textAlign: 'center',
         }}
         >
+          <div style={{display: 'flex', justifyContent: 'center', marginBottom: '10px'}}>
           {`${this.recommendedAverage(recommendedObj)}% of reviews recommend this product`}
+          </div>
         </div>
         <div style={{
           gridColumn: '1',

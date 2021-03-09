@@ -1,8 +1,10 @@
 import React from 'react';
 
 const optionsBar = {
-  width: '25%',
-  border: 'none',
+  width: '100px',
+  boxShadow: '2px 2px 4px grey',
+  marginLeft: '10px',
+  border: '1px solid grey',
   textAlign: 'center',
   cursor: 'pointer',
 };

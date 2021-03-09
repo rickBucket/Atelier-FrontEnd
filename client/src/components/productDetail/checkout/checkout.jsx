@@ -10,6 +10,9 @@ const Button = styled.button`
   margin: 5px 12px 24px 12px;
   cursor: pointer;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+  &:hover {
+    color: teal;
+  }
 `
 const Selector = styled.select`
   border: 1px solid grey;

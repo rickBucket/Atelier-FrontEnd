@@ -8,7 +8,19 @@ import RelatedProductsMainView from './components/relatedProducts/relatedProduct
 import QuestionMaster from './components/questionsAndAnswers/QuestionMaster.jsx';
 import styled from 'styled-components';
 
-
+const Title = styled.div`
+  width: 100%;
+  height: 520px;
+  margin: -8px;
+  z-index: -5;
+  position: absolute;
+  background: linear-gradient(180deg, hsl(190,80%,72%), hsl(240,60%,100%));
+  text-align: center;
+  color: white;
+  text-shadow: 2px 2px 3px black;
+  font-size: 32px;
+  font-weight: bold;
+`
 
 class App extends React.Component {
   constructor(props) {
@@ -63,6 +75,9 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <Title>
+          <h1 style={{marginTop: "16px"}}>Observant Ostritches</h1>
+        </Title>
         <button type="submit" id="clear" value="0" onClick={this.widgetSelect}>CLEAR</button>
         <button type="submit" id="next" onClick={this.nextProduct}>Next Product</button>
         {

@@ -29,7 +29,7 @@ class App extends React.Component {
   }
 
   fetchProductID() {
-    axios.get('/products/?count=5&page=2')
+    axios.get('/products/?count=7&page=3')
       .then(({data})=> {
         this.setState({
           productID: data[this.state.productIndex].id,
@@ -54,7 +54,7 @@ class App extends React.Component {
   nextProduct(e) {
     e.preventDefault();
     this.setState({
-      productIndex: (this.state.productIndex + 1)%5,
+      productIndex: (this.state.productIndex + 1)%4,
       loadedID: 0
     });
     this.fetchProductID();

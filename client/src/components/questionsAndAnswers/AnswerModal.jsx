@@ -123,7 +123,7 @@ class AnswerModal extends React.Component {
     return (
       <Modal className="modal" onClick={(event) => { this.selectModal(event); }} style={divStyle}>
           <Modal_Con className="modal-content" onClick={event => {event.stopPropagation(); }}>
-            <Close className="close" onClick={ (event) => { this.selectModal(event); }}>&times;</Close>
+            <Close className="close" onClick={(event) => { this.selectModal(event); }}>&times;</Close>
             <NewForm>
               <NewQueA placeholder="Example: jack@email.com"
               value={this.state.newEmail} type="text" onChange={event => {event.preventDefault(); this.type(event); }} />

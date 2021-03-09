@@ -95,18 +95,27 @@ class Question extends React.Component {
     const object = this.props.item.answers
     if (object.length <= 1) {
       this.setState({
-        answers: Object.values(object),
+        answers: Object.values(object).sort((a, b) => {
+          return b.helpfulness - a.helpfulness;
+        }),
         loadedState: true,
         loadMore: false
       })
     } else {
       this.setState({
-        answers: Object.values(object),
+        answers: Object.values(object).sort((a, b) => {
+          return b.helpfulness - a.helpfulness;
+        }),
         loadedState: true,
         loadMore: true
       })
     }
   }
+  // componentWillReceiveProps(nextProps) {
+  //   this.setState({
+  //     answers: nextProps.item.answers
+  //   })
+  // }
 
   selectModal() {
     this.setState({

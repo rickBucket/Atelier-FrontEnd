@@ -56,7 +56,16 @@ const NewQueC = styled.textarea`
 `;
 
 const Button = styled.button`
+  text-decoration: underline;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
 
+  &:hover {
+    text-decoration: none;
+    font-weight: bold;
+  }
 `;
 
 class QuestionModal extends React.Component {

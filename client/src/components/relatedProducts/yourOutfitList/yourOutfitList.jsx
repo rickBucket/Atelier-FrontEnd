@@ -106,7 +106,7 @@ class YourOutfitList extends React.Component {
         }
       })
     })
-    this.isOverflowing();
+    // this.isOverflowing();
   }
 
   scrollLeft() {
@@ -139,11 +139,13 @@ class YourOutfitList extends React.Component {
 
   isOverflowing() {
     const carousel = document.getElementById('yourOutfit');
-    const bool = carousel.scrollWidth > carousel.clientWidth;
-    this.setState({
-      cardOverflow: bool,
-      imagesToTheRight: bool
-    })
+    if (carousel) {
+      const bool = carousel.scrollWidth > carousel.clientWidth;
+      this.setState({
+        cardOverflow: bool,
+        imagesToTheRight: bool
+      })
+    }
   }
 
   render() {

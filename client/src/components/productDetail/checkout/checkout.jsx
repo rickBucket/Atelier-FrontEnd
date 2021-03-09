@@ -87,6 +87,7 @@ class Checkout extends React.Component {
 
   handleFav(e) {
     e.preventDefault();
+    document.getElementById('addOutfit').click();
   }
 
   render() {

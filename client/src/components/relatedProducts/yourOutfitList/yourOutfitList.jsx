@@ -92,7 +92,7 @@ class YourOutfitList extends React.Component {
   render() {
     return (
       <ListContainer>
-        <CardContainer onClick={this.addOutfit}>
+        <CardContainer onClick={this.addOutfit} id="addOutfit">
           <AddOutfitContent>
             + Add To Your Outfit
 

@@ -8,7 +8,26 @@ import RelatedProductsMainView from './components/relatedProducts/relatedProduct
 import QuestionMaster from './components/questionsAndAnswers/QuestionMaster.jsx';
 import styled from 'styled-components';
 
+const Title = styled.div`
+  width: 100%;
+  height: 76px;
+  margin: -8px;
+  z-index: 250;
+  position: fixed;
+  background: linear-gradient(120deg, hsla(175,75%,45%,0.5), hsla(235,75%,45%,0.5));
+  text-align: center;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+  font-size: 24px;
+  font-weight: bold;
+  backdrop-filter: blur(16px);
+`
 
+const Button = styled.button`
+  margin-top: 76px;
+`
+
+//background: linear-gradient(180deg, hsla(190,80%,85%,0.5), hsla(240,60%,100%,0));
 
 class App extends React.Component {
   constructor(props) {
@@ -63,8 +82,11 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <button type="submit" id="clear" value="0" onClick={this.widgetSelect}>CLEAR</button>
-        <button type="submit" id="next" onClick={this.nextProduct}>Next Product</button>
+        <Title>
+          <h1 style={{marginTop: "4px"}}>Observant Ostritches</h1>
+        </Title>
+        <Button type="submit" id="clear" value="0" onClick={this.widgetSelect}>CLEAR</Button>
+        <Button type="submit" id="next" onClick={this.nextProduct}>Next Product</Button>
         {
           this.state.loadedID === 2 &&
           <div>

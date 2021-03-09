@@ -16,6 +16,7 @@ const Div = styled.div`
   min-width: 400px;
   font-family: Arial;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+  background: linear-gradient(0deg, hsl(190,70%,99%), hsl(240,60%,100%));
 `
 const InvisDiv = styled.div`
   padding: 0px;
@@ -89,7 +90,7 @@ class ProductMainView extends React.Component {
 
   render() {
     return (
-      <div>
+      <div style={{marginTop: "72px"}}>
         {
           this.state.selectedPhoto &&
           <ExpandedView

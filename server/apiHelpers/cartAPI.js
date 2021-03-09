@@ -20,6 +20,7 @@ module.exports = {
       })
   },
   addToCart: function(body, callback) {
+    console.log(body);
     axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/cart`, body, {
       headers: {
         Authorization: config.API_KEY,

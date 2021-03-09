@@ -107,28 +107,49 @@ class QuestionMaster extends React.Component {
     super(props);
     this.state = {
       questionData: [],
+      filteredData: [],
       modal: false,
       itemsToShow: 4,
       expanded: false,
       showAll: false,
-      text: '',
+      searchText: '',
     };
     this.selectModal = this.selectModal.bind(this);
     this.showMore = this.showMore.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
-    this.filterData = this.filterData.bind(this);
+    this.SearchDb = this.SearchDb.bind(this);
+    this.oldRender = this.oldRender.bind(this);
   }
 
   //make a function when the product id is changed calls axios.get on the new product id
+  oldRender(){
+    axios.get(`qa/questions/?product_id=${this.props.productID}`)
+    .then((response) => {
+      this.setState({
+        questionData: response.data.results.sort((a,b) => {
+          return a.helpfulness - b.helpfulness;
+        }),
+        showAll: true,
+      });
+    });
+  }
 
   componentDidMount() {
     axios.get(`qa/questions/?product_id=${this.props.productID}`)
       .then((response) => {
         this.setState({
-          questionData: response.data.results,
+          questionData: response.data.results.sort((a,b) => {
+            return a.helpfulness - b.helpfulness;
+          }),
           showAll: true,
         });
       });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.productID !== prevProps.productID) {
+      this.oldRender();
+    }
   }
 
   selectModal() {
@@ -151,21 +172,41 @@ class QuestionMaster extends React.Component {
     )
   }
 
-  handleSearch(event) {
+  handleSearch() {
     this.setState({
-      text: event.target.value,
+      searchText: event.target.value,
     });
+    if (event.target.value.length > 2 || event.target.value === '') {
+      this.SearchDb()
+    }
   }
 
-  filterData(event) {
-    if (this.state.text >= 3 ) {
-    this.setState({
-      questionData: this.state.questionData.filter(e => {
-        return e.question === this.state.text;
+  SearchDb(){
+    if(this.state.searchText === '') {
+      var filteredArr = [];
+      filteredArr.push(this.state.questionData[0])
+      filteredArr.push(this.state.questionData[1])
+      this.setState({
+        questionData: filteredArr
       })
-    })
+    } else {
+      var filteredArr = [];
+      for(var i = 0; i < this.state.questionData.length; i++) {
+        if(this.state.questionData[i].question_body.toLowerCase().includes(this.state.searchText)) {
+          filteredArr.push(this.state.questionData[i]);
+        }
+      }
+      this.setState({
+        questionData: filteredArr
+      })
+    }
   }
-  }
+
+
+  //steps:
+    //try testing out dummy data with filter method
+    //need a way to preserve that outer question in cases where the match occurs in the answer text, not question text
+
 
 
   render() {
@@ -175,8 +216,8 @@ class QuestionMaster extends React.Component {
         <h1>Question's and Answers</h1>
         <form onSubmit={event => {event.preventDefault(); }}>
           <SearchDiv className='searchBar'>
-          <SearchBar placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...        ' type='text' value={this.state.text}  onChange={this.handleSearch} ></SearchBar>
-          <SearchBtn onClick={event => { this.filterData(event); }}>🔍</SearchBtn>
+          <SearchBar placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...        ' type='text' value={this.state.searchText}  onChange={event => {event.preventDefault(); this.handleSearch()}}></SearchBar>
+          <SearchBtn>🔍</SearchBtn>
           </SearchDiv>
         </form>
 

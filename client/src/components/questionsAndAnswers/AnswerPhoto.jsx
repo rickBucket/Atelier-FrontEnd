@@ -3,10 +3,18 @@ import styled from 'styled-components';
 import PhotoModal from './PhotoModal.jsx';
 
 const Photos = styled.img`
-  height: 100px;
-  width: 130px;
-  padding-left: 25px;
+  max-height: 100%;
+  max-width: 100%;
+  margin-left: 25px;
 `;
+
+const PhotoContainer = styled.div`
+  display: flex;
+  height: 100px;
+  width: 100px;
+  align-items: center;
+`;
+
 class AnswerPhoto extends React.Component {
   constructor(props) {
     super(props);
@@ -25,11 +33,11 @@ class AnswerPhoto extends React.Component {
     const {photo} = this.props;
     return (
       <div>
-        <div>
+        <PhotoContainer>
         <Photos src={photo} alt="Product" onClick={ this.selectModal } />
         <PhotoModal photo={photo} displayModal={this.state.modal}
         closeModal={this.selectModal} />
-        </div>
+        </PhotoContainer>
       </div>
     );
   }

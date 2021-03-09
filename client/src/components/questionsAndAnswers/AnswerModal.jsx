@@ -58,6 +58,19 @@ const NewQueC = styled.textarea`
 const AddImg = styled.input`
 `;
 
+const Button = styled.button`
+  text-decoration: underline;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: none;
+    font-weight: bold;
+  }
+`;
+
 // CLASS STARTS HERE ---------------------------//
 
 class AnswerModal extends React.Component {
@@ -123,7 +136,7 @@ class AnswerModal extends React.Component {
     return (
       <Modal className="modal" onClick={(event) => { this.selectModal(event); }} style={divStyle}>
           <Modal_Con className="modal-content" onClick={event => {event.stopPropagation(); }}>
-            <Close className="close" onClick={ (event) => { this.selectModal(event); }}>&times;</Close>
+            <Close className="close" onClick={(event) => { this.selectModal(event); }}>&times;</Close>
             <NewForm>
               <NewQueA placeholder="Example: jack@email.com"
               value={this.state.newEmail} type="text" onChange={event => {event.preventDefault(); this.type(event); }} />
@@ -132,7 +145,7 @@ class AnswerModal extends React.Component {
               <p>For privacy reasons, do not use your full name or email address</p>
               <NewQueC placeholder="Enter Answer Here..." type="text" value={this.state.newAnswer} onChange={event => {event.preventDefault(); this.type(event); }} />
               <AddImg type='file'onChange={this.addImg}/>
-              <button onClick={() => { this.postAnswer(); }}> Submit Answer </button>
+              <Button onClick={() => { this.postAnswer(); }}> Submit Answer </Button>
             </NewForm>
           </Modal_Con>
       </Modal>

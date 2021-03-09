@@ -33,6 +33,9 @@ class ProductDescription extends React.Component {
 
   formatFeatures(featureArray) {
     var features = [];
+    if (!featureArray) {
+      return [];
+    }
     featureArray.forEach((element) => {
       let feat = ' - ' + element.feature;
       let val = element.value;
@@ -47,11 +50,10 @@ class ProductDescription extends React.Component {
   render() {
     return (
       <FlexDiv>
-        <Div>
+        <Div style={{borderRight: "1px solid grey"}}>
           <h3>{this.state.slogan}</h3>
           <p>{this.state.description}</p>
         </Div>
-        <Separator>|</Separator>
         <Div>
           {
             this.state.features.map((element) => {

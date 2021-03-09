@@ -38,7 +38,7 @@ class ProductMainView extends React.Component {
     this.state = {
       currentProduct: {}, // {} id name slogan description category default_price features[{feature, value}]
       styles: [], // style_id, name, original_price, sale_price, default?, photos[{thumbnail_url, url}], skus{#}
-      selectedStyle: {},
+      selectedStyle: undefined,
       selectedPhoto: '',
       loaded: 0
     };
@@ -99,7 +99,7 @@ class ProductMainView extends React.Component {
           />
         }
         {
-          this.state.loaded === 2 &&
+          this.state.selectedStyle &&
           <InvisDiv>
             <FlexDiv>
               <ProductShowcase
@@ -112,6 +112,7 @@ class ProductMainView extends React.Component {
                   name={this.state.currentProduct.name}
                   category={this.state.currentProduct.category}
                   price={this.state.currentProduct.default_price}
+                  ratings={this.props.ratings}
                 />
                 <Div>
                   <StyleSelector
@@ -132,6 +133,10 @@ class ProductMainView extends React.Component {
               features={this.state.currentProduct.features}
             />
           </InvisDiv>
+        }
+        {
+          this.state.selectedStyle === undefined &&
+          <h1 style={{textAlign: "center"}}>Product Not Available</h1>
         }
       </div>
     );

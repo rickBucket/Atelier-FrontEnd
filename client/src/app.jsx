@@ -14,25 +14,22 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      widget_id: '0', // 1 = product detail, 2 = related product, 3 = q&a, 4 = reviews
       productID: '',
       loadedID: 0,
-      metaData: [],
+      metaData: {},
       productIndex: 0
     };
     this.nextProduct = this.nextProduct.bind(this);
     this.fetchProductID = this.fetchProductID.bind(this);
-    // this.fetchMetaData = this.fetchMetaData.bind(this);
   }
 
 // adding component did mount to choose productID
   componentDidMount() {
     this.fetchProductID();
-    // this.fetchMetaData();
   }
 
   fetchProductID() {
-    axios.get('/products/?count=5&page=4')
+    axios.get('/products/?count=4&page=8')
       .then(({data})=> {
         this.setState({
           productID: data[this.state.productIndex].id,
@@ -54,30 +51,14 @@ class App extends React.Component {
       })
   }
 
-  // fetchMetaData(){
-  //   axios.get(`/reviews/?product_id=${this.state.productID}&meta=meta`)
-  //     .then((results) => {
-  //       this.setState({
-  //         metaData: results.data,
-  //         loadedID: this.state.loadedID + 1
-  //       });
-  //     })
-  //     .catch((err) => {
-  //       console.log('error on meta GET request', err);
-  //     });
-  // }
-
   nextProduct(e) {
     e.preventDefault();
     this.setState({
-      productIndex: (this.state.productIndex + 1)%20,
+      productIndex: (this.state.productIndex + 1)%4,
       loadedID: 0
     });
     this.fetchProductID();
   }
-
-
-
 
   render() {
     return (
@@ -87,7 +68,7 @@ class App extends React.Component {
         {
           this.state.loadedID === 2 &&
           <div>
-            <ProductMainView productID={this.state.productID}/>
+            <ProductMainView productID={this.state.productID} ratings={this.state.metaData.ratings}/>
             <RelatedProductsMainView productID={this.state.productID}/>
             <QuestionMaster productID={this.state.productID}/>
             <RatingsApp productID={this.state.productID} metaData={this.state.metaData}/>

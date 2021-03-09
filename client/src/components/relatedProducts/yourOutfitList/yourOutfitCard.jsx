@@ -12,14 +12,13 @@ class YourOutfitCard extends React.Component {
       productIDStyles: '',
       featuredURL: '',
       loaded: 0,
-      salePrice: ''
+      salePrice: '',
+      outfitAddedFromTop: false
     }
     this.removeOutfit = this.removeOutfit.bind(this);
   }
 
   componentDidMount() {
-
-
     const defaultProduct = this.props.outfit.styles.results.find((product)=> {
       return product["default?"] === true
     })
@@ -71,7 +70,7 @@ class YourOutfitCard extends React.Component {
           <CardContainer>
               <ButtonWrapper>
               <DeleteButton
-                onClick={this.removeOutfit} style={{fontColor: 'white'}}
+                onClick={this.removeOutfit} style={{color: 'white'}}
               >&#9747;</DeleteButton>
               </ButtonWrapper>
 

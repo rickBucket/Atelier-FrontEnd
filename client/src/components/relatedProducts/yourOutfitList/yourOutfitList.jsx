@@ -1,15 +1,13 @@
-/* eslint-disable */
-
 import React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-import ListContainer from '../sharedStyledComponents/listContainer.js';
-import CardContainer from '../sharedStyledComponents/cardContainer.js';
-import RightButtonWrapper from '../sharedStyledComponents/rightButtonWrapper.js';
-import LeftButtonWrapper from '../sharedStyledComponents/leftButtonWrapper.js';
-import LeftButton from '../sharedStyledComponents/leftButton.js';
-import RightButton from '../sharedStyledComponents/rightButton.js';
-import YourOutfitCard from './yourOutfitCard.jsx';
+import ListContainer from '../sharedStyledComponents/listContainer';
+import CardContainer from '../sharedStyledComponents/cardContainer';
+import RightButtonWrapper from '../sharedStyledComponents/rightButtonWrapper';
+import LeftButtonWrapper from '../sharedStyledComponents/leftButtonWrapper';
+import LeftButton from '../sharedStyledComponents/leftButton';
+import RightButton from '../sharedStyledComponents/rightButton';
+import YourOutfitCard from './yourOutfitCard';
 
 class YourOutfitList extends React.Component {
   constructor(props) {
@@ -21,8 +19,8 @@ class YourOutfitList extends React.Component {
       outfitsLoaded: false,
       imagesToTheRight: false,
       imagesToTheLeft: false,
-      cardOverflow: false
-    }
+      cardOverflow: false,
+    };
     this.addOutfit = this.addOutfit.bind(this);
     this.deleteOutfit = this.deleteOutfit.bind(this);
     this.scrollLeft = this.scrollLeft.bind(this);
@@ -31,37 +29,38 @@ class YourOutfitList extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.parentProductID !== undefined) {
-      axios.get(`/products/?product_id=${this.props.parentProductID}`)
-      .then(({ data }) => {
-        this.setState({
-          parentProductInfo: data
+    const { parentProductID } = this.props;
+    if (parentProductID !== undefined) {
+      axios.get(`/products/?product_id=${parentProductID}`)
+        .then(({ data }) => {
+          this.setState({
+            parentProductInfo: data,
+          });
         })
-      })
-      .catch((error) => {
-        console.log('Error getting product details in yourOutfit list', error);
-      })
+        .catch((error) => {
+          console.log('Error getting product details in yourOutfit list', error);
+        });
 
-      axios.get(`/products/?product_id=${this.props.parentProductID}&flag=styles`)
-      .then(({ data })=> {
-        this.setState({
-          parentProductStyles: data
+      axios.get(`/products/?product_id=${parentProductID}&flag=styles`)
+        .then(({ data }) => {
+          this.setState({
+            parentProductStyles: data,
+          });
         })
-      })
-      .catch((error) => {
-        console.log('Error getting product styles in yourOutfit List', error);
-      })
+        .catch((error) => {
+          console.log('Error getting product styles in yourOutfit List', error);
+        });
 
       axios.get('/outfit')
         .then(({ data }) => {
           this.setState({
             outfits: data,
-            outfitsLoaded: true
-          })
+            outfitsLoaded: true,
+          });
         })
         .catch((error) => {
           console.log('Error getting outfit info in yourOutfit List', error);
-        })
+        });
     }
 
     this.isOverflowing();

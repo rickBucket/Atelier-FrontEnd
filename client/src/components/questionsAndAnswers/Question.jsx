@@ -81,6 +81,8 @@ class Question extends React.Component {
       modal: false,
       itemsToShow: 2,
       expanded: false,
+      helpful: this.props.item.question_helpfulness,
+      clickedYes: false,
     };
     this.selectModal = this.selectModal.bind(this);
     this.showMore = this.showMore.bind(this);
@@ -139,13 +141,21 @@ class Question extends React.Component {
 
   handleClick(event) {
     const { item } = this.props;
-    axios.put('/qa/questions', {
-      question_id: item.question_id,
-      type: event.target.name,
-    })
-      .then((response) => {
-        console.log(response);
-      });
+    if ( !this.state.clickedYes ) {
+      axios.put('/qa/questions', {
+        question_id: item.question_id,
+        type: event.target.name,
+      })
+        .then((response) => {
+          console.log(response);
+          this.setState({
+            helpful: this.state.helpful + 1,
+            clickedYes: true,
+          });
+        });
+    } else {
+      return null;
+    }
   }
 
   oldRender() {
@@ -166,7 +176,7 @@ class Question extends React.Component {
 
   render() {
     const {
-      loadedState, itemsToShow, answers, expanded, modal,
+      loadedState, itemsToShow, answers, expanded, modal, helpful,
     } = this.state;
     const { item } = this.props;
     if (!loadedState) {
@@ -189,7 +199,7 @@ class Question extends React.Component {
             <Button name="helpful" onClick={(event) => { event.preventDefault(); this.handleClick(event); }}> Yes </Button>
             <p>
               (
-              {item.question_helpfulness}
+              {helpful}
               )
             </p>
             <Divide className="divider"> | </Divide>

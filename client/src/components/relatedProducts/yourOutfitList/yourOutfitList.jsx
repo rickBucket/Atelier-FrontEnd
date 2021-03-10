@@ -62,77 +62,75 @@ class YourOutfitList extends React.Component {
           console.log('Error getting outfit info in yourOutfit List', error);
         });
     }
-
-    this.isOverflowing();
   }
 
   addOutfit() {
-    const outfitToAddID = this.state.parentProductStyles.product_id;
+    const { parentProductStyles, outfits, parentProductInfo } = this.state;
+    const outfitToAddID = parentProductStyles.product_id;
     let index;
-    this.state.outfits.forEach((element, i) => {
+    outfits.forEach((element, i) => {
       if (element.styles.product_id === outfitToAddID) {
         index = i;
       }
-    })
+    });
     if (index >= 0) {
-      console.log('Outfit already added')
+      console.log('Outfit already added');
     } else {
       const newOutfitInfoArray = [{
-        info: this.state.parentProductInfo,
-        styles: this.state.parentProductStyles
-      }]
+        info: parentProductInfo,
+        styles: parentProductStyles,
+      }];
       const newOutfitInfoObj = newOutfitInfoArray[0];
 
       this.setState({
-        outfits: []
-      })
+        outfits: [],
+      });
       axios.post('/outfit', newOutfitInfoObj)
-      .then(({ data }) => {
-        this.setState({
-          outfits: data,
-          outfitsLoaded: true
+        .then(({ data }) => {
+          this.setState({
+            outfits: data,
+            outfitsLoaded: true,
+          });
         })
-      })
-      .catch((error) => {
-        console.log('Error posting outfit to server', error);
-      })
+        .catch((error) => {
+          console.log('Error posting outfit to server', error);
+        });
     }
     this.isOverflowing();
   }
 
   deleteOutfit(productID) {
     const outfitToDelete = {
-      ID: productID
-    }
+      ID: productID,
+    };
     this.setState({
-      outfits:[],
+      outfits: [],
     }, () => {
-      axios.delete('/outfit', { data: outfitToDelete})
-      .then(({ data }) => {
-        if (data.length > 0) {
-          this.setState({
-            outfits: data
-          })
-        } else {
-          this.setState({
-            outfits: data,
-            loaded: false
-          })
-        }
-      })
-      .catch((error) => {
-        console.log('Error deleting outfit from server', error);
-      })
-    })
+      axios.delete('/outfit', { data: outfitToDelete })
+        .then(({ data }) => {
+          if (data.length > 0) {
+            this.setState({
+              outfits: data,
+            });
+          } else {
+            this.setState({
+              outfits: data,
+              outfitsLoaded: false,
+            });
+          }
+        })
+        .catch((error) => {
+          console.log('Error deleting outfit from server', error);
+        });
+    });
     // this.isOverflowing();
   }
 
   scrollLeft() {
     this.setState({
-      imagesToTheRight: true
-    })
+      imagesToTheRight: true,
+    });
     const carousel = document.getElementById('yourOutfit');
-    const scrollLeftMax = carousel.scrollWidth - carousel.clientWidth;
     carousel.scrollLeft -= 316;
     if (carousel.scrollLeft <= 316) {
       this.setState({
@@ -143,8 +141,8 @@ class YourOutfitList extends React.Component {
 
   scrollRight() {
     this.setState({
-      imagesToTheLeft: true
-    })
+      imagesToTheLeft: true,
+    });
     const carousel = document.getElementById('yourOutfit');
     const amountLeftToScroll = carousel.scrollWidth - carousel.clientWidth;
     carousel.scrollLeft += 316;
@@ -159,50 +157,58 @@ class YourOutfitList extends React.Component {
     const carousel = document.getElementById('yourOutfit');
     if (carousel) {
       const bool = carousel.scrollWidth > carousel.clientWidth;
+      console.log('overflowing', bool);
       this.setState({
-        cardOverflow: bool,
-        imagesToTheRight: bool
-      })
+        // cardOverflow: bool,
+        imagesToTheRight: bool,
+      });
     }
   }
 
   render() {
+    const {
+      imagesToTheRight, imagesToTheLeft, outfitsLoaded, outfits,
+    } = this.state;
     return (
       <>
-        {this.state.imagesToTheRight ?
+        {imagesToTheRight ? (
           <RightButtonWrapper>
             <RightButton onClick={this.scrollRight}>
               &#8250;
-      </RightButton>
-          </RightButtonWrapper> : null
-        }
-        <ListContainer id="yourOutfit">
+            </RightButton>
+          </RightButtonWrapper>
+        ) : null }
+        <ListContainer id="yourOutfit" onLoad={this.isOverflow}>
           <CardContainer onClick={this.addOutfit} id="addOutfit">
             <AddOutfitContent>
               + Add To Your Outfit
 
-          </AddOutfitContent>
-            <BorderDiv></BorderDiv>
+            </AddOutfitContent>
+            <BorderDiv />
           </CardContainer>
-          {this.state.outfitsLoaded ?
-
-            <>
-              {this.state.outfits.map((outfit, i) => {
-                return <YourOutfitCard
-                  outfit={outfit}
-                  deleteOutfit={this.deleteOutfit}
-                  key={i} />
-              })}
-            </>
+          {outfitsLoaded
+            ? (
+              <>
+                {outfits.map((outfit, i) => (
+                  <YourOutfitCard
+                    outfit={outfit}
+                    deleteOutfit={this.deleteOutfit}
+                    key={i}
+                  />
+                ))}
+              </>
+            )
             : null}
         </ListContainer>
-        {this.state.imagesToTheLeft ? <LeftButtonWrapper>
-          <LeftButton onClick={this.scrollLeft}>
-            &#8249;
-        </LeftButton>
-        </LeftButtonWrapper> : null}
+        {imagesToTheLeft ? (
+          <LeftButtonWrapper>
+            <LeftButton onClick={this.scrollLeft}>
+              &#8249;
+            </LeftButton>
+          </LeftButtonWrapper>
+        ) : null}
       </>
-    )
+    );
   }
 }
 
@@ -212,7 +218,7 @@ const BorderDiv = styled.div`
 border-bottom: 2px solid grey;
 align: center;
 width: 90%;
-margin-top: -50px;
+margin-top: 0px;
 margin-left: 5%;
 margin-right: 5%;
 position: relative;
@@ -220,7 +226,7 @@ bottom: 0px;
 `;
 
 const AddOutfitContent = styled.div`
-  min-height: 450px;
+  min-height: 400px;
   display: flex;
   justify-content: center;
   align-items: center;

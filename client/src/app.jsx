@@ -4,14 +4,14 @@ import axios from 'axios';
 import RatingsApp from './components/ratingsAndReviews/ratingsApp.jsx'
 import ProductMainView from './components/productDetail/productMainView.jsx';
 import RelatedProductsMainView from './components/relatedProducts/relatedProductsMainView.jsx';
-// IMPORT YOUR TOP LEVEL COMPONENTS HERE
 import QuestionMaster from './components/questionsAndAnswers/QuestionMaster.jsx';
 import styled from 'styled-components';
 
 const Title = styled.div`
   width: 100%;
-  height: 76px;
-  margin: -8px;
+  height: 72px;
+  margin-left: -8px;
+  margin-top: -84px;
   z-index: 250;
   position: fixed;
   background: linear-gradient(120deg, hsla(175,75%,45%,0.5), hsla(235,75%,45%,0.5));
@@ -21,13 +21,11 @@ const Title = styled.div`
   font-size: 24px;
   font-weight: bold;
   backdrop-filter: blur(16px);
-`
-
+`;
 const Button = styled.button`
-  margin-top: 76px;
-`
-
-//background: linear-gradient(180deg, hsla(190,80%,85%,0.5), hsla(240,60%,100%,0));
+  margin-top: 4px;
+  position: fixed;
+`;
 
 class App extends React.Component {
   constructor(props) {
@@ -83,9 +81,8 @@ class App extends React.Component {
     return (
       <div>
         <Title>
-          <h1 style={{marginTop: "4px"}}>Observant Ostritches</h1>
+          <h1 style={{marginTop: "0px"}}>Observant Ostritches</h1>
         </Title>
-        <Button type="submit" id="clear" value="0" onClick={this.widgetSelect}>CLEAR</Button>
         <Button type="submit" id="next" onClick={this.nextProduct}>Next Product</Button>
         {
           this.state.loadedID === 2 &&

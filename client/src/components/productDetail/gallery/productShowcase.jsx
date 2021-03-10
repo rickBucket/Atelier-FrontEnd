@@ -16,14 +16,14 @@ const FlexDiv = styled.div`
   position: absolute;
   z-index: 10;
   background: rgba(255,255,255,0.1);
-  backdrop-filter: blur(16px);
+  backdrop-filter: blur(14px);
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none;  /* IE 10+ */
   &::-webkit-scrollbar {
     width: 0px;
     background: transparent; /* Chrome/Safari/Webkit */
   }
-`
+`;
 const Img = styled.img`
   margin: 6px;
   height: 64px;
@@ -37,7 +37,7 @@ const Img = styled.img`
     height: 68px;
     width: 69px;
   }
-`
+`;
 const Button = styled.div`
   border-radius: 50%;
   padding: 12px 14px 12px 14px;
@@ -50,7 +50,7 @@ const Button = styled.div`
   &:hover {
     background: rgba(255,255,255,0.4);
   }
-`
+`;
 
 class ProductShowcase extends React.Component {
   constructor(props) {
@@ -61,11 +61,12 @@ class ProductShowcase extends React.Component {
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleExpand = this.handleExpand.bind(this);
+    this.isPosition = this.isPosition.bind(this);
   }
 
   handleClick(value) {
     this.setState({
-      currentPhoto: this.state.photos.find((element) => element.url === value)
+      currentPhoto: this.state.photos.find((item) => item.url === value)
     });
   }
 
@@ -75,8 +76,19 @@ class ProductShowcase extends React.Component {
 
   nextPhoto(flag) {
     this.setState({
-      currentPhoto: this.state.photos[(this.state.photos.indexOf(this.state.currentPhoto) + flag + this.state.photos.length) % this.state.photos.length]
+      currentPhoto: this.state.photos[(
+          this.state.photos.indexOf(this.state.currentPhoto) + flag + this.state.photos.length
+        ) % this.state.photos.length
+      ]
     });
+  }
+
+  isPosition(pos) {
+    if (pos === "right") {
+      return this.state.currentPhoto.url !== this.state.photos[this.state.photos.length - 1].url;
+    } else if (pos === "left") {
+      return this.state.currentPhoto.url !== this.state.photos[0].url;
+    }
   }
 
   render() {
@@ -88,14 +100,15 @@ class ProductShowcase extends React.Component {
           onClick={this.handleExpand}
         />
         {
-          this.state.currentPhoto.url !== this.state.photos[this.state.photos.length - 1].url &&
+          this.isPosition("right") &&
           <Button
             style={{margin: "276px 20px -64px -76px"}}
             onClick={this.nextPhoto.bind(this, 1)}
             className="fa fa-arrow-right"
           />
-        } {
-          this.state.currentPhoto.url !== this.state.photos[0].url &&
+        }
+        {
+          this.isPosition("left") &&
           <Button
             style={{margin: "276px 488px -64px -552px"}}
             onClick={this.nextPhoto.bind(this, -1)}
@@ -109,7 +122,14 @@ class ProductShowcase extends React.Component {
         <FlexDiv>
           {
             this.state.photos.map((photo) => {
-              return <Img key={photo.url} onClick={this.handleClick.bind(this, photo.url)} src={photo.thumbnail_url} a=''></Img>
+              return (
+                <Img
+                  key={photo.url}
+                  onClick={this.handleClick.bind(this, photo.url)}
+                  src={photo.thumbnail_url}
+                  a=''>
+                </Img>
+              );
             })
           }
         </FlexDiv>

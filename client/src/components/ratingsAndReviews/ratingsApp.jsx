@@ -95,13 +95,14 @@ const productStyle = {
   maxWidth: '100%',
   // marginLeft: '20%',
   // marginRight: '20%',
+  marginTop: '10px',
   margin: 'auto',
   gridColumn: '1',
   gridRow: '3',
 };
 
 const sortOptionsStyle = {
-  marginTop: '20px',
+  marginTop: '40px',
   marginLeft: '30px',
   gridColumn: '2/-1',
   gridRow: '1',
@@ -122,7 +123,7 @@ const reviewButtonsStyle = {
   // marginLeft: '50%',
   width: '100%',
   gridColumn: '2/-1',
-  gridRow: '6',
+  gridRow: '5',
 };
 
 // const moreReviewsStyle = {

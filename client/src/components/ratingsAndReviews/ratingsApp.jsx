@@ -74,7 +74,7 @@ const modalStyle = {
   position: 'fixed', /* Fix position on the top-left corner */
   top: '0',
   left: '0',
-  overflow: 'auto', /* Enable scroll if needed */
+  overflow: 'hidden', /* Enable scroll if needed */
   paddingTop: '80px', /* Location of the content container */
 };
 
@@ -93,22 +93,23 @@ const innerModalStyle = {
 
 const productStyle = {
   maxWidth: '100%',
-  marginLeft: '10%',
-  marginRight: '10%',
+  // marginLeft: '20%',
+  // marginRight: '20%',
+  margin: 'auto',
   gridColumn: '1',
-  gridRow: '3/6',
+  gridRow: '3',
 };
 
 const sortOptionsStyle = {
   paddingTop: '10px',
   marginLeft: '30px',
   gridColumn: '2/-1',
-  gridRow: '1',
+  gridRow: '0',
 };
 
 const reviewListStyle = {
-  gridColumn: '2/5',
-  gridRow: '2/6',
+  gridColumn: '2/-1',
+  gridRow: '2/5',
   overflow: 'auto',
   maxWidth: '90%',
   marginLeft: '20px',

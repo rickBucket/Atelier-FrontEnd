@@ -1,11 +1,11 @@
 import React from 'react';
 import { shallow, mount, render, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import QuestionMaster from '../../client/src/components/questionsAndAnswers/QuestionMaster.jsx';
+import PhotoModal from '../../client/src/components/questionsAndAnswers/PhotoModal.jsx';
 
-describe('<QuestionMaster />', () => {
+describe('<PhotoModal />', () => {
   it('renders a div component', () => {
-    const wrapper = shallow(<QuestionMaster item={{ question: [] }} />);
+    const wrapper = shallow(<PhotoModal />);
     expect(wrapper.find('#data')).not.toBeUndefined();
   });
 });

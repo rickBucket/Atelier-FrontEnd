@@ -147,7 +147,7 @@ class QuestionMaster extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.props.productID !== prevProps.productID) {
+    if (prevProps.productID !== this.props.productID) {
       this.oldRender();
     }
   }

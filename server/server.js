@@ -92,10 +92,6 @@ app.put('/qa/questions', (req, res) => {
   })
 });
 
-app.put('qa/questions', (req, res) => {
-  questions.putQuestions(req.query, (err, data))
-})
-
 app.get('/cart', (req, res) => {
   cart.getItemsInCart((err, data) => {
     if (err) {

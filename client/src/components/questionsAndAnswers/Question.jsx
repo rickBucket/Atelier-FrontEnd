@@ -1,9 +1,10 @@
-/* eslint-disable */
 import React from 'react';
-import Answers from './Answers.jsx';
-import styled from 'styled-components';
-import AnswerModal from './AnswerModal.jsx';
 import axios from 'axios';
+
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import Answers from './Answers';
+import AnswerModal from './AnswerModal';
 
 const ContainerA = styled.div`
   border-top: 0px solid grey;
@@ -60,7 +61,6 @@ const Divide = styled.span`
   display: flex;
 `;
 
-
 const ScrollList = styled.ul`
   list-style:none;
   max-height:350px;
@@ -69,9 +69,6 @@ const ScrollList = styled.ul`
   padding:0;
   text-indent:10px;
 `;
-//change my scroll list to where it only shows after you click show more!
-//always show two with no scroll
-
 
 // CLASS STARTS HERE ------------------------//
 
@@ -81,7 +78,6 @@ class Question extends React.Component {
     this.state = {
       answers: [],
       loadedState: false,
-      loadMore: false,
       modal: false,
       itemsToShow: 2,
       expanded: false,
@@ -92,63 +88,45 @@ class Question extends React.Component {
     this.oldRender = this.oldRender.bind(this);
   }
 
-  oldRender() {
-    const object = this.props.item.answers
+  componentDidMount() {
+    const { item } = this.props;
+    const object = item.answers;
     if (object.length <= 1) {
       this.setState({
-        answers: Object.values(object).sort((a, b) => {
-          return b.helpfulness - a.helpfulness;
-        }),
+        answers: Object.values(object).sort((a, b) => b.helpfulness - a.helpfulness),
         loadedState: true,
-        loadMore: false
-      })
+      });
     } else {
       this.setState({
-        answers: Object.values(object).sort((a, b) => {
-          return b.helpfulness - a.helpfulness;
-        }),
+        answers: Object.values(object).sort((a, b) => b.helpfulness - a.helpfulness),
         loadedState: true,
-        loadMore: true
-      })
+      });
     }
   }
 
-  componentDidMount() {
-    const object = this.props.item.answers
-    if (object.length <= 1) {
-      this.setState({
-        answers: Object.values(object).sort((a, b) => {
-          return b.helpfulness - a.helpfulness;
-        }),
-        loadedState: true,
-        loadMore: false
-      })
-    } else {
-      this.setState({
-        answers: Object.values(object).sort((a, b) => {
-          return b.helpfulness - a.helpfulness;
-        }),
-        loadedState: true,
-        loadMore: true
-      })
-    }
-  }
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.item.id !== this.props.item.id) {
+    const { item } = this.props;
+    if (prevProps.item.id !== item.id) {
       this.oldRender();
     }
   }
 
   selectModal() {
+    const {
+      modal,
+    } = this.state;
     this.setState({
-      modal: !this.state.modal //toggle
-    })
+      modal: !modal, // toggle
+    });
   }
 
   showMore() {
-    this.state.itemsToShow === 2 ? (
+    const {
+      itemsToShow, answers,
+    } = this.state;
+    itemsToShow === 2 ? (
       this.setState({
-        itemsToShow: this.state.answers.length,
+        itemsToShow: answers.length,
         expanded: true,
       })
     ) : (
@@ -156,12 +134,13 @@ class Question extends React.Component {
         itemsToShow: 2,
         expanded: false,
       })
-    )
+    );
   }
 
   handleClick(event) {
+    const { item } = this.props;
     axios.put('/qa/questions', {
-      question_id: this.props.item.question_id,
+      question_id: item.question_id,
       type: event.target.name,
     })
       .then((response) => {
@@ -169,72 +148,94 @@ class Question extends React.Component {
       });
   }
 
-  render() {
-    if (!this.state.loadedState) {
-      return(
-        null
-      )
+  oldRender() {
+    const { item } = this.props;
+    const object = item.answers;
+    if (object.length <= 1) {
+      this.setState({
+        answers: Object.values(object).sort((a, b) => b.helpfulness - a.helpfulness),
+        loadedState: true,
+      });
     } else {
+      this.setState({
+        answers: Object.values(object).sort((a, b) => b.helpfulness - a.helpfulness),
+        loadedState: true,
+      });
+    }
+  }
+
+  render() {
+    const {
+      loadedState, itemsToShow, answers, expanded, modal,
+    } = this.state;
+    const { item } = this.props;
+    if (!loadedState) {
+      return (
+        null
+      );
+    }
     return (
-    <ContainerA>
+      <ContainerA>
 
-           <EachQ>
+        <EachQ>
 
-            <h3>Q: {this.props.item.question_body}</h3>
+          <h3>
+            Q:
+            {item.question_body}
+          </h3>
 
-               <MoveRight>
-              <p> Helpful? </p>
-              <Button name="helpful" onClick={(event) => { event.preventDefault(); this.handleClick(event); }}> Yes </Button>
-              <p>({this.props.item.question_helpfulness})</p>
-              <Divide className="divider"> | </Divide>
-              <Button name="report" onClick={(event) => { event.preventDefault(); this.handleClick(event); }}> Report </Button>
-              <Divide className="divider"> | </Divide>
-              <Button onClick={ this.selectModal }> Add Answer </Button>
-              </MoveRight>
+          <MoveRight>
+            <p> Helpful? </p>
+            <Button name="helpful" onClick={(event) => { event.preventDefault(); this.handleClick(event); }}> Yes </Button>
+            <p>
+              (
+              {item.question_helpfulness}
+              )
+            </p>
+            <Divide className="divider"> | </Divide>
+            <Button name="report" onClick={(event) => { event.preventDefault(); this.handleClick(event); }}> Report </Button>
+            <Divide className="divider"> | </Divide>
+            <Button onClick={this.selectModal}> Add Answer </Button>
+          </MoveRight>
 
-           </EachQ>
-
+        </EachQ>
 
         <div>
 
-        {this.state.itemsToShow <=2 ?
-        <div>
-        {this.state.answers.slice(0,this.state.itemsToShow).map((answer, i) => {
-          return (
-            <ContainerB>
-            <Answers item={answer} key={i} seller={this.props.item.asker_name} reportItem={this.props.item.reported}/>
-            </ContainerB>
-          )
-        })}
-        </div>
-         :
-          <ScrollList>
-        {this.state.answers.slice(0,this.state.itemsToShow).map((answer, i) => {
-          return (
-            <ContainerB>
-            <Answers item={answer} key={i} seller={this.props.item.asker_name} reportItem={this.props.item.reported}/>
-            </ContainerB>
-          )
-        })}
-          </ScrollList>
-            }
-        {this.state.answers.length >= 2 && !(this.state.expanded) ? (
-          <LoadButton onClick={(event) => { this.showMore(); } }> LOAD MORE ANSWERS </LoadButton>
+          {itemsToShow <= 2
+            ? (
+              <div>
+                {answers.slice(0, itemsToShow).map((answer) => (
+                  <ContainerB key={answer.answer_id}>
+                    <Answers item={answer} seller={item.asker_name} reportItem={item.reported} />
+                  </ContainerB>
+                ))}
+              </div>
+            )
+            : (
+              <ScrollList>
+                {answers.slice(0, itemsToShow).map((answer) => (
+                  <ContainerB key={answer.answer_id}>
+                    <Answers item={answer} seller={item.asker_name} reportItem={item.reported} />
+                  </ContainerB>
+                ))}
+              </ScrollList>
+            )}
+          {answers.length >= 2 && !(expanded) ? (
+            <LoadButton onClick={() => { this.showMore(); }}> LOAD MORE ANSWERS </LoadButton>
           ) : (
-          <LoadButton onClick={(event) => { this.showMore(); }}> Collapse List </LoadButton>
+            <LoadButton onClick={() => { this.showMore(); }}> Collapse List </LoadButton>
           )}
 
         </div>
-          <AnswerModal displayModal={this.state.modal} closeModal={this.selectModal} question_id={this.props.item.question_id}/>
-    </ContainerA>
+        <AnswerModal displayModal={modal} closeModal={this.selectModal} q_id={item.question_id} />
+      </ContainerA>
     );
   }
-}
 }
 
 export default Question;
 
-// Q: -
-// A: -
-// helpful question button -value helpful, yes is button, {} answers.count value
-// add answer button
+Question.propTypes = {
+  item: PropTypes.isRequired,
+};

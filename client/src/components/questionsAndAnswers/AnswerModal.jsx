@@ -87,7 +87,7 @@ class AnswerModal extends React.Component {
       newName: '',
       newEmail: '',
       newAnswer: '',
-      image: [],
+      images: [],
     };
     this.selectModal = this.selectModal.bind(this);
     this.postAnswer = this.postAnswer.bind(this);
@@ -116,12 +116,15 @@ class AnswerModal extends React.Component {
   }
 
   postAnswer() {
-    axios.post(`/qa/questions`, {
+    const {
+      newAnswer, newName, newEmail, images,
+    } = this.state;
+    axios.post('/qa/questions', {
       body: this.state.newAnswer,
       name: this.state.newName,
       email: this.state.newEmail,
-      photos: this.state.image,
-      question_id: this.props.question_id,
+      photos: this.state.images,
+      question_id: this.props.q_id,
     })
       .then(response => {
         console.log('successful answer post', response.data);
@@ -129,10 +132,12 @@ class AnswerModal extends React.Component {
   }
 
   addImg(event) {
-    let array = [];
-    array.push(URL.createObjectURL(event.target.files[0]));
+    const photos = [];
+    photos.push(URL.createObjectURL(event.target.files[0]));
     this.setState({
-      images: array,
+      images: photos,
+    }, () => {
+
     });
   }
 

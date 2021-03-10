@@ -112,8 +112,6 @@ class QuestionModal extends React.Component {
   }
 
   postQuestion() {
-    console.log('success!');
-    // axios post request
     axios.post('/qa/questions', {
       body: this.state.newQuestion,
       name: this.state.newName,

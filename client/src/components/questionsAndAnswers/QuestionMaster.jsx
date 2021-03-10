@@ -1,13 +1,10 @@
-/* eslint-disable */
 import React from 'react';
-import dummyData from './dummyData.js';
 import axios from 'axios';
 import styled from 'styled-components';
-import QuestionModal from './QuestionModal.jsx';
-import Question from './Question.jsx';
+import PropTypes from 'prop-types';
+import QuestionModal from './QuestionModal';
+import Question from './Question';
 
-//justify content center
-//need another outermost container for flex and justiify
 const FlexContainer = styled.div`
 display: flex;
 justify-content: center;
@@ -17,7 +14,6 @@ const Container = styled.div`
   border-radius: 10px;
   padding: 5px;
   margin: 5px;
-  font-family: Arial;
   max-width: 1280px;
 `;
 
@@ -60,7 +56,6 @@ const QuestionContainer = styled.div`
   position: center;
 `;
 
-//search bar here//
 const SearchDiv = styled.div`
   width: 60%;
   position: relative;
@@ -85,7 +80,7 @@ const SearchBtn = styled.button`
   border: 1px solid grey;
   background:grey;
   text-align: center;
-  color: #fff;
+  color: black;
   border-radius: 0 5px 5px 0;
   cursor: pointer;
   font-size: 20px;
@@ -98,9 +93,7 @@ const SearchBtn = styled.button`
   }
 `;
 
-
 // CLASS STARTS HERE ------------------------//
-
 
 class QuestionMaster extends React.Component {
   constructor(props) {
@@ -111,7 +104,6 @@ class QuestionMaster extends React.Component {
       modal: false,
       itemsToShow: 4,
       expanded: false,
-      showAll: false,
       searchText: '',
     };
     this.selectModal = this.selectModal.bind(this);
@@ -121,47 +113,28 @@ class QuestionMaster extends React.Component {
     this.oldRender = this.oldRender.bind(this);
   }
 
-  //make a function when the product id is changed calls axios.get on the new product id
-  oldRender(){
-    axios.get(`qa/questions/?product_id=${this.props.productID}`)
-    .then((response) => {
-      this.setState({
-        questionData: response.data.results.sort((a,b) => {
-          return a.helpfulness - b.helpfulness;
-        }),
-        showAll: true,
-      });
-    });
-  }
-
   componentDidMount() {
-    axios.get(`qa/questions/?product_id=${this.props.productID}`)
+    const { productID } = this.props;
+    axios.get(`qa/questions/?product_id=${productID}`)
       .then((response) => {
         this.setState({
-          questionData: response.data.results.sort((a,b) => {
-            return a.helpfulness - b.helpfulness;
-          }),
-          showAll: true,
+          questionData: response.data.results.sort((a, b) => a.helpfulness - b.helpfulness),
+          filteredData: response.data.results.sort((a, b) => a.helpfulness - b.helpfulness),
         });
       });
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.productID !== this.props.productID) {
+    const { productID } = this.props;
+    if (prevProps.productID !== productID) {
       this.oldRender();
     }
-  }
-
-  selectModal() {
-    this.setState({
-      modal: !this.state.modal
-    }) // true/false toggle
   }
 
   showMore() {
     this.state.itemsToShow === 4 ? (
       this.setState({
-        itemsToShow: this.state.questionData.length ,
+        itemsToShow: this.state.questionData.length,
         expanded: true,
       })
     ) : (
@@ -169,87 +142,105 @@ class QuestionMaster extends React.Component {
         itemsToShow: 4,
         expanded: false,
       })
-    )
+    );
   }
 
-  handleSearch() {
+  handleSearch(event) {
     this.setState({
       searchText: event.target.value,
+    }, () => {
+      if (event.target.value.length > 2 || event.target.value === '') {
+        this.SearchDb();
+      }
     });
-    if (event.target.value.length > 2 || event.target.value === '') {
-      this.SearchDb()
-    }
   }
 
-  SearchDb(){
-    if(this.state.searchText === '') {
-      var filteredArr = [];
-      filteredArr.push(this.state.questionData[0])
-      filteredArr.push(this.state.questionData[1])
+  selectModal() {
+    const { modal } = this.state;
+    this.setState({
+      modal: !modal,
+    }); // true/false toggle
+  }
+
+  oldRender() {
+    const { productID } = this.props;
+    axios.get(`qa/questions/?product_id=${productID}`)
+      .then((response) => {
+        this.setState({
+          questionData: response.data.results.sort((a, b) => a.helpfulness - b.helpfulness),
+        });
+      });
+  }
+
+  SearchDb() {
+    const { searchText, questionData, filteredData } = this.state;
+    if (searchText.length === 0) {
       this.setState({
-        questionData: filteredArr
-      })
+        filteredData: questionData,
+      });
     } else {
-      var filteredArr = [];
-      for(var i = 0; i < this.state.questionData.length; i++) {
-        if(this.state.questionData[i].question_body.toLowerCase().includes(this.state.searchText)) {
-          filteredArr.push(this.state.questionData[i]);
+      const filteredArr = [];
+      for (let i = 0; i < filteredData.length; i += 1) {
+        if (filteredData[i].question_body.toLowerCase().includes(searchText)) {
+          filteredArr.push(filteredData[i]);
         }
       }
       this.setState({
-        questionData: filteredArr
-      })
+        filteredData: filteredArr,
+      });
     }
   }
 
-
-  //steps:
-    //try testing out dummy data with filter method
-    //need a way to preserve that outer question in cases where the match occurs in the answer text, not question text
-
-
-
   render() {
+    const { productID } = this.props;
+    const {
+      searchText, filteredData, itemsToShow, expanded, modal,
+    } = this.state;
     return (
-    <FlexContainer>
-      <Container>
-        <h1>Question's and Answers</h1>
-        <form onSubmit={event => {event.preventDefault(); }}>
-          <SearchDiv className='searchBar'>
-          <SearchBar placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...        ' type='text' value={this.state.searchText}  onChange={event => {event.preventDefault(); this.handleSearch()}}></SearchBar>
-          <SearchBtn>🔍</SearchBtn>
-          </SearchDiv>
-        </form>
+      <FlexContainer>
+        <Container>
+          <h1>Questions and Answers</h1>
+          <form onSubmit={(event) => { event.preventDefault(); }}>
+            <SearchDiv className="searchBar">
+              <SearchBar placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS...        " type="text" value={searchText} onChange={(event) => { event.preventDefault(); this.handleSearch(); }} />
+              <SearchBtn className="fa fa-search"></SearchBtn>
+            </SearchDiv>
+          </form>
 
-        <QuestionContainer>
-        {this.state.questionData.slice(0, this.state.itemsToShow).map((item, i) => {
-          return (
-            <Question item={item} key={i} />
-          )
-        })}
-        </QuestionContainer>
+          <QuestionContainer>
+            {filteredData.slice(0, itemsToShow).map((item) => (
+              <Question item={item} key={item.question_id} />
+            ))}
+          </QuestionContainer>
 
-        {this.state.questionData.length > 1 && !(this.state.expanded) ? (
-          <ButtonA className="Load-button" onClick={this.showMore} > <b> MORE ANSWERED QUESTIONS </b> </ButtonA>
-        ) : (
-          null
-        )}
+          {filteredData.length > 1 && !(expanded) ? (
+            <ButtonA className="Load-button" onClick={this.showMore}>
+              {' '}
+              <b> MORE ANSWERED QUESTIONS </b>
+              {' '}
+            </ButtonA>
+          ) : (
+            null
+          )}
 
-
-        <ButtonB className="add-Q-button" onClick={ this.selectModal }> <b>ADD A QUESTION +</b> </ButtonB>
-        <QuestionModal displayModal={this.state.modal}
-        closeModal={this.selectModal}
-        product_id={this.props.productID}/>
-      </Container>
-    </FlexContainer>
+          <ButtonB className="add-Q-button" onClick={this.selectModal}>
+            {' '}
+            <b>ADD A QUESTION +</b>
+            {' '}
+          </ButtonB>
+          <QuestionModal
+            displayModal={modal}
+            closeModal={this.selectModal}
+            product_id={productID}
+          />
+        </Container>
+      </FlexContainer>
     );
   }
 }
 
 export default QuestionMaster;
 
-//  text-decoration: underline;
-// background: transparent;
-// border: none;
-// outline: none;
-// cursor: pointer;
+QuestionMaster.propTypes = {
+  productID: PropTypes.number.isRequired,
+};

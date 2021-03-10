@@ -12,14 +12,17 @@ const Modal = styled.div`
     top: 0;
     left: 0;
     overflow: auto; //Enable scroll if needed
-    padding-top: 150px; /* Location of the content container */
+    padding-top: 275px; /* Location of the content container */
 `;
 
 const Modal_Con = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     background-color: white;
     width: 35%; /* Width in proportion to its parent container*/
     max-width: 320px; /* Max width where it stops expanding */
-    height: 33%; /* Height in proportion to its parent container */
+    height: 40%; /* Height in proportion to its parent container */
     margin: auto; /* Auto margin according to the element width */
     padding: 10px;
     border: 1px solid black;
@@ -56,19 +59,23 @@ const NewQueC = styled.textarea`
 `;
 
 const AddImg = styled.input`
+margin-left: auto;
 `;
 
 const Button = styled.button`
-  text-decoration: underline;
-  background: transparent;
-  border: none;
-  outline: none;
-  cursor: pointer;
+  height: 60px;
+  width: 175px;
+  background-color: white;
+  padding: 10px;
+  margin-top: 10px;
 
   &:hover {
-    text-decoration: none;
-    font-weight: bold;
+    background-color: lightgrey;
+    border: 1px solid black;
+  border-radius: 5px;
+  transition: all ease 0.3s;
   }
+
 `;
 
 // CLASS STARTS HERE ---------------------------//
@@ -80,7 +87,7 @@ class AnswerModal extends React.Component {
       newName: '',
       newEmail: '',
       newAnswer: '',
-      image: [],
+      images: [],
     };
     this.selectModal = this.selectModal.bind(this);
     this.postAnswer = this.postAnswer.bind(this);
@@ -109,12 +116,15 @@ class AnswerModal extends React.Component {
   }
 
   postAnswer() {
-    axios.post(`/qa/questions`, {
+    const {
+      newAnswer, newName, newEmail, images,
+    } = this.state;
+    axios.post('/qa/questions', {
       body: this.state.newAnswer,
       name: this.state.newName,
       email: this.state.newEmail,
-      photos: this.state.image,
-      question_id: this.props.question_id,
+      photos: this.state.images,
+      question_id: this.props.q_id,
     })
       .then(response => {
         console.log('successful answer post', response.data);
@@ -122,10 +132,12 @@ class AnswerModal extends React.Component {
   }
 
   addImg(event) {
-    let array = [];
-    array.push(URL.createObjectURL(event.target.files[0]));
+    const photos = [];
+    photos.push(URL.createObjectURL(event.target.files[0]));
     this.setState({
-      images: array,
+      images: photos,
+    }, () => {
+
     });
   }
 

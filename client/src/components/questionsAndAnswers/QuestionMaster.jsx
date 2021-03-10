@@ -80,7 +80,7 @@ const SearchBtn = styled.button`
   border: 1px solid grey;
   background:grey;
   text-align: center;
-  color: #fff;
+  color: black;
   border-radius: 0 5px 5px 0;
   cursor: pointer;
   font-size: 20px;
@@ -203,7 +203,7 @@ class QuestionMaster extends React.Component {
           <form onSubmit={(event) => { event.preventDefault(); }}>
             <SearchDiv className="searchBar">
               <SearchBar placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS...        " type="text" value={searchText} onChange={(event) => { event.preventDefault(); this.handleSearch(); }} />
-              <SearchBtn>🔍</SearchBtn>
+              <SearchBtn className="fa fa-search"></SearchBtn>
             </SearchDiv>
           </form>
 

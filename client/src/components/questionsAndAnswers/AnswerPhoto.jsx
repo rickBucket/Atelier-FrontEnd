@@ -13,6 +13,7 @@ const PhotoContainer = styled.div`
   height: 100px;
   width: 100px;
   align-items: center;
+  margin-left: 20px;
 `;
 
 class AnswerPhoto extends React.Component {

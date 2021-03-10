@@ -28,7 +28,7 @@ const MoveRight = styled.div`
 
 const ContainerB = styled.div`
   padding: 10px;
-  border-top: 3px grey solid;
+  border-top: 1px grey solid;
   margin: 3px;
 `;
 

@@ -14,7 +14,6 @@ module.exports = {
       if (outfit[i].styles.product_id === productID) {
         index = i;
       }
-
     }
     outfit.splice(index, 1);
     callback(null, outfit);

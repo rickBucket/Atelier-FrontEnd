@@ -3,4 +3,5 @@ bundle.js
 config.js
 coverage
 *.pem
+.DS_Store
 

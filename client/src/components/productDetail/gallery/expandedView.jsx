@@ -1,6 +1,6 @@
-/* eslint-disable */
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const Div = styled.div`
   background: rgba(0,0,0,0.55);
@@ -21,12 +21,17 @@ const Img = styled.img`
   cursor: pointer;
 `;
 
-function ExpandedView(props) {
+function ExpandedView({ unselectPhoto, photo }) {
   return (
-    <Div onClick={props.unselectPhoto}>
-      <Img src={props.photo} a=""></Img>
+    <Div onClick={unselectPhoto}>
+      <Img src={photo} a="" />
     </Div>
   );
 }
+
+ExpandedView.propTypes = {
+  photo: PropTypes.string.isRequired,
+  unselectPhoto: PropTypes.func.isRequired,
+};
 
 export default ExpandedView;

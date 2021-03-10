@@ -1,6 +1,6 @@
-/* eslint-disable */
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const Div = styled.div`
   margin: 8px;
@@ -13,57 +13,60 @@ const FlexDiv = styled.div`
   max-width: 960px;
   margin: 48px auto 96px auto;
 `;
-const Separator = styled.div`
-  margin: 20px;
-  background: rgba(0,0,0,0.7);
-  color: rgba(0,0,0,0);
-`;
 
+function formatFeatures(featureArray) {
+  const features = [];
+  if (!featureArray) {
+    return [];
+  }
+  featureArray.forEach((element) => {
+    let feat = ` - ${element.feature}`;
+    const val = element.value;
+    if (typeof val === 'string' && val) {
+      feat = `${feat}: ${val.split('"').join('')}`;
+    }
+    features.push(feat);
+  });
+  return Array.from(new Set(features));
+}
 
 // props => slogan-string description-string features-[{feature value}]
 class ProductDescription extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor({ slogan, description, features }) {
+    super();
     this.state = {
-      slogan: this.props.slogan,
-      description: this.props.description,
-      features: this.formatFeatures(this.props.features)
+      slogan,
+      description,
+      features: formatFeatures(features),
     };
   }
 
-  formatFeatures(featureArray) {
-    var features = [];
-    if (!featureArray) {
-      return [];
-    }
-    featureArray.forEach((element) => {
-      let feat = ' - ' + element.feature;
-      const val = element.value;
-      if (typeof val === 'string' && val) {
-        feat = `${feat}: ${val.split('\"').join('')}`
-      }
-      features.push(feat);
-    });
-    return Array.from(new Set(features));
-  }
-
   render() {
+    const { slogan, description, features } = this.state;
     return (
       <FlexDiv>
-        <Div style={{borderRight: "1px solid grey"}}>
-          <h3>{this.state.slogan}</h3>
-          <p>{this.state.description}</p>
+        <Div style={{ borderRight: '1px solid grey' }}>
+          <h3>{slogan}</h3>
+          <p>{description}</p>
         </Div>
         <Div>
-          {
-            this.state.features.map((element) => {
-              return <h5 key={element}>{element}</h5>;
-            })
-          }
+          { features.map((element) => <h5 key={element}>{element}</h5>) }
         </Div>
       </FlexDiv>
     );
   }
 }
+
+ProductDescription.defaultProps = {
+  slogan: '',
+  description: '',
+  features: [],
+};
+
+ProductDescription.propTypes = {
+  slogan: PropTypes.string,
+  description: PropTypes.string,
+  features: PropTypes.arrayOf(PropTypes.shape({})),
+};
 
 export default ProductDescription;

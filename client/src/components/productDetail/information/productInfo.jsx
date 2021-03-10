@@ -12,7 +12,6 @@ const Div = styled.div`
   background: linear-gradient(0deg, hsl(190,70%,99%), hsl(240,60%,100%));
 `;
 
-// needs: rating, review link, category, name. price
 class ProductInfo extends React.Component {
   constructor(props) {
     super(props);
@@ -81,12 +80,14 @@ class ProductInfo extends React.Component {
 
 ProductInfo.defaultProps = {
   sale: null,
+  category: '',
+  name: '',
 };
 
 ProductInfo.propTypes = {
   price: PropTypes.string.isRequired,
-  category: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
+  category: PropTypes.string,
+  name: PropTypes.string,
   sale: PropTypes.string,
   ratings: PropTypes.shape({}).isRequired,
 };

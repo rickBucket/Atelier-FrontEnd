@@ -149,8 +149,8 @@ class ProductMainView extends React.Component {
 }
 
 ProductMainView.propTypes = {
-  productID: PropTypes.node.isRequired,
-  ratings: PropTypes.node.isRequired,
+  productID: PropTypes.number.isRequired,
+  ratings: PropTypes.shape({}).isRequired,
 };
 
 export default ProductMainView;

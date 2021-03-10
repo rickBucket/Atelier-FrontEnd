@@ -1,15 +1,11 @@
-/* eslint-disable class-methods-use-this */
-/* eslint-disable react/button-has-type */
-/* eslint-disable max-len */
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable */
 import React from 'react';
 import axios from 'axios';
-import ReviewList from './reviewList/reviewList.jsx';
-import WriteReview from './writeReview/writeReview.jsx';
-import RatingBreakdown from './ratingBreakdown/ratingBreakdown.jsx';
-import ProductBreakdown from './productBreakdown/productBreakdown.jsx';
-import SortOptions from './sortOptions/sortOptions.jsx';
+import PropTypes from 'prop-types';
+import ReviewList from './reviewList/reviewList';
+import WriteReview from './writeReview/writeReview';
+import RatingBreakdown from './ratingBreakdown/ratingBreakdown';
+import ProductBreakdown from './productBreakdown/productBreakdown';
+import SortOptions from './sortOptions/sortOptions';
 
 const gridLayout = {
   display: 'grid',
@@ -34,7 +30,7 @@ const mainDiv = {
   paddingTop: '30px',
   paddingBottom: '30px',
   maxWidth: '80%',
-  maxHeight: '80%',
+  maxHeight: '70%',
   margin: 'auto',
 };
 
@@ -64,37 +60,44 @@ const noReviewsAddBtn = {
   gridRow: '2',
 };
 
+const moreReviewsBtn = {
+  border: '1px solid grey',
+  width: '150px',
+  boxShadow: '2px 2px 4px grey',
+  backgroundColor: 'white',
+  padding: '10px',
+};
+
 const modalStyle = {
   backdropFilter: 'blur(8px) contrast(70%)',
-  backgroundColor: 'rgb(0,0,0)', /* Fallback color */
+  backgroundColor: 'rgb(0,0,0)',
   backgroundColor: 'rgba(0,0,0,0.4)',
   zIndex: '150',
   height: '100%',
-  width: '100%', /* Full height */
-  position: 'fixed', /* Fix position on the top-left corner */
+  width: '100%',
+  position: 'fixed',
   top: '0',
   left: '0',
-  overflow: 'hidden', /* Enable scroll if needed */
-  paddingTop: '80px', /* Location of the content container */
+  overflow: 'hidden',
+  paddingTop: '80px',
 };
 
 const innerModalStyle = {
   backgroundColor: 'white',
-  width: '50%', /* Width in proportion to its parent container */
+  width: '50%',
   minWidth: '580px',
-  maxWidth: '100%', /* Max width where it stops expanding */
-  height: '80%', /* Height in proportion to its parent container */
-  margin: 'auto', /* Auto margin according to the element width */
+  maxWidth: '100%',
+  maxHeight: '80%',
+  height: '80%',
+  margin: 'auto',
   padding: '10px',
   border: 'none',
   overflow: 'auto',
-  borderRadius: '20px', /* Optional. Rounds container corners */
+  borderRadius: '20px',
 };
 
 const productStyle = {
   maxWidth: '100%',
-  // marginLeft: '20%',
-  // marginRight: '20%',
   marginTop: '10px',
   margin: 'auto',
   gridColumn: '1',
@@ -118,31 +121,21 @@ const reviewListStyle = {
 };
 
 const reviewButtonsStyle = {
-  // marginLeft: '30px',
-  // paddingBottom: '30px',
-  // marginLeft: '50%',
   width: '100%',
   gridColumn: '2/-1',
   gridRow: '5',
 };
 
-// const moreReviewsStyle = {
-//   marginLeft: '30px',
-//   paddingBottom: '30px',
-//   gridColumn: '3',
-//   gridRow: '6',
-// };
-
 class RatingsApp extends React.Component {
   constructor(props) {
     super(props);
+    const { metaData } = this.props;
     this.state = {
       reviewList: [],
-      metaData: this.props.metaData,
+      metaData,
       reviewEnd: 2,
       listSort: 0,
       reviewsReady: false,
-      metaReady: false,
       writeReviewModal: false,
       noReviews: false,
       hideMoreReviews: false,
@@ -150,7 +143,7 @@ class RatingsApp extends React.Component {
 
     this.writeReviewClick = this.writeReviewClick.bind(this);
     this.exitWriteReviewClick = this.exitWriteReviewClick.bind(this);
-    this.handleReviewData = this.handleReviewData.bind(this);
+    // this.handleReviewData = this.handleReviewData.bind(this);
     this.moreReviewsClick = this.moreReviewsClick.bind(this);
     this.handlePut = this.handlePut.bind(this);
     this.listSortChange = this.listSortChange.bind(this);
@@ -158,7 +151,9 @@ class RatingsApp extends React.Component {
 
   componentDidMount() {
     /// /GET product reviews/////
-    axios.get(`/reviews/?product_id=${this.props.productID}&count=6`)
+    const { productID } = this.props;
+
+    axios.get(`/reviews/?product_id=${productID}&count=6`)
       .then((results) => {
         if (results.data.results.length === 0) {
           this.setState({
@@ -173,17 +168,6 @@ class RatingsApp extends React.Component {
       .catch((err) => {
         console.log('error on review GET request', err);
       });
-    /// /GET product meta data//////
-    // axios.get(`/reviews/?product_id=${this.props.productID}&meta=meta`)
-    //   .then((results) => {
-    //     this.setState({
-    //       metaData: results.data,
-    //       metaReady: true,
-    //     });
-    //   })
-    //   .catch((err) => {
-    //     console.log('error on meta GET request', err);
-    //   });
   }
 
   handleReviewData(reviewData) {
@@ -198,13 +182,19 @@ class RatingsApp extends React.Component {
       });
   }
 
-  exitWriteReviewClick(e) {
-    this.setState({
-      writeReviewModal: false,
-    });
+  handlePut(review_id, type) {
+    console.log(review_id, type);
+    axios.put(`/reviews/${review_id}/${type}`)
+      .then((results) => {
+        console.log(results.data);
+      })
+      .catch((err) => {
+        console.log(err.data);
+      });
   }
 
-  moreReviewsClick(e) {
+  moreReviewsClick() {
+    const { productID } = this.props;
     const { reviewEnd } = this.state;
     const { reviewList } = this.state;
     const newEnd = reviewEnd + 2;
@@ -214,7 +204,7 @@ class RatingsApp extends React.Component {
       });
     }
     if (newEnd === reviewList.length - 1 || newEnd === reviewList.length) {
-      axios.get(`/reviews/?product_id=${this.props.productID}&count=${newEnd + 20}`)
+      axios.get(`/reviews/?product_id=${productID}&count=${newEnd + 20}`)
         .then((results) => {
           this.setState({
             reviewList: results.data.results,
@@ -231,15 +221,10 @@ class RatingsApp extends React.Component {
     }
   }
 
-  handlePut(review_id, type) {
-    console.log(review_id, type);
-    axios.put(`/reviews/${review_id}/${type}`)
-      .then((results) => {
-        console.log(results.data);
-      })
-      .catch((err) => {
-        console.log(err.data);
-      });
+  exitWriteReviewClick() {
+    this.setState({
+      writeReviewModal: false,
+    });
   }
 
   writeReviewClick(e) {
@@ -248,25 +233,37 @@ class RatingsApp extends React.Component {
     });
   }
 
-  listSortChange(e){
+  listSortChange(e) {
     this.setState({
-      listSort: e.target.value
-    })
+      listSort: e.target.value,
+    });
   }
 
   render() {
-    // no reviews edge
-    if (this.state.noReviews) {
+    const { noReviews } = this.state;
+    const { metaData } = this.state;
+    const { writeReviewModal } = this.state;
+    const { reviewsReady } = this.state;
+    const { reviewList } = this.state;
+    const { listSort } = this.state;
+    const { reviewEnd } = this.state;
+    const { hideMoreReviews } = this.state;
+    const { productID } = this.props;
+    if (noReviews) {
       return (
         <div style={noReviewsGrid}>
           <div style={{ textAlign: 'center', fontSize: '40px', gridRow: '1' }}>Be the first to write a review!</div>
-          <button id="addReview" onClick={this.writeReviewClick} style={noReviewsAddBtn}>ADD A REVIEW +</button>
+          <button id="addReview" type="button" onClick={this.writeReviewClick} style={noReviewsAddBtn}>ADD A REVIEW +</button>
           {
-          this.state.writeReviewModal
+          writeReviewModal
           && (
-          <div style={modalStyle} onClick={this.exitWriteReviewClick}>
+          <div style={modalStyle} role="button" onClick={this.exitWriteReviewClick}>
             <div style={innerModalStyle} onClick={(e) => e.stopPropagation()}>
-              <WriteReview handleReviewData={this.handleReviewData} productID={this.props.productID} metaData={this.state.metaData} />
+              <WriteReview
+                handleReviewData={this.handleReviewData}
+                productID={productID}
+                metaData={metaData}
+              />
               <br />
             </div>
           </div>
@@ -279,68 +276,72 @@ class RatingsApp extends React.Component {
       <div style={mainDiv}>
 
         {
-          this.state.reviewsReady === true
+          reviewsReady === true
       && (
       <div style={gridLayout}>
 
-
         <div style={ratingGrid}>
-          <RatingBreakdown metaData={this.state.metaData} reviewList={this.state.reviewList}/>
+          <RatingBreakdown metaData={metaData} reviewList={reviewList} />
         </div>
 
-          <div style={productStyle}>
-            <ProductBreakdown metaData={this.state.metaData} />
-          </div>
+        <div style={productStyle}>
+          <ProductBreakdown metaData={metaData} />
+        </div>
 
         {
-          this.state.writeReviewModal
+          writeReviewModal
           && (
-          <div style={modalStyle} onClick={this.exitWriteReviewClick}>
+          <div style={modalStyle} role="button" onClick={this.exitWriteReviewClick}>
             <div style={innerModalStyle} onClick={(e) => e.stopPropagation()}>
-              <WriteReview handleReviewData={this.handleReviewData} productID={this.props.productID} metaData={this.state.metaData} />
+              <WriteReview
+                handleReviewData={this.handleReviewData}
+                productID={productID}
+                metaData={metaData}
+              />
               <br />
             </div>
           </div>
           )
         }
 
-
-
         <div style={sortOptionsStyle}>
-          <SortOptions metaData={this.state.metaData} listSort={this.state.listSort} listSortChange={this.listSortChange}/>
+          <SortOptions
+            metaData={metaData}
+            listSort={listSort}
+            listSortChange={this.listSortChange}
+          />
         </div>
 
         <div style={reviewListStyle}>
-          <ReviewList reviewList={this.state.reviewList} reviewEnd={this.state.reviewEnd} handlePut={this.handlePut} />
+          <ReviewList
+            reviewList={reviewList}
+            reviewEnd={reviewEnd}
+            handlePut={this.handlePut}
+          />
         </div>
 
         <div style={reviewButtonsStyle}>
-          <div style={{display: 'flex', margin: 'auto', justifyContent: 'space-evenly'}}>
-            <div style={{display: 'flex'}}>
-            <button id="addReview" onClick={this.writeReviewClick} style={addReviewBtnStyle}>ADD A REVIEW +</button>
+          <div style={{ display: 'flex', margin: 'auto', justifyContent: 'space-evenly' }}>
+            <div style={{ display: 'flex' }}>
+              <button id="addReview" type="button" onClick={this.writeReviewClick} style={addReviewBtnStyle}>ADD A REVIEW +</button>
             </div>
 
-        {
-          this.state.reviewList.length > 2 && this.state.hideMoreReviews === false
+            {
+          reviewList.length > 2 && hideMoreReviews === false
         && (
-          <div style={{display: 'flex'}}>
-          <button
-            id="moreReviews"
-            style={{
-              border: '1px solid grey',
-              width: '150px',
-              boxShadow: '2px 2px 4px grey',
-              backgroundColor: 'white',
-              padding: '10px',
-            }}
-            onClick={this.moreReviewsClick}
-          >
-            MORE REVIEWS
-          </button>
-        </div>
+          <div style={{ display: 'flex' }}>
+            <button
+              id="moreReviews"
+              type="button"
+              style={moreReviewsBtn}
+              onClick={this.moreReviewsClick}
+            >
+              MORE REVIEWS
+            </button>
+          </div>
         )
         }
-        </div>
+          </div>
         </div>
 
       </div>
@@ -350,5 +351,10 @@ class RatingsApp extends React.Component {
     );
   }
 }
+
+RatingsApp.propTypes = {
+  metaData: PropTypes.node.isRequired,
+  productID: PropTypes.node.isRequired,
+};
 
 export default RatingsApp;

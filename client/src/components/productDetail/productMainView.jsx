@@ -50,19 +50,20 @@ class ProductMainView extends React.Component {
 
   componentDidMount() {
     const { productID } = this.props;
-    const { loaded } = this.state;
     axios.get(`/products/?product_id=${productID}`)
       .then(({ data }) => {
         this.setState({
           currentProduct: data,
-          loaded: loaded + 1,
+          // eslint-disable-next-line
+          loaded: this.state.loaded + 1,
         });
       });
     axios.get(`/products/?product_id=${productID}&flag=styles`)
       .then(({ data }) => {
         this.setState({
           styles: data.results,
-          loaded: loaded + 1,
+          // eslint-disable-next-line
+          loaded: this.state.loaded + 1,
           selectedStyle: data.results.find((element) => element['default?'] === true) || data.results[0],
         });
       });
@@ -149,8 +150,8 @@ class ProductMainView extends React.Component {
 }
 
 ProductMainView.propTypes = {
-  productID: PropTypes.node.isRequired,
-  ratings: PropTypes.node.isRequired,
+  productID: PropTypes.number.isRequired,
+  ratings: PropTypes.shape({}).isRequired,
 };
 
 export default ProductMainView;

@@ -71,7 +71,7 @@ class App extends React.Component {
   nextProduct(e) {
     e.preventDefault();
     this.setState({
-      productIndex: (this.state.productIndex + 1)%4,
+      productIndex: (this.state.productIndex + 1)%7,
       loadedID: 0
     });
     this.fetchProductID();

@@ -4,6 +4,10 @@ import styled from 'styled-components';
 import axios from 'axios';
 import RelatedProductCard from './relatedProductCard.jsx';
 import ListContainer from '../sharedStyledComponents/listContainer.js';
+import RightButtonWrapper from '../sharedStyledComponents/rightButtonWrapper.js';
+import LeftButtonWrapper from '../sharedStyledComponents/leftButtonWrapper.js';
+import LeftButton from '../sharedStyledComponents/leftButton.js';
+import RightButton from '../sharedStyledComponents/rightButton.js';
 
 class RelatedProductList extends React.Component {
   constructor(props) {
@@ -26,6 +30,9 @@ class RelatedProductList extends React.Component {
         this.setState({
           parentProductIDInfo: data
         })
+      })
+      .catch((error) => {
+        console.log('Error fetching product details in relatedProductsList', error);
       })
   }
 
@@ -102,62 +109,3 @@ class RelatedProductList extends React.Component {
 
 export default RelatedProductList;
 
-const LeftButtonWrapper = styled.div`
-  position: absolute;
-  left: 1%;
-  top: 0px;
-  padding-left: 60px;
-  height: 89%;
-  border: none;
-  cursor: pointer;
-  z-index: 0;
-  outline: 0;
-`;
-
-const RightButtonWrapper = styled.div`
-  position: absolute;
-  right: -1%;
-  top: 0px;
-  padding-left: 60px;
-  height: 89%;
-  border: none;
-  cursor: pointer;
-  z-index: 1;
-  outline: 0;
-`;
-
-const LeftButton = styled.button`
-  position: absolute;
-  left: 2%;
-  top: 25%;
-  background-color: white;
-  border: 1px solid black;
-  cursor: pointer;
-  z-index: 10;
-  font-size: 40px;
-  &:hover {
-    background-color: black;
-    color: white;
-  }
-`;
-
-const RightButton = styled.button`
-  position: absolute;
-  right: 2%;
-  top: 25%;
-  background-color: white;
-  border: 1px solid black;
-  cursor: pointer;
-  z-index: 10;
-  font-size: 40px;
-  &:hover {
-    background-color: black;
-    color: white;
-  }
-`;
-
-// const OutsideDiv = styled.div`
-//   display: flex;
-//   max-width: 1000px;
-//   justify-content: center;
-// `;

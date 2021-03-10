@@ -12,18 +12,22 @@ const Modal = styled.div`
     top: 0;
     left: 0;
     overflow: auto; //Enable scroll if needed
-    padding-top: 150px; /* Location of the content container */
+    padding-top: 275px; /* Location of the content container */
 `;
 
 const Modal_Con = styled.div`
+display: flex;
+flex-direction: column;
+    justify-content: center;
     background-color: white;
     width: 35%; /* Width in proportion to its parent container*/
     max-width: 320px; /* Max width where it stops expanding */
-    height: 33%; /* Height in proportion to its parent container */
+    height: auto; /* Height in proportion to its parent container */
     margin: auto; /* Auto margin according to the element width */
     padding: 10px;
     border: 1px solid black;
     border-radius: 20px; /* Optional. Rounds container corners */
+
 `;
 
 const Close = styled.span`
@@ -56,16 +60,19 @@ const NewQueC = styled.textarea`
 `;
 
 const Button = styled.button`
-  text-decoration: underline;
-  background: transparent;
-  border: none;
-  outline: none;
-  cursor: pointer;
+  height: 60px;
+  width: 175px;
+  background-color: white;
+  padding: 10px;
+  margin-top: 10px;
 
   &:hover {
-    text-decoration: none;
-    font-weight: bold;
+    background-color: lightgrey;
+    border: 1px solid black;
+  border-radius: 5px;
+  transition: all ease 0.3s;
   }
+
 `;
 
 class QuestionModal extends React.Component {

@@ -1,8 +1,6 @@
-/* eslint-disable */
-
 import React from 'react';
 import styled from 'styled-components';
-import CardContainer from '../sharedStyledComponents/cardContainer.js';
+import CardContainer from '../sharedStyledComponents/cardContainer';
 
 class YourOutfitCard extends React.Component {
   constructor(props) {
@@ -13,78 +11,91 @@ class YourOutfitCard extends React.Component {
       featuredURL: '',
       loaded: 0,
       salePrice: '',
-      outfitAddedFromTop: false
-    }
+    };
     this.removeOutfit = this.removeOutfit.bind(this);
   }
 
   componentDidMount() {
-    const defaultProduct = this.props.outfit.styles.results.find((product)=> {
-      return product["default?"] === true
-    })
+    const { outfit } = this.props;
+    const defaultProduct = outfit.styles.results.find((product) => product['default?'] === true);
+    let url;
     if (!defaultProduct) {
-      var url = this.props.outfit.styles.results[0].photos[0].url;
+      url = outfit.styles.results[0].photos[0].url;
       this.setState({
-        salePrice: this.props.outfit.styles.results[0]["sale_price"]
-      })
+        salePrice: outfit.styles.results[0].sale_price,
+      });
     } else {
       url = defaultProduct.photos[0].url;
       this.setState({
-        salePrice: defaultProduct["sale_price"]
-      })
+        salePrice: defaultProduct.sale_price,
+      });
     }
     if (!url) {
       this.setState({
-        productIDInfo: this.props.outfit.info,
-        productIDStyles: this.props.outfit.styles,
+        productIDInfo: outfit.info,
+        productIDStyles: outfit.styles,
         loaded: this.state.loaded + 1,
-        featuredURL: "https://www.westernheights.k12.ok.us/wp-content/uploads/2020/01/No-Photo-Available.jpg",
-      })
+        featuredURL: 'https://www.westernheights.k12.ok.us/wp-content/uploads/2020/01/No-Photo-Available.jpg',
+      });
     } else {
       this.setState({
-        productIDInfo: this.props.outfit.info,
-        productIDStyles: this.props.outfit.styles,
+        productIDInfo: outfit.info,
+        productIDStyles: outfit.styles,
         loaded: this.state.loaded + 1,
-        featuredURL: url
-      })
+        featuredURL: url,
+      });
     }
   }
 
-  removeOutfit(event) {
-    this.props.deleteOutfit(this.state.productIDStyles.product_id);
+  removeOutfit() {
+    const { deleteOutfit } = this.props;
+    const { productIDStyles } = this.state;
+    deleteOutfit(productIDStyles.product_id);
   }
 
   render() {
-    var sale = {
-      textDecoration: this.state.salePrice ? 'line-through' : 'none',
-      color: this.state.salePrice ? 'red' : 'black'
-    }
+    const {
+      salePrice, loaded, featuredURL, productIDInfo,
+    } = this.state;
+    const sale = {
+      textDecoration: salePrice ? 'line-through' : 'none',
+      color: salePrice ? 'red' : 'black',
+    };
     return (
       <>
         {
-          this.state.loaded < 1 &&
-          <img src="https://www.bluechipexterminating.com/wp-content/uploads/2020/02/loading-gif-png-5.gif" width="300"></img>
+          loaded < 1 && (
+          <img src="https://www.bluechipexterminating.com/wp-content/uploads/2020/02/loading-gif-png-5.gif" width="300" alt="loadingGif" />
+          )
         }
         {
-          this.state.loaded === 1 &&
-          <CardContainer>
+          loaded === 1 && (
+            <CardContainer>
               <ButtonWrapper>
-              <DeleteButton
-                onClick={this.removeOutfit} style={{color: 'white'}}
-              >&#9747;</DeleteButton>
+                <DeleteButton
+                  onClick={this.removeOutfit}
+                  style={{ color: 'white' }}
+                >
+                  &#9747;
+                </DeleteButton>
               </ButtonWrapper>
 
-            <ImageWrapper>
-              <Image src={this.state.featuredURL} width="100%" height="auto"></Image>
-            </ImageWrapper>
+              <ImageWrapper>
+                <Image src={featuredURL} width="100%" height="auto" />
+              </ImageWrapper>
 
-            <ProductContentWrapper style={{fontSize: '12px'}}>{this.state.productIDInfo.category}</ProductContentWrapper>
-            <ProductContentWrapper style={{fontSize: '17px', fontWeight: 'bold'}}>{this.state.productIDInfo.name}</ProductContentWrapper>
-            <ProductContentWrapper style={sale}>${this.state.productIDInfo.default_price}</ProductContentWrapper>
-            {this.state.salePrice ? <ProductContentWrapper style={{fontSize: '15px'}}>{this.state.salePrice}</ProductContentWrapper> : null}
-            {this.state.salePrice ? <LowerBorderDiv></LowerBorderDiv> : <BorderDiv></BorderDiv>}
-          </CardContainer>
-
+              <ProductContentWrapper style={{ fontSize: '12px' }}>{productIDInfo.category}</ProductContentWrapper>
+              <ProductContentWrapper style={{ fontSize: '17px', fontWeight: 'bold' }}>{productIDInfo.name}</ProductContentWrapper>
+              <ProductContentWrapper
+                style={sale}
+              >
+                $
+                {productIDInfo.default_price}
+              </ProductContentWrapper>
+              {salePrice ? <ProductContentWrapper style={{ fontSize: '15px' }}>{salePrice}</ProductContentWrapper> : null}
+              {salePrice ? <LowerBorderDiv /> : <BorderDiv />}
+            </CardContainer>
+          )
         }
       </>
     );
@@ -145,5 +156,3 @@ const ProductContentWrapper = styled.div`
 `;
 
 export default YourOutfitCard;
-
-

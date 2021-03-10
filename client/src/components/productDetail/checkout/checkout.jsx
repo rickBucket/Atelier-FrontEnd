@@ -1,7 +1,7 @@
-/* eslint-disable */
 import React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 const Button = styled.button`
   border: 1px solid grey;
@@ -29,119 +29,143 @@ const FlexDiv = styled.div`
   justify-content: center;
 `;
 
+function handleFav(e) {
+  const addButton = document.getElementById('addOutfit');
+  e.preventDefault();
+  if (addButton) {
+    addButton.click();
+  }
+}
+
 class Checkout extends React.Component {
   constructor(props) {
     super(props);
+    const { skus } = props;
     this.state = {
-      skus: this.props.skus,
-      selectedSKU: ["", {quantity: -1}],
+      skus,
+      selectedSKU: ['', { quantity: -1 }],
       quantity: 0,
-      cartError: false
+      cartError: false,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleQuantity = this.handleQuantity.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleFav = this.handleFav.bind(this);
   }
 
   handleChange(e) {
+    const { skus } = this.state;
     if (e.target.value === 'Size') {
       this.setState({
-        selectedSKU: ["", {quantity: -1}]
+        selectedSKU: ['', { quantity: -1 }],
       });
     } else {
       this.setState({
         cartError: false,
-        selectedSKU: Object.entries(this.state.skus).find((element) => {
-          return element[1].size === e.target.value;
-        })
+        selectedSKU: Object.entries(skus).find((element) => (
+          element[1].size === e.target.value
+        )),
       });
     }
   }
 
   handleQuantity(e) {
     this.setState({
-      quantity: e.target.value
+      quantity: e.target.value,
     });
   }
 
   handleSubmit(e) {
+    const { selectedSKU, quantity } = this.state;
     e.preventDefault();
-    if (!this.state.selectedSKU[0]) {
+    if (!selectedSKU[0]) {
       this.setState({
-        cartError: true
+        cartError: true,
       });
     } else {
       axios({
         url: '/cart',
         method: 'POST',
         data: {
-          sku_id: parseInt(this.state.selectedSKU[0])
-        }
+          sku_id: parseInt(selectedSKU[0], 10),
+          count: quantity,
+        },
       })
         .then(() => {
-          alert("Cart Updated!");
+          // eslint-disable-next-line no-alert
+          alert('Cart Updated!');
         });
     }
   }
 
-  handleFav(e) {
-    e.preventDefault();
-    var addButton = document.getElementById('addOutfit');
-    if (addButton) {
-      addButton.click();
-    }
-  }
-
   render() {
+    const { skus, selectedSKU, cartError } = this.state;
     return (
       <form>
         <FlexDiv>
           <Selector name="size" onChange={this.handleChange}>
             <option>Size</option>
             {
-              Array.from(new Set(Object.values(this.state.skus).map(x => x.size))).map((x) => {
-                return <option key={x}>{x}</option>
-              })
+              Array.from(new Set(Object.values(skus).map((x) => x.size))).map((x) => (
+                <option key={x}>{x}</option>
+              ))
             }
           </Selector>
           <Selector name="quantity" onChange={this.handleQuantity}>
             {
-              this.state.selectedSKU[1].quantity === -1 &&
+              selectedSKU[1].quantity === -1
+              && (
               <>
                 <option>Quantity</option>
                 <option>SIZE REQUIRED</option>
               </>
-            } {
-              this.state.selectedSKU[1].quantity === 0 &&
-              <option>OUT OF STOCK</option>
-            } {
-              this.state.selectedSKU[1].quantity > 0 &&
-              [...Array(Math.min(this.state.selectedSKU[1].quantity, 15) + 1).keys()].map((x) => { // move to helper function
-                return <option key={x}>{x}</option>
-              })
+              )
+            }
+            {
+              selectedSKU[1].quantity === 0
+              && <option>OUT OF STOCK</option>
+            }
+            {
+              selectedSKU[1].quantity > 0
+              && (
+                [...Array(Math.min(selectedSKU[1].quantity, 15) + 1).keys()].map((x) => (
+                  <option key={x}>{x}</option>
+                ))
+              )
             }
           </Selector>
         </FlexDiv>
         <FlexDiv>
-          <Button onClick={this.handleSubmit} style={{width: "69%"}}>
+          <Button onClick={this.handleSubmit} style={{ width: '69%' }}>
             Add to Bag
           </Button>
-          <Button onClick={this.handleFav} style={{width: "11%"}}>
-            <img src="star.png" style={{height: "18px", width: "16px"}} a=""></img>
+          <Button onClick={handleFav} style={{ width: '11%' }}>
+            <img src="star.png" style={{ height: '18px', width: '16px' }} alt="" />
           </Button>
         </FlexDiv>
         {
-          this.state.cartError &&
+          cartError
+          && (
           <div style={{
-            color: "red",
-            textAlign: "center",
-            padding: "8px"
-          }}>Please enter a valid configuration</div>
+            color: 'red',
+            textAlign: 'center',
+            padding: '8px',
+          }}
+          >
+            Please enter a valid configuration
+          </div>
+          )
         }
       </form>
     );
   }
 }
+
+Checkout.defaultProps = {
+  skus: {},
+};
+
+Checkout.propTypes = {
+  skus: PropTypes.shape({}),
+};
 
 export default Checkout;

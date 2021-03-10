@@ -1,6 +1,6 @@
-/* eslint-disable */
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const Div = styled.div`
   margin: 32px 16px 5px 5px;
@@ -18,12 +18,16 @@ const Img = styled.img`
   max-width: 580px;
 `;
 
-function PrimaryImageView(props) {
+function PrimaryImageView({ photo }) {
   return (
     <Div>
-      <Img src={props.photo} a=""></Img>
+      <Img src={photo} a="" />
     </Div>
   );
 }
+
+PrimaryImageView.propTypes = {
+  photo: PropTypes.string.isRequired,
+};
 
 export default PrimaryImageView;

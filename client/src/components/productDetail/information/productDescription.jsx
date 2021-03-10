@@ -38,7 +38,7 @@ class ProductDescription extends React.Component {
     }
     featureArray.forEach((element) => {
       let feat = ' - ' + element.feature;
-      let val = element.value;
+      const val = element.value;
       if (typeof val === 'string' && val) {
         feat = `${feat}: ${val.split('\"').join('')}`
       }
@@ -57,9 +57,7 @@ class ProductDescription extends React.Component {
         <Div>
           {
             this.state.features.map((element) => {
-              return (
-                <h5 key={element}>{element}</h5>
-              );
+              return <h5 key={element}>{element}</h5>;
             })
           }
         </Div>

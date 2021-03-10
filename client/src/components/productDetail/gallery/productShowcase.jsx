@@ -61,6 +61,7 @@ class ProductShowcase extends React.Component {
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleExpand = this.handleExpand.bind(this);
+    this.isPosition = this.isPosition.bind(this);
   }
 
   handleClick(value) {
@@ -75,8 +76,19 @@ class ProductShowcase extends React.Component {
 
   nextPhoto(flag) {
     this.setState({
-      currentPhoto: this.state.photos[(this.state.photos.indexOf(this.state.currentPhoto) + flag + this.state.photos.length) % this.state.photos.length]
+      currentPhoto: this.state.photos[(
+          this.state.photos.indexOf(this.state.currentPhoto) + flag + this.state.photos.length
+        ) % this.state.photos.length
+      ]
     });
+  }
+
+  isPosition(pos) {
+    if (pos === "right") {
+      return this.state.currentPhoto.url !== this.state.photos[this.state.photos.length - 1].url;
+    } else if (pos === "left") {
+      return this.state.currentPhoto.url !== this.state.photos[0].url;
+    }
   }
 
   render() {
@@ -88,14 +100,15 @@ class ProductShowcase extends React.Component {
           onClick={this.handleExpand}
         />
         {
-          this.state.currentPhoto.url !== this.state.photos[this.state.photos.length - 1].url &&
+          this.isPosition("right") &&
           <Button
             style={{margin: "276px 20px -64px -76px"}}
             onClick={this.nextPhoto.bind(this, 1)}
             className="fa fa-arrow-right"
           />
-        } {
-          this.state.currentPhoto.url !== this.state.photos[0].url &&
+        }
+        {
+          this.isPosition("left") &&
           <Button
             style={{margin: "276px 488px -64px -552px"}}
             onClick={this.nextPhoto.bind(this, -1)}

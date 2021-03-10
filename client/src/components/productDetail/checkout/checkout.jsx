@@ -9,7 +9,7 @@ const Button = styled.button`
   padding: 8px;
   margin: 5px 12px 24px 12px;
   cursor: pointer;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.5);
   &:hover {
     color: teal;
   }
@@ -21,7 +21,7 @@ const Selector = styled.select`
   margin: 12px;
   cursor: pointer;
   width: 40%;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 `
 const FlexDiv = styled.div`
   margin: 5px;

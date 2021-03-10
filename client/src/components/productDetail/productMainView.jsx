@@ -1,13 +1,13 @@
 /* eslint-disable */
 import React from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 import ProductInfo from './information/productInfo.jsx';
 import ProductDescription from './information/productDescription.jsx';
 import ProductShowcase from './gallery/productShowcase.jsx';
 import StyleSelector from './customization/styleSelector.jsx';
 import Checkout from './checkout/checkout.jsx';
 import ExpandedView from './gallery/expandedView.jsx';
-import styled from 'styled-components';
 
 const Div = styled.div`
   border: 1px solid grey;
@@ -17,13 +17,13 @@ const Div = styled.div`
   font-family: Arial;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
   background: linear-gradient(0deg, hsl(190,70%,99%), hsl(240,60%,100%));
-`
+`;
 const InvisDiv = styled.div`
   padding: 0px;
   margin: 4px;
   min-width: 400px;
   font-family: Arial;
-`
+`;
 const FlexDiv = styled.div`
   padding: 5px;
   margin: 5px;
@@ -31,14 +31,14 @@ const FlexDiv = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   font-family: Arial;
-`
+`;
 
 class ProductMainView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentProduct: {}, // {} id name slogan description category default_price features[{feature, value}]
-      styles: [], // style_id, name, original_price, sale_price, default?, photos[{thumbnail_url, url}], skus{#}
+      currentProduct: {},
+      styles: [],
       selectedStyle: undefined,
       selectedPhoto: '',
       loaded: 0
@@ -49,23 +49,23 @@ class ProductMainView extends React.Component {
   }
 
   componentDidMount() {
-      axios.get(`/products/?product_id=${this.props.productID}`)
-        .then(({data}) => {
-          this.setState({
-            currentProduct: data,
-            loaded: this.state.loaded + 1
-          });
+    axios.get(`/products/?product_id=${this.props.productID}`)
+      .then(({data}) => {
+        this.setState({
+          currentProduct: data,
+          loaded: this.state.loaded + 1
         });
-      axios.get(`/products/?product_id=${this.props.productID}&flag=styles`)
-        .then(({data}) => {
-          this.setState({
-            styles: data.results,
-            loaded: this.state.loaded + 1,
-            selectedStyle: data.results.find((element) => {
-              return element["default?"] === true;
-            }) || data.results[0]
-          });
+      });
+    axios.get(`/products/?product_id=${this.props.productID}&flag=styles`)
+      .then(({data}) => {
+        this.setState({
+          styles: data.results,
+          loaded: this.state.loaded + 1,
+          selectedStyle: data.results.find((element) => {
+            return element["default?"] === true;
+          }) || data.results[0]
         });
+      });
   }
 
   changeStyle(id) {
@@ -90,7 +90,7 @@ class ProductMainView extends React.Component {
 
   render() {
     return (
-      <div style={{marginTop: "72px"}}>
+      <div style={{marginTop: "84px"}}>
         {
           this.state.selectedPhoto &&
           <ExpandedView
@@ -112,7 +112,6 @@ class ProductMainView extends React.Component {
                 <ProductInfo
                   name={this.state.currentProduct.name}
                   category={this.state.currentProduct.category}
-                  // price={this.state.currentProduct.default_price}
                   price={this.state.selectedStyle.original_price}
                   sale={this.state.selectedStyle.sale_price}
                   ratings={this.props.ratings}
@@ -134,12 +133,9 @@ class ProductMainView extends React.Component {
               slogan={this.state.currentProduct.slogan}
               description={this.state.currentProduct.description}
               features={this.state.currentProduct.features}
+              key={this.state.currentProduct.slogan}
             />
           </InvisDiv>
-        }
-        {
-          this.state.selectedStyle === undefined &&
-          <h1 style={{textAlign: "center"}}>Product Not Available</h1>
         }
       </div>
     );

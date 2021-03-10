@@ -61,7 +61,8 @@ class ProductInfo extends React.Component {
             <a style={{"textDecoration": "line-through"}}>${this.props.price}</a>
             <a style={{color: "red"}}> ${this.props.sale}</a>
           </h4>
-        } {
+        }
+        {
           !this.props.sale &&
           <h4>${this.props.price}</h4>
         }

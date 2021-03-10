@@ -47,8 +47,10 @@ class YourOutfitCard extends React.Component {
     }
   }
 
-  removeOutfit(event) {
-    this.props.deleteOutfit(this.state.productIDStyles.product_id);
+  removeOutfit() {
+    const { deleteOutfit } = this.props;
+    const { productIDStyles } = this.state;
+    deleteOutfit(productIDStyles.product_id);
   }
 
   render() {

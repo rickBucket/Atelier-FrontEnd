@@ -14,7 +14,6 @@ const Container = styled.div`
   border-radius: 10px;
   padding: 5px;
   margin: 5px;
-  font-family: Arial;
   max-width: 1280px;
 `;
 

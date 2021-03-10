@@ -21,7 +21,11 @@ const Title = styled.div`
   font-size: 24px;
   font-weight: bold;
   backdrop-filter: blur(16px);
-`
+`;
+const Button = styled.button`
+  margin-top: 4px;
+  position: fixed;
+`;
 
 class App extends React.Component {
   constructor(props) {
@@ -79,6 +83,7 @@ class App extends React.Component {
         <Title>
           <h1 style={{marginTop: "0px"}}>Observant Ostritches</h1>
         </Title>
+        <Button type="submit" id="next" onClick={this.nextProduct}>Next Product</Button>
         {
           this.state.loadedID === 2 &&
           <div>

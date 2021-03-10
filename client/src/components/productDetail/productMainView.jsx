@@ -1,13 +1,13 @@
-/* eslint-disable */
 import React from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 import styled from 'styled-components';
-import ProductInfo from './information/productInfo.jsx';
-import ProductDescription from './information/productDescription.jsx';
-import ProductShowcase from './gallery/productShowcase.jsx';
-import StyleSelector from './customization/styleSelector.jsx';
-import Checkout from './checkout/checkout.jsx';
-import ExpandedView from './gallery/expandedView.jsx';
+import ProductInfo from './information/productInfo';
+import ProductDescription from './information/productDescription';
+import ProductShowcase from './gallery/productShowcase';
+import StyleSelector from './customization/styleSelector';
+import Checkout from './checkout/checkout';
+import ExpandedView from './gallery/expandedView';
 
 const Div = styled.div`
   border: 1px solid grey;
@@ -41,7 +41,7 @@ class ProductMainView extends React.Component {
       styles: [],
       selectedStyle: undefined,
       selectedPhoto: '',
-      loaded: 0
+      loaded: 0,
     };
     this.changeStyle = this.changeStyle.bind(this);
     this.selectPhoto = this.selectPhoto.bind(this);
@@ -49,97 +49,108 @@ class ProductMainView extends React.Component {
   }
 
   componentDidMount() {
-    axios.get(`/products/?product_id=${this.props.productID}`)
-      .then(({data}) => {
+    const { productID } = this.props;
+    const { loaded } = this.state;
+    axios.get(`/products/?product_id=${productID}`)
+      .then(({ data }) => {
         this.setState({
           currentProduct: data,
-          loaded: this.state.loaded + 1
+          loaded: loaded + 1,
         });
       });
-    axios.get(`/products/?product_id=${this.props.productID}&flag=styles`)
-      .then(({data}) => {
+    axios.get(`/products/?product_id=${productID}&flag=styles`)
+      .then(({ data }) => {
         this.setState({
           styles: data.results,
-          loaded: this.state.loaded + 1,
-          selectedStyle: data.results.find((element) => {
-            return element["default?"] === true;
-          }) || data.results[0]
+          loaded: loaded + 1,
+          selectedStyle: data.results.find((element) => element['default?'] === true) || data.results[0],
         });
       });
   }
 
   changeStyle(id) {
+    const { styles } = this.state;
     this.setState({
-      selectedStyle: this.state.styles.find((element) => {
-        return element.style_id === id;
-      })
+      selectedStyle: styles.find((element) => element.style_id === id),
     });
   }
 
   selectPhoto(photo) {
     this.setState({
-      selectedPhoto: photo
+      selectedPhoto: photo,
     });
   }
 
   unselectPhoto() {
     this.setState({
-      selectedPhoto: ''
+      selectedPhoto: '',
     });
   }
 
   render() {
+    const { ratings } = this.props;
+    const { selectedPhoto, selectedStyle } = this.state;
+    const { currentProduct, styles } = this.state;
     return (
-      <div style={{marginTop: "84px"}}>
+      <div style={{ marginTop: '84px' }}>
         {
-          this.state.selectedPhoto &&
+          selectedPhoto
+          && (
           <ExpandedView
-            key={this.state.selectedStyle.style_id}
-            photo={this.state.selectedPhoto}
+            key={selectedStyle.style_id}
+            photo={selectedPhoto}
             unselectPhoto={this.unselectPhoto}
           />
+          )
         }
         {
-          this.state.selectedStyle &&
+          selectedStyle
+          && (
           <InvisDiv>
             <FlexDiv>
               <ProductShowcase
-                key={this.state.selectedStyle.style_id}
-                photos={this.state.selectedStyle.photos}
+                key={selectedStyle.style_id}
+                photos={selectedStyle.photos}
                 selectPhoto={this.selectPhoto}
               />
               <InvisDiv>
                 <ProductInfo
-                  name={this.state.currentProduct.name}
-                  category={this.state.currentProduct.category}
-                  price={this.state.selectedStyle.original_price}
-                  sale={this.state.selectedStyle.sale_price}
-                  ratings={this.props.ratings}
+                  name={currentProduct.name}
+                  category={currentProduct.category}
+                  price={selectedStyle.original_price}
+                  sale={selectedStyle.sale_price}
+                  ratings={ratings}
                 />
                 <Div>
                   <StyleSelector
-                    styles={this.state.styles}
+                    styles={styles}
                     changeStyle={this.changeStyle}
-                    selectedStyle={this.state.selectedStyle}
+                    selectedStyle={selectedStyle}
                   />
                   <Checkout
-                    key={this.state.selectedStyle.style_id}
-                    skus={this.state.selectedStyle.skus}
+                    key={selectedStyle.style_id}
+                    skus={selectedStyle.skus}
                   />
                 </Div>
               </InvisDiv>
             </FlexDiv>
             <ProductDescription
-              slogan={this.state.currentProduct.slogan}
-              description={this.state.currentProduct.description}
-              features={this.state.currentProduct.features}
-              key={this.state.currentProduct.slogan}
+              slogan={currentProduct.slogan}
+              description={currentProduct.description}
+              features={currentProduct.features}
+              key={currentProduct.slogan}
             />
           </InvisDiv>
+          )
         }
       </div>
     );
   }
 }
+
+ProductMainView.propTypes = {
+  productID: PropTypes.node.isRequired,
+  ratings: PropTypes.node.isRequired,
+};
 
 export default ProductMainView;

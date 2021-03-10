@@ -48,7 +48,7 @@ class App extends React.Component {
   }
 
   fetchProductID() {
-    axios.get('/products/?count=7&page=3')
+    axios.get('/products/?count=7&page=4')
       .then(({data})=> {
         this.setState({
           productID: data[this.state.productIndex].id,

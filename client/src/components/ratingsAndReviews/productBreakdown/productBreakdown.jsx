@@ -48,12 +48,14 @@ class ProductBreakdown extends React.Component {
     const characteristics = this.props.metaData.characteristics
     return(
       <div style={gridLayout}>
+        {/* <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center'}}> */}
         {
          characteristics.Comfort &&
             <div style={{
               gridColumn: '1',
               gridRow: '1',
               marginBottom: '10px',
+              width: '210px'
             }}><div style={{fontSize: '13px', color: 'black'}}>Comfort</div>
 
 
@@ -82,6 +84,7 @@ class ProductBreakdown extends React.Component {
           gridColumn: '1',
           gridRow: '2',
           marginBottom: '10px',
+          width: '210px'
         }}><div style={{display: 'flex', fontSize: '13px', color: 'black'}}>Fit</div>
 
          <div style={{display: 'flex', justifyContent: 'space-evenly', fontSize: '11px', color: 'grey'}}>
@@ -112,6 +115,7 @@ class ProductBreakdown extends React.Component {
           gridColumn: '1',
           gridRow: '3',
           marginBottom: '10px',
+          width: '210px'
         }}><div style={{fontSize: '13px', color: 'black'}}>Length</div>
 
          <div style={{display: 'flex', justifyContent: 'space-evenly', fontSize: '11px', color: 'grey'}}>
@@ -142,6 +146,7 @@ class ProductBreakdown extends React.Component {
           gridColumn: '1',
           gridRow: '4',
           marginBottom: '10px',
+          width: '210px'
         }}><div style={{fontSize: '13px', color: 'black'}}>Quality</div>
 
           <div style={{display: 'flex', justifyContent: 'space-evenly', fontSize: '11px', color: 'grey'}}>
@@ -169,6 +174,7 @@ class ProductBreakdown extends React.Component {
           gridColumn: '1',
           gridRow: '5',
           marginBottom: '10px',
+          width: '210px'
         }}><div style={{fontSize: '13px', color: 'black'}}>Size</div>
 
 
@@ -200,6 +206,7 @@ class ProductBreakdown extends React.Component {
           gridColumn: '1',
           gridRow: '6',
           marginBottom: '10px',
+          width: '210px'
         }}><div style={{fontSize: '13px', color: 'black'}}>Width</div>
 
           <div style={{display: 'flex', justifyContent: 'space-evenly', fontSize: '11px', color: 'grey'}}>

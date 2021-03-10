@@ -1,59 +1,57 @@
-/* eslint-disable */
 import React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-import RelatedProductsList from './relatedProductsList/relatedProductsList.jsx';
-import YourOutfitList from './yourOutfitList/yourOutfitList.jsx';
+import RelatedProductsList from './relatedProductsList/relatedProductsList';
+import YourOutfitList from './yourOutfitList/yourOutfitList';
 
 class RelatedProductsMainView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       relatedProducts: [],
-      // imagesToTheLeft: false,
-      // imagesToTheRight: true
-    }
-    // this.scrollRight = this.scrollRight.bind(this);
-    // this.scrollLeft = this.scrollLeft.bind(this);
+    };
   }
 
   componentDidMount() {
-    axios.get(`/products/?product_id=${this.props.productID}&flag=related`)
-      .then(({data})=> {
+    const { productID } = this.props;
+    axios.get(`/products/?product_id=${productID}&flag=related`)
+      .then(({ data }) => {
         const related = new Set();
         data.forEach((element) => {
           related.add(element);
-        })
+        });
         const cleanData = Array.from(related);
         this.setState({
-          relatedProducts: cleanData
-        })
+          relatedProducts: cleanData,
+        });
       })
       .catch((error) => {
         console.log('Error getting related data in relatedProductsMainView', error);
-      })
+      });
   }
 
   // add condititonal rendering in case relatedProducts hasn't been defined yet
   render() {
+    const { relatedProducts } = this.state;
+    const { productID } = this.props;
     return (
       <AllEncompassing id="AllEncompassing">
         <div>
           <h3>YOU MAY ALSO LIKE</h3>
         </div>
         <ListWrapper>
-          <RelatedProductsList productID={this.props.productID} relatedProducts={this.state.relatedProducts} />
+          <RelatedProductsList productID={productID} relatedProducts={relatedProducts} />
         </ListWrapper>
         <div>
           <h3>YOUR OUTFIT</h3>
         </div>
         <ListWrapper>
-          <YourOutfitList parentProductID={this.props.productID}/>
+          <YourOutfitList parentProductID={productID} />
         </ListWrapper>
       </AllEncompassing>
-    )
+    );
   }
-};
+}
 
 export default RelatedProductsMainView;
 

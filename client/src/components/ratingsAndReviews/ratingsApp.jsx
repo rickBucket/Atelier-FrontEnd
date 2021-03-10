@@ -30,7 +30,7 @@ const mainDiv = {
   paddingTop: '30px',
   paddingBottom: '30px',
   maxWidth: '80%',
-  maxHeight: '80%',
+  maxHeight: '70%',
   margin: 'auto',
 };
 

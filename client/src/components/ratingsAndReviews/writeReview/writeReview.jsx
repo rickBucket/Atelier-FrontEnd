@@ -212,6 +212,7 @@ class WriteReview extends React.Component {
     const { name } = this.state;
     const { summary } = this.state;
     const { email } = this.state;
+    const { body } = this.state;
     return (
       <div>
         <form onSubmit={this.HandleReviewData} id="reviewForm" style={gridLayout}>
@@ -328,7 +329,7 @@ class WriteReview extends React.Component {
               style={{
                 width: '95%', height: '80px', border: '1px solid grey', fontFamily: 'Open sans', resize: 'none',
               }}
-              value={this.state.body}
+              value={body}
               name="body"
               onChange={this.onInputChange}
               placeholder="What did you like/dislike about the product?"

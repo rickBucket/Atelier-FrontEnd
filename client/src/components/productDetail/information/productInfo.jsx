@@ -1,7 +1,8 @@
 /* eslint-disable */
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import StarRating from '../../shared/starRating.jsx';
+import StarRating from '../../shared/starRating';
 
 const Div = styled.div`
   border: 1px solid grey;
@@ -10,7 +11,7 @@ const Div = styled.div`
   margin: 32px 12px 24px 12px;
   max-width: 540px;
   background: linear-gradient(0deg, hsl(190,70%,99%), hsl(240,60%,100%));
-`
+`;
 
 // needs: rating, review link, category, name. price
 class ProductInfo extends React.Component {
@@ -18,7 +19,7 @@ class ProductInfo extends React.Component {
     super(props);
     this.state = {
       reviewAmount: 0,
-      averageRating: 0
+      averageRating: 0,
     };
     this.averageRating = this.averageRating.bind(this);
   }
@@ -28,15 +29,16 @@ class ProductInfo extends React.Component {
   }
 
   averageRating() {
-    var sum = 0;
-    var amount = 0;
-    Object.keys(this.props.ratings).forEach((key) => {
-      sum += parseInt(this.props.ratings[key]) * parseInt(key);
-      amount += parseInt(this.props.ratings[key]);
+    const { ratings } = this.props;
+    let sum = 0;
+    let amount = 0;
+    Object.keys(ratings).forEach((key) => {
+      sum += parseInt(ratings[key]) * parseInt(key);
+      amount += parseInt(ratings[key]);
     });
     this.setState({
       reviewAmount: amount,
-      averageRating: sum / amount
+      averageRating: sum / amount,
     });
   }
 
@@ -61,7 +63,8 @@ class ProductInfo extends React.Component {
             <a style={{"textDecoration": "line-through"}}>${this.props.price}</a>
             <a style={{color: "red"}}> ${this.props.sale}</a>
           </h4>
-        } {
+        }
+        {
           !this.props.sale &&
           <h4>${this.props.price}</h4>
         }
@@ -69,5 +72,9 @@ class ProductInfo extends React.Component {
     );
   }
 }
+
+ProductInfo.propTypes = {
+  price: PropTypes.node.isRequired,
+};
 
 export default ProductInfo;

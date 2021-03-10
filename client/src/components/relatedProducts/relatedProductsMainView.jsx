@@ -29,6 +29,9 @@ class RelatedProductsMainView extends React.Component {
           relatedProducts: cleanData
         })
       })
+      .catch((error) => {
+        console.log('Error getting related data in relatedProductsMainView', error);
+      })
   }
 
   // add condititonal rendering in case relatedProducts hasn't been defined yet

@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React from 'react';
 import CharacteristicsRadio from './characteristicsRadio.jsx';
 import DynamicStarReview from './dynamicStarReview.jsx';
@@ -181,14 +182,13 @@ class WriteReview extends React.Component {
       e.preventDefault();
       return false;
     }
-    console.log('i made it!')
+    console.log('i made it!');
 
     alert('Your review has been submitted!');
     this.props.handleReviewData(this.state);
   }
 
   render() {
-
     return (
       <div>
         <form onSubmit={this.HandleReviewData} id="reviewForm" style={gridLayout}>
@@ -202,10 +202,12 @@ class WriteReview extends React.Component {
           </div>
           <div style={starStyle}>
 
-            <div>
-              <b>* Overall</b>
-              <br />
+            <b>* Overall</b>
 
+            <div style={{
+              display: 'flex', justifyContent: 'center', fontSize: '20px', marginTop: '5px', marginBottom: '5px',
+            }}
+            >
               {
                this.state.mouseOver[0] === 1
                  ? <span className="fa fa-star" onMouseEnter={() => { this.setState({ mouseOver: [1, 0, 0, 0, 0] }); }} onClick={() => { this.setState({ rating: 1, mouseOver: [1, 0, 0, 0, 0] }); }} />
@@ -231,15 +233,23 @@ class WriteReview extends React.Component {
                ? <span className="fa fa-star" onClick={() => { this.setState({ rating: 5, mouseOver: [1, 1, 1, 1, 1] }); }} />
                : <span className="fa fa-star-o" onMouseEnter={() => { this.setState({ mouseOver: [1, 1, 1, 1, 1] }); }} />
              }
-              <br />
-              <div style={{ display: 'flex', wrap: 'nowrap', textAlign: 'center' }}>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <div style={{ display: 'flex', margin: 'auto' }}>
                 1 - Poor
+              </div>
+              <div style={{ display: 'flex', margin: 'auto' }}>
                 2 - Fair
+              </div>
+              <div style={{ display: 'flex', margin: 'auto' }}>
                 3 - Average
+              </div>
+              <div style={{ display: 'flex', margin: 'auto' }}>
                 4 - Good
+              </div>
+              <div style={{ display: 'flex', margin: 'auto' }}>
                 5 - Great
               </div>
-
             </div>
           </div>
 
@@ -259,19 +269,47 @@ class WriteReview extends React.Component {
 
           <div style={summaryStyle}>
             <label htmlFor="summary">Review Summary (optional): </label>
-            <textarea id="summaryInput" type="text" value={this.state.summary} style={{ width: '90%', height: '60px', border: '1px solid grey', fontFamily: 'Open sans', resize: 'none'}} name="summary" onChange={this.onInputChange} placeholder="Example: Best purchase ever!" />
+            <textarea
+              id="summaryInput"
+              type="text"
+              value={this.state.summary}
+              style={{
+                width: '90%', height: '60px', border: '1px solid grey', fontFamily: 'Open sans', resize: 'none',
+              }}
+              name="summary"
+              onChange={this.onInputChange}
+              placeholder="Example: Best purchase ever!"
+            />
           </div>
 
           <div style={nameStyle}>
             <label htmlFor="name"><b>* Your Name: </b></label>
-            <input type="text" name="name" style={{ width: '90%', height: '30px', fontFamily: 'Open sans', border: '1px solid grey'}} value={this.state.name} onChange={this.onInputChange} placeholder="Example: jackson11!" />
+            <input
+              type="text"
+              name="name"
+              style={{
+                width: '90%', height: '30px', fontFamily: 'Open sans', border: '1px solid grey',
+              }}
+              value={this.state.name}
+              onChange={this.onInputChange}
+              placeholder="Example: jackson11!"
+            />
             <br />
             <small><i>For privacy reasons, do not use your full name or email address.</i></small>
           </div>
 
           <div style={reviewStyle}>
             <label htmlFor="body"><b>* Your Review: </b></label>
-            <textarea type="text" style={{ width: '95%', height: '80px', border: '1px solid grey', fontFamily: 'Open sans', resize: 'none'}} value={this.state.body} name="body" onChange={this.onInputChange} placeholder="What did you like/dislike about the product?" />
+            <textarea
+              type="text"
+              style={{
+                width: '95%', height: '80px', border: '1px solid grey', fontFamily: 'Open sans', resize: 'none',
+              }}
+              value={this.state.body}
+              name="body"
+              onChange={this.onInputChange}
+              placeholder="What did you like/dislike about the product?"
+            />
             <br />
             <small>{this.minimumCharCount()}</small>
           </div>
@@ -283,7 +321,16 @@ class WriteReview extends React.Component {
 
           <div style={emailStyle}>
             <label htmlFor="email"><b>* Email: </b></label>
-            <input type="text" style={{ width: '90%', height: '30px', fontFamily: 'Open sans', border: '1px solid grey' }} name="email" value={this.state.email} onChange={this.onInputChange} placeholder="Example: jackson11@email.com" />
+            <input
+              type="text"
+              style={{
+                width: '90%', height: '30px', fontFamily: 'Open sans', border: '1px solid grey',
+              }}
+              name="email"
+              value={this.state.email}
+              onChange={this.onInputChange}
+              placeholder="Example: jackson11@email.com"
+            />
             <br />
             <small><i>For authentication reasons, you will not be emailed.</i></small>
           </div>

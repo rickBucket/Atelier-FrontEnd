@@ -6,8 +6,8 @@ const gridLayout = {
   display: 'grid',
   gridTemplateColumns: 'repeat(1 1fr)',
   gridTemplateRows: 'minwidth(5 1fr) 100px',
-  padding: '10px',
-  gridGap: '5px',
+  // padding: '10px',
+  // gridGap: '5px',
   alignItems: 'center',
 };
 
@@ -87,7 +87,7 @@ averageRating(obj) {
           textAlign: 'center',
         }}
         >
-          <div style={{display: 'flex', justifyContent: 'center', marginBottom: '10px'}}>
+          <div style={{display: 'flex', justifyContent: 'center', marginBottom: '10px',}}>
           {`${this.recommendedAverage(recommendedObj)}% of reviews recommend this product`}
           </div>
         </div>

@@ -7,8 +7,14 @@ import YourOutfitList from '../../../client/src/components/relatedProducts/yourO
 
 
 describe('<YourOutfitList />', () => {
-  it('renders a div component', () => {
+  it('#data is undefined', async () => {
     const wrapper = shallow(<YourOutfitList parentProductID={14932}/>);
     expect(wrapper.find('#data')).not.toBeUndefined();
   });
+
+  it('renders a div component', async () => {
+    const wrapper = shallow(<YourOutfitList parentProductID={14932}/>);
+    expect(wrapper.find('#yourOutfit')).toBeDefined();
+  });
+
 });

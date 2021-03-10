@@ -16,14 +16,14 @@ const FlexDiv = styled.div`
   position: absolute;
   z-index: 10;
   background: rgba(255,255,255,0.1);
-  backdrop-filter: blur(16px);
+  backdrop-filter: blur(14px);
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none;  /* IE 10+ */
   &::-webkit-scrollbar {
     width: 0px;
     background: transparent; /* Chrome/Safari/Webkit */
   }
-`
+`;
 const Img = styled.img`
   margin: 6px;
   height: 64px;
@@ -37,7 +37,7 @@ const Img = styled.img`
     height: 68px;
     width: 69px;
   }
-`
+`;
 const Button = styled.div`
   border-radius: 50%;
   padding: 12px 14px 12px 14px;
@@ -50,7 +50,7 @@ const Button = styled.div`
   &:hover {
     background: rgba(255,255,255,0.4);
   }
-`
+`;
 
 class ProductShowcase extends React.Component {
   constructor(props) {
@@ -66,7 +66,7 @@ class ProductShowcase extends React.Component {
 
   handleClick(value) {
     this.setState({
-      currentPhoto: this.state.photos.find((element) => element.url === value)
+      currentPhoto: this.state.photos.find((item) => item.url === value)
     });
   }
 
@@ -122,7 +122,14 @@ class ProductShowcase extends React.Component {
         <FlexDiv>
           {
             this.state.photos.map((photo) => {
-              return <Img key={photo.url} onClick={this.handleClick.bind(this, photo.url)} src={photo.thumbnail_url} a=''></Img>
+              return (
+                <Img
+                  key={photo.url}
+                  onClick={this.handleClick.bind(this, photo.url)}
+                  src={photo.thumbnail_url}
+                  a=''>
+                </Img>
+              );
             })
           }
         </FlexDiv>

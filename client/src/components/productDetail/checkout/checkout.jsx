@@ -13,7 +13,7 @@ const Button = styled.button`
   &:hover {
     color: teal;
   }
-`
+`;
 const Selector = styled.select`
   border: 1px solid grey;
   background: white;
@@ -22,12 +22,12 @@ const Selector = styled.select`
   cursor: pointer;
   width: 40%;
   box-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-`
+`;
 const FlexDiv = styled.div`
   margin: 5px;
   display: flex;
   justify-content: center;
-`
+`;
 
 class Checkout extends React.Component {
   constructor(props) {
@@ -87,7 +87,10 @@ class Checkout extends React.Component {
 
   handleFav(e) {
     e.preventDefault();
-    document.getElementById('addOutfit').click();
+    var addButton = document.getElementById('addOutfit');
+    if (addButton) {
+      addButton.click();
+    }
   }
 
   render() {
@@ -105,16 +108,16 @@ class Checkout extends React.Component {
           <Selector name="quantity" onChange={this.handleQuantity}>
             {
               this.state.selectedSKU[1].quantity === -1 &&
-              <React.Fragment>
+              <>
                 <option>Quantity</option>
                 <option>SIZE REQUIRED</option>
-              </React.Fragment>
+              </>
             } {
               this.state.selectedSKU[1].quantity === 0 &&
               <option>OUT OF STOCK</option>
             } {
               this.state.selectedSKU[1].quantity > 0 &&
-              [...Array(Math.min(this.state.selectedSKU[1].quantity, 15) + 1).keys()].map((x) => {
+              [...Array(Math.min(this.state.selectedSKU[1].quantity, 15) + 1).keys()].map((x) => { // move to helper function
                 return <option key={x}>{x}</option>
               })
             }

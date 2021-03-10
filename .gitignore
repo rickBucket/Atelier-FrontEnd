@@ -3,3 +3,5 @@ bundle.js
 config.js
 coverage
 aws-demo.pem
+FEC.pem
+*.pem

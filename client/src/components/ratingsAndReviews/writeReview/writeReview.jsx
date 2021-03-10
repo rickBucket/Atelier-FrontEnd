@@ -1,4 +1,3 @@
-/* eslint-disable no-alert */
 /* eslint-disable max-len */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -19,7 +18,6 @@ const gridLayout = {
 const starStyle = {
   fontSize: '12px',
   textAlign: 'center',
-  padding: '3px',
   gridColumn: '1',
   gridRow: '2',
 };
@@ -27,7 +25,6 @@ const starStyle = {
 const recommendStyle = {
   fontSize: '12px',
   textAlign: 'center',
-  padding: '3px',
   gridColumn: '2',
   gridRow: '2',
 };
@@ -37,8 +34,7 @@ const characteristicsStyle = {
   textAlign: 'center',
   width: '80%',
   margin: 'auto',
-  marginBottom: '15px',
-  padding: '3px',
+  marginBottom: '35px',
   gridColumn: '1/-1',
   gridRow: '3',
 };
@@ -129,19 +125,17 @@ class WriteReview extends React.Component {
   }
 
   minimumCharCount() {
-    const { body } = this.state;
-    if (body.length >= 50) {
+    if (this.state.body.length >= 50) {
       return 'Minimum character count reached';
-    } if (body.length < 50) {
-      return `Minimum required characters left: ${(50 - body.length)}`;
+    } if (this.state.body.length < 50) {
+      return `Minimum required characters left: ${(50 - this.state.body.length)}`;
     }
   }
 
   characteristicsRadioClick(e) {
-    const { characteristics } = this.state;
     this.setState({
       characteristics: {
-        ...characteristics,
+        ...this.state.characteristics,
         [e.target.name]: Number(e.target.value),
       },
     });
@@ -161,41 +155,31 @@ class WriteReview extends React.Component {
 
   HandleReviewData(e) {
     // mandatory  fields
-    const { rating } = this.state;
-    const { recommend } = this.state;
-    const { body } = this.state;
-    const { summary } = this.state;
-    const { email } = this.state;
-    const { name } = this.state;
-    const { metaData } = this.props;
-    const { handleReviewData } = this.props;
-
-
-    if (rating === null || recommend === null || metaData.characteristics.Comfort.id === null || metaData.characteristics.Quality.id === null || metaData.characteristics.Length.id === null || metaData.characteristics.Fit.id === null) {
+    if (this.state.rating === null || this.state.recommend === null || this.props.metaData.characteristics.Comfort.id === null || this.props.metaData.characteristics.Quality.id === null || this.props.metaData.characteristics.Length.id === null || this.props.metaData.characteristics.Fit.id === null) {
       alert('Please fill out all required (*) fields');
       e.preventDefault();
       return false;
     }
     // body check
-    if (body.length < 50 || body.length > 1000) {
+    if (this.state.body.length < 50 || this.state.body.length > 1000) {
       alert('Review body must be at least 50 characters');
       e.preventDefault();
       return false;
     }
     // email check
-    if (!(email).match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/) || email.length > 60 || email.length === 0) {
+    if (!(this.state.email).match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/) || this.state.email.length > 60 || this.state.email.length === 0) {
       alert('Please make sure email is in proper format ex. \'hello@hello.com');
       e.preventDefault();
       return false;
     }
     // summary check
-    if (summary.length > 60) {
+    if (this.state.summary.length > 60) {
       alert('Summary must be 60 characters or less');
       e.preventDefault();
       return false;
     }
     // name check
-    if (name.length > 60 || name.length === 0) {
+    if (this.state.name.length > 60 || this.state.name.length === 0) {
       alert('Name must be filled in and 60 characters or less');
       e.preventDefault();
       return false;
@@ -203,16 +187,10 @@ class WriteReview extends React.Component {
     console.log('i made it!');
 
     alert('Your review has been submitted!');
-    handleReviewData(this.state);
+    this.props.handleReviewData(this.state);
   }
 
   render() {
-    const { mouseOver } = this.state;
-    const { metaData } = this.state;
-    const { name } = this.state;
-    const { summary } = this.state;
-    const { email } = this.state;
-    const { body } = this.state;
     return (
       <div>
         <form onSubmit={this.HandleReviewData} id="reviewForm" style={gridLayout}>
@@ -233,28 +211,28 @@ class WriteReview extends React.Component {
             }}
             >
               {
-               mouseOver[0] === 1
-                 ? <span className="fa fa-star" role="button" onMouseEnter={() => { this.setState({ mouseOver: [1, 0, 0, 0, 0] }); }} onClick={() => { this.setState({ rating: 1, mouseOver: [1, 0, 0, 0, 0] }); }} />
+               this.state.mouseOver[0] === 1
+                 ? <span className="fa fa-star" onMouseEnter={() => { this.setState({ mouseOver: [1, 0, 0, 0, 0] }); }} onClick={() => { this.setState({ rating: 1, mouseOver: [1, 0, 0, 0, 0] }); }} />
                  : <span className="fa fa-star-o" onMouseEnter={() => { this.setState({ mouseOver: [1, 0, 0, 0, 0] }); }} />
              }
               {
-             mouseOver[1] === 1
-               ? <span className="fa fa-star" role="button" onMouseEnter={() => { this.setState({ mouseOver: [1, 1, 0, 0, 0] }); }} onClick={() => { this.setState({ rating: 2, mouseOver: [1, 1, 0, 0, 0] }); }} />
+             this.state.mouseOver[1] === 1
+               ? <span className="fa fa-star" onMouseEnter={() => { this.setState({ mouseOver: [1, 1, 0, 0, 0] }); }} onClick={() => { this.setState({ rating: 2, mouseOver: [1, 1, 0, 0, 0] }); }} />
                : <span className="fa fa-star-o" onMouseEnter={() => { this.setState({ mouseOver: [1, 1, 0, 0, 0] }); }} />
              }
               {
-             mouseOver[2] === 1
-               ? <span className="fa fa-star" role="button" onMouseEnter={() => { this.setState({ mouseOver: [1, 1, 1, 0, 0] }); }} onClick={() => { this.setState({ rating: 3, mouseOver: [1, 1, 1, 0, 0] }); }} />
+             this.state.mouseOver[2] === 1
+               ? <span className="fa fa-star" onMouseEnter={() => { this.setState({ mouseOver: [1, 1, 1, 0, 0] }); }} onClick={() => { this.setState({ rating: 3, mouseOver: [1, 1, 1, 0, 0] }); }} />
                : <span className="fa fa-star-o" onMouseEnter={() => { this.setState({ mouseOver: [1, 1, 1, 0, 0] }); }} />
              }
               {
-             mouseOver[3] === 1
-               ? <span className="fa fa-star" role="button" onMouseEnter={() => { this.setState({ mouseOver: [1, 1, 1, 1, 0] }); }} onClick={() => { this.setState({ rating: 4, mouseOver: [1, 1, 1, 1, 0] }); }} />
+             this.state.mouseOver[3] === 1
+               ? <span className="fa fa-star" onMouseEnter={() => { this.setState({ mouseOver: [1, 1, 1, 1, 0] }); }} onClick={() => { this.setState({ rating: 4, mouseOver: [1, 1, 1, 1, 0] }); }} />
                : <span className="fa fa-star-o" onMouseEnter={() => { this.setState({ mouseOver: [1, 1, 1, 1, 0] }); }} />
              }
               {
-             mouseOver[4] === 1
-               ? <span className="fa fa-star" role="button" onClick={() => { this.setState({ rating: 5, mouseOver: [1, 1, 1, 1, 1] }); }} />
+             this.state.mouseOver[4] === 1
+               ? <span className="fa fa-star" onClick={() => { this.setState({ rating: 5, mouseOver: [1, 1, 1, 1, 1] }); }} />
                : <span className="fa fa-star-o" onMouseEnter={() => { this.setState({ mouseOver: [1, 1, 1, 1, 1] }); }} />
              }
             </div>
@@ -288,7 +266,7 @@ class WriteReview extends React.Component {
           </div>
 
           <div style={characteristicsStyle}>
-            <CharacteristicsRadio metaData={metaData} characteristicsRadioClick={this.characteristicsRadioClick} />
+            <CharacteristicsRadio metaData={this.props.metaData} characteristicsRadioClick={this.characteristicsRadioClick} />
           </div>
 
           <div style={summaryStyle}>
@@ -296,9 +274,9 @@ class WriteReview extends React.Component {
             <textarea
               id="summaryInput"
               type="text"
-              value={summary}
+              value={this.state.summary}
               style={{
-                width: '90%', height: '60px', border: '1px solid grey', fontFamily: 'Open sans', resize: 'none',
+                width: '90%', height: '60px', border: '1px solid grey', borderRadius: '5px', fontFamily: 'Open sans', resize: 'none',
               }}
               name="summary"
               onChange={this.onInputChange}
@@ -312,9 +290,8 @@ class WriteReview extends React.Component {
               type="text"
               name="name"
               style={{
-                width: '90%', height: '30px', fontFamily: 'Open sans', border: '1px solid grey',
-              }}
-              value={name}
+                width: '90%', height: '30px', fontFamily: 'Open sans', border: '1px solid grey', borderRadius: '5px',}}
+              value={this.state.name}
               onChange={this.onInputChange}
               placeholder="Example: jackson11!"
             />
@@ -327,9 +304,9 @@ class WriteReview extends React.Component {
             <textarea
               type="text"
               style={{
-                width: '95%', height: '80px', border: '1px solid grey', fontFamily: 'Open sans', resize: 'none',
+                width: '95%', height: '80px', border: '1px solid grey', borderRadius: '5px', fontFamily: 'Open sans', resize: 'none',
               }}
-              value={body}
+              value={this.state.body}
               name="body"
               onChange={this.onInputChange}
               placeholder="What did you like/dislike about the product?"
@@ -348,10 +325,10 @@ class WriteReview extends React.Component {
             <input
               type="text"
               style={{
-                width: '90%', height: '30px', fontFamily: 'Open sans', border: '1px solid grey',
+                width: '90%', height: '30px', fontFamily: 'Open sans', borderRadius: '5px', border: '1px solid grey',
               }}
               name="email"
-              value={email}
+              value={this.state.email}
               onChange={this.onInputChange}
               placeholder="Example: jackson11@email.com"
             />
@@ -367,9 +344,9 @@ class WriteReview extends React.Component {
   }
 }
 
-WriteReview.propTypes = {
-  metaData: PropTypes.node.isRequired,
-  productID: PropTypes.node.isRequired,
-};
+// WriteReview.propTypes = {
+//   metaData: PropTypes.node.isRequired,
+//   productID: PropTypes.node.isRequired,
+// };
 
 export default WriteReview;

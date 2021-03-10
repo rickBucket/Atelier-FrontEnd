@@ -9,12 +9,11 @@ class CharacteristicsRadio extends React.Component {
   render() {
     return (
       <div>
-        <b>*Characteristics</b>
         {
               this.props.metaData.characteristics.Size
             && (
             <div>
-              <div style={{fontSize: '16px', marginBottom: '5px', fontWeight: 'bold'}}>Size</div>
+              <div style={{fontSize: '16px', marginBottom: '5px', fontWeight: 'bold'}}>* Size</div>
 
 
               <div style={{display: 'flex', justifyContent: 'space-evenly'}}>
@@ -52,7 +51,7 @@ class CharacteristicsRadio extends React.Component {
               this.props.metaData.characteristics.Width
             && (
             <div>
-              <div style={{fontSize: '16px', marginBottom: '5px', fontWeight: 'bold'}}>Width</div>
+              <div style={{fontSize: '16px', marginBottom: '5px', fontWeight: 'bold'}}>* Width</div>
 
 
               <div style={{display: 'flex', justifyContent: 'space-evenly'}}>
@@ -90,7 +89,7 @@ class CharacteristicsRadio extends React.Component {
               this.props.metaData.characteristics.Comfort
             && (
             <div>
-              <div style={{fontSize: '16px', marginBottom: '5px', fontWeight: 'bold'}}>Comfort</div>
+              <div style={{fontSize: '16px', marginBottom: '5px', fontWeight: 'bold'}}>* Comfort</div>
 
 <div style={{display: 'flex', justifyContent: 'space-evenly'}}>
                <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
@@ -126,7 +125,7 @@ class CharacteristicsRadio extends React.Component {
               this.props.metaData.characteristics.Quality
             && (
             <div>
-              <div style={{fontSize: '16px', marginBottom: '5px', fontWeight: 'bold'}}>Quality</div>
+              <div style={{fontSize: '16px', marginBottom: '5px', fontWeight: 'bold'}}>* Quality</div>
 
 
               <div style={{display: 'flex', justifyContent: 'space-evenly'}}>
@@ -163,7 +162,7 @@ class CharacteristicsRadio extends React.Component {
             this.props.metaData.characteristics.Length
             && (
             <div>
-              <div style={{fontSize: '16px', marginBottom: '5px', fontWeight: 'bold'}}>Length</div>
+              <div style={{fontSize: '16px', marginBottom: '5px', fontWeight: 'bold'}}>* Length</div>
 
 
               <div style={{display: 'flex', justifyContent: 'space-evenly'}}>
@@ -201,7 +200,7 @@ class CharacteristicsRadio extends React.Component {
             this.props.metaData.characteristics.Fit
             && (
             <div>
-              <div style={{fontSize: '16px', marginBottom: '5px',fontWeight: 'bold'}}>Fit</div>
+              <div style={{fontSize: '16px', marginBottom: '5px',fontWeight: 'bold'}}>* Fit</div>
 
 
               <div style={{display: 'flex', justifyContent: 'space-evenly'}}>

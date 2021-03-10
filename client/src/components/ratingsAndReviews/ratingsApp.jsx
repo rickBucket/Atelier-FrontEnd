@@ -87,6 +87,7 @@ const innerModalStyle = {
   width: '50%',
   minWidth: '580px',
   maxWidth: '100%',
+  maxHeight: '80%',
   height: '80%',
   margin: 'auto',
   padding: '10px',

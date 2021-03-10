@@ -21,14 +21,14 @@ const Img = styled.img`
     height: 72px;
     width: 72px;
   }
-`
+`;
 const FlexStyleDiv = styled.div`
   margin-top: 8px;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   max-width: 400px;
-`
+`;
 
 class StyleSelector extends React.Component {
   constructor(props) {

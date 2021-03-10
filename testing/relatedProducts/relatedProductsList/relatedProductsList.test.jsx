@@ -7,8 +7,17 @@ import RelatedProductsList from '../../../client/src/components/relatedProducts/
 import dummyData from '../../../client/src/components/relatedProducts/dummyData.js';
 
 describe('<RelatedProductsList />', () => {
-  it('renders a div component', () => {
+  it('#data is not defined', async () => {
     const wrapper = shallow(<RelatedProductsList relatedProducts={dummyData.related}/>);
     expect(wrapper.find('#data')).not.toBeUndefined();
   });
+
+  it('renders a productCarousel div', async () => {
+    const wrapper = shallow(<RelatedProductsList relatedProducts={dummyData.related}/>);
+    expect(wrapper.find('#productCarousel')).toBeDefined();
+  });
+
+
+
+
 });

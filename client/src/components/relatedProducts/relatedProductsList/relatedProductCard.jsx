@@ -51,6 +51,9 @@ class RelatedProductCard extends React.Component {
           loaded: this.state.loaded + 1
         })
       })
+      .catch((error) => {
+        console.log('Error fetching product details in relatedProductCard', error);
+      })
     axios.get(`/products/?product_id=${this.props.productID}&flag=styles`)
       .then(({ data })=> {
         const defaultProduct = data.results.find((product)=> {
@@ -80,6 +83,9 @@ class RelatedProductCard extends React.Component {
             featuredURL: url
           })
         }
+      })
+      .catch((error) => {
+        console.log('Error fetching product styles in relatedProductCard', error);
       })
 
     // get reviews

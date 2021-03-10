@@ -5,6 +5,10 @@ import styled from 'styled-components';
 import axios from 'axios';
 import ListContainer from '../sharedStyledComponents/listContainer.js';
 import CardContainer from '../sharedStyledComponents/cardContainer.js';
+import RightButtonWrapper from '../sharedStyledComponents/rightButtonWrapper.js';
+import LeftButtonWrapper from '../sharedStyledComponents/leftButtonWrapper.js';
+import LeftButton from '../sharedStyledComponents/leftButton.js';
+import RightButton from '../sharedStyledComponents/rightButton.js';
 import YourOutfitCard from './yourOutfitCard.jsx';
 
 class YourOutfitList extends React.Component {
@@ -34,12 +38,18 @@ class YourOutfitList extends React.Component {
           parentProductInfo: data
         })
       })
+      .catch((error) => {
+        console.log('Error getting product details in yourOutfit list', error);
+      })
 
       axios.get(`/products/?product_id=${this.props.parentProductID}&flag=styles`)
       .then(({ data })=> {
         this.setState({
           parentProductStyles: data
         })
+      })
+      .catch((error) => {
+        console.log('Error getting product styles in yourOutfit List', error);
       })
 
       axios.get('/outfit')
@@ -48,6 +58,9 @@ class YourOutfitList extends React.Component {
             outfits: data,
             outfitsLoaded: true
           })
+        })
+        .catch((error) => {
+          console.log('Error getting outfit info in yourOutfit List', error);
         })
     }
 
@@ -81,6 +94,9 @@ class YourOutfitList extends React.Component {
           outfitsLoaded: true
         })
       })
+      .catch((error) => {
+        console.log('Error posting outfit to server', error);
+      })
     }
     this.isOverflowing();
   }
@@ -104,6 +120,9 @@ class YourOutfitList extends React.Component {
             loaded: false
           })
         }
+      })
+      .catch((error) => {
+        console.log('Error deleting outfit from server', error);
       })
     })
     // this.isOverflowing();
@@ -209,59 +228,5 @@ const AddOutfitContent = styled.div`
   background: rgba(255,255,255,0.1);
   &:hover {
     opacity: 0.8
-  }
-`;
-
-const LeftButtonWrapper = styled.div`
-  position: absolute;
-  left: 1%;
-  top: 0px;
-  padding-left: 60px;
-  height: 89%;
-  border: none;
-  cursor: pointer;
-  z-index: 0;
-  outline: 0;
-`;
-
-const RightButtonWrapper = styled.div`
-  position: absolute;
-  right: -1%;
-  top: 0px;
-  padding-left: 60px;
-  height: 89%;
-  border: none;
-  cursor: pointer;
-  z-index: 1;
-  outline: 0;
-`;
-
-const LeftButton = styled.button`
-  position: absolute;
-  left: 2%;
-  top: 25%;
-  background-color: white;
-  border: 1px solid black;
-  cursor: pointer;
-  z-index: 10;
-  font-size: 40px;
-  &:hover {
-    background-color: black;
-    color: white;
-  }
-`;
-
-const RightButton = styled.button`
-  position: absolute;
-  right: 2%;
-  top: 25%;
-  background-color: white;
-  border: 1px solid black;
-  cursor: pointer;
-  z-index: 10;
-  font-size: 40px;
-  &:hover {
-    background-color: black;
-    color: white;
   }
 `;

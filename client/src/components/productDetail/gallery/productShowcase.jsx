@@ -1,7 +1,7 @@
-/* eslint-disable */
 import React from 'react';
-import PrimaryImageView from './primaryImageView.jsx';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import PrimaryImageView from './primaryImageView';
 
 const FlexDiv = styled.div`
   border: 1px solid lightgrey;
@@ -55,87 +55,108 @@ const Button = styled.div`
 class ProductShowcase extends React.Component {
   constructor(props) {
     super(props);
+    const { photos } = props;
     this.state = {
-      photos: this.props.photos,
-      currentPhoto: this.props.photos[0]
+      photos,
+      currentPhoto: photos[0],
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleExpand = this.handleExpand.bind(this);
     this.isPosition = this.isPosition.bind(this);
+    this.nextPhoto = this.nextPhoto.bind(this);
   }
 
   handleClick(value) {
+    const { photos } = this.state;
     this.setState({
-      currentPhoto: this.state.photos.find((item) => item.url === value)
+      currentPhoto: photos.find((item) => item.url === value),
     });
   }
 
   handleExpand() {
-    this.props.selectPhoto(this.state.currentPhoto.url);
+    const { selectPhoto } = this.props;
+    const { currentPhoto } = this.state;
+    selectPhoto(currentPhoto.url);
   }
 
   nextPhoto(flag) {
+    const { photos, currentPhoto } = this.state;
     this.setState({
-      currentPhoto: this.state.photos[(
-          this.state.photos.indexOf(this.state.currentPhoto) + flag + this.state.photos.length
-        ) % this.state.photos.length
-      ]
+      currentPhoto: photos[(
+        photos.indexOf(currentPhoto) + flag + photos.length
+      ) % photos.length
+      ],
     });
   }
 
   isPosition(pos) {
-    if (pos === "right") {
-      return this.state.currentPhoto.url !== this.state.photos[this.state.photos.length - 1].url;
-    } else if (pos === "left") {
-      return this.state.currentPhoto.url !== this.state.photos[0].url;
+    const { currentPhoto, photos } = this.state;
+    if (pos === 'right') {
+      return currentPhoto.url !== photos[photos.length - 1].url;
     }
+    if (pos === 'left') {
+      return currentPhoto.url !== photos[0].url;
+    }
+    return false;
   }
 
   render() {
+    const { currentPhoto, photos } = this.state;
     return (
       <div>
         <Button
-          style={{margin: "84px 16px -64px -72px"}}
+          style={{ margin: '84px 16px -64px -72px' }}
           className="fa fa-expand"
           onClick={this.handleExpand}
         />
         {
-          this.isPosition("right") &&
+          this.isPosition('right')
+          && (
           <Button
-            style={{margin: "276px 20px -64px -76px"}}
-            onClick={this.nextPhoto.bind(this, 1)}
+            style={{ margin: '276px 20px -64px -76px' }}
+            onClick={() => this.nextPhoto(1)}
             className="fa fa-arrow-right"
           />
+          )
         }
         {
-          this.isPosition("left") &&
+          this.isPosition('left')
+          && (
           <Button
-            style={{margin: "276px 488px -64px -552px"}}
-            onClick={this.nextPhoto.bind(this, -1)}
+            style={{ margin: '276px 488px -64px -552px' }}
+            onClick={() => this.nextPhoto(-1)}
             className="fa fa-arrow-left"
           />
+          )
         }
         <PrimaryImageView
           handleExpand={this.handleExpand}
-          photo={this.state.currentPhoto.url}
+          photo={currentPhoto.url}
         />
         <FlexDiv>
           {
-            this.state.photos.map((photo) => {
-              return (
-                <Img
-                  key={photo.url}
-                  onClick={this.handleClick.bind(this, photo.url)}
-                  src={photo.thumbnail_url}
-                  a=''>
-                </Img>
-              );
-            })
+            photos.map((photo) => (
+              <Img
+                key={photo.url}
+                onClick={() => this.handleClick(photo.url)}
+                src={photo.thumbnail_url}
+                a=""
+              />
+            ))
           }
         </FlexDiv>
       </div>
     );
   }
 }
+
+ProductShowcase.defaultProps = {
+  photos: [],
+};
+
+ProductShowcase.propTypes = {
+  photos: PropTypes.arrayOf(PropTypes.shape({})),
+  selectPhoto: PropTypes.func.isRequired,
+};
 
 export default ProductShowcase;

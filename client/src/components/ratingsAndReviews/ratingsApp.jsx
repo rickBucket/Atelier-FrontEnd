@@ -14,7 +14,7 @@ import SortOptions from './sortOptions/sortOptions.jsx';
 const gridLayout = {
   display: 'grid',
   gridTemplateColumns: 'repeat(3, 1fr)',
-  gridTemplateRows: 'minmax(5, 1fr) 200px',
+  gridTemplateRows: 'minmax(6, 1fr) 200px',
   gridGap: '10px',
   rowGap: '20px',
   borderRadius: '20px',
@@ -40,7 +40,7 @@ const mainDiv = {
 
 const ratingGrid = {
   gridColumn: '1',
-  gridRow: '1/3',
+  gridRow: '2',
 };
 
 const addReviewBtnStyle = {
@@ -95,16 +95,17 @@ const productStyle = {
   maxWidth: '100%',
   // marginLeft: '20%',
   // marginRight: '20%',
+  marginTop: '10px',
   margin: 'auto',
   gridColumn: '1',
   gridRow: '3',
 };
 
 const sortOptionsStyle = {
-  paddingTop: '10px',
+  marginTop: '40px',
   marginLeft: '30px',
   gridColumn: '2/-1',
-  gridRow: '0',
+  gridRow: '1',
 };
 
 const reviewListStyle = {
@@ -122,7 +123,7 @@ const reviewButtonsStyle = {
   // marginLeft: '50%',
   width: '100%',
   gridColumn: '2/-1',
-  gridRow: '6',
+  gridRow: '5',
 };
 
 // const moreReviewsStyle = {

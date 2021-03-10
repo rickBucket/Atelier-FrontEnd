@@ -87,7 +87,7 @@ averageRating(obj) {
           textAlign: 'center',
         }}
         >
-          <div style={{display: 'flex', justifyContent: 'center', marginBottom: '10px',}}>
+          <div style={{display: 'flex', justifyContent: 'center', marginBottom: '15px',}}>
           {`${this.recommendedAverage(recommendedObj)}% of reviews recommend this product`}
           </div>
         </div>

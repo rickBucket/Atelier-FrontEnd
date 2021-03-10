@@ -33,6 +33,9 @@ const recommendStyle = {
 const characteristicsStyle = {
   fontSize: '12px',
   textAlign: 'center',
+  width: '80%',
+  margin: 'auto',
+  marginBottom: '15px',
   padding: '3px',
   gridColumn: '1/-1',
   gridRow: '3',

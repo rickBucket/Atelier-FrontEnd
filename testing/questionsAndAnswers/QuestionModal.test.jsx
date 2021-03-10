@@ -9,3 +9,7 @@ describe('<QuestionModal />', () => {
     expect(wrapper.find('#data')).not.toBeUndefined();
   });
 });
+
+//how would i perfectly cover this component test wise 
+// fully deployed
+//search bar done by friday at 12

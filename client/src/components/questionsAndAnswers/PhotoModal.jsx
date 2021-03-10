@@ -12,7 +12,8 @@ width: 100%; /* Full width */
 height: 100%; /* Full height */
 position: fixed; /*Fix position on the top-left corner */
 overflow: auto; /* Enable scroll if needed */
-padding-top: 80px; /* Location of the content container */
+padding-top: 200px; /* Location of the content container */
+margin: auto;
 `;
 
 const Photo = styled.img`

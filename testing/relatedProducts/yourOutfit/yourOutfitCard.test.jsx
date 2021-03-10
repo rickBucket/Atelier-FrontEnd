@@ -8,7 +8,7 @@ import dummyData from '../../../client/src/components/relatedProducts/dummyData.
 
 
 describe('<YourOutfitCard />', () => {
-  it('renders a div component', () => {
+  it('renders a div component', async () => {
     const wrapper = shallow(<YourOutfitCard outfit={dummyData.outfits} />);
     expect(wrapper.find('#data')).not.toBeUndefined();
   });

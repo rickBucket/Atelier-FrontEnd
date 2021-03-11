@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Answers from './Answers';
@@ -141,7 +140,7 @@ class Question extends React.Component {
 
   handleClick(event) {
     const { item } = this.props;
-    if ( !this.state.clickedYes ) {
+    if (!this.state.clickedYes && event.target.name === "helpful") {
       axios.put('/qa/questions', {
         question_id: item.question_id,
         type: event.target.name,
@@ -154,7 +153,16 @@ class Question extends React.Component {
           });
         });
     } else {
-      return null;
+      axios.put('/qa/questions', {
+        question_id: item.question_id,
+        type: event.target.name,
+      })
+        .then((response) => {
+          console.log(response);
+          this.setState({
+            clickedReport: true,
+          });
+        });
     }
   }
 
@@ -203,7 +211,7 @@ class Question extends React.Component {
               )
             </p>
             <Divide className="divider"> | </Divide>
-            <Button name="report" onClick={(event) => { event.preventDefault(); this.handleClick(event); }}> Report </Button>
+            {!this.state.clickedReport ? (<Button name="report" onClick={(event) => { event.preventDefault(); this.handleClick(event); }}> Report </Button>) : (<p>Reported</p>)}
             <Divide className="divider"> | </Divide>
             <Button onClick={this.selectModal}> Add Answer </Button>
           </MoveRight>
@@ -212,30 +220,40 @@ class Question extends React.Component {
 
         <div>
 
-          {itemsToShow <= 2
-            ? (
-              <div>
-                {answers.slice(0, itemsToShow).map((answer) => (
-                  <ContainerB key={answer.answer_id}>
-                    <Answers item={answer} seller={item.asker_name} reportItem={item.reported} />
-                  </ContainerB>
-                ))}
-              </div>
-            )
-            : (
-              <ScrollList>
-                {answers.slice(0, itemsToShow).map((answer) => (
-                  <ContainerB key={answer.answer_id}>
-                    <Answers item={answer} seller={item.asker_name} reportItem={item.reported} />
-                  </ContainerB>
-                ))}
-              </ScrollList>
-            )}
-          {answers.length >= 2 && !(expanded) ? (
-            <LoadButton onClick={() => { this.showMore(); }}> LOAD MORE ANSWERS </LoadButton>
+          {itemsToShow <= 2 ? (
+            <div>
+              {answers.slice(0, itemsToShow).map((answer, i) => (
+                <ContainerB key={i}>
+                  <Answers item={answer} seller={item.asker_name} reportItem={item.reported} />
+                </ContainerB>
+              ))}
+            </div>
           ) : (
-            <LoadButton onClick={() => { this.showMore(); }}> Collapse List </LoadButton>
+            <ScrollList>
+              {answers.slice(0, itemsToShow).map((answer) => (
+                <ContainerB key={answer.answer_id}>
+                  <Answers item={answer} seller={item.asker_name} reportItem={item.reported} />
+                </ContainerB>
+              ))}
+            </ScrollList>
           )}
+
+
+
+
+
+                {answers.length > 2 ?
+              ( <div>
+                {(!expanded) ? (
+                <LoadButton onClick={() => { this.showMore(); }}> LOAD MORE ANSWERS </LoadButton>
+              ) : (
+                <LoadButton onClick={() => { this.showMore(); }}> Collapse List </LoadButton>
+              )}
+              </div>
+              ) : (null)}
+
+
+
 
         </div>
         <AnswerModal displayModal={modal} closeModal={this.selectModal} q_id={item.question_id} />

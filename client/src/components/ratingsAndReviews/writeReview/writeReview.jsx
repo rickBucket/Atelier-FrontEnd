@@ -1,7 +1,8 @@
 /* eslint-disable max-len */
 import React from 'react';
-import CharacteristicsRadio from './characteristicsRadio.jsx';
-import DynamicStarReview from './dynamicStarReview.jsx';
+import PropTypes from 'prop-types';
+import CharacteristicsRadio from './characteristicsRadio';
+import DynamicStarReview from './dynamicStarReview';
 // import HandleReviewData from './handleReviewData.jsx';
 
 const gridLayout = {
@@ -17,7 +18,6 @@ const gridLayout = {
 const starStyle = {
   fontSize: '12px',
   textAlign: 'center',
-  padding: '3px',
   gridColumn: '1',
   gridRow: '2',
 };
@@ -25,7 +25,6 @@ const starStyle = {
 const recommendStyle = {
   fontSize: '12px',
   textAlign: 'center',
-  padding: '3px',
   gridColumn: '2',
   gridRow: '2',
 };
@@ -35,8 +34,7 @@ const characteristicsStyle = {
   textAlign: 'center',
   width: '80%',
   margin: 'auto',
-  marginBottom: '15px',
-  padding: '3px',
+  marginBottom: '35px',
   gridColumn: '1/-1',
   gridRow: '3',
 };
@@ -96,9 +94,10 @@ const submitStyle = {
 class WriteReview extends React.Component {
   constructor(props) {
     super(props);
+    const { productID } = this.props;
     this.state = {
       mouseOver: [0, 0, 0, 0, 0],
-      product_id: this.props.productID,
+      product_id: productID,
       body: '',
       summary: '',
       name: '',
@@ -118,12 +117,10 @@ class WriteReview extends React.Component {
     // this.DynamicStarReview = DynamicStarReview.bind(this);
   }
 
-  characteristicsRadioClick(e) {
+  onInputChange(e) {
+    e.preventDefault();
     this.setState({
-      characteristics: {
-        ...this.state.characteristics,
-        [e.target.name]: Number(e.target.value),
-      },
+      [e.target.name]: e.target.value,
     });
   }
 
@@ -135,10 +132,12 @@ class WriteReview extends React.Component {
     }
   }
 
-  onInputChange(e) {
-    e.preventDefault();
+  characteristicsRadioClick(e) {
     this.setState({
-      [e.target.name]: e.target.value,
+      characteristics: {
+        ...this.state.characteristics,
+        [e.target.name]: Number(e.target.value),
+      },
     });
   }
 
@@ -277,7 +276,7 @@ class WriteReview extends React.Component {
               type="text"
               value={this.state.summary}
               style={{
-                width: '90%', height: '60px', border: '1px solid grey', fontFamily: 'Open sans', resize: 'none',
+                width: '90%', height: '60px', border: '1px solid grey', borderRadius: '5px', fontFamily: 'Open sans', resize: 'none',
               }}
               name="summary"
               onChange={this.onInputChange}
@@ -291,8 +290,7 @@ class WriteReview extends React.Component {
               type="text"
               name="name"
               style={{
-                width: '90%', height: '30px', fontFamily: 'Open sans', border: '1px solid grey',
-              }}
+                width: '90%', height: '30px', fontFamily: 'Open sans', border: '1px solid grey', borderRadius: '5px',}}
               value={this.state.name}
               onChange={this.onInputChange}
               placeholder="Example: jackson11!"
@@ -306,7 +304,7 @@ class WriteReview extends React.Component {
             <textarea
               type="text"
               style={{
-                width: '95%', height: '80px', border: '1px solid grey', fontFamily: 'Open sans', resize: 'none',
+                width: '95%', height: '80px', border: '1px solid grey', borderRadius: '5px', fontFamily: 'Open sans', resize: 'none',
               }}
               value={this.state.body}
               name="body"
@@ -327,7 +325,7 @@ class WriteReview extends React.Component {
             <input
               type="text"
               style={{
-                width: '90%', height: '30px', fontFamily: 'Open sans', border: '1px solid grey',
+                width: '90%', height: '30px', fontFamily: 'Open sans', borderRadius: '5px', border: '1px solid grey',
               }}
               name="email"
               value={this.state.email}
@@ -345,5 +343,10 @@ class WriteReview extends React.Component {
     );
   }
 }
+
+// WriteReview.propTypes = {
+//   metaData: PropTypes.node.isRequired,
+//   productID: PropTypes.node.isRequired,
+// };
 
 export default WriteReview;

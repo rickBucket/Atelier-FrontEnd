@@ -31,7 +31,7 @@ class AnswerPhoto extends React.Component {
   }
 
   render() {
-    const {photo} = this.props;
+    const { photo } = this.props;
     return (
       <div>
         <PhotoContainer>
@@ -44,6 +44,3 @@ class AnswerPhoto extends React.Component {
   }
 }
 export default AnswerPhoto;
-
-//create a modal that basically enlarges photo and
-{/* <span className="close">$times;</span> */}

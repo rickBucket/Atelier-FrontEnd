@@ -1,16 +1,14 @@
-/* eslint-disable */
 const axios = require('axios');
 const config = require('../../config.js');
 
 const handleQStrings = (input, flag = '') => {
   if (input === undefined) {
     return '';
-  } else {
-    if (flag) {
-      return `${flag}=${input}`;
-    }
-    return '/' + input;
   }
+  if (flag) {
+    return `${flag}=${input}`;
+  }
+  return `/${input}`;
 };
 
 const getProducts = (q, callback) => {

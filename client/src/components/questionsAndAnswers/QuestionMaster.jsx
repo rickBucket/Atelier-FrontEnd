@@ -145,7 +145,7 @@ class QuestionMaster extends React.Component {
     );
   }
 
-  handleSearch(event) {
+  handleSearch() {
     this.setState({
       searchText: event.target.value,
     }, () => {

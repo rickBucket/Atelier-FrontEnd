@@ -21,6 +21,10 @@ const Title = styled.div`
   font-size: 24px;
   font-weight: bold;
   backdrop-filter: blur(16px);
+  cursor: pointer;
+  &:hover {
+    background: linear-gradient(120deg, hsla(175,55%,55%,0.7), hsla(235,55%,55%,0.7));
+  }
 `;
 const Button = styled.button`
   margin: -67px 12px;
@@ -85,11 +89,16 @@ class App extends React.Component {
     this.fetchProductID();
   }
 
+  scrollToTop(e) {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+
   render() {
     return (
       <div>
         <Title>
-          <h1 style={{marginTop: "0px"}}>Observant Ostritches</h1>
+          <h1 onClick={this.scrollToTop} style={{marginTop: "0px"}}>Observant Ostritches</h1>
         </Title>
         <Button type="submit" id="next" onClick={this.nextProduct}>Next Product</Button>
         {

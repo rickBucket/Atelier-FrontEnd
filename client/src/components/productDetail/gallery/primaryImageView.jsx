@@ -26,8 +26,12 @@ function PrimaryImageView({ photo }) {
   );
 }
 
+PrimaryImageView.defaultProps = {
+  photo: '',
+};
+
 PrimaryImageView.propTypes = {
-  photo: PropTypes.string.isRequired,
+  photo: PropTypes.string,
 };
 
 export default PrimaryImageView;

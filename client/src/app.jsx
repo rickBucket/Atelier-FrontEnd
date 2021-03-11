@@ -1,11 +1,10 @@
-/* eslint-disable */
 import React from 'react';
 import axios from 'axios';
-import RatingsApp from './components/ratingsAndReviews/ratingsApp.jsx'
-import ProductMainView from './components/productDetail/productMainView.jsx';
-import RelatedProductsMainView from './components/relatedProducts/relatedProductsMainView.jsx';
-import QuestionMaster from './components/questionsAndAnswers/QuestionMaster.jsx';
 import styled from 'styled-components';
+import RatingsApp from './components/ratingsAndReviews/ratingsApp';
+import ProductMainView from './components/productDetail/productMainView';
+import RelatedProductsMainView from './components/relatedProducts/relatedProductsMainView';
+import QuestionMaster from './components/questionsAndAnswers/QuestionMaster';
 
 const Title = styled.div`
   width: 100%;
@@ -39,6 +38,11 @@ const Button = styled.button`
   }
 `;
 
+function scrollToTop() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -47,7 +51,7 @@ class App extends React.Component {
       productIDs: [],
       loadedID: 0,
       metaData: {},
-      productIndex: 0
+      productIndex: 0,
     };
     this.nextProduct = this.nextProduct.bind(this);
     this.fetchProductID = this.fetchProductID.bind(this);
@@ -55,34 +59,35 @@ class App extends React.Component {
     this.fetchMeta = this.fetchMeta.bind(this);
   }
 
-// adding component did mount to choose productID
   componentDidMount() {
     this.fetchProductID();
   }
 
   fetchProductID() {
+    const { productIndex, loadedID } = this.state;
     axios.get('/products/?count=13&page=2')
-      .then(({data})=> {
+      .then(({ data }) => {
         this.setState({
-          productID: data[this.state.productIndex].id,
+          productID: data[productIndex].id,
           productIDs: data.map((item) => item.id),
-          loadedID: this.state.loadedID + 1
+          loadedID: loadedID + 1,
         });
       })
       .then(() => {
         this.fetchMeta();
       })
-      .catch((error)=> {
-        console.log('Error setting productID in App', error)
-      })
+      .catch((error) => {
+        console.log('Error setting productID in App', error);
+      });
   }
 
   fetchMeta() {
-    axios.get(`/reviews/?product_id=${this.state.productID}&meta=meta`)
+    const { productID, loadedID } = this.state;
+    axios.get(`/reviews/?product_id=${productID}&meta=meta`)
       .then((results) => {
         this.setState({
           metaData: results.data,
-          loadedID: this.state.loadedID + 1
+          loadedID: loadedID + 1,
         });
       })
       .catch((err) => {
@@ -91,51 +96,50 @@ class App extends React.Component {
   }
 
   nextProduct(e) {
+    const { productIndex, productIDs } = this.state;
     e.preventDefault();
     this.setState({
-      productIndex: (this.state.productIndex + 1)%7,
-      productID: this.state.productIDs[(this.state.productIndex + 1)%7],
-      loadedID: 1
+      productIndex: (productIndex + 1) % 7,
+      productID: productIDs[(productIndex + 1) % 7],
+      loadedID: 1,
     }, this.fetchMeta);
-  }
-
-  scrollToTop(e) {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
   }
 
   updateProduct(productID) {
     this.setState({
-      loadedID: 0
-    })
-    axios.get(`/reviews/?product_id=${productID}&meta=meta`)
-    .then((results) => {
-      this.setState({
-        metaData: results.data,
-        productID: productID,
-        loadedID: 2
-      });
-    })
-    .catch((err) => {
-      console.log('error on meta GET request', err);
+      loadedID: 0,
     });
+    axios.get(`/reviews/?product_id=${productID}&meta=meta`)
+      .then((results) => {
+        this.setState({
+          metaData: results.data,
+          productID,
+          loadedID: 2,
+        });
+      })
+      .catch((err) => {
+        console.log('error on meta GET request', err);
+      });
   }
 
   render() {
+    const { productID, metaData, loadedID } = this.state;
     return (
       <div>
-        <Title>
-          <h1 onClick={this.scrollToTop} style={{marginTop: "0px"}}>Observant Ostritches</h1>
+        <Title onClick={scrollToTop}>
+          <h1 style={{ marginTop: '0px' }}>Observant Ostritches</h1>
         </Title>
         <Button type="submit" id="next" onClick={this.nextProduct}>Next Product</Button>
         {
-          this.state.loadedID === 2 &&
+          loadedID === 2
+          && (
           <div>
-            <ProductMainView productID={this.state.productID} ratings={this.state.metaData.ratings}/>
-            <RelatedProductsMainView updateProduct={this.updateProduct} productID={this.state.productID}/>
-            <QuestionMaster productID={this.state.productID}/>
-            <RatingsApp productID={this.state.productID} metaData={this.state.metaData}/>
+            <ProductMainView productID={productID} ratings={metaData.ratings} />
+            <RelatedProductsMainView updateProduct={this.updateProduct} productID={productID} />
+            <QuestionMaster productID={productID} />
+            <RatingsApp productID={productID} metaData={metaData} />
           </div>
+          )
         }
       </div>
     );

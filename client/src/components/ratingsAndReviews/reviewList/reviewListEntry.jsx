@@ -1,8 +1,9 @@
+/* eslint-disable class-methods-use-this */
 import React from 'react';
 import axios from 'axios';
-import ReviewList from './reviewList.jsx';
-import StarRating from '../../shared/starRating.jsx';
-import PhotosMap from './photosMap.jsx';
+import ReviewList from './reviewList';
+import StarRating from '../../shared/starRating';
+import PhotosMap from './photosMap';
 
 const gridLayout = {
   display: 'grid',
@@ -66,11 +67,6 @@ const responseLayout = {
   backgroundColor: 'lightgrey',
 };
 
-// const photoLayout = {
-//   gridRow: '7',
-//   gridColumn: '3',
-// };
-
 const helpfulnessLayout = {
   padding: '5px',
   color: 'grey',
@@ -92,20 +88,6 @@ class ReviewListEntry extends React.Component {
     this.averageRating = this.averageRating.bind(this);
   }
 
-  averageRating(obj) {
-    let wholeTotal = 0;
-    let responseTotal = 0;
-    for (const star in obj) {
-      wholeTotal += (Number(obj[star]) * Number(star));
-      responseTotal += Number(obj[star]);
-    }
-    const result = wholeTotal / responseTotal;
-    if (isNaN((Math.round(result * 4) / 4).toFixed(1))) {
-      return 0;
-    }
-    return result.toFixed(1);
-  }
-
   handlePutEntry(e) {
     axios.put('/reviews', {
       review_id: this.props.review.review_id,
@@ -120,29 +102,44 @@ class ReviewListEntry extends React.Component {
       });
   }
 
+  averageRating(obj) {
+    let wholeTotal = 0;
+    let responseTotal = 0;
+    for (const star in obj) {
+      wholeTotal += (Number(obj[star]) * Number(star));
+      responseTotal += Number(obj[star]);
+    }
+    const result = wholeTotal / responseTotal;
+    if (isNaN((Math.round(result * 4) / 4).toFixed(1))) {
+      return 0;
+    }
+    return result.toFixed(1);
+  }
+
   render() {
     const { review } = this.props;
     return (
       <div className="ratings-flexbox-container" style={gridLayout}>
 
         <div style={starLayout}>
-          <div style={{ display: 'flex', zIndex: '-1', marginRight: 'auto'}}>
+          <div style={{ display: 'flex', zIndex: '-1', marginRight: 'auto' }}>
             <StarRating averageRating={review.rating} height={18} width={15} />
           </div>
         </div>
 
-        <div style={{display: 'flex', marginLeft: 'auto'}}>
-        <div style={nameLayout}>
-          <div style={{ display: 'flex', marginLeft: 'auto'}}>
-            {review.reviewer_name},
+        <div style={{ display: 'flex', marginLeft: 'auto' }}>
+          <div style={nameLayout}>
+            <div style={{ display: 'flex', marginLeft: 'auto' }}>
+              {review.reviewer_name}
+              ,
+            </div>
           </div>
-        </div>
 
-        <div style={dateLayout}>
-          <div style={{ display: 'flex'}}>
-            {new Date(review.date).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}
+          <div style={dateLayout}>
+            <div style={{ display: 'flex' }}>
+              {new Date(review.date).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}
+            </div>
           </div>
-        </div>
 
         </div>
 
@@ -180,7 +177,7 @@ class ReviewListEntry extends React.Component {
         review.recommend === true
           ? (
             <div style={recommendLayout}>
-              <div style={{ display: 'flex'}}>
+              <div style={{ display: 'flex' }}>
                 ✓ I recommend this product
               </div>
             </div>
@@ -189,23 +186,26 @@ class ReviewListEntry extends React.Component {
         }
 
         <div style={helpfulnessLayout}>
-          <div style={{ display: 'flex', justifyContent: 'flex-start'}}>
+          <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
             {
           review.photos.length > 0
             ? (
           // <div style={photoLayout}>
-              <div style={{ display: 'flex', justifyContent: 'flex-start'}}>
+              <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
                 <PhotosMap photos={review.photos} />
                 {/* </div> */}
               </div>
             )
             : <div style={emptyDiv} />
           }
-            <div style={{ display: 'flex', justifyContent: 'flex-end', float: 'right', marginLeft: 'auto', marginTop: 'auto'}}>
-              {'Helpful?'}
-              <u onClick={this.handlePutEntry} id="helpful" style={{marginLeft: '4px', marginRight: '2px'}}>Yes</u>
+            <div style={{
+              display: 'flex', justifyContent: 'flex-end', float: 'right', marginLeft: 'auto', marginTop: 'auto',
+            }}
+            >
+              Helpful?
+              <u onClick={this.handlePutEntry} id="helpful" style={{ marginLeft: '4px', marginRight: '2px' }}>Yes</u>
               {`(${review.helpfulness}) | `}
-              <u onClick={this.handlePutEntry} id="report" style={{marginLeft: '4px'}}>Report</u>
+              <u onClick={this.handlePutEntry} id="report" style={{ marginLeft: '4px' }}>Report</u>
             </div>
           </div>
         </div>

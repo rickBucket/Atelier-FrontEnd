@@ -1,13 +1,11 @@
 import React from 'react';
-import RatingsBreakdownList from './ratingsBreakdownList.jsx';
-import StarRating from '../../shared/starRating.jsx';
+import RatingsBreakdownList from './ratingsBreakdownList';
+import StarRating from '../../shared/starRating';
 
 const gridLayout = {
   display: 'grid',
   gridTemplateColumns: 'repeat(1 1fr)',
   gridTemplateRows: 'minwidth(5 1fr) 100px',
-  // padding: '10px',
-  // gridGap: '5px',
   alignItems: 'center',
 };
 

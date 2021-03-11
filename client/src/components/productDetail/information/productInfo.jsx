@@ -8,7 +8,7 @@ const Div = styled.div`
   padding: 28px 32px 16px 32px;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
   margin: 32px 12px 24px 12px;
-  max-width: 540px;
+  max-width: 500px;
   background: linear-gradient(0deg, hsl(190,70%,99%), hsl(240,60%,100%));
 `;
 

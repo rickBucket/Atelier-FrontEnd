@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 
 const Div = styled.div`
   margin: 8px;
-  padding: 0px 64px 0px 32px;
-  max-width: 480px;
+  padding: 0px 56px 0px 32px;
+  max-width: 470px;
 `;
 const FlexDiv = styled.div`
   display: flex;
   justify-content: center;
   max-width: 960px;
-  margin: 48px auto 96px auto;
+  margin: 45px auto 96px auto;
 `;
 
 function formatFeatures(featureArray) {
@@ -45,7 +45,7 @@ class ProductDescription extends React.Component {
     const { slogan, description, features } = this.state;
     return (
       <FlexDiv>
-        <Div style={{ borderRight: '1px solid grey' }}>
+        <Div style={{ borderRight: '1px solid grey', paddingLeft: '0px' }}>
           <h3>{slogan}</h3>
           <p>{description}</p>
         </Div>

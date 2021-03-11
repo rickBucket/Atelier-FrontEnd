@@ -352,9 +352,9 @@ class RatingsApp extends React.Component {
   }
 }
 
-RatingsApp.propTypes = {
-  metaData: PropTypes.node.isRequired,
-  productID: PropTypes.node.isRequired,
-};
+// RatingsApp.propTypes = {
+//   metaData: PropTypes.node.isRequired,
+//   productID: PropTypes.node.isRequired,
+// };
 
 export default RatingsApp;

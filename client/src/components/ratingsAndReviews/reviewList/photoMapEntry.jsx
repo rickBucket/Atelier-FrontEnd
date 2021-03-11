@@ -3,17 +3,13 @@ import React from 'react';
 const imgStyle = {
   height: '60px',
   width: '60px',
-  // margin: 'auto',
-  // paddingLeft: '10px',
-  // paddingRight: '10px',
-  // paddingTop: '10px',
   borderRadius: '40px',
   objectFit: 'cover',
   marginLeft: '4px',
   marginRight: '4px',
   marginTop: '4px',
   cursor: 'pointer',
-}
+};
 
 const modalStyle = {
   display: 'flex',
@@ -23,12 +19,12 @@ const modalStyle = {
   zIndex: '150',
   width: '100%', /* Full width */
   height: '100%', /* Full height */
-  position: 'fixed', /* Fix position on the top-left corner*/
+  position: 'fixed', /* Fix position on the top-left corner */
   top: '0',
   left: '0',
   justifyContent: 'center',
   overflow: 'hidden', /* Enable scroll if needed */
-  margin: 'auto'
+  margin: 'auto',
 };
 
 const expandedImg = {
@@ -37,29 +33,32 @@ const expandedImg = {
   maxWidth: '800px',
   margin: 'auto',
   overflow: 'hidden',
-}
+};
 
 class PhotoMapEntry extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      expand: false
-    }
+      expand: false,
+    };
   }
 
-  render(){
-     const url = this.props.photo.url
+  render() {
+    const { url } = this.props.photo;
+    const { expand } = this.state;
     return (
       <div>
         {
-          this.state.expand === true &&
-          <div style={modalStyle} onClick={() => {this.setState({expand: false})}}>
-          <img src={url} style={expandedImg}></img>
+          expand === true
+          && (
+          <div style={modalStyle} onClick={() => { this.setState({ expand: false }); }}>
+            <img src={url} style={expandedImg} />
           </div>
+          )
         }
-        <img src={url} style={imgStyle} onClick={() => {this.setState({expand: true})}}></img>
+        <img src={url} style={imgStyle} onClick={() => { this.setState({ expand: true }); }} />
       </div>
-    )
+    );
   }
 }
 

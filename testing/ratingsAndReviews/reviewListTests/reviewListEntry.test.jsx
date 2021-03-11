@@ -5,7 +5,7 @@ import reviewsDummy from '../../../client/src/components/ratingsAndReviews/revie
 
 describe('<ReviewListEntry />', () => {
   it('should render a div', () => {
-    const wrapper = shallow(<ReviewListEntry review={reviewsDummy.results[0]}/>);
+    const wrapper = shallow(<ReviewListEntry review={reviewsDummy.results[0]} />);
     expect(wrapper.find('#data')).not.toBeUndefined();
   });
 });

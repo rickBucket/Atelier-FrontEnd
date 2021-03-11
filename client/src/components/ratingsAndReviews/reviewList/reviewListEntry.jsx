@@ -1,7 +1,6 @@
 /* eslint-disable class-methods-use-this */
 import React from 'react';
 import axios from 'axios';
-import ReviewList from './reviewList';
 import StarRating from '../../shared/starRating';
 import PhotosMap from './photosMap';
 

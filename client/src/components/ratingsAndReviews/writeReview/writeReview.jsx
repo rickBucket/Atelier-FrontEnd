@@ -2,7 +2,7 @@
 /* eslint-disable max-len */
 import React from 'react';
 import PropTypes from 'prop-types';
-import CharacteristicsRadio from './characteristicsRadio';
+import CharacteristicsRadioList from './characteristicsRadioList';
 // import HandleReviewData from './handleReviewData.jsx';
 
 const gridLayout = {
@@ -13,6 +13,11 @@ const gridLayout = {
   gridTemplateRows: 'minwidth(6, 1fr) 200px',
   alignItems: 'center',
   overflow: 'auto',
+};
+
+const autoFlex = {
+  display: 'flex',
+  margin: 'auto',
 };
 
 const starStyle = {
@@ -268,19 +273,19 @@ class WriteReview extends React.Component {
              }
             </div>
             <div style={{ display: 'flex', justifyContent: 'center' }}>
-              <div style={{ display: 'flex', margin: 'auto' }}>
+              <div style={autoFlex}>
                 1 - Poor
               </div>
-              <div style={{ display: 'flex', margin: 'auto' }}>
+              <div style={autoFlex}>
                 2 - Fair
               </div>
-              <div style={{ display: 'flex', margin: 'auto' }}>
+              <div style={autoFlex}>
                 3 - Average
               </div>
-              <div style={{ display: 'flex', margin: 'auto' }}>
+              <div style={autoFlex}>
                 4 - Good
               </div>
-              <div style={{ display: 'flex', margin: 'auto' }}>
+              <div style={autoFlex}>
                 5 - Great
               </div>
             </div>
@@ -297,7 +302,7 @@ class WriteReview extends React.Component {
           </div>
 
           <div style={characteristicsStyle}>
-            <CharacteristicsRadio metaData={metaData} characteristicsRadioClick={this.characteristicsRadioClick} />
+            <CharacteristicsRadioList metaData={metaData} characteristicsRadioClick={this.characteristicsRadioClick} />
           </div>
 
           <div style={summaryStyle}>

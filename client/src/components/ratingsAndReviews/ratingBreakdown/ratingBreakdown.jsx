@@ -9,16 +9,35 @@ const gridLayout = {
   alignItems: 'center',
 };
 
-class RatingBreakdown extends React.Component {
-  constructor(props) {
-    super(props);
+const recommendedAvgStyle = {
+  display: 'flex',
+  justifyContent: 'center',
+  marginBottom: '15px',
+};
 
-    this.averageRating = this.averageRating.bind(this);
-    this.recommendedAverage = this.recommendedAverage.bind(this);
-  }
+const avgRatingSpacing = {
+  gridColumn: '1',
+  gridRow: '2',
+  fontSize: '80px',
+  textAlign: 'center',
+};
 
+const headerStyle = {
+  gridRow: '1',
+  gridColumn: '1',
+  color: 'grey',
+  textAlign: 'center',
+};
 
-averageRating(obj) {
+// class RatingBreakdown extends React.Component {
+//   constructor(props) {
+//     super(props);
+
+//     this.averageRating = this.averageRating.bind(this);
+//     this.recommendedAverage = this.recommendedAverage.bind(this);
+//   }
+
+const averageRating = (obj) => {
   let wholeTotal = 0;
   let responseTotal = 0;
   for (const star in obj) {
@@ -30,75 +49,61 @@ averageRating(obj) {
     return 0;
   }
   return result;
-}
+};
 
-  recommendedAverage(obj) {
-    const total = Number(obj.false) + Number(obj.true);
-    const result = Number(obj.true) / total;
+const recommendedAverage = (obj) => {
+  const total = Number(obj.false) + Number(obj.true);
+  const result = Number(obj.true) / total;
 
-    if (isNaN(result.toFixed(2) * 100)) {
-      return 0;
-    }
-    return result.toFixed(2) * 100;
+  if (isNaN(result.toFixed(2) * 100)) {
+    return 0;
   }
+  return result.toFixed(2) * 100;
+};
 
-  render() {
-    const ratingsObj = this.props.metaData.ratings;
-    const recommendedObj = this.props.metaData.recommended;
+const RatingBreakdown = (props) => {
+  const { ratings } = props.metaData;
+  const { recommended } = props.metaData;
+  return (
+    <div style={gridLayout}>
+      <div style={headerStyle}>
+        Ratings & Reviews
+      </div>
 
-    return (
-      <div style={gridLayout}>
-        <div style={{
-          gridRow: '1',
-          gridColumn: '1',
-          color: 'grey',
-          textAlign: 'center',
-        }}
-        >
-          Ratings & Reviews
-        </div>
+      <div style={avgRatingSpacing}>
+        {averageRating(ratings).toFixed(1)}
+      </div>
 
-        <div style={{
-          gridColumn: '1',
-          gridRow: '2',
-          fontSize: '80px',
-          textAlign: 'center',
-        }}
-        >
-          {this.averageRating(ratingsObj).toFixed(1)}
-        </div>
-
-        <div style={{
-          gridColumn: '1',
-          gridRow: '3',
-        }}
-        >
-          <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-            <StarRating averageRating={this.averageRating(ratingsObj)} height={36} width={31} />
-          </div>
-        </div>
-
-        <div style={{
-          gridColumn: '1',
-          gridRow: '4',
-          color: 'grey',
-          textAlign: 'center',
-        }}
-        >
-          <div style={{display: 'flex', justifyContent: 'center', marginBottom: '15px',}}>
-          {`${this.recommendedAverage(recommendedObj)}% of reviews recommend this product`}
-          </div>
-        </div>
-        <div style={{
-          gridColumn: '1',
-          gridRow: '5',
-        }}
-        >
-          <RatingsBreakdownList metaData={this.props.metaData} reviewList={this.props.reviewList} />
+      <div style={{
+        gridColumn: '1',
+        gridRow: '3',
+      }}
+      >
+        <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+          <StarRating averageRating={averageRating(ratings)} height={36} width={31} />
         </div>
       </div>
-    );
-  }
-}
+
+      <div style={{
+        gridColumn: '1',
+        gridRow: '4',
+        color: 'grey',
+        textAlign: 'center',
+      }}
+      >
+        <div style={recommendedAvgStyle}>
+          {`${recommendedAverage(recommended)}% of reviews recommend this product`}
+        </div>
+      </div>
+      <div style={{
+        gridColumn: '1',
+        gridRow: '5',
+      }}
+      >
+        <RatingsBreakdownList metaData={props.metaData} />
+      </div>
+    </div>
+  );
+};
 
 export default RatingBreakdown;

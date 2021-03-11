@@ -13,7 +13,7 @@ const Div = styled.div`
   border: 1px solid grey;
   margin: 12px;
   padding: 2px;
-  min-width: 400px;
+  min-width: 360px;
   font-family: Arial;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
   background: linear-gradient(0deg, hsl(190,70%,99%), hsl(240,60%,100%));
@@ -21,7 +21,7 @@ const Div = styled.div`
 const InvisDiv = styled.div`
   padding: 0px;
   margin: 4px;
-  min-width: 400px;
+  min-width: 360px;
   font-family: Arial;
 `;
 const FlexDiv = styled.div`

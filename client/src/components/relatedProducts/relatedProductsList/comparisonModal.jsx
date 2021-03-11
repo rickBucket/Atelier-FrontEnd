@@ -1,55 +1,52 @@
-/* eslint-disable */
-
 import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import ModalContent from './styledComponents/modalContent.js';
-import ModalWrapper from './styledComponents/modalWrapper.js';
-import ComparisonTitle from './styledComponents/comparisonTitle.js';
-import CompareWrapper from './styledComponents/compareWrapper.js';
+import ModalContent from './styledComponents/modalContent';
+import ModalWrapper from './styledComponents/modalWrapper';
+import ComparisonTitle from './styledComponents/comparisonTitle';
+import CompareWrapper from './styledComponents/compareWrapper';
 
 const ComparisonModal = (props) => {
   const closeModal = (event) => {
     event.stopPropagation();
-    props.closeModal()
-  }
+    props.closeModal();
+  };
 
+  const { parentProduct, compareProduct, combinedFeatures } = props;
 
   return (
-     <ModalWrapper className="modal"
-     onClick={ closeModal }>
-       <div className="modal-content" onClick={ e => e.stopPropagation() }>
-          <CloseButton className="close" onClick={ closeModal }>&times; </CloseButton>
-       </div>
-       <ModalContent>
-       <ComparisonTitle>
+    <ModalWrapper
+      className="modal"
+      onClick={closeModal}
+    >
+      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        <CloseButton className="close" onClick={closeModal}>&times; </CloseButton>
+      </div>
+      <ModalContent>
+        <ComparisonTitle>
           <CompareTitle>COMPARING</CompareTitle>
           <div>{null}</div>
           <div>{null}</div>
-          <ProductTitle><b>{props.parentProduct}</b></ProductTitle>
+          <ProductTitle><b>{parentProduct}</b></ProductTitle>
           <div>{null}</div>
-          <ProductTitle><b>{props.compareProduct}</b></ProductTitle>
-       </ComparisonTitle>
-       <CompareWrapper>
-          {props.combinedFeatures.map((feature, i) => {
+          <ProductTitle><b>{compareProduct}</b></ProductTitle>
+        </ComparisonTitle>
+        <CompareWrapper>
+          {combinedFeatures.map((feature, i) => {
             if (feature) {
-              // console.log(feature.match(/[A-Z][a-z]+/g))
               if (feature[0] === '"') {
-                var cleanFeature = feature.substring(1, feature.length-1)
-                return <TestDiv key={i}>{cleanFeature}</TestDiv>
-              } else {
-                return <TestDiv key={i}>{feature}</TestDiv>
+                const cleanFeature = feature.substring(1, feature.length - 1);
+                return <TestDiv key={i}>{cleanFeature}</TestDiv>;
               }
-            } else {
-              return <TestDiv key={i}>{feature}</TestDiv>
-            };
-          })
-          }
-      </CompareWrapper>
+              return <TestDiv key={i}>{feature}</TestDiv>;
+            }
+            return <TestDiv key={i}>{feature}</TestDiv>;
+          })}
+        </CompareWrapper>
       </ModalContent>
-     </ModalWrapper>
+    </ModalWrapper>
   );
-}
+};
 
 const CloseButton = styled.span`
   color: #aaaaaa;
@@ -61,7 +58,7 @@ const CloseButton = styled.span`
 
 const TestDiv = styled.div`
   text-align: center;
-  font-size: 20px;
+  font-size: 17px;
 `;
 const ProductTitle = styled.div`
   text-align: center;

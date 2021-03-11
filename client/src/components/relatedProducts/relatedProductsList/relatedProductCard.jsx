@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
@@ -25,6 +26,7 @@ class RelatedProductCard extends React.Component {
     this.handleCompareClick = this.handleCompareClick.bind(this);
     this.combineFeatures = this.combineFeatures.bind(this);
     this.averageRating = this.averageRating.bind(this);
+    this.changeProduct = this.changeProduct.bind(this);
 
     this.ImageWrapper = styled.div`
     height: 200px;
@@ -115,6 +117,11 @@ class RelatedProductCard extends React.Component {
     return result.toFixed(1);
   }
 
+  changeProduct() {
+    const { productID, updateProduct } = this.props;
+    updateProduct(productID);
+  }
+
   combineFeatures(parentProduct, currentProduct) {
     // goal is to get features into an array so we can map over it in comparisonModal
 
@@ -150,6 +157,7 @@ class RelatedProductCard extends React.Component {
     const features = Object.keys(combinedFeatures);
     const values = Object.values(combinedFeatures);
 
+    // eslint-disable-next-line no-plusplus
     for (let p = 0; p < features.length; p++) {
       arrayOfCombinedFeatures.push(values[p][0], features[p], values[p][1]);
     }
@@ -173,7 +181,7 @@ class RelatedProductCard extends React.Component {
       loaded,
       featuredURL,
       productIDInfo, averageRatingLoaded, averageRating, openCompareModal, parentProductIDInfo,
-      combinedFeatures
+      combinedFeatures,
     } = this.state;
     const sale = {
       textDecoration: salePrice ? 'line-through' : 'none',
@@ -203,12 +211,12 @@ class RelatedProductCard extends React.Component {
               </CompareButton>
             </ButtonWrapper>
 
-            <this.ImageWrapper>
+            <this.ImageWrapper onClick={this.changeProduct}>
               <this.Image src={featuredURL} />
             </this.ImageWrapper>
 
             <ProductContentWrapper style={{ fontSize: '12px' }}>{productIDInfo.category}</ProductContentWrapper>
-            <ProductContentWrapper style={{ fontSize: '17px', fontWeight: 'bold' }}>{productIDInfo.name}</ProductContentWrapper>
+            <ProductContentWrapper onClick={this.changeProduct} style={{ fontSize: '17px', fontWeight: 'bold' }}>{productIDInfo.name}</ProductContentWrapper>
             <ProductContentWrapper style={sale}>
               $
               {productIDInfo.default_price}

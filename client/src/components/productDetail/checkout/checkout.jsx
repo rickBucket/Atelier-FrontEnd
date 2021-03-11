@@ -37,6 +37,10 @@ function handleFav(e) {
   }
 }
 
+function range(amount, max) {
+  return [...Array(Math.min(amount, max) + 1).keys()];
+}
+
 class Checkout extends React.Component {
   constructor(props) {
     super(props);
@@ -50,6 +54,7 @@ class Checkout extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleQuantity = this.handleQuantity.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.getUniqueSizes = this.getUniqueSizes.bind(this);
   }
 
   handleChange(e) {
@@ -97,16 +102,21 @@ class Checkout extends React.Component {
     }
   }
 
+  getUniqueSizes() {
+    const { skus } = this.state;
+    return Array.from(new Set(Object.values(skus).map((x) => x.size)));
+  }
+
   render() {
-    const { skus, selectedSKU, cartError } = this.state;
+    const { selectedSKU, cartError } = this.state;
     return (
       <form>
         <FlexDiv>
           <Selector name="size" onChange={this.handleChange}>
             <option>Size</option>
             {
-              Array.from(new Set(Object.values(skus).map((x) => x.size))).map((x) => (
-                <option key={x}>{x}</option>
+              this.getUniqueSizes().map((size) => (
+                <option key={size}>{size}</option>
               ))
             }
           </Selector>
@@ -114,10 +124,10 @@ class Checkout extends React.Component {
             {
               selectedSKU[1].quantity === -1
               && (
-              <>
-                <option>Quantity</option>
-                <option>SIZE REQUIRED</option>
-              </>
+                <>
+                  <option>Quantity</option>
+                  <option>SIZE REQUIRED</option>
+                </>
               )
             }
             {
@@ -127,8 +137,8 @@ class Checkout extends React.Component {
             {
               selectedSKU[1].quantity > 0
               && (
-                [...Array(Math.min(selectedSKU[1].quantity, 15) + 1).keys()].map((x) => (
-                  <option key={x}>{x}</option>
+                range(selectedSKU[1].quantity, 15).map((qty) => (
+                  <option key={qty}>{qty}</option>
                 ))
               )
             }
@@ -145,14 +155,14 @@ class Checkout extends React.Component {
         {
           cartError
           && (
-          <div style={{
-            color: 'red',
-            textAlign: 'center',
-            padding: '8px',
-          }}
-          >
-            Please enter a valid configuration
-          </div>
+            <div style={{
+              color: 'red',
+              textAlign: 'center',
+              padding: '8px',
+            }}
+            >
+              Please enter a valid configuration
+            </div>
           )
         }
       </form>

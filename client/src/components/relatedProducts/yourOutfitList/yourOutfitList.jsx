@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-console */
 import React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
@@ -19,7 +21,7 @@ class YourOutfitList extends React.Component {
       outfitsLoaded: false,
       imagesToTheRight: false,
       imagesToTheLeft: false,
-      cardOverflow: false,
+      // cardOverflow: false,
     };
     this.addOutfit = this.addOutfit.bind(this);
     this.deleteOutfit = this.deleteOutfit.bind(this);
@@ -56,13 +58,17 @@ class YourOutfitList extends React.Component {
           this.setState({
             outfits: data,
             outfitsLoaded: true,
-          });
+          }, this.isOverflowing);
         })
         .catch((error) => {
           console.log('Error getting outfit info in yourOutfit List', error);
         });
     }
   }
+
+  // componentDidUpdate() {
+  //   this.isOverflowing();
+  // }
 
   addOutfit() {
     const { parentProductStyles, outfits, parentProductInfo } = this.state;
@@ -90,13 +96,12 @@ class YourOutfitList extends React.Component {
           this.setState({
             outfits: data,
             outfitsLoaded: true,
-          });
+          }, this.isOverflowing);
         })
         .catch((error) => {
           console.log('Error posting outfit to server', error);
         });
     }
-    this.isOverflowing();
   }
 
   deleteOutfit(productID) {
@@ -123,7 +128,6 @@ class YourOutfitList extends React.Component {
           console.log('Error deleting outfit from server', error);
         });
     });
-    // this.isOverflowing();
   }
 
   scrollLeft() {
@@ -157,7 +161,7 @@ class YourOutfitList extends React.Component {
     const carousel = document.getElementById('yourOutfit');
     if (carousel) {
       const bool = carousel.scrollWidth > carousel.clientWidth;
-      console.log('overflowing', bool);
+      console.log('is the div overflowing?', bool);
       this.setState({
         // cardOverflow: bool,
         imagesToTheRight: bool,
@@ -169,6 +173,7 @@ class YourOutfitList extends React.Component {
     const {
       imagesToTheRight, imagesToTheLeft, outfitsLoaded, outfits,
     } = this.state;
+    const { updateProduct } = this.props;
     return (
       <>
         {imagesToTheRight ? (
@@ -178,11 +183,10 @@ class YourOutfitList extends React.Component {
             </RightButton>
           </RightButtonWrapper>
         ) : null }
-        <ListContainer id="yourOutfit" onLoad={this.isOverflow}>
+        <ListContainer id="yourOutfit">
           <CardContainer onClick={this.addOutfit} id="addOutfit">
             <AddOutfitContent>
               + Add To Your Outfit
-
             </AddOutfitContent>
             <BorderDiv />
           </CardContainer>
@@ -192,7 +196,9 @@ class YourOutfitList extends React.Component {
                 {outfits.map((outfit, i) => (
                   <YourOutfitCard
                     outfit={outfit}
+                    updateProduct={updateProduct}
                     deleteOutfit={this.deleteOutfit}
+                    // eslint-disable-next-line react/no-array-index-key
                     key={i}
                   />
                 ))}

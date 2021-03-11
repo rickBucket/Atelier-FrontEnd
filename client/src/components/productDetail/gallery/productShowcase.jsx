@@ -112,21 +112,21 @@ class ProductShowcase extends React.Component {
         {
           this.isPosition('right')
           && (
-          <Button
-            style={{ margin: '276px 20px -64px -76px' }}
-            onClick={() => this.nextPhoto(1)}
-            className="fa fa-arrow-right"
-          />
+            <Button
+              style={{ margin: '276px 20px -64px -76px' }}
+              onClick={() => this.nextPhoto(1)}
+              className="fa fa-arrow-right"
+            />
           )
         }
         {
           this.isPosition('left')
           && (
-          <Button
-            style={{ margin: '276px 488px -64px -552px' }}
-            onClick={() => this.nextPhoto(-1)}
-            className="fa fa-arrow-left"
-          />
+            <Button
+              style={{ margin: '276px 488px -64px -552px' }}
+              onClick={() => this.nextPhoto(-1)}
+              className="fa fa-arrow-left"
+            />
           )
         }
         <PrimaryImageView

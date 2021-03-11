@@ -5,7 +5,7 @@ import StarRating from '../../shared/starRating';
 
 const Div = styled.div`
   border: 1px solid grey;
-  padding: 16px 32px 16px 32px;
+  padding: 28px 32px 16px 32px;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
   margin: 32px 12px 24px 12px;
   max-width: 540px;
@@ -46,31 +46,38 @@ class ProductInfo extends React.Component {
     const { price, sale } = this.props;
     return (
       <Div>
-        <h5 style={{ float: 'right', marginTo: '8px' }}>
-          <a href="#addReview" style={{ fontSize: '12px', color: 'rgb(32,64,96)' }}>
-            {`Read All ${reviewAmount} Reviews`}
-          </a>
-        </h5>
-        <StarRating
-          averageRating={averageRating}
-          height={21}
-          width={18}
-        />
+        {
+          reviewAmount > 0
+          && (
+            <>
+              <h5 style={{ float: 'right', marginTop: '4px' }}>
+                <a href="#addReview" style={{ fontSize: '12px', color: 'rgb(32,64,96)' }}>
+                  {`Read All ${reviewAmount} Reviews`}
+                </a>
+              </h5>
+              <StarRating
+                averageRating={averageRating}
+                height={21}
+                width={18}
+              />
+            </>
+          )
+        }
         <h3>{category}</h3>
         <h1>{name}</h1>
         {
           !!sale
           && (
-          <h4>
-            <b style={{ textDecoration: 'line-through' }}>{`$${price}`}</b>
-            <b style={{ color: 'red' }}>{` $${sale}`}</b>
-          </h4>
+            <h4>
+              <b style={{ textDecoration: 'line-through' }}>{`$${price}`}</b>
+              <b style={{ color: 'red' }}>{` $${sale}`}</b>
+            </h4>
           )
         }
         {
           !sale
           && (
-          <h4>{`$${price}`}</h4>
+            <h4>{`$${price}`}</h4>
           )
         }
       </Div>

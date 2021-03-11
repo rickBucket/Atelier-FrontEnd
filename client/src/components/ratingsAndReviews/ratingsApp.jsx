@@ -265,8 +265,9 @@ class RatingsApp extends React.Component {
     const { listSort } = this.state;
     const { reviewEnd } = this.state;
     const { hideMoreReviews } = this.state;
+    const { starSort } = this.state;
     const { productID } = this.props;
-    console.log(this.state.starSort);
+
     if (noReviews) {
       return (
         <div style={noReviewsGrid}>
@@ -332,6 +333,7 @@ class RatingsApp extends React.Component {
 
         <div style={reviewListStyle}>
           <ReviewList
+            starSort={starSort}
             reviewList={reviewList}
             reviewEnd={reviewEnd}
             handlePut={this.handlePut}

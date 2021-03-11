@@ -84,9 +84,9 @@ class YourOutfitCard extends React.Component {
               <ButtonWrapper>
                 <DeleteButton
                   onClick={this.removeOutfit}
-                  >
-                    <img src="close.png" style={{ height: '25px' }} alt="" />
-                  </DeleteButton>
+                >
+                  <img src="close.png" style={{ height: '25px' }} alt="" />
+                </DeleteButton>
               </ButtonWrapper>
 
               <ImageWrapper onClick={this.changeProduct}>
@@ -169,4 +169,4 @@ const ProductContentWrapper = styled.div`
 
 export default YourOutfitCard;
 
-{/* <img src="close.png" style={{ height: '25px' }} alt="" /> */}
+{ /* <img src="close.png" style={{ height: '25px' }} alt="" /> */ }

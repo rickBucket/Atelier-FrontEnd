@@ -1,5 +1,5 @@
 import React from 'react';
-import CharacteristicsRadioListEntry from './CharacteristicsRadioListEntry';
+import CharacteristicsRadioListEntry from './characteristicsRadioListEntry';
 
 const CharacteristicsRadioList = ({ metaData, characteristicsRadioClick }) => (
   <div>

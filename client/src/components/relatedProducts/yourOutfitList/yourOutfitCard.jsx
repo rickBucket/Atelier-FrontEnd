@@ -74,10 +74,9 @@ class YourOutfitCard extends React.Component {
               <ButtonWrapper>
                 <DeleteButton
                   onClick={this.removeOutfit}
-                  style={{ color: 'white' }}
-                >
-                  &#9747;
-                </DeleteButton>
+                  >
+                    <img src="close.png" style={{ height: '25px' }} alt="" />
+                  </DeleteButton>
               </ButtonWrapper>
 
               <ImageWrapper>
@@ -148,7 +147,10 @@ const DeleteButton = styled.button`
 
 const ButtonWrapper = styled.div`
   position: absolute;
-  z-index: 1;
+  top: 0px;
+  right: 0px;
+  margin-top: 5px;
+  z-index: 10;
 `;
 
 const ProductContentWrapper = styled.div`
@@ -156,3 +158,5 @@ const ProductContentWrapper = styled.div`
 `;
 
 export default YourOutfitCard;
+
+{/* <img src="close.png" style={{ height: '25px' }} alt="" /> */}

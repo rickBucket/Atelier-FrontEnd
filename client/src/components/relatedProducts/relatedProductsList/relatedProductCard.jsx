@@ -173,7 +173,7 @@ class RelatedProductCard extends React.Component {
       loaded,
       featuredURL,
       productIDInfo, averageRatingLoaded, averageRating, openCompareModal, parentProductIDInfo,
-      combinedFeatures
+      combinedFeatures,
     } = this.state;
     const sale = {
       textDecoration: salePrice ? 'line-through' : 'none',
@@ -199,7 +199,7 @@ class RelatedProductCard extends React.Component {
               <CompareButton
                 onClick={this.handleCompareClick}
               >
-                &#9734;
+                <img src="star2.png" style={{ height: '25px' }} alt="Compare Products" />
               </CompareButton>
             </ButtonWrapper>
 
@@ -263,8 +263,8 @@ bottom: 0px;
 `;
 
 const CompareButton = styled.button`
-  right: 20%;
-  top: 2%;
+  postition: relative;
+
   cursor: pointer;
   border: none;
   background: none;
@@ -273,6 +273,9 @@ const CompareButton = styled.button`
 
 const ButtonWrapper = styled.div`
   position: absolute;
+  top: 0px;
+  left: 0px;
+  margin-top: 5px;
   z-index: 10;
 `;
 

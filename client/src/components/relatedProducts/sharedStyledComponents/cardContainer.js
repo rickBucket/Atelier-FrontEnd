@@ -3,6 +3,7 @@ import styled from 'styled-components';
 const CardContainer = styled.div`
 height: 400px;
 width: 275px;
+position: relative;
 flex-shrink: 0;
 margin: 0px 10px;
 background: rgba(255,255,255,0.1);

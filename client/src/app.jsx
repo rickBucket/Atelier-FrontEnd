@@ -44,6 +44,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       productID: '',
+      productIDs: [],
       loadedID: 0,
       metaData: {},
       productIndex: 0
@@ -51,6 +52,7 @@ class App extends React.Component {
     this.nextProduct = this.nextProduct.bind(this);
     this.fetchProductID = this.fetchProductID.bind(this);
     this.updateProduct = this.updateProduct.bind(this);
+    this.fetchMeta = this.fetchMeta.bind(this);
   }
 
 // adding component did mount to choose productID
@@ -63,31 +65,38 @@ class App extends React.Component {
       .then(({data})=> {
         this.setState({
           productID: data[this.state.productIndex].id,
+          productIDs: data.map((item) => item.id),
           loadedID: this.state.loadedID + 1
         });
-        axios.get(`/reviews/?product_id=${data[this.state.productIndex].id}&meta=meta`)
-          .then((results) => {
-            this.setState({
-              metaData: results.data,
-              loadedID: this.state.loadedID + 1
-            });
-          })
-          .catch((err) => {
-            console.log('error on meta GET request', err);
-          });
+      })
+      .then(() => {
+        this.fetchMeta();
       })
       .catch((error)=> {
         console.log('Error setting productID in App', error)
       })
   }
 
+  fetchMeta() {
+    axios.get(`/reviews/?product_id=${this.state.productID}&meta=meta`)
+      .then((results) => {
+        this.setState({
+          metaData: results.data,
+          loadedID: this.state.loadedID + 1
+        });
+      })
+      .catch((err) => {
+        console.log('error on meta GET request', err);
+      });
+  }
+
   nextProduct(e) {
     e.preventDefault();
     this.setState({
       productIndex: (this.state.productIndex + 1)%7,
-      loadedID: 0
-    });
-    this.fetchProductID();
+      productID: this.state.productIDs[(this.state.productIndex + 1)%7],
+      loadedID: 1
+    }, this.fetchMeta);
   }
 
   scrollToTop(e) {

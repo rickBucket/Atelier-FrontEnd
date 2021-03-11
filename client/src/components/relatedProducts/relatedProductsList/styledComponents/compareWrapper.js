@@ -9,7 +9,6 @@ const CompareWrapper = styled.div`
   overflow: auto;
   justify-items: center;
   position: relative;
-  font-size: 25px;
   z-index: 150;
 `;
 

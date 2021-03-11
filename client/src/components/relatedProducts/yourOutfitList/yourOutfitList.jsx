@@ -56,13 +56,17 @@ class YourOutfitList extends React.Component {
           this.setState({
             outfits: data,
             outfitsLoaded: true,
-          });
+          }, this.isOverflowing);
         })
         .catch((error) => {
           console.log('Error getting outfit info in yourOutfit List', error);
         });
     }
   }
+
+  // componentDidUpdate() {
+  //   this.isOverflowing();
+  // }
 
   addOutfit() {
     const { parentProductStyles, outfits, parentProductInfo } = this.state;
@@ -90,13 +94,12 @@ class YourOutfitList extends React.Component {
           this.setState({
             outfits: data,
             outfitsLoaded: true,
-          });
+          }, this.isOverflowing);
         })
         .catch((error) => {
           console.log('Error posting outfit to server', error);
         });
     }
-    this.isOverflowing();
   }
 
   deleteOutfit(productID) {
@@ -123,7 +126,6 @@ class YourOutfitList extends React.Component {
           console.log('Error deleting outfit from server', error);
         });
     });
-    // this.isOverflowing();
   }
 
   scrollLeft() {
@@ -157,7 +159,7 @@ class YourOutfitList extends React.Component {
     const carousel = document.getElementById('yourOutfit');
     if (carousel) {
       const bool = carousel.scrollWidth > carousel.clientWidth;
-      console.log('overflowing', bool);
+      console.log('is the div overflowing?', bool);
       this.setState({
         // cardOverflow: bool,
         imagesToTheRight: bool,
@@ -178,11 +180,10 @@ class YourOutfitList extends React.Component {
             </RightButton>
           </RightButtonWrapper>
         ) : null }
-        <ListContainer id="yourOutfit" onLoad={this.isOverflow}>
+        <ListContainer id="yourOutfit">
           <CardContainer onClick={this.addOutfit} id="addOutfit">
             <AddOutfitContent>
               + Add To Your Outfit
-
             </AddOutfitContent>
             <BorderDiv />
           </CardContainer>

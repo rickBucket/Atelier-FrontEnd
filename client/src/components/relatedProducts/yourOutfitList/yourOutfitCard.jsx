@@ -16,6 +16,7 @@ class YourOutfitCard extends React.Component {
       salePrice: '',
     };
     this.removeOutfit = this.removeOutfit.bind(this);
+    this.changeProduct = this.changeProduct.bind(this);
   }
 
   componentDidMount() {
@@ -48,6 +49,12 @@ class YourOutfitCard extends React.Component {
         featuredURL: url,
       });
     }
+  }
+
+  changeProduct() {
+    const { outfit, updateProduct } = this.props;
+    const productID = outfit.styles.product_id;
+    updateProduct(productID);
   }
 
   removeOutfit() {
@@ -83,12 +90,12 @@ class YourOutfitCard extends React.Component {
                 </DeleteButton>
               </ButtonWrapper>
 
-              <ImageWrapper>
+              <ImageWrapper onClick={this.changeProduct}>
                 <Image src={featuredURL} width="100%" height="auto" />
               </ImageWrapper>
 
               <ProductContentWrapper style={{ fontSize: '12px' }}>{productIDInfo.category}</ProductContentWrapper>
-              <ProductContentWrapper style={{ fontSize: '17px', fontWeight: 'bold' }}>{productIDInfo.name}</ProductContentWrapper>
+              <ProductContentWrapper style={{ fontSize: '17px', fontWeight: 'bold' }} onClick={this.changeProduct}>{productIDInfo.name}</ProductContentWrapper>
               <ProductContentWrapper
                 style={sale}
               >

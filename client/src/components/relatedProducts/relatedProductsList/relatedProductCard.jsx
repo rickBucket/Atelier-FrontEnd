@@ -118,9 +118,8 @@ class RelatedProductCard extends React.Component {
   }
 
   changeProduct() {
-    const { productID } = this.props;
-    console.log(productID);
-    this.props.updateProduct(productID);
+    const { productID, updateProduct } = this.props;
+    updateProduct(productID);
   }
 
   combineFeatures(parentProduct, currentProduct) {

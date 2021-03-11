@@ -90,7 +90,6 @@ class App extends React.Component {
     this.setState({
       loadedID: 0
     })
-    console.log('made it to app')
     axios.get(`/reviews/?product_id=${productID}&meta=meta`)
     .then((results) => {
       this.setState({

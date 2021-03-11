@@ -173,6 +173,7 @@ class YourOutfitList extends React.Component {
     const {
       imagesToTheRight, imagesToTheLeft, outfitsLoaded, outfits,
     } = this.state;
+    const { updateProduct } = this.props;
     return (
       <>
         {imagesToTheRight ? (
@@ -195,6 +196,7 @@ class YourOutfitList extends React.Component {
                 {outfits.map((outfit, i) => (
                   <YourOutfitCard
                     outfit={outfit}
+                    updateProduct={updateProduct}
                     deleteOutfit={this.deleteOutfit}
                     // eslint-disable-next-line react/no-array-index-key
                     key={i}

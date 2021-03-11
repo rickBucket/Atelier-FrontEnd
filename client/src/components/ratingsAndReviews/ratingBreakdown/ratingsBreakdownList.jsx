@@ -8,19 +8,19 @@ const gridLayout = {
   margin: 'auto',
 };
 
-const RatingsBreakdownList = ({ metaData }) => (
+const RatingsBreakdownList = ({ metaData, sortByStar }) => (
   <div style={gridLayout}>
     {
-      // Object.keys(metaData.ratings)
         ([5, 4, 3, 2, 1])
-        .map((rating) => (
-          <RatingsBreakdownListEntry
-            rating={rating}
-            ratings={metaData.ratings}
-            totalRating={metaData.ratings[rating] || 0}
-            key={rating}
-          />
-        ))
+          .map((rating) => (
+            <RatingsBreakdownListEntry
+              rating={rating}
+              ratings={metaData.ratings}
+              totalRating={metaData.ratings[rating] || 0}
+              sortByStar={sortByStar}
+              key={rating}
+            />
+          ))
     }
   </div>
 );

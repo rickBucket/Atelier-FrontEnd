@@ -33,23 +33,15 @@ const starPercentage = (obj, key) => {
   return ((Number(obj[key]) / total).toFixed(2) * 100);
 };
 
-const sortByStar = (e) => {
-  // when clicked
-  // take certain star rating
-  // apply filter to each object
-  // return array of only objects with that star rating
-  console.log(e.target.id);
-};
-
 const RatingsBreakdownListEntry = ({
-  rating, ratings, totalRating, index,
+  rating, ratings, totalRating, sortByStar
 }) => (
   <div id={rating} style={starBarFlex} onClick={sortByStar}>
-    <u style={starFont}>
+    <u id={rating} style={starFont}>
       {`${rating} stars`}
     </u>
 
-    <div style={starBar}>
+    <div id={rating} style={starBar}>
       <div style={{
         background: 'rgba(51, 170, 51, .8)',
         height: '100%',
@@ -58,7 +50,7 @@ const RatingsBreakdownListEntry = ({
       }}
       />
     </div>
-    <div style={starFont}>{totalRating}</div>
+    <div id={rating} style={starFont}>{totalRating}</div>
   </div>
 );
 

@@ -12,10 +12,10 @@ const gridLayout = {
   gridTemplateColumns: 'repeat(3, 1fr)',
   gridTemplateRows: 'minmax(6, 1fr) 200px',
   gridGap: '10px',
-  rowGap: '20px',
+  rowGap: '10px',
   borderRadius: '20px',
   padding: '20px',
-  height: '90vh',
+  height: '80vh',
 };
 
 const noReviewsGrid = {
@@ -29,8 +29,9 @@ const noReviewsGrid = {
 const mainDiv = {
   paddingTop: '30px',
   paddingBottom: '30px',
+  marginBottom: '20%',
   maxWidth: '80%',
-  maxHeight: '70%',
+  maxHeight: '60%',
   margin: 'auto',
 };
 
@@ -134,6 +135,7 @@ class RatingsApp extends React.Component {
       reviewList: [],
       metaData,
       reviewEnd: 2,
+      starSort: [],
       listSort: 0,
       reviewsReady: false,
       writeReviewModal: false,
@@ -143,10 +145,11 @@ class RatingsApp extends React.Component {
 
     this.writeReviewClick = this.writeReviewClick.bind(this);
     this.exitWriteReviewClick = this.exitWriteReviewClick.bind(this);
-    // this.handleReviewData = this.handleReviewData.bind(this);
+    this.handleReviewData = this.handleReviewData.bind(this);
     this.moreReviewsClick = this.moreReviewsClick.bind(this);
     this.handlePut = this.handlePut.bind(this);
     this.listSortChange = this.listSortChange.bind(this);
+    this.sortByStar = this.sortByStar.bind(this);
   }
 
   componentDidMount() {
@@ -221,6 +224,20 @@ class RatingsApp extends React.Component {
     }
   }
 
+  sortByStar(e) {
+    const { starSort } = this.state;
+    if (starSort.indexOf(e.target.id) === -1) {
+      this.setState({
+        starSort: [...starSort, e.target.id],
+      });
+    } else {
+      starSort.splice(starSort.indexOf(e.target.id), 1);
+      this.setState({
+        starSort,
+      });
+    }
+  }
+
   exitWriteReviewClick() {
     this.setState({
       writeReviewModal: false,
@@ -249,6 +266,7 @@ class RatingsApp extends React.Component {
     const { reviewEnd } = this.state;
     const { hideMoreReviews } = this.state;
     const { productID } = this.props;
+    console.log(this.state.starSort);
     if (noReviews) {
       return (
         <div style={noReviewsGrid}>
@@ -281,7 +299,7 @@ class RatingsApp extends React.Component {
       <div style={gridLayout}>
 
         <div style={ratingGrid}>
-          <RatingBreakdown metaData={metaData} reviewList={reviewList} />
+          <RatingBreakdown metaData={metaData} sortByStar={this.sortByStar} />
         </div>
 
         <div style={productStyle}>

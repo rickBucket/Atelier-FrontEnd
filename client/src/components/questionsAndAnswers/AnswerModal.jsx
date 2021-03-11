@@ -36,7 +36,7 @@ const Close = styled.span`
    font-weight: bold;
 `;
 
-const NewForm = styled.div`
+const NewForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -102,20 +102,20 @@ class AnswerModal extends React.Component {
   type(event) {
     if (event.target.placeholder === 'Example: jack@email.com') {
       this.setState({
-        newEmail: event.target.value
+        newEmail: event.target.value,
       });
     } else if (event.target.placeholder === 'Examples: jackson11!') {
       this.setState({
-        newName: event.target.value
+        newName: event.target.value,
       });
     } else {
       this.setState({
-        newAnswer: event.target.value
+        newAnswer: event.target.value,
       });
     }
   }
 
-  postAnswer() {
+  postAnswer(event) {
     const {
       newAnswer, newName, newEmail, images,
     } = this.state;
@@ -128,6 +128,7 @@ class AnswerModal extends React.Component {
     })
       .then(response => {
         console.log('successful answer post', response.data);
+        this.props.closeModal(event);
       });
   }
 
@@ -151,13 +152,14 @@ class AnswerModal extends React.Component {
             <Close className="close" onClick={(event) => { this.selectModal(event); }}>&times;</Close>
             <NewForm>
               <NewQueA placeholder="Example: jack@email.com"
-              value={this.state.newEmail} type="text" onChange={event => {event.preventDefault(); this.type(event); }} />
+              value={this.state.newEmail} type="email" required maxLength="60" autoComplete="off" onChange={(event) => { event.preventDefault(); this.type(event); }}
+              />
               <p>For authentication reasons, you will not be emailed</p>
-              <NewQueB placeholder="Examples: jackson11!" type="text" value={this.state.newName} onChange={event => {event.preventDefault(); this.type(event); }} />
+              <NewQueB placeholder="Examples: jackson11!" required type="text" maxLength="75" autoComplete="off" value={this.state.newName} onChange={(event) => { event.preventDefault(); this.type(event); }} />
               <p>For privacy reasons, do not use your full name or email address</p>
-              <NewQueC placeholder="Enter Answer Here..." type="text" value={this.state.newAnswer} onChange={event => {event.preventDefault(); this.type(event); }} />
-              <AddImg type='file'onChange={this.addImg}/>
-              <Button onClick={() => { this.postAnswer(); }}> Submit Answer </Button>
+              <NewQueC placeholder="Enter Answer Here..." required type="text" maxLength="1000" minLength="1" autoComplete="off" value={this.state.newAnswer} onChange={(event) => { event.preventDefault(); this.type(event); }} />
+              <AddImg type='file' onChange={this.addImg} />
+              <Button onClick={(event) => { this.postAnswer(event); }}> Submit Answer </Button>
             </NewForm>
           </Modal_Con>
       </Modal>

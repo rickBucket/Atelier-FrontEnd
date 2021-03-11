@@ -9,7 +9,6 @@ const gridLayout = {
 };
 
 const characteristicsBar = {
-  // position: 'relative',
   height: '7px',
   width: '100%',
   border: 'none',

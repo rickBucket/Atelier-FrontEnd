@@ -1,5 +1,5 @@
 import React from 'react';
-import ReviewListEntry from './reviewListEntry.jsx';
+import ReviewListEntry from './reviewListEntry';
 
 const gridLayout = {
   display: 'grid',

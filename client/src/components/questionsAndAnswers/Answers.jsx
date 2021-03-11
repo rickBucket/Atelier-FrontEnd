@@ -50,12 +50,13 @@ class Answers extends React.Component {
     this.state = {
       helpful: this.props.item.helpfulness,
       clickedYes: false,
+      clickedReport: false,
     };
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick(event) {
-    if (!this.state.clickedYes) {
+    if (!this.state.clickedYes && event.target.name === "helpful") {
       axios.put('/qa/questions', {
         answer_id: this.props.item.id,
         type: event.target.name,
@@ -68,7 +69,16 @@ class Answers extends React.Component {
           });
         });
     } else {
-      return null;
+      axios.put('/qa/questions', {
+        answer_id: this.props.item.id,
+        type: event.target.name,
+      })
+        .then((response) => {
+          console.log(response);
+          this.setState({
+            clickedReport: true,
+          });
+        });
     }
   }
 
@@ -118,7 +128,8 @@ class Answers extends React.Component {
           <Button name="helpful" onClick={(event) => { event.preventDefault(); this.handleClick(event); }}> Yes </Button>
           <p>{this.state.helpful}</p>
           <Divide className="divider"> | </Divide>
-          <Button name="report" onClick={(event) => { event.preventDefault(); this.handleClick(event); }}> Report </Button>
+          {!this.state.clickedReport ? (
+            <Button name="report" onClick={(event) => { event.preventDefault(); this.handleClick(event); }}> Report </Button>) : (<p>Reported</p>)}
         </Container>
       </div>
     );

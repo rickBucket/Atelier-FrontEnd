@@ -206,8 +206,9 @@ class RelatedProductCard extends React.Component {
             <ButtonWrapper>
               <CompareButton
                 onClick={this.handleCompareClick}
+                className={"fa fa-star-o"}
               >
-                <img src="star2.png" style={{ height: '25px' }} alt="Compare Products" />
+
               </CompareButton>
             </ButtonWrapper>
 
@@ -272,11 +273,14 @@ bottom: 0px;
 
 const CompareButton = styled.button`
   postition: relative;
-
   cursor: pointer;
   border: none;
   background: none;
   font-size: 25px;
+  color: black;
+  &:hover {
+    color: gold;
+  }
 `;
 
 const ButtonWrapper = styled.div`
@@ -292,3 +296,5 @@ const ProductContentWrapper = styled.div`
 `;
 
 export default RelatedProductCard;
+
+{/* <img src="star2.png" style={{ height: '25px' }} alt="Compare Products" /> */}

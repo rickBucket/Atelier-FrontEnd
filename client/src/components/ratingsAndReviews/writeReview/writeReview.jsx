@@ -186,7 +186,9 @@ class WriteReview extends React.Component {
     const { name } = this.state;
     const { metaData } = this.props;
     const { handleReviewData } = this.props;
+    console.log('im here')
     if (rating === null || recommend === null || metaData.characteristics.Comfort.id === null || metaData.characteristics.Quality.id === null || metaData.characteristics.Length.id === null || metaData.characteristics.Fit.id === null) {
+      console.log('i really made it')
       alert('Please fill out all required (*) fields');
       e.preventDefault();
       return false;
@@ -373,7 +375,7 @@ class WriteReview extends React.Component {
             id="submitReview"
             type="button"
             style={submitStyle}
-            onClick={this.handleReviewData}
+            onClick={this.HandleReviewData}
           >
             <b>Submit Review</b>
           </button>

@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-console */
 import React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
@@ -19,7 +21,7 @@ class YourOutfitList extends React.Component {
       outfitsLoaded: false,
       imagesToTheRight: false,
       imagesToTheLeft: false,
-      cardOverflow: false,
+      // cardOverflow: false,
     };
     this.addOutfit = this.addOutfit.bind(this);
     this.deleteOutfit = this.deleteOutfit.bind(this);
@@ -194,6 +196,7 @@ class YourOutfitList extends React.Component {
                   <YourOutfitCard
                     outfit={outfit}
                     deleteOutfit={this.deleteOutfit}
+                    // eslint-disable-next-line react/no-array-index-key
                     key={i}
                   />
                 ))}

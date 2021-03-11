@@ -1,3 +1,6 @@
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/no-access-state-in-setstate */
+/* eslint-disable react/prop-types */
 import React from 'react';
 import styled from 'styled-components';
 import CardContainer from '../sharedStyledComponents/cardContainer';

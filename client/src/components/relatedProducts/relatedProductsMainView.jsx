@@ -40,7 +40,11 @@ class RelatedProductsMainView extends React.Component {
           <h3>YOU MAY ALSO LIKE</h3>
         </div>
         <ListWrapper>
-          <RelatedProductsList productID={productID} relatedProducts={relatedProducts} />
+          <RelatedProductsList
+            updateProduct={this.props.updateProduct}
+            productID={productID}
+            relatedProducts={relatedProducts}
+          />
         </ListWrapper>
         <div>
           <h3>YOUR OUTFIT</h3>

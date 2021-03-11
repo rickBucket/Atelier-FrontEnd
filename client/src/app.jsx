@@ -23,8 +23,16 @@ const Title = styled.div`
   backdrop-filter: blur(16px);
 `;
 const Button = styled.button`
-  margin-top: 4px;
+  margin: -67px 12px;
+  z-index: 270;
   position: fixed;
+  background: linear-gradient(120deg, hsla(175,75%,75%,0.7), hsla(235,75%,75%,0.7));
+  padding: 10px 16px;
+  border: 0px solid grey;
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  &:hover {
+    background: linear-gradient(-60deg, hsla(175,75%,75%,0.7), hsla(235,75%,75%,0.7));
+  }
 `;
 
 class App extends React.Component {
@@ -46,7 +54,7 @@ class App extends React.Component {
   }
 
   fetchProductID() {
-    axios.get('/products/?count=7&page=4')
+    axios.get('/products/?count=13&page=2')
       .then(({data})=> {
         this.setState({
           productID: data[this.state.productIndex].id,

@@ -48,19 +48,28 @@ class Answers extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      helpful: this.props.item.helpfulness,
+      clickedYes: false,
     };
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick(event) {
-    axios.put('/qa/questions', {
-      answer_id: this.props.item.id,
-      type: event.target.name,
-    })
-      .then((response) => {
-        console.log(response);
-      });
+    if (!this.state.clickedYes) {
+      axios.put('/qa/questions', {
+        answer_id: this.props.item.id,
+        type: event.target.name,
+      })
+        .then((response) => {
+          console.log(response);
+          this.setState({
+            helpful: this.state.helpful + 1,
+            clickedYes: true,
+          });
+        });
+    } else {
+      return null;
+    }
   }
 
   render() {
@@ -107,7 +116,7 @@ class Answers extends React.Component {
           <Divide className="divider"> | </Divide>
           <p> Helpful? </p>
           <Button name="helpful" onClick={(event) => { event.preventDefault(); this.handleClick(event); }}> Yes </Button>
-          <p>{this.props.item.helpfulness}</p>
+          <p>{this.state.helpful}</p>
           <Divide className="divider"> | </Divide>
           <Button name="report" onClick={(event) => { event.preventDefault(); this.handleClick(event); }}> Report </Button>
         </Container>

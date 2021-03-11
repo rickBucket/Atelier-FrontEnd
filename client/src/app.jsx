@@ -21,6 +21,10 @@ const Title = styled.div`
   font-size: 24px;
   font-weight: bold;
   backdrop-filter: blur(16px);
+  cursor: pointer;
+  &:hover {
+    background: linear-gradient(120deg, hsla(175,55%,55%,0.7), hsla(235,55%,55%,0.7));
+  }
 `;
 const Button = styled.button`
   margin: -67px 12px;
@@ -46,6 +50,7 @@ class App extends React.Component {
     };
     this.nextProduct = this.nextProduct.bind(this);
     this.fetchProductID = this.fetchProductID.bind(this);
+    this.updateProduct = this.updateProduct.bind(this);
   }
 
 // adding component did mount to choose productID
@@ -85,18 +90,40 @@ class App extends React.Component {
     this.fetchProductID();
   }
 
+  scrollToTop(e) {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+
+  updateProduct(productID) {
+    this.setState({
+      loadedID: 0
+    })
+    axios.get(`/reviews/?product_id=${productID}&meta=meta`)
+    .then((results) => {
+      this.setState({
+        metaData: results.data,
+        productID: productID,
+        loadedID: 2
+      });
+    })
+    .catch((err) => {
+      console.log('error on meta GET request', err);
+    });
+  }
+
   render() {
     return (
       <div>
         <Title>
-          <h1 style={{marginTop: "0px"}}>Observant Ostritches</h1>
+          <h1 onClick={this.scrollToTop} style={{marginTop: "0px"}}>Observant Ostritches</h1>
         </Title>
         <Button type="submit" id="next" onClick={this.nextProduct}>Next Product</Button>
         {
           this.state.loadedID === 2 &&
           <div>
             <ProductMainView productID={this.state.productID} ratings={this.state.metaData.ratings}/>
-            <RelatedProductsMainView productID={this.state.productID}/>
+            <RelatedProductsMainView updateProduct={this.updateProduct} productID={this.state.productID}/>
             <QuestionMaster productID={this.state.productID}/>
             <RatingsApp productID={this.state.productID} metaData={this.state.metaData}/>
           </div>

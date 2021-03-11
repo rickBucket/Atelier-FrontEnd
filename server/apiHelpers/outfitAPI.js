@@ -10,6 +10,7 @@ module.exports = {
   },
   deleteAnOutfit: (productID, callback) => {
     let index;
+    // eslint-disable-next-line no-plusplus
     for (let i = 0; i < outfit.length; i++) {
       if (outfit[i].styles.product_id === productID) {
         index = i;

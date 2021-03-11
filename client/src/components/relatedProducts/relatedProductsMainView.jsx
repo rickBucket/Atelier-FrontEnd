@@ -33,20 +33,27 @@ class RelatedProductsMainView extends React.Component {
   // add condititonal rendering in case relatedProducts hasn't been defined yet
   render() {
     const { relatedProducts } = this.state;
-    const { productID } = this.props;
+    const { productID, updateProduct } = this.props;
     return (
       <AllEncompassing id="AllEncompassing">
         <div>
           <h3>YOU MAY ALSO LIKE</h3>
         </div>
         <ListWrapper>
-          <RelatedProductsList productID={productID} relatedProducts={relatedProducts} />
+          <RelatedProductsList
+            updateProduct={updateProduct}
+            productID={productID}
+            relatedProducts={relatedProducts}
+          />
         </ListWrapper>
         <div>
           <h3>YOUR OUTFIT</h3>
         </div>
         <ListWrapper>
-          <YourOutfitList parentProductID={productID} />
+          <YourOutfitList
+            parentProductID={productID}
+            updateProduct={updateProduct}
+          />
         </ListWrapper>
       </AllEncompassing>
     );

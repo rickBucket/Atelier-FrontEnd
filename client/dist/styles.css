@@ -13,4 +13,5 @@
 
 html {
   font-family: 'Open Sans', sans-serif, Arial;
+  scroll-behavior: smooth;
 }

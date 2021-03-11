@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 import React from 'react';
 
 const optionsBar = {
@@ -15,26 +16,28 @@ class SortOptions extends React.Component {
     this.totalReviews = this.totalReviews.bind(this);
   }
 
-  totalReviews(obj){
-    var total = Number(obj.false) + Number(obj.true);
-    return total
+  totalReviews(obj) {
+    const total = Number(obj.false) + Number(obj.true);
+    return total;
   }
 
   render() {
-    const listSortChange = this.props.listSortChange;
-    return(
+    const { listSortChange } = this.props;
+    const { metaData } = this.props;
+    return (
       <div style={{
         fontWeight: 'bold',
-      }}>
-        {`${this.totalReviews(this.props.metaData.recommended)} reviews, sorted by most`}
+      }}
+      >
+        {`${this.totalReviews(metaData.recommended)} reviews, sorted by most`}
         <select style={optionsBar} onChange={listSortChange}>
           <option value="1">Relevant</option>
           <option value="2">Helpful</option>
           <option value="3">Recent</option>
         </select>
       </div>
-    )
+    );
   }
 }
 
-export default SortOptions
+export default SortOptions;

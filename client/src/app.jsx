@@ -50,6 +50,7 @@ class App extends React.Component {
     };
     this.nextProduct = this.nextProduct.bind(this);
     this.fetchProductID = this.fetchProductID.bind(this);
+    this.updateProduct = this.updateProduct.bind(this);
   }
 
 // adding component did mount to choose productID
@@ -94,6 +95,23 @@ class App extends React.Component {
     document.documentElement.scrollTop = 0;
   }
 
+  updateProduct(productID) {
+    this.setState({
+      loadedID: 0
+    })
+    axios.get(`/reviews/?product_id=${productID}&meta=meta`)
+    .then((results) => {
+      this.setState({
+        metaData: results.data,
+        productID: productID,
+        loadedID: 2
+      });
+    })
+    .catch((err) => {
+      console.log('error on meta GET request', err);
+    });
+  }
+
   render() {
     return (
       <div>
@@ -105,7 +123,7 @@ class App extends React.Component {
           this.state.loadedID === 2 &&
           <div>
             <ProductMainView productID={this.state.productID} ratings={this.state.metaData.ratings}/>
-            <RelatedProductsMainView productID={this.state.productID}/>
+            <RelatedProductsMainView updateProduct={this.updateProduct} productID={this.state.productID}/>
             <QuestionMaster productID={this.state.productID}/>
             <RatingsApp productID={this.state.productID} metaData={this.state.metaData}/>
           </div>

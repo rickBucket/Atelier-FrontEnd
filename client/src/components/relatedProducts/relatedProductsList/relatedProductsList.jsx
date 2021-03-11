@@ -93,6 +93,7 @@ class RelatedProductList extends React.Component {
           {relatedProducts.map((product) => (
             <RelatedProductCard
               parentProductID={productID}
+              updateProduct={this.props.updateProduct}
               productID={product}
               parentProductIDInfo={parentProductIDInfo}
               key={product}

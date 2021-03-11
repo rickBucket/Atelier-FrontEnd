@@ -37,7 +37,7 @@ const Close = styled.span`
    font-weight: bold;
 `;
 
-const NewForm = styled.div`
+const NewForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -87,7 +87,6 @@ class QuestionModal extends React.Component {
     this.selectModal = this.selectModal.bind(this);
     this.postQuestion = this.postQuestion.bind(this);
     this.type = this.type.bind(this);
-    this.rejectQuestion = this.rejectQuestion.bind(this);
   }
 
   selectModal(event) {
@@ -119,12 +118,9 @@ class QuestionModal extends React.Component {
       product_id: this.props.product_id,
     })
       .then((response) => {
-        console.log('successful post!', response);
+        console.log('successful post!', response.data);
+        this.props.closeModal();
       });
-  }
-
-  rejectQuestion() {
-    alert('You must enter something in all fields and provide a valid email');
   }
 
   render() {
@@ -136,12 +132,12 @@ class QuestionModal extends React.Component {
         <Modal_Con className="modal-content" onClick={(event) => { event.stopPropagation(); }}>
           <Close className="close" onClick={(event) => { this.selectModal(event); }}>&times;</Close>
           <NewForm>
-            <NewQueA placeholder="Example: jack@email.com" type="text" value={this.state.newEmail} onChange={(event) => { this.type(event); }} />
+            <NewQueA placeholder="Example: jack@email.com" required type="email" maxLength="60" autoComplete="off" value={this.state.newEmail} onChange={(event) => { this.type(event); }} />
             <p>For authentication reasons, you will not be emailed</p>
-            <NewQueB placeholder="Examples: jackson11!" type="text" value={this.state.newName} onChange={(event) => { this.type(event); }} />
+            <NewQueB placeholder="Examples: jackson11!" required type="text" maxLength="60" autoComplete="off" value={this.state.newName} onChange={(event) => { this.type(event); }} />
             <p>For privacy reasons, do not use your full name or email address</p>
-            <NewQueC placeholder="Enter Question Here..." type="text" value={this.state.newQuestion} onChange={(event) => { this.type(event); }} />
-            <Button onSubmit={this.postQuestion}> Submit Question </Button>
+            <NewQueC placeholder="Enter Question Here..." required type="text" maxLength="1000" minLength="" autoComplete="off" value={this.state.newQuestion} onChange={(event) => { this.type(event); }} />
+            <Button onClick={(event) => { this.postQuestion(event); }}> Submit Question </Button>
           </NewForm>
         </Modal_Con>
       </Modal>

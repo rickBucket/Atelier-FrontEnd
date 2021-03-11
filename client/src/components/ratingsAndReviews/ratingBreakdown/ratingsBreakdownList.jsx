@@ -11,14 +11,14 @@ const gridLayout = {
 const RatingsBreakdownList = ({ metaData }) => (
   <div style={gridLayout}>
     {
-      Object.keys(metaData.ratings)
-        .sort((a, b) => b - a)
-        .map((rating, index) => (
+      // Object.keys(metaData.ratings)
+        ([5, 4, 3, 2, 1])
+        .map((rating) => (
           <RatingsBreakdownListEntry
             rating={rating}
             ratings={metaData.ratings}
-            totalRating={metaData.ratings[rating]}
-            index={index}
+            totalRating={metaData.ratings[rating] || 0}
+            key={rating}
           />
         ))
     }

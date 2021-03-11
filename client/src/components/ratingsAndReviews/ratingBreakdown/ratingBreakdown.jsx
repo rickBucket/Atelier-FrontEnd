@@ -29,14 +29,6 @@ const headerStyle = {
   textAlign: 'center',
 };
 
-// class RatingBreakdown extends React.Component {
-//   constructor(props) {
-//     super(props);
-
-//     this.averageRating = this.averageRating.bind(this);
-//     this.recommendedAverage = this.recommendedAverage.bind(this);
-//   }
-
 const averageRating = (obj) => {
   let wholeTotal = 0;
   let responseTotal = 0;

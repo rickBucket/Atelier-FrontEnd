@@ -19,7 +19,7 @@ const starBarFlex = {
 
 const starFont = {
   fontSize: '12px',
-  color: 'grey'
+  color: 'grey',
 };
 
 const starPercentage = (obj, key) => {
@@ -45,7 +45,6 @@ const RatingsBreakdownListEntry = ({
   rating, ratings, totalRating, index,
 }) => (
   <div id={rating} style={starBarFlex} onClick={sortByStar}>
-
     <u style={starFont}>
       {`${rating} stars`}
     </u>
@@ -59,13 +58,7 @@ const RatingsBreakdownListEntry = ({
       }}
       />
     </div>
-
-    {
-        totalRating > 0
-          ? <div style={starFont}>{totalRating}</div>
-          : <div style={starFont}>0</div>
-    }
-
+    <div style={starFont}>{totalRating}</div>
   </div>
 );
 

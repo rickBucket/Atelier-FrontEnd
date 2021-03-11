@@ -56,6 +56,7 @@ const recommendedAverage = (obj) => {
 const RatingBreakdown = (props) => {
   const { ratings } = props.metaData;
   const { recommended } = props.metaData;
+  const { sortByStar } = props;
   return (
     <div style={gridLayout}>
       <div style={headerStyle}>
@@ -92,7 +93,7 @@ const RatingBreakdown = (props) => {
         gridRow: '5',
       }}
       >
-        <RatingsBreakdownList metaData={props.metaData} />
+        <RatingsBreakdownList metaData={props.metaData} sortByStar={sortByStar}/>
       </div>
     </div>
   );

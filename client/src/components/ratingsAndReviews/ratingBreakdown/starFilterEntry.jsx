@@ -5,7 +5,7 @@ const starStyle = {
 };
 
 const StarFilterEntry = (props) => (
-  <div id={`${props.star}`} style={starStyle} onClick={props.sortByStar}>
+  <div id={`${props.star}`} aria-hidden="true" style={starStyle} onClick={props.sortByStar}>
     <div style={{ textAlign: 'center' }}>
       {`${props.star} stars`}
     </div>

@@ -1,5 +1,5 @@
 /* eslint-disable no-alert */
-/* eslint-disable max-len */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import CharacteristicsRadioList from './characteristicsRadioList';
@@ -250,27 +250,27 @@ class WriteReview extends React.Component {
             >
               {
                mouseOver[0] === 1
-                 ? <span className="fa fa-star" onMouseEnter={() => { this.setState({ mouseOver: [1, 0, 0, 0, 0] }); }} onClick={() => { this.setState({ rating: 1, mouseOver: [1, 0, 0, 0, 0] }); }} />
+                 ? <span className="fa fa-star" aria-hidden="true" onMouseEnter={() => { this.setState({ mouseOver: [1, 0, 0, 0, 0] }); }} onClick={() => { this.setState({ rating: 1, mouseOver: [1, 0, 0, 0, 0] }); }} />
                  : <span className="fa fa-star-o" onMouseEnter={() => { this.setState({ mouseOver: [1, 0, 0, 0, 0] }); }} />
              }
               {
              mouseOver[1] === 1
-               ? <span className="fa fa-star" onMouseEnter={() => { this.setState({ mouseOver: [1, 1, 0, 0, 0] }); }} onClick={() => { this.setState({ rating: 2, mouseOver: [1, 1, 0, 0, 0] }); }} />
+               ? <span className="fa fa-star" aria-hidden="true" onMouseEnter={() => { this.setState({ mouseOver: [1, 1, 0, 0, 0] }); }} onClick={() => { this.setState({ rating: 2, mouseOver: [1, 1, 0, 0, 0] }); }} />
                : <span className="fa fa-star-o" onMouseEnter={() => { this.setState({ mouseOver: [1, 1, 0, 0, 0] }); }} />
              }
               {
               mouseOver[2] === 1
-                ? <span className="fa fa-star" onMouseEnter={() => { this.setState({ mouseOver: [1, 1, 1, 0, 0] }); }} onClick={() => { this.setState({ rating: 3, mouseOver: [1, 1, 1, 0, 0] }); }} />
+                ? <span className="fa fa-star" aria-hidden="true" onMouseEnter={() => { this.setState({ mouseOver: [1, 1, 1, 0, 0] }); }} onClick={() => { this.setState({ rating: 3, mouseOver: [1, 1, 1, 0, 0] }); }} />
                 : <span className="fa fa-star-o" onMouseEnter={() => { this.setState({ mouseOver: [1, 1, 1, 0, 0] }); }} />
              }
               {
              mouseOver[3] === 1
-               ? <span className="fa fa-star" onMouseEnter={() => { this.setState({ mouseOver: [1, 1, 1, 1, 0] }); }} onClick={() => { this.setState({ rating: 4, mouseOver: [1, 1, 1, 1, 0] }); }} />
+               ? <span className="fa fa-star" aria-hidden="true" onMouseEnter={() => { this.setState({ mouseOver: [1, 1, 1, 1, 0] }); }} onClick={() => { this.setState({ rating: 4, mouseOver: [1, 1, 1, 1, 0] }); }} />
                : <span className="fa fa-star-o" onMouseEnter={() => { this.setState({ mouseOver: [1, 1, 1, 1, 0] }); }} />
              }
               {
              mouseOver[4] === 1
-               ? <span className="fa fa-star" onClick={() => { this.setState({ rating: 5, mouseOver: [1, 1, 1, 1, 1] }); }} />
+               ? <span className="fa fa-star" aria-hidden="true" onKeyUp={this.handleKeyUp} onClick={() => { this.setState({ rating: 5, mouseOver: [1, 1, 1, 1, 1] }); }} />
                : <span className="fa fa-star-o" onMouseEnter={() => { this.setState({ mouseOver: [1, 1, 1, 1, 1] }); }} />
              }
             </div>
@@ -304,7 +304,10 @@ class WriteReview extends React.Component {
           </div>
 
           <div style={characteristicsStyle}>
-            <CharacteristicsRadioList metaData={metaData} characteristicsRadioClick={this.characteristicsRadioClick} />
+            <CharacteristicsRadioList
+              metaData={metaData}
+              characteristicsRadioClick={this.characteristicsRadioClick}
+            />
           </div>
 
           <div style={summaryStyle}>

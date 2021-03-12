@@ -24,7 +24,7 @@ const ComparisonModal = (props) => {
       </div>
       <ModalContent>
         <ComparisonTitle>
-          <CompareTitle>COMPARING</CompareTitle>
+          <CompareTitle>COMPARING: </CompareTitle>
           <div>{null}</div>
           <div>{null}</div>
           <ProductTitle><b>{parentProduct}</b></ProductTitle>
@@ -63,11 +63,11 @@ const TestDiv = styled.div`
 const ProductTitle = styled.div`
   text-align: center;
   border-bottom: 1px solid grey;
-  margin: 7px;
+  margin-bottom: 13px;
 `;
 
 const CompareTitle = styled.div`
-  margin: 4px 5px;
+  margin: 30px 10px;
   font-size: 15px;
 `;
 

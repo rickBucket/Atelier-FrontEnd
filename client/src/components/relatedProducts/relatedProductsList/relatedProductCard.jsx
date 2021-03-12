@@ -61,12 +61,12 @@ class RelatedProductCard extends React.Component {
         const defaultProduct = data.results.find((product) => product['default?'] === true);
         let url;
         if (!defaultProduct) {
-          url = data.results[0].photos[0].url;
+          url = data.results[0].photos[0].thumbnail_url;
           this.setState({
             salePrice: data.results[0].sale_price,
           });
         } else {
-          url = defaultProduct.photos[0].url;
+          url = defaultProduct.photos[0].thumbnail_url;
           this.setState({
             salePrice: defaultProduct.sale_price,
           });
@@ -207,13 +207,14 @@ class RelatedProductCard extends React.Component {
               <CompareButton
                 onClick={this.handleCompareClick}
                 className={"fa fa-star-o"}
+                aria-label="Compare"
               >
 
               </CompareButton>
             </ButtonWrapper>
 
             <this.ImageWrapper onClick={this.changeProduct}>
-              <this.Image src={featuredURL} />
+              <this.Image src={featuredURL} alt={productIDInfo.name} />
             </this.ImageWrapper>
 
             <ProductContentWrapper style={{ fontSize: '12px' }}>{productIDInfo.category}</ProductContentWrapper>
@@ -286,7 +287,7 @@ const CompareButton = styled.button`
 const ButtonWrapper = styled.div`
   position: absolute;
   top: 0px;
-  left: 0px;
+  right: 0px;
   margin-top: 5px;
   z-index: 10;
 `;

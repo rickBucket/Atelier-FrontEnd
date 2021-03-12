@@ -12,23 +12,22 @@ const handleQStrings = (input, flag = '') => {
 };
 
 const getProducts = (q, callback) => {
-  q.product_id = handleQStrings(q.product_id);
-  q.flag = handleQStrings(q.flag);
-  q.page = handleQStrings(q.page, 'page');
-  q.count = handleQStrings(q.count, 'count');
+  const query = {};
+  query.product_id = handleQStrings(q.product_id);
+  query.flag = handleQStrings(q.flag);
+  query.page = handleQStrings(q.page, 'page');
+  query.count = handleQStrings(q.count, 'count');
 
-  if (q.page) {
-    q.page = '/?' + q.page;
-    if (q.count) {
-      q.count = '&' + q.count;
+  if (query.page) {
+    query.page = `/?${query.page}`;
+    if (query.count) {
+      query.count = `&${query.count}`;
     }
-  } else {
-    if (q.count) {
-      q.count = '/?' + q.count;
-    }
+  } else if (query.count) {
+    query.count = `/?${query.count}`;
   }
 
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products${q.product_id + q.flag + q.page + q.count}`, {
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products${query.product_id + query.flag + query.page + query.count}`, {
     headers: {
       'User-Agent': 'request',
       Authorization: config.API_KEY,

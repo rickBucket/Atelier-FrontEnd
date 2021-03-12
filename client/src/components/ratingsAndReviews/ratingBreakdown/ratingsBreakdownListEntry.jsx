@@ -13,6 +13,7 @@ const starBar = {
 const starBarFlex = {
   display: 'flex',
   marginBottom: '10px',
+  paddingLeft: '7px',
   cursor: 'pointer',
 };
 

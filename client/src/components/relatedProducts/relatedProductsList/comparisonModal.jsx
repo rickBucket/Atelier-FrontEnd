@@ -62,6 +62,7 @@ const TestDiv = styled.div`
 `;
 const ProductTitle = styled.div`
   text-align: center;
+  font-size: 17px;
   border-bottom: 1px solid grey;
   margin-bottom: 13px;
 `;

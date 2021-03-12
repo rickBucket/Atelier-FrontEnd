@@ -27,19 +27,6 @@ class RelatedProductCard extends React.Component {
     this.combineFeatures = this.combineFeatures.bind(this);
     this.averageRating = this.averageRating.bind(this);
     this.changeProduct = this.changeProduct.bind(this);
-
-    this.ImageWrapper = styled.div`
-    height: 200px;
-    width: auto;
-    margin-bottom: 30px;
-  `;
-    this.Image = styled.img`
-    height: 100%;
-    width: 100%;
-    object-fit: contain;
-    object-position: 50% 0;
-    z-index: 0;
-  `;
   }
 
   componentDidMount() {
@@ -206,17 +193,13 @@ class RelatedProductCard extends React.Component {
             <ButtonWrapper>
               <CompareButton
                 onClick={this.handleCompareClick}
-                className={"fa fa-star-o"}
+                className="fa fa-star-o"
                 aria-label="Compare"
-              >
-
-              </CompareButton>
+              />
             </ButtonWrapper>
-
-            <this.ImageWrapper onClick={this.changeProduct}>
-              <this.Image src={featuredURL} alt={productIDInfo.name} />
-            </this.ImageWrapper>
-
+            <ImageWrapper onClick={this.changeProduct}>
+              <Image src={featuredURL} alt={productIDInfo.name} />
+            </ImageWrapper>
             <ProductContentWrapper style={{ fontSize: '12px' }}>{productIDInfo.category}</ProductContentWrapper>
             <ProductContentWrapper onClick={this.changeProduct} style={{ fontSize: '17px', fontWeight: 'bold' }}>{productIDInfo.name}</ProductContentWrapper>
             <ProductContentWrapper style={sale}>
@@ -261,6 +244,20 @@ position: relative;
 bottom: 0px;
 `;
 
+const Image = styled.img`
+height: 100%;
+width: 100%;
+object-fit: contain;
+object-position: 50% 0;
+z-index: 0;
+`;
+
+const ImageWrapper = styled.div`
+height: 200px;
+width: auto;
+margin-bottom: 30px;
+`;
+
 const LowerBorderDiv = styled.div`
 border-bottom: 2px solid grey;
 align: center;
@@ -298,4 +295,4 @@ const ProductContentWrapper = styled.div`
 
 export default RelatedProductCard;
 
-{/* <img src="star2.png" style={{ height: '25px' }} alt="Compare Products" /> */}
+{ /* <img src="star2.png" style={{ height: '25px' }} alt="Compare Products" /> */ }

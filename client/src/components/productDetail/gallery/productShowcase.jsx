@@ -104,11 +104,6 @@ class ProductShowcase extends React.Component {
     const { currentPhoto, photos } = this.state;
     return (
       <div>
-        <Button
-          style={{ margin: '84px 16px -64px -72px' }}
-          className="fa fa-expand"
-          onClick={this.handleExpand}
-        />
         {
           this.isPosition('right')
           && (
@@ -116,6 +111,7 @@ class ProductShowcase extends React.Component {
               style={{ margin: '276px 20px -64px -76px' }}
               onClick={() => this.nextPhoto(1)}
               className="fa fa-arrow-right"
+              aria-label="right"
             />
           )
         }
@@ -126,6 +122,7 @@ class ProductShowcase extends React.Component {
               style={{ margin: '276px 488px -64px -552px' }}
               onClick={() => this.nextPhoto(-1)}
               className="fa fa-arrow-left"
+              aria-label="left"
             />
           )
         }
@@ -140,7 +137,7 @@ class ProductShowcase extends React.Component {
                 key={photo.url}
                 onClick={() => this.handleClick(photo.url)}
                 src={photo.thumbnail_url}
-                a=""
+                alt={photo.url}
               />
             ))
           }

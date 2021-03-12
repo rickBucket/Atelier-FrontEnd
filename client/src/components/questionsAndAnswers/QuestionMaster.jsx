@@ -203,7 +203,7 @@ class QuestionMaster extends React.Component {
           <form onSubmit={(event) => { event.preventDefault(); }}>
             <SearchDiv className="searchBar">
               <SearchBar placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS...        " type="text" value={searchText} onChange={(event) => { event.preventDefault(); this.handleSearch(); }} />
-              <SearchBtn className="fa fa-search"></SearchBtn>
+              <SearchBtn className="fa fa-search" />
             </SearchDiv>
           </form>
 
@@ -240,7 +240,3 @@ class QuestionMaster extends React.Component {
 }
 
 export default QuestionMaster;
-
-QuestionMaster.propTypes = {
-  productID: PropTypes.number.isRequired,
-};

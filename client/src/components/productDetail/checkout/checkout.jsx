@@ -38,7 +38,7 @@ function handleFav(e) {
 }
 
 function range(amount, max) {
-  return [...Array(Math.min(amount, max) + 1).keys()];
+  return [...Array(Math.min(amount, max)).keys()];
 }
 
 class Checkout extends React.Component {
@@ -124,13 +124,12 @@ class Checkout extends React.Component {
                 ) : <option>OUT OF STOCK</option>
             }
           </Selector>
-          <Selector name="quantity" onChange={this.handleQuantity}>
+          <Selector name="quantity" onChange={this.handleQuantity} disabled={selectedSKU[1].quantity === -1}>
             {
               selectedSKU[1].quantity === -1
               && (
                 <>
-                  <option>Quantity</option>
-                  <option>SIZE REQUIRED</option>
+                  <option>-</option>
                 </>
               )
             }
@@ -142,7 +141,7 @@ class Checkout extends React.Component {
               selectedSKU[1].quantity > 0
               && (
                 range(selectedSKU[1].quantity, 15).map((qty) => (
-                  <option key={qty}>{qty}</option>
+                  <option key={qty + 1}>{qty + 1}</option>
                 ))
               )
             }

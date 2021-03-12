@@ -184,7 +184,7 @@ class YourOutfitList extends React.Component {
           </RightButtonWrapper>
         ) : null }
         <ListContainer id="yourOutfit">
-          <CardContainer onClick={this.addOutfit} id="addOutfit">
+          <CardContainer onClick={this.addOutfit} id="addOutfit" aria-label="Add product to your outfit list">
             <AddOutfitContent>
               + Add To Your Outfit
             </AddOutfitContent>

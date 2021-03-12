@@ -2,9 +2,9 @@ import styled from 'styled-components';
 
 const ModalContent = styled.div`
 background-color: white;
-width: 70%; /* Width in proportion to its parent container*/
+width: 75%; /* Width in proportion to its parent container*/
 max-width: 600px; /* Max width where it stops expanding */
-height: 40%; /* Height in proportion to its parent container */
+height: 35%; /* Height in proportion to its parent container */
 margin: auto; /* Auto margin according to the element width */
 justify-content: center;
 align-items: center;

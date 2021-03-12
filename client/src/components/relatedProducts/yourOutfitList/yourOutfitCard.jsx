@@ -85,13 +85,14 @@ class YourOutfitCard extends React.Component {
                 <DeleteButton
                   onClick={this.removeOutfit}
                   className="fa fa-times"
+                  aria-label="Delete product from outfit"
                 >
 
                 </DeleteButton>
               </ButtonWrapper>
 
               <ImageWrapper onClick={this.changeProduct}>
-                <Image src={featuredURL} width="100%" height="auto" />
+                <Image src={featuredURL} width="100%" height="auto" alt={productIDInfo.name} />
               </ImageWrapper>
 
               <ProductContentWrapper style={{ fontSize: '12px' }}>{productIDInfo.category}</ProductContentWrapper>

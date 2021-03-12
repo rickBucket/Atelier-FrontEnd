@@ -62,7 +62,6 @@ class Answers extends React.Component {
         type: event.target.name,
       })
         .then((response) => {
-          console.log(response);
           this.setState({
             helpful: this.state.helpful + 1,
             clickedYes: true,
@@ -74,7 +73,6 @@ class Answers extends React.Component {
         type: event.target.name,
       })
         .then((response) => {
-          console.log(response);
           this.setState({
             clickedReport: true,
           });
@@ -129,11 +127,11 @@ class Answers extends React.Component {
             )}
           <Divide className="divider"> | </Divide>
           <p> Helpful? </p>
-          <Button name="helpful" onClick={(event) => { event.preventDefault(); this.handleClick(event); }}> Yes </Button>
+          <Button className="helpful" name="helpful" onClick={(event) => { event.preventDefault(); this.handleClick(event); }}> Yes </Button>
           <p>{helpful}</p>
           <Divide className="divider"> | </Divide>
           {!clickedReport ? (
-            <Button name="report" onClick={(event) => { event.preventDefault(); this.handleClick(event); }}> Report </Button>) : (<p>Reported</p>)}
+            <Button className="report" name="report" onClick={(event) => { event.preventDefault(); this.handleClick(event); }}> Report </Button>) : (<p>Reported</p>)}
         </Container>
       </div>
     );

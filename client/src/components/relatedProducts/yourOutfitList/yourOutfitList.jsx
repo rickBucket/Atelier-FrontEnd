@@ -238,6 +238,6 @@ const AddOutfitContent = styled.div`
   align-items: center;
   background: rgba(255,255,255,0.1);
   &:hover {
-    opacity: 0.8
+    opacity: .7
   }
 `;

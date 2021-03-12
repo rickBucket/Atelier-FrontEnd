@@ -28,6 +28,21 @@ flex-direction: column;
     border: 1px solid black;
     border-radius: 20px; /* Optional. Rounds container corners */
 
+    /* modal transition here */
+    opacity: 1;
+      animation-name: fadeInOpacity;
+      animation-iteration-count: 1;
+      animation-timing-function: ease-in;
+      animation-duration: 0.5s;
+    }
+    @keyframes fadeInOpacity {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
 `;
 
 const Close = styled.span`
@@ -90,8 +105,9 @@ class QuestionModal extends React.Component {
   }
 
   selectModal(event) {
+    const { closeModal } = this.props;
     event.stopPropagation();
-    this.props.closeModal();
+    closeModal();
   }
 
   type(event) {
@@ -111,11 +127,13 @@ class QuestionModal extends React.Component {
   }
 
   postQuestion() {
+    const { product_id } = this.props;
+    const { newQuestion, newName, newEmail } = this.state;
     axios.post('/qa/questions', {
-      body: this.state.newQuestion,
-      name: this.state.newName,
-      email: this.state.newEmail,
-      product_id: this.props.product_id,
+      body: newQuestion,
+      name: newName,
+      email: newEmail,
+      product_id: product_id,
     })
       .then((response) => {
         console.log('successful post!', response.data);
@@ -124,19 +142,21 @@ class QuestionModal extends React.Component {
   }
 
   render() {
+    const { newEmail, newName, newQuestion } = this.state;
+    const { displayModal } = this.props;
     const divStyle = {
-      display: this.props.displayModal ? 'block' : 'none',
+      display: displayModal ? 'block' : 'none',
     };
     return (
       <Modal className="modal" onClick={(event) => { this.selectModal(event); }} style={divStyle}>
-        <Modal_Con className="modal-content" onClick={(event) => { event.stopPropagation(); }}>
+        <Modal_Con onClick={(event) => { event.stopPropagation(); }}>
           <Close className="close" onClick={(event) => { this.selectModal(event); }}>&times;</Close>
           <NewForm>
-            <NewQueA placeholder="Example: jack@email.com" required type="email" maxLength="60" autoComplete="off" value={this.state.newEmail} onChange={(event) => { this.type(event); }} />
+            <NewQueA placeholder="Example: jack@email.com" required type="email" maxLength="60" autoComplete="off" value={newEmail} onChange={(event) => { this.type(event); }} />
             <p>For authentication reasons, you will not be emailed</p>
-            <NewQueB placeholder="Examples: jackson11!" required type="text" maxLength="60" autoComplete="off" value={this.state.newName} onChange={(event) => { this.type(event); }} />
+            <NewQueB placeholder="Examples: jackson11!" required type="text" maxLength="60" autoComplete="off" value={newName} onChange={(event) => { this.type(event); }} />
             <p>For privacy reasons, do not use your full name or email address</p>
-            <NewQueC placeholder="Enter Question Here..." required type="text" maxLength="1000" minLength="" autoComplete="off" value={this.state.newQuestion} onChange={(event) => { this.type(event); }} />
+            <NewQueC placeholder="Enter Question Here..." required type="text" maxLength="1000" minLength="" autoComplete="off" value={newQuestion} onChange={(event) => { this.type(event); }} />
             <Button onClick={(event) => { this.postQuestion(event); }}> Submit Question </Button>
           </NewForm>
         </Modal_Con>

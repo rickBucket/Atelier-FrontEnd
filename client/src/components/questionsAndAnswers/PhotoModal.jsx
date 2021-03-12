@@ -40,11 +40,16 @@ const PhotoModal = (props) => {
   }
 
   return (
-    <Modal className="modal"
-    onClick={ closeModal }
-         style={divStyle}
-         >
-    <Photo src={props.photo}className="modal-content" onClick={ event => event.stopPropagation() } />
+    <Modal
+      className="modal"
+      onClick={closeModal}
+      style={divStyle}
+    >
+      <Photo
+        src={props.photo}
+        className="modal-content"
+        onClick={(event) => event.stopPropagation()}
+      />
     </Modal>
   );
 }

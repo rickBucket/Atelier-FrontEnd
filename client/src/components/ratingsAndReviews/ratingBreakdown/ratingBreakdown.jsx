@@ -1,11 +1,12 @@
 import React from 'react';
 import RatingsBreakdownList from './ratingsBreakdownList';
 import StarRating from '../../shared/starRating';
+import StarFilterEntry from './starFilterEntry';
 
 const gridLayout = {
   display: 'grid',
   gridTemplateColumns: 'repeat(1 1fr)',
-  gridTemplateRows: 'minwidth(5 1fr) 100px',
+  gridTemplateRows: 'minwidth(6 1fr) 100px',
   alignItems: 'center',
 };
 
@@ -27,6 +28,25 @@ const headerStyle = {
   gridColumn: '1',
   color: 'grey',
   textAlign: 'center',
+};
+
+const clearStarFilterStyle = {
+  display: 'flex',
+  marginBottom: '10px',
+  justifyContent: 'center',
+  cursor: 'pointer',
+};
+
+const starFilterStyle = {
+  display: 'flex',
+  marginBottom: '10px',
+  flexWrap: 'wrap',
+  justifyContent: 'center'}
+
+const filtersContainer = {
+  display: 'flex',
+  marginBottom: '10px',
+  justifyContent: 'center',
 };
 
 const averageRating = (obj) => {
@@ -57,6 +77,9 @@ const RatingBreakdown = (props) => {
   const { ratings } = props.metaData;
   const { recommended } = props.metaData;
   const { sortByStar } = props;
+  const { starSort } = props;
+  const { clearStarFilter } = props;
+
   return (
     <div style={gridLayout}>
       <div style={headerStyle}>
@@ -88,12 +111,39 @@ const RatingBreakdown = (props) => {
           {`${recommendedAverage(recommended)}% of reviews recommend this product`}
         </div>
       </div>
+
       <div style={{
         gridColumn: '1',
         gridRow: '5',
       }}
       >
-        <RatingsBreakdownList metaData={props.metaData} sortByStar={sortByStar}/>
+        <div style={filtersContainer}>
+          {
+            starSort.length > 0
+            && (
+            <div>
+            <div style={starFilterStyle}>
+              {starSort
+              .sort((a, b) => b - a)
+              .map((star) => (
+                <StarFilterEntry star={star} sortByStar={sortByStar} key={star}/>
+              ))}
+            </div>
+            <div style={clearStarFilterStyle} onClick={clearStarFilter}>
+              <u style={{color: 'grey', fontSize: '13px'}}>Clear Star Review Filter</u>
+              </div>
+            </div>
+            )
+          }
+        </div>
+      </div>
+
+      <div style={{
+        gridColumn: '1',
+        gridRow: '6',
+      }}
+      >
+        <RatingsBreakdownList metaData={props.metaData} sortByStar={sortByStar} />
       </div>
     </div>
   );

@@ -150,6 +150,7 @@ class RatingsApp extends React.Component {
     this.handlePut = this.handlePut.bind(this);
     this.listSortChange = this.listSortChange.bind(this);
     this.sortByStar = this.sortByStar.bind(this);
+    this.clearStarFilter = this.clearStarFilter.bind(this);
   }
 
   componentDidMount() {
@@ -238,6 +239,12 @@ class RatingsApp extends React.Component {
     }
   }
 
+  clearStarFilter() {
+    this.setState({
+      starSort: [],
+    });
+  }
+
   exitWriteReviewClick() {
     this.setState({
       writeReviewModal: false,
@@ -300,7 +307,7 @@ class RatingsApp extends React.Component {
       <div style={gridLayout}>
 
         <div style={ratingGrid}>
-          <RatingBreakdown metaData={metaData} sortByStar={this.sortByStar} />
+          <RatingBreakdown metaData={metaData} sortByStar={this.sortByStar} starSort={starSort} clearStarFilter={this.clearStarFilter}/>
         </div>
 
         <div style={productStyle}>

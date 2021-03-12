@@ -280,7 +280,7 @@ class RatingsApp extends React.Component {
       return (
         <div style={noReviewsGrid}>
           <div style={{ textAlign: 'center', fontSize: '40px', gridRow: '1' }}>Be the first to write a review!</div>
-          <button id="addReview" type="button" onClick={this.writeReviewClick} style={noReviewsAddBtn}>ADD A REVIEW +</button>
+          <button className="addReview" type="button" onClick={this.writeReviewClick} style={noReviewsAddBtn}>ADD A REVIEW +</button>
           {
           writeReviewModal
           && (
@@ -351,7 +351,7 @@ class RatingsApp extends React.Component {
         <div style={reviewButtonsStyle}>
           <div style={{ display: 'flex', margin: 'auto', justifyContent: 'space-evenly' }}>
             <div style={{ display: 'flex' }}>
-              <button id="addReview" type="button" onClick={this.writeReviewClick} style={addReviewBtnStyle}>ADD A REVIEW +</button>
+              <button className="addReview" type="button" onClick={this.writeReviewClick} style={addReviewBtnStyle}>ADD A REVIEW +</button>
             </div>
 
             {
@@ -359,7 +359,7 @@ class RatingsApp extends React.Component {
         && (
           <div style={{ display: 'flex' }}>
             <button
-              id="moreReviews"
+              className="moreReviews"
               type="button"
               style={moreReviewsBtn}
               onClick={this.moreReviewsClick}

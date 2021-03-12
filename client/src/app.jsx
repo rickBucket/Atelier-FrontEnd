@@ -131,7 +131,7 @@ class App extends React.Component {
         <Title onClick={scrollToTop}>
           <h1 style={{ marginTop: '0px' }}>Observant Ostritches</h1>
         </Title>
-        <Button type="submit" id="next" onClick={this.nextProduct}>Next Product</Button>
+        <Button type="submit" id="next" onClick={this.nextProduct} aria-label="next">Next Product</Button>
         {
           loadedID === 2
           && (

@@ -22,7 +22,7 @@ const Img = styled.img`
 function PrimaryImageView({ photo, handleExpand }) {
   return (
     <Div>
-      <Img src={photo} a="" onClick={handleExpand} />
+      <Img src={photo} alt={photo} onClick={handleExpand} />
     </Div>
   );
 }

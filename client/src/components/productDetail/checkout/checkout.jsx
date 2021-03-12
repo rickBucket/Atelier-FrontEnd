@@ -151,12 +151,12 @@ class Checkout extends React.Component {
           {
             this.getUniqueSizes().length > 0
             && (
-            <Button onClick={this.handleSubmit} style={{ width: '69%' }}>
+            <Button onClick={this.handleSubmit} style={{ width: '69%' }} aria-label="checkout">
               Add to Cart
             </Button>
             )
           }
-          <Button onClick={handleFav} style={{ width: '11%' }}>
+          <Button onClick={handleFav} style={{ width: '11%' }} aria-label="addToOutfit">
             <img src="star2.png" style={{ height: '20px', width: '21px' }} alt="" />
           </Button>
         </FlexDiv>

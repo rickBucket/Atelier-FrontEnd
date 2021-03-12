@@ -227,6 +227,11 @@ class RatingsApp extends React.Component {
 
   sortByStar(e) {
     const { starSort } = this.state;
+    // if (e.target.id === '') {
+    //   this.setState({
+    //     starSort: [...starSort],
+    //   });
+    // } else
     if (starSort.indexOf(e.target.id) === -1) {
       this.setState({
         starSort: [...starSort, e.target.id],
@@ -275,6 +280,7 @@ class RatingsApp extends React.Component {
     const { starSort } = this.state;
     const { productID } = this.props;
 
+    // console.log(this.state.starSort)
     if (noReviews) {
       return (
         <div style={noReviewsGrid}>

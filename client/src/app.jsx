@@ -29,12 +29,14 @@ const Button = styled.button`
   margin: -67px 12px;
   z-index: 270;
   position: fixed;
-  background: linear-gradient(120deg, hsla(175,75%,75%,0.7), hsla(235,75%,75%,0.7));
+  background: linear-gradient(-60deg, hsla(175,55%,75%,0.7), hsla(235,55%,75%,0.7));
   padding: 10px 16px;
   border: 0px solid grey;
+  color: white;
+  text-shadow: 1px 1px 1px black;
   box-shadow: 2px 2px 4px rgba(0,0,0,0.5);
   &:hover {
-    background: linear-gradient(-60deg, hsla(175,75%,75%,0.7), hsla(235,75%,75%,0.7));
+    background: linear-gradient(120deg, hsla(175,55%,75%,0.7), hsla(235,55%,75%,0.7));
   }
 `;
 
@@ -129,7 +131,7 @@ class App extends React.Component {
         <Title onClick={scrollToTop}>
           <h1 style={{ marginTop: '0px' }}>Observant Ostritches</h1>
         </Title>
-        <Button type="submit" id="next" onClick={this.nextProduct}>Next Product</Button>
+        <Button type="submit" id="next" onClick={this.nextProduct} aria-label="next">Next Product</Button>
         {
           loadedID === 2
           && (

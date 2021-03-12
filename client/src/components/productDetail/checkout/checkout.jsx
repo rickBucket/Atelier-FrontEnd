@@ -38,7 +38,7 @@ function handleFav(e) {
 }
 
 function range(amount, max) {
-  return [...Array(Math.min(amount, max) + 1).keys()];
+  return [...Array(Math.min(amount, max)).keys()];
 }
 
 class Checkout extends React.Component {
@@ -59,7 +59,7 @@ class Checkout extends React.Component {
 
   handleChange(e) {
     const { skus } = this.state;
-    if (e.target.value === 'Size') {
+    if (e.target.value === 'Select Size' || e.target.value === 'OUT OF STOCK') {
       this.setState({
         selectedSKU: ['', { quantity: -1 }],
       });
@@ -104,6 +104,7 @@ class Checkout extends React.Component {
 
   getUniqueSizes() {
     const { skus } = this.state;
+    if (skus.null) return [];
     return Array.from(new Set(Object.values(skus).map((x) => x.size)));
   }
 
@@ -113,20 +114,22 @@ class Checkout extends React.Component {
       <form>
         <FlexDiv>
           <Selector name="size" onChange={this.handleChange}>
-            <option>Size</option>
             {
-              this.getUniqueSizes().map((size) => (
-                <option key={size}>{size}</option>
-              ))
+              this.getUniqueSizes().length > 0
+                ? (
+                  <>
+                    <option>Select Size</option>
+                    { this.getUniqueSizes().map((size) => <option key={size}>{size}</option>) }
+                  </>
+                ) : <option>OUT OF STOCK</option>
             }
           </Selector>
-          <Selector name="quantity" onChange={this.handleQuantity}>
+          <Selector name="quantity" onChange={this.handleQuantity} disabled={selectedSKU[1].quantity === -1}>
             {
               selectedSKU[1].quantity === -1
               && (
                 <>
-                  <option>Quantity</option>
-                  <option>SIZE REQUIRED</option>
+                  <option>-</option>
                 </>
               )
             }
@@ -138,18 +141,23 @@ class Checkout extends React.Component {
               selectedSKU[1].quantity > 0
               && (
                 range(selectedSKU[1].quantity, 15).map((qty) => (
-                  <option key={qty}>{qty}</option>
+                  <option key={qty + 1}>{qty + 1}</option>
                 ))
               )
             }
           </Selector>
         </FlexDiv>
         <FlexDiv>
-          <Button onClick={this.handleSubmit} style={{ width: '69%' }}>
-            Add to Bag
-          </Button>
-          <Button onClick={handleFav} style={{ width: '11%' }}>
-            <img src="star.png" style={{ height: '18px', width: '16px' }} alt="" />
+          {
+            this.getUniqueSizes().length > 0
+            && (
+            <Button onClick={this.handleSubmit} style={{ width: '69%' }} aria-label="checkout">
+              Add to Cart
+            </Button>
+            )
+          }
+          <Button onClick={handleFav} style={{ width: '11%' }} aria-label="addToOutfit">
+            <img src="star2.png" style={{ height: '20px', width: '21px' }} alt="" />
           </Button>
         </FlexDiv>
         {

@@ -8,6 +8,8 @@ import Question from './Question';
 const FlexContainer = styled.div`
 display: flex;
 justify-content: center;
+padding-top: 20px;
+padding-bottom: 20px;
 `;
 
 const Container = styled.div`

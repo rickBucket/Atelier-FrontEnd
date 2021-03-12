@@ -12,8 +12,8 @@ const gridLayout = {
   gridTemplateColumns: 'repeat(3, 1fr)',
   gridTemplateRows: 'minmax(6, 1fr) 200px',
   gridGap: '10px',
-  maxHeight: '80vh',
-  minWidth: '95vh',
+  // maxHeight: '90vh',
+  // minWidth: '90vh',
 };
 
 const noReviewsGrid = {
@@ -27,8 +27,10 @@ const noReviewsGrid = {
 const mainDiv = {
   display: 'flex',
   justifyContent: 'center',
-  paddingTop: '30px',
-  paddingBottom: '30px',
+  maxHeight: '80%',
+  maxWidth: '95%',
+  marginTop: '30px',
+  marginBottom: '30px',
 };
 
 const ratingGrid = {
@@ -101,7 +103,6 @@ const productStyle = {
 };
 
 const sortOptionsStyle = {
-  marginTop: '40px',
   marginLeft: '30px',
   gridColumn: '2/-1',
   gridRow: '1',
@@ -112,6 +113,7 @@ const reviewListStyle = {
   gridRow: '2/5',
   overflow: 'auto',
   maxWidth: '90%',
+  maxHeight: '90%',
   marginLeft: '20px',
   listStyle: 'none',
 };
@@ -119,7 +121,7 @@ const reviewListStyle = {
 const reviewButtonsStyle = {
   width: '100%',
   gridColumn: '2/-1',
-  gridRow: '5',
+  gridRow: '4',
 };
 
 class RatingsApp extends React.Component {
@@ -275,7 +277,7 @@ class RatingsApp extends React.Component {
     const { starSort } = this.state;
     const { productID } = this.props;
 
-    // console.log(this.state.starSort)
+    console.log(this.state.starSort)
     if (noReviews) {
       return (
         <div style={noReviewsGrid}>

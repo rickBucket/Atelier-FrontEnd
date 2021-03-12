@@ -10,7 +10,7 @@ import SortOptions from './sortOptions/sortOptions';
 const gridLayout = {
   display: 'grid',
   gridTemplateColumns: 'repeat(3, 1fr)',
-  gridTemplateRows: 'minmax(6, 1fr) 200px',
+  gridTemplateRows: 'minmax(4, 1fr) 200px',
   gridGap: '10px',
   // maxHeight: '90vh',
   // minWidth: '90vh',
@@ -113,7 +113,8 @@ const reviewListStyle = {
   gridRow: '2/5',
   overflow: 'auto',
   maxWidth: '90%',
-  maxHeight: '90%',
+  maxHeight: '70%',
+  marginBottom: '20px',
   marginLeft: '20px',
   listStyle: 'none',
 };
@@ -121,7 +122,9 @@ const reviewListStyle = {
 const reviewButtonsStyle = {
   width: '100%',
   gridColumn: '2/-1',
-  gridRow: '4',
+  gridRow: '3',
+  marginTop: '30%',
+  // margin: 'auto',
 };
 
 class RatingsApp extends React.Component {
@@ -353,7 +356,7 @@ class RatingsApp extends React.Component {
         <div style={reviewButtonsStyle}>
           <div style={{ display: 'flex', margin: 'auto', justifyContent: 'space-evenly' }}>
             <div style={{ display: 'flex' }}>
-              <button className="addReview" type="button" onClick={this.writeReviewClick} style={addReviewBtnStyle}>ADD A REVIEW +</button>
+              <button id="addReview" type="button" onClick={this.writeReviewClick} style={addReviewBtnStyle}>ADD A REVIEW +</button>
             </div>
 
             {

@@ -84,9 +84,9 @@ class YourOutfitCard extends React.Component {
               <ButtonWrapper>
                 <DeleteButton
                   onClick={this.removeOutfit}
-                  style={{ color: 'white' }}
+                  className="fa fa-times"
                 >
-                  &#9747;
+
                 </DeleteButton>
               </ButtonWrapper>
 
@@ -153,12 +153,23 @@ const DeleteButton = styled.button`
   cursor: pointer;
   border: none;
   background: none;
-  font-size: 20px;
+  font-size: 25px;
+  color: black;
+  &:hover {
+    color: white;
+  }
 `;
 
 const ButtonWrapper = styled.div`
   position: absolute;
-  z-index: 1;
+  top: 0px;
+  right: 0px;
+  margin-top: 5px;
+  z-index: 10;
+  border-radius: 40%;
+  &:hover {
+    background: black;
+  }
 `;
 
 const ProductContentWrapper = styled.div`
@@ -166,3 +177,5 @@ const ProductContentWrapper = styled.div`
 `;
 
 export default YourOutfitCard;
+
+{ /* <img src="close.png" style={{ height: '25px' }} alt="" /> */ }

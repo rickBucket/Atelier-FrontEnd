@@ -59,7 +59,7 @@ class Checkout extends React.Component {
 
   handleChange(e) {
     const { skus } = this.state;
-    if (e.target.value === 'Size' || e.target.value === 'OUT OF STOCK') {
+    if (e.target.value === 'Select Size' || e.target.value === 'OUT OF STOCK') {
       this.setState({
         selectedSKU: ['', { quantity: -1 }],
       });
@@ -118,7 +118,7 @@ class Checkout extends React.Component {
               this.getUniqueSizes().length > 0
                 ? (
                   <>
-                    <option>Size</option>
+                    <option>Select Size</option>
                     { this.getUniqueSizes().map((size) => <option key={size}>{size}</option>) }
                   </>
                 ) : <option>OUT OF STOCK</option>

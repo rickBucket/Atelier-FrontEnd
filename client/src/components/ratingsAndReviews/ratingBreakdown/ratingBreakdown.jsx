@@ -13,7 +13,7 @@ const gridLayout = {
 const recommendedAvgStyle = {
   display: 'flex',
   justifyContent: 'center',
-  marginBottom: '15px',
+  marginBottom: '10px',
 };
 
 const avgRatingSpacing = {
@@ -32,7 +32,7 @@ const headerStyle = {
 
 const clearStarFilterStyle = {
   display: 'flex',
-  marginBottom: '10px',
+  marginBottom: '5px',
   justifyContent: 'center',
   cursor: 'pointer',
 };
@@ -141,9 +141,13 @@ const RatingBreakdown = (props) => {
       <div style={{
         gridColumn: '1',
         gridRow: '6',
+        display: 'flex',
+        justifyContent: 'center',
       }}
       >
-        <RatingsBreakdownList metaData={props.metaData} sortByStar={sortByStar} />
+        <div style={{display: 'flex', justifyContent: 'center'}}>
+          <RatingsBreakdownList metaData={props.metaData} sortByStar={sortByStar} />
+        </div>
       </div>
     </div>
   );

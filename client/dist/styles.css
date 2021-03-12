@@ -9,7 +9,13 @@
 
 ::-webkit-scrollbar { display: none }
 
-
+.starBar:hover {
+  box-shadow: 2px 2px 4px gold;
+  padding: 5px;
+  border-radius: 10px;
+  margin-top: 4px;
+  margin-bottom: 8px;
+}
 
 html {
   font-family: 'Open Sans', sans-serif, Arial;

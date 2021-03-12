@@ -12,27 +12,23 @@ const gridLayout = {
   gridTemplateColumns: 'repeat(3, 1fr)',
   gridTemplateRows: 'minmax(6, 1fr) 200px',
   gridGap: '10px',
-  rowGap: '10px',
-  borderRadius: '20px',
-  padding: '20px',
-  height: '80vh',
+  maxHeight: '80vh',
+  minWidth: '95vh',
 };
 
 const noReviewsGrid = {
   display: 'grid',
-  justifyContents: 'center',
+  justifyContent: 'center',
   gridGap: '20px',
   paddingTop: '30px',
   paddingBottom: '30px',
 };
 
 const mainDiv = {
+  display: 'flex',
+  justifyContent: 'center',
   paddingTop: '30px',
   paddingBottom: '30px',
-  marginBottom: '20%',
-  maxWidth: '80%',
-  maxHeight: '60%',
-  margin: 'auto',
 };
 
 const ratingGrid = {
@@ -99,7 +95,6 @@ const innerModalStyle = {
 
 const productStyle = {
   maxWidth: '100%',
-  marginTop: '10px',
   margin: 'auto',
   gridColumn: '1',
   gridRow: '3',

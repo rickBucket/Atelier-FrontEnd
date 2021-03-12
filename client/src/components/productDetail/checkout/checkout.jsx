@@ -59,7 +59,7 @@ class Checkout extends React.Component {
 
   handleChange(e) {
     const { skus } = this.state;
-    if (e.target.value === 'Size') {
+    if (e.target.value === 'Size' || e.target.value === 'OUT OF STOCK') {
       this.setState({
         selectedSKU: ['', { quantity: -1 }],
       });
@@ -104,6 +104,7 @@ class Checkout extends React.Component {
 
   getUniqueSizes() {
     const { skus } = this.state;
+    if (skus.null) return [];
     return Array.from(new Set(Object.values(skus).map((x) => x.size)));
   }
 
@@ -113,11 +114,14 @@ class Checkout extends React.Component {
       <form>
         <FlexDiv>
           <Selector name="size" onChange={this.handleChange}>
-            <option>Size</option>
             {
-              this.getUniqueSizes().map((size) => (
-                <option key={size}>{size}</option>
-              ))
+              this.getUniqueSizes().length > 0
+                ? (
+                  <>
+                    <option>Size</option>
+                    { this.getUniqueSizes().map((size) => <option key={size}>{size}</option>) }
+                  </>
+                ) : <option>OUT OF STOCK</option>
             }
           </Selector>
           <Selector name="quantity" onChange={this.handleQuantity}>
@@ -149,7 +153,7 @@ class Checkout extends React.Component {
             Add to Bag
           </Button>
           <Button onClick={handleFav} style={{ width: '11%' }}>
-            <img src="star.png" style={{ height: '18px', width: '16px' }} alt="" />
+            <img src="star2.png" style={{ height: '20px', width: '21px' }} alt="" />
           </Button>
         </FlexDiv>
         {

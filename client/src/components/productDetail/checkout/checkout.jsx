@@ -148,9 +148,14 @@ class Checkout extends React.Component {
           </Selector>
         </FlexDiv>
         <FlexDiv>
-          <Button onClick={this.handleSubmit} style={{ width: '69%' }}>
-            Add to Bag
-          </Button>
+          {
+            this.getUniqueSizes().length > 0
+            && (
+            <Button onClick={this.handleSubmit} style={{ width: '69%' }}>
+              Add to Cart
+            </Button>
+            )
+          }
           <Button onClick={handleFav} style={{ width: '11%' }}>
             <img src="star2.png" style={{ height: '20px', width: '21px' }} alt="" />
           </Button>

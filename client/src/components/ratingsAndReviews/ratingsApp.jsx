@@ -12,8 +12,6 @@ const gridLayout = {
   gridTemplateColumns: 'repeat(3, 1fr)',
   gridTemplateRows: 'minmax(5, 1fr) 200px',
   gridGap: '10px',
-  // maxHeight: '90vh',
-  // minWidth: '90vh',
 };
 
 const noReviewsGrid = {
@@ -27,8 +25,11 @@ const noReviewsGrid = {
 const mainDiv = {
   display: 'flex',
   justifyContent: 'center',
+  alignItems: 'center',
   maxHeight: '80%',
-  maxWidth: '95%',
+  maxWidth: '80%',
+  marginLeft: 'auto',
+  marginRight: 'auto',
   marginTop: '30px',
   marginBottom: '30px',
 };
@@ -103,6 +104,7 @@ const productStyle = {
 };
 
 const sortOptionsStyle = {
+  marginTop: '60px',
   marginLeft: '30px',
   gridColumn: '2/-1',
   gridRow: '1',
@@ -283,12 +285,28 @@ class RatingsApp extends React.Component {
       return (
         <div style={noReviewsGrid}>
           <div style={{ textAlign: 'center', fontSize: '40px', gridRow: '1' }}>Be the first to write a review!</div>
-          <button className="addReview" type="button" onClick={this.writeReviewClick} style={noReviewsAddBtn}>ADD A REVIEW +</button>
+          <button
+            className="addReview"
+            type="button"
+            onClick={this.writeReviewClick}
+            style={noReviewsAddBtn}
+          >
+            ADD A REVIEW +
+          </button>
           {
           writeReviewModal
           && (
-          <div style={modalStyle} aria-hidden="true" role="button" onClick={this.exitWriteReviewClick}>
-            <div style={innerModalStyle} aria-hidden="true" onClick={(e) => e.stopPropagation()}>
+          <div
+            style={modalStyle}
+            aria-hidden="true"
+            role="button"
+            onClick={this.exitWriteReviewClick}
+          >
+            <div
+              style={innerModalStyle}
+              aria-hidden="true"
+              onClick={(e) => e.stopPropagation()}
+            >
               <WriteReview
                 handleReviewData={this.handleReviewData}
                 productID={productID}
@@ -315,7 +333,8 @@ class RatingsApp extends React.Component {
             metaData={metaData}
             sortByStar={this.sortByStar}
             starSort={starSort}
-            clearStarFilter={this.clearStarFilter} />
+            clearStarFilter={this.clearStarFilter}
+          />
         </div>
 
         <div style={productStyle}>
@@ -325,8 +344,17 @@ class RatingsApp extends React.Component {
         {
           writeReviewModal
           && (
-          <div style={modalStyle} aria-hidden="true" role="button" onClick={this.exitWriteReviewClick}>
-            <div style={innerModalStyle} aria-hidden="true" onClick={(e) => e.stopPropagation()}>
+          <div
+            style={modalStyle}
+            aria-hidden="true"
+            role="button"
+            onClick={this.exitWriteReviewClick}
+          >
+            <div
+              style={innerModalStyle}
+              aria-hidden="true"
+              onClick={(e) => e.stopPropagation()}
+            >
               <WriteReview
                 handleReviewData={this.handleReviewData}
                 productID={productID}
@@ -359,14 +387,18 @@ class RatingsApp extends React.Component {
 
         <div style={reviewButtonsStyle}>
           <div style={{ display: 'flex', margin: 'auto', justifyContent: 'space-evenly' }}>
-            {/* <div style={{ display: 'flex' }}> */}
-            <button id="addReview" type="button" onClick={this.writeReviewClick} style={addReviewBtnStyle}>ADD A REVIEW +</button>
-            {/* </div> */}
+            <button
+              id="addReview"
+              type="button"
+              onClick={this.writeReviewClick}
+              style={addReviewBtnStyle}
+            >
+              ADD A REVIEW +
+            </button>
 
             {
           reviewList.length > 2 && hideMoreReviews === false
         && (
-          // <div style={{ display: 'flex' }}>
         <button
           className="moreReviews"
           type="button"
@@ -375,7 +407,6 @@ class RatingsApp extends React.Component {
         >
           MORE REVIEWS
         </button>
-          // </div>
         )
         }
           </div>

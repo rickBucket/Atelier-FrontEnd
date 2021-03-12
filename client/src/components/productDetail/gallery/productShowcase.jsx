@@ -104,11 +104,6 @@ class ProductShowcase extends React.Component {
     const { currentPhoto, photos } = this.state;
     return (
       <div>
-        <Button
-          style={{ margin: '84px 16px -64px -72px' }}
-          className="fa fa-expand"
-          onClick={this.handleExpand}
-        />
         {
           this.isPosition('right')
           && (

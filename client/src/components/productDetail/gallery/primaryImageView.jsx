@@ -16,12 +16,13 @@ const Img = styled.img`
   position: absolute;
   max-height: 540px;
   max-width: 580px;
+  cursor: pointer;
 `;
 
-function PrimaryImageView({ photo }) {
+function PrimaryImageView({ photo, handleExpand }) {
   return (
     <Div>
-      <Img src={photo} a="" />
+      <Img src={photo} a="" onClick={handleExpand} />
     </Div>
   );
 }
@@ -32,6 +33,7 @@ PrimaryImageView.defaultProps = {
 
 PrimaryImageView.propTypes = {
   photo: PropTypes.string,
+  handleExpand: PropTypes.func.isRequired,
 };
 
 export default PrimaryImageView;

@@ -112,35 +112,9 @@ class Question extends React.Component {
     }
   }
 
-  selectModal() {
-    const {
-      modal,
-    } = this.state;
-    this.setState({
-      modal: !modal, // toggle
-    });
-  }
-
-  showMore() {
-    const {
-      itemsToShow, answers,
-    } = this.state;
-    itemsToShow === 2 ? (
-      this.setState({
-        itemsToShow: answers.length,
-        expanded: true,
-      })
-    ) : (
-      this.setState({
-        itemsToShow: 2,
-        expanded: false,
-      })
-    );
-  }
-
   handleClick(event) {
     const { item } = this.props;
-    if (!this.state.clickedYes && event.target.name === "helpful") {
+    if (!this.state.clickedYes && event.target.name === 'helpful') {
       axios.put('/qa/questions', {
         question_id: item.question_id,
         type: event.target.name,
@@ -157,13 +131,34 @@ class Question extends React.Component {
         question_id: item.question_id,
         type: event.target.name,
       })
-        .then((response) => {
-          console.log(response);
+        .then(() => {
           this.setState({
             clickedReport: true,
           });
         });
     }
+  }
+
+  selectModal() {
+    const {
+      modal,
+    } = this.state;
+    this.setState({
+      modal: !modal, // toggle
+    });
+  }
+
+  showMore() {
+    const {
+      itemsToShow, answers,
+    } = this.state;
+    itemsToShow === 2 ? (this.setState({
+      itemsToShow: answers.length,
+      expanded: true,
+    })) : (this.setState({
+      itemsToShow: 2,
+      expanded: false,
+    }));
   }
 
   oldRender() {
@@ -184,7 +179,7 @@ class Question extends React.Component {
 
   render() {
     const {
-      loadedState, itemsToShow, answers, expanded, modal, helpful,
+      loadedState, itemsToShow, answers, expanded, modal, helpful, clickedReport,
     } = this.state;
     const { item } = this.props;
     if (!loadedState) {
@@ -211,7 +206,7 @@ class Question extends React.Component {
               )
             </p>
             <Divide className="divider"> | </Divide>
-            {!this.state.clickedReport ? (<Button name="report" onClick={(event) => { event.preventDefault(); this.handleClick(event); }}> Report </Button>) : (<p>Reported</p>)}
+            {!clickedReport ? (<Button name="report" onClick={(event) => { event.preventDefault(); this.handleClick(event); }}> Report </Button>) : (<p>Reported</p>)}
             <Divide className="divider"> | </Divide>
             <Button onClick={this.selectModal}> Add Answer </Button>
           </MoveRight>
@@ -238,22 +233,16 @@ class Question extends React.Component {
             </ScrollList>
           )}
 
-
-
-
-
-                {answers.length > 2 ?
-              ( <div>
+          {answers.length > 2
+            ? (
+              <div>
                 {(!expanded) ? (
-                <LoadButton onClick={() => { this.showMore(); }}> LOAD MORE ANSWERS </LoadButton>
-              ) : (
-                <LoadButton onClick={() => { this.showMore(); }}> Collapse List </LoadButton>
-              )}
+                  <LoadButton onClick={() => { this.showMore(); }}> LOAD MORE ANSWERS </LoadButton>
+                ) : (
+                  <LoadButton onClick={() => { this.showMore(); }}> Collapse List </LoadButton>
+                )}
               </div>
-              ) : (null)}
-
-
-
+            ) : (null)}
 
         </div>
         <AnswerModal displayModal={modal} closeModal={this.selectModal} q_id={item.question_id} />
@@ -263,7 +252,3 @@ class Question extends React.Component {
 }
 
 export default Question;
-
-Question.propTypes = {
-  item: PropTypes.isRequired,
-};

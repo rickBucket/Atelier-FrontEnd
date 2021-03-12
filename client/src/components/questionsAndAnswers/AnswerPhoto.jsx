@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import PhotoModal from './PhotoModal.jsx';
+import PhotoModal from './PhotoModal';
 
 const Photos = styled.img`
   max-height: 100%;
@@ -20,24 +20,29 @@ class AnswerPhoto extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      modal: false
+      modal: false,
     };
     this.selectModal = this.selectModal.bind(this);
   }
+
   selectModal() {
     this.setState({
-      modal: !this.state.modal //toggle
-    })
+      modal: !this.state.modal,
+    });
   }
 
   render() {
     const { photo } = this.props;
+    const { modal } = this.state;
     return (
       <div>
         <PhotoContainer>
-        <Photos src={photo} alt="Product" onClick={ this.selectModal } />
-        <PhotoModal photo={photo} displayModal={this.state.modal}
-        closeModal={this.selectModal} />
+          <Photos src={photo} alt="Product" onClick={this.selectModal} />
+          <PhotoModal
+            photo={photo}
+            displayModal={modal}
+            closeModal={this.selectModal}
+          />
         </PhotoContainer>
       </div>
     );

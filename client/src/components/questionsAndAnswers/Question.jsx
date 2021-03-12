@@ -208,7 +208,7 @@ class Question extends React.Component {
             <Divide className="divider"> | </Divide>
             {!clickedReport ? (<Button name="report" onClick={(event) => { event.preventDefault(); this.handleClick(event); }}> Report </Button>) : (<p>Reported</p>)}
             <Divide className="divider"> | </Divide>
-            <Button onClick={this.selectModal}> Add Answer </Button>
+            <Button className="addAButton" onClick={this.selectModal}> Add Answer </Button>
           </MoveRight>
 
         </EachQ>

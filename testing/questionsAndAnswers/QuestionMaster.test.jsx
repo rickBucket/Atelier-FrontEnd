@@ -5,17 +5,9 @@ import QuestionMaster from '../../client/src/components/questionsAndAnswers/Ques
 import Question from '../../client/src/components/questionsAndAnswers/Question';
 
 describe('<QuestionMaster />', () => {
-  it('renders a div component', () => {
-    const wrapper = shallow(<QuestionMaster item={{ question: [] }} />);
-    expect(wrapper.find('#data')).not.toBeUndefined();
+  it('if Question Modal button opens modal', () => {
+    const component = mount(<QuestionMaster />);
+    component.find('button.add-Q-button').simulate("click");
+    expect(component.state().modal).toBe(true);
   });
-
-  // it('renders children when passed in', () => {
-  //   const wrapper = shallow((
-  //     <QuestionMaster>
-  //       <Question />
-  //     </QuestionMaster>
-  //   ));
-  //   expect(wrapper.contains(<div />)).to.equal(true);
-  // });
 });

@@ -155,23 +155,6 @@ class QuestionMaster extends React.Component {
     });
   }
 
-  selectModal() {
-    const { modal } = this.state;
-    this.setState({
-      modal: !modal,
-    }); // true/false toggle
-  }
-
-  oldRender() {
-    const { productID } = this.props;
-    axios.get(`qa/questions/?product_id=${productID}`)
-      .then((response) => {
-        this.setState({
-          questionData: response.data.results.sort((a, b) => a.helpfulness - b.helpfulness),
-        });
-      });
-  }
-
   SearchDb() {
     const { searchText, questionData, filteredData } = this.state;
     if (searchText.length === 0) {
@@ -189,6 +172,23 @@ class QuestionMaster extends React.Component {
         filteredData: filteredArr,
       });
     }
+  }
+
+  selectModal() {
+    const { modal } = this.state;
+    this.setState({
+      modal: !modal,
+    }); // true/false toggle
+  }
+
+  oldRender() {
+    const { productID } = this.props;
+    axios.get(`qa/questions/?product_id=${productID}`)
+      .then((response) => {
+        this.setState({
+          questionData: response.data.results.sort((a, b) => a.helpfulness - b.helpfulness),
+        });
+      });
   }
 
   render() {

@@ -83,31 +83,34 @@ class Answers extends React.Component {
   }
 
   render() {
+    const { item } = this.props;
+    const { clickedReport, helpful } = this.state;
     return (
       <div>
         <AnwserDiv>
           <h3> A: </h3>
           <AnswerBody>
-            { this.props.item.body }
+            { item.body }
           </AnswerBody>
         </AnwserDiv>
         <br />
 
         <PhotoDiv>
-          {this.props.item.photos.map((photo, i) => (
+          {item.photos.map((photo, i) => (
             <AnswerPhoto photo={photo} key={i} />
           ))}
         </PhotoDiv>
 
         <Container>
 
-          {this.props.item.answerer_name === this.props.seller
+          {item.answerer_name === item.asker_name
             ? (
               <p>
-                by  {' '}
+                by
+                {' '}
                 <b> Seller </b>
                 {' '}
-                {new Date(this.props.item.date).toLocaleDateString(undefined, {
+                {new Date(item.date).toLocaleDateString(undefined, {
                   weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
                 })}
                 {' '}
@@ -115,10 +118,11 @@ class Answers extends React.Component {
             )
             : (
               <p>
-                by {' '}
-                {this.props.item.answerer_name}
+                by
                 {' '}
-                {new Date(this.props.item.date).toLocaleDateString(undefined, {
+                {item.answerer_name}
+                {' '}
+                {new Date(item.date).toLocaleDateString(undefined, {
                   weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
                 })}
               </p>
@@ -126,9 +130,9 @@ class Answers extends React.Component {
           <Divide className="divider"> | </Divide>
           <p> Helpful? </p>
           <Button name="helpful" onClick={(event) => { event.preventDefault(); this.handleClick(event); }}> Yes </Button>
-          <p>{this.state.helpful}</p>
+          <p>{helpful}</p>
           <Divide className="divider"> | </Divide>
-          {!this.state.clickedReport ? (
+          {!clickedReport ? (
             <Button name="report" onClick={(event) => { event.preventDefault(); this.handleClick(event); }}> Report </Button>) : (<p>Reported</p>)}
         </Container>
       </div>
@@ -137,10 +141,3 @@ class Answers extends React.Component {
 }
 
 export default Answers;
-
-// {this.props.item.answerer_name === this.props.item}
-
-// List of answers here -
-// helpful button -
-// report button -
-// load more answers

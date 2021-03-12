@@ -24,7 +24,7 @@ const Img = styled.img`
 function ExpandedView({ unselectPhoto, photo }) {
   return (
     <Div onClick={unselectPhoto}>
-      <Img src={photo} a="" />
+      <Img src={photo} alt={photo} />
     </Div>
   );
 }

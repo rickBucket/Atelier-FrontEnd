@@ -15,7 +15,7 @@ const Modal = styled.div`
     padding-top: 275px; /* Location of the content container */
 `;
 
-const Modal_Con = styled.div`
+const ModalCon = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -27,6 +27,22 @@ const Modal_Con = styled.div`
     padding: 10px;
     border: 1px solid black;
     border-radius: 20px; /* Optional. Rounds container corners */
+
+        /* modal transition here */
+        opacity: 1;
+      animation-name: fadeInOpacity;
+      animation-iteration-count: 1;
+      animation-timing-function: ease-in;
+      animation-duration: 0.5s;
+    }
+    @keyframes fadeInOpacity {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
 `;
 
 const Close = styled.span`
@@ -94,6 +110,7 @@ class AnswerModal extends React.Component {
     this.type = this.type.bind(this);
     this.addImg = this.addImg.bind(this);
   }
+
   selectModal(event) {
     event.stopPropagation();
     this.props.closeModal();
@@ -119,14 +136,15 @@ class AnswerModal extends React.Component {
     const {
       newAnswer, newName, newEmail, images,
     } = this.state;
+    const { q_id } = this.props;
     axios.post('/qa/questions', {
-      body: this.state.newAnswer,
-      name: this.state.newName,
-      email: this.state.newEmail,
-      photos: this.state.images,
-      question_id: this.props.q_id,
+      body: newAnswer,
+      name: newName,
+      email: newEmail,
+      photos: images,
+      question_id: q_id,
     })
-      .then(response => {
+      .then((response) => {
         console.log('successful answer post', response.data);
         this.props.closeModal(event);
       });
@@ -143,25 +161,33 @@ class AnswerModal extends React.Component {
   }
 
   render() {
+    const { displayModal } = this.props;
+    const { newName, newEmail, newAnswer } = this.state;
     const divStyle = {
-      display: this.props.displayModal ? 'block' : 'none',
+      display: displayModal ? 'block' : 'none',
     };
     return (
       <Modal className="modal" onClick={(event) => { this.selectModal(event); }} style={divStyle}>
-          <Modal_Con className="modal-content" onClick={event => {event.stopPropagation(); }}>
-            <Close className="close" onClick={(event) => { this.selectModal(event); }}>&times;</Close>
-            <NewForm>
-              <NewQueA placeholder="Example: jack@email.com"
-              value={this.state.newEmail} type="email" required maxLength="60" autoComplete="off" onChange={(event) => { event.preventDefault(); this.type(event); }}
-              />
-              <p>For authentication reasons, you will not be emailed</p>
-              <NewQueB placeholder="Examples: jackson11!" required type="text" maxLength="75" autoComplete="off" value={this.state.newName} onChange={(event) => { event.preventDefault(); this.type(event); }} />
-              <p>For privacy reasons, do not use your full name or email address</p>
-              <NewQueC placeholder="Enter Answer Here..." required type="text" maxLength="1000" minLength="1" autoComplete="off" value={this.state.newAnswer} onChange={(event) => { event.preventDefault(); this.type(event); }} />
-              <AddImg type='file' onChange={this.addImg} />
-              <Button onClick={(event) => { this.postAnswer(event); }}> Submit Answer </Button>
-            </NewForm>
-          </Modal_Con>
+        <ModalCon className="modal-content" onClick={(event) => { event.stopPropagation(); }}>
+          <Close className="close" onClick={(event) => { this.selectModal(event); }}>&times;</Close>
+          <NewForm>
+            <NewQueA
+              placeholder="Example: jack@email.com"
+              value={newEmail}
+              type="email"
+              required
+              maxLength="60"
+              autoComplete="off"
+              onChange={(event) => { event.preventDefault(); this.type(event); }}
+            />
+            <p>For authentication reasons, you will not be emailed</p>
+            <NewQueB placeholder="Examples: jackson11!" required type="text" maxLength="75" autoComplete="off" value={newName} onChange={(event) => { event.preventDefault(); this.type(event); }} />
+            <p>For privacy reasons, do not use your full name or email address</p>
+            <NewQueC placeholder="Enter Answer Here..." required type="text" maxLength="1000" minLength="1" autoComplete="off" value={newAnswer} onChange={(event) => { event.preventDefault(); this.type(event); }} />
+            <AddImg type="file" onChange={this.addImg} />
+            <Button onClick={(event) => { this.postAnswer(event); }}> Submit Answer </Button>
+          </NewForm>
+        </ModalCon>
       </Modal>
     );
   }

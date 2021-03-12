@@ -10,6 +10,7 @@ import LeftButtonWrapper from '../sharedStyledComponents/leftButtonWrapper';
 import LeftButton from '../sharedStyledComponents/leftButton';
 import RightButton from '../sharedStyledComponents/rightButton';
 import YourOutfitCard from './yourOutfitCard';
+import averageRating from '../../shared/averageRating';
 
 class YourOutfitList extends React.Component {
   constructor(props) {
@@ -17,11 +18,11 @@ class YourOutfitList extends React.Component {
     this.state = {
       parentProductStyles: '',
       parentProductInfo: '',
+      parentProductAvgRating: '',
       outfits: [],
       outfitsLoaded: false,
       imagesToTheRight: false,
       imagesToTheLeft: false,
-      // cardOverflow: false,
     };
     this.addOutfit = this.addOutfit.bind(this);
     this.deleteOutfit = this.deleteOutfit.bind(this);
@@ -31,12 +32,14 @@ class YourOutfitList extends React.Component {
   }
 
   componentDidMount() {
-    const { parentProductID } = this.props;
+    const { parentProductID, parentProductRating } = this.props;
+    const rating = Number(averageRating(parentProductRating));
     if (parentProductID !== undefined) {
       axios.get(`/products/?product_id=${parentProductID}`)
         .then(({ data }) => {
           this.setState({
             parentProductInfo: data,
+            parentProductAvgRating: rating,
           });
         })
         .catch((error) => {
@@ -66,12 +69,10 @@ class YourOutfitList extends React.Component {
     }
   }
 
-  // componentDidUpdate() {
-  //   this.isOverflowing();
-  // }
-
   addOutfit() {
-    const { parentProductStyles, outfits, parentProductInfo } = this.state;
+    const {
+      parentProductStyles, outfits, parentProductInfo, parentProductAvgRating,
+    } = this.state;
     const outfitToAddID = parentProductStyles.product_id;
     let index;
     outfits.forEach((element, i) => {
@@ -85,6 +86,7 @@ class YourOutfitList extends React.Component {
       const newOutfitInfoArray = [{
         info: parentProductInfo,
         styles: parentProductStyles,
+        rating: parentProductAvgRating,
       }];
       const newOutfitInfoObj = newOutfitInfoArray[0];
 

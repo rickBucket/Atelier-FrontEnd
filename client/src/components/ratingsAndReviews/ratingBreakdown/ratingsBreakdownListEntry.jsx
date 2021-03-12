@@ -36,7 +36,7 @@ const starPercentage = (obj, key) => {
 const RatingsBreakdownListEntry = ({
   rating, ratings, totalRating, sortByStar
 }) => (
-  <div id={rating} className="starBar" style={starBarFlex} onClick={sortByStar}>
+  <div id={rating} aria-hidden="true" className="starBar" style={starBarFlex} onClick={sortByStar}>
     <u id={rating} style={starFont}>
       {`${rating} stars`}
     </u>

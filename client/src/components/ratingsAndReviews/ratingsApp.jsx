@@ -10,10 +10,8 @@ import SortOptions from './sortOptions/sortOptions';
 const gridLayout = {
   display: 'grid',
   gridTemplateColumns: 'repeat(3, 1fr)',
-  gridTemplateRows: 'minmax(4, 1fr) 200px',
+  gridTemplateRows: 'minmax(5, 1fr) 200px',
   gridGap: '10px',
-  // maxHeight: '90vh',
-  // minWidth: '90vh',
 };
 
 const noReviewsGrid = {
@@ -27,8 +25,11 @@ const noReviewsGrid = {
 const mainDiv = {
   display: 'flex',
   justifyContent: 'center',
+  alignItems: 'center',
   maxHeight: '80%',
-  maxWidth: '95%',
+  maxWidth: '80%',
+  marginLeft: 'auto',
+  marginRight: 'auto',
   marginTop: '30px',
   marginBottom: '30px',
 };
@@ -103,6 +104,7 @@ const productStyle = {
 };
 
 const sortOptionsStyle = {
+  marginTop: '60px',
   marginLeft: '30px',
   gridColumn: '2/-1',
   gridRow: '1',
@@ -113,7 +115,7 @@ const reviewListStyle = {
   gridRow: '2/5',
   overflow: 'auto',
   maxWidth: '90%',
-  maxHeight: '70%',
+  maxHeight: '550px',
   marginBottom: '20px',
   marginLeft: '20px',
   listStyle: 'none',
@@ -122,9 +124,7 @@ const reviewListStyle = {
 const reviewButtonsStyle = {
   width: '100%',
   gridColumn: '2/-1',
-  gridRow: '3',
-  marginTop: '30%',
-  // margin: 'auto',
+  gridRowEnd: '5',
 };
 
 class RatingsApp extends React.Component {
@@ -280,17 +280,33 @@ class RatingsApp extends React.Component {
     const { starSort } = this.state;
     const { productID } = this.props;
 
-    console.log(this.state.starSort)
+    // console.log(this.state.starSort);
     if (noReviews) {
       return (
         <div style={noReviewsGrid}>
           <div style={{ textAlign: 'center', fontSize: '40px', gridRow: '1' }}>Be the first to write a review!</div>
-          <button className="addReview" type="button" onClick={this.writeReviewClick} style={noReviewsAddBtn}>ADD A REVIEW +</button>
+          <button
+            className="addReview"
+            type="button"
+            onClick={this.writeReviewClick}
+            style={noReviewsAddBtn}
+          >
+            ADD A REVIEW +
+          </button>
           {
           writeReviewModal
           && (
-          <div style={modalStyle} role="button" onClick={this.exitWriteReviewClick}>
-            <div style={innerModalStyle} onClick={(e) => e.stopPropagation()}>
+          <div
+            style={modalStyle}
+            aria-hidden="true"
+            role="button"
+            onClick={this.exitWriteReviewClick}
+          >
+            <div
+              style={innerModalStyle}
+              aria-hidden="true"
+              onClick={(e) => e.stopPropagation()}
+            >
               <WriteReview
                 handleReviewData={this.handleReviewData}
                 productID={productID}
@@ -313,7 +329,12 @@ class RatingsApp extends React.Component {
       <div style={gridLayout}>
 
         <div style={ratingGrid}>
-          <RatingBreakdown metaData={metaData} sortByStar={this.sortByStar} starSort={starSort} clearStarFilter={this.clearStarFilter}/>
+          <RatingBreakdown
+            metaData={metaData}
+            sortByStar={this.sortByStar}
+            starSort={starSort}
+            clearStarFilter={this.clearStarFilter}
+          />
         </div>
 
         <div style={productStyle}>
@@ -323,8 +344,17 @@ class RatingsApp extends React.Component {
         {
           writeReviewModal
           && (
-          <div style={modalStyle} role="button" onClick={this.exitWriteReviewClick}>
-            <div style={innerModalStyle} onClick={(e) => e.stopPropagation()}>
+          <div
+            style={modalStyle}
+            aria-hidden="true"
+            role="button"
+            onClick={this.exitWriteReviewClick}
+          >
+            <div
+              style={innerModalStyle}
+              aria-hidden="true"
+              onClick={(e) => e.stopPropagation()}
+            >
               <WriteReview
                 handleReviewData={this.handleReviewData}
                 productID={productID}
@@ -345,6 +375,8 @@ class RatingsApp extends React.Component {
         </div>
 
         <div style={reviewListStyle}>
+
+          {/* <div style={{display: 'flex',}}> */}
           <ReviewList
             starSort={starSort}
             reviewList={reviewList}
@@ -355,23 +387,26 @@ class RatingsApp extends React.Component {
 
         <div style={reviewButtonsStyle}>
           <div style={{ display: 'flex', margin: 'auto', justifyContent: 'space-evenly' }}>
-            <div style={{ display: 'flex' }}>
-              <button id="addReview" type="button" onClick={this.writeReviewClick} style={addReviewBtnStyle}>ADD A REVIEW +</button>
-            </div>
+            <button
+              id="addReview"
+              type="button"
+              onClick={this.writeReviewClick}
+              style={addReviewBtnStyle}
+            >
+              ADD A REVIEW +
+            </button>
 
             {
           reviewList.length > 2 && hideMoreReviews === false
         && (
-          <div style={{ display: 'flex' }}>
-            <button
-              className="moreReviews"
-              type="button"
-              style={moreReviewsBtn}
-              onClick={this.moreReviewsClick}
-            >
-              MORE REVIEWS
-            </button>
-          </div>
+        <button
+          className="moreReviews"
+          type="button"
+          style={moreReviewsBtn}
+          onClick={this.moreReviewsClick}
+        >
+          MORE REVIEWS
+        </button>
         )
         }
           </div>

@@ -202,9 +202,9 @@ class ReviewListEntry extends React.Component {
             }}
             >
               Helpful?
-              <u onClick={this.handlePutEntry} id="helpful" style={{ marginLeft: '4px', marginRight: '2px' }}>Yes</u>
+              <u onClick={this.handlePutEntry} aria-hidden="true" id="helpful" style={{ marginLeft: '4px', marginRight: '2px' }}>Yes</u>
               {`(${review.helpfulness}) | `}
-              <u onClick={this.handlePutEntry} id="report" style={{ marginLeft: '4px' }}>Report</u>
+              <u onClick={this.handlePutEntry} aria-hidden="true" id="report" style={{ marginLeft: '4px' }}>Report</u>
             </div>
           </div>
         </div>

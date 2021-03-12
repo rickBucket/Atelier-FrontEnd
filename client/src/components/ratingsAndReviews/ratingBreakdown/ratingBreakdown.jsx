@@ -41,7 +41,8 @@ const starFilterStyle = {
   display: 'flex',
   marginBottom: '10px',
   flexWrap: 'wrap',
-  justifyContent: 'center'}
+  justifyContent: 'center',
+};
 
 const filtersContainer = {
   display: 'flex',
@@ -122,15 +123,15 @@ const RatingBreakdown = (props) => {
             starSort.length > 0
             && (
             <div>
-            <div style={starFilterStyle}>
-              {starSort
-              .sort((a, b) => b - a)
-              .map((star) => (
-                <StarFilterEntry star={star} sortByStar={sortByStar} key={star}/>
-              ))}
-            </div>
-            <div style={clearStarFilterStyle} onClick={clearStarFilter}>
-              <u style={{color: 'grey', fontSize: '13px'}}>Clear Star Review Filter</u>
+              <div style={starFilterStyle}>
+                {starSort
+                  .sort((a, b) => b - a)
+                  .map((star) => (
+                    <StarFilterEntry star={star} sortByStar={sortByStar} key={star} />
+                  ))}
+              </div>
+              <div style={clearStarFilterStyle} aria-hidden="true" onClick={clearStarFilter}>
+                <u style={{ color: 'grey', fontSize: '13px' }}>Clear Star Review Filter</u>
               </div>
             </div>
             )
@@ -145,7 +146,7 @@ const RatingBreakdown = (props) => {
         justifyContent: 'center',
       }}
       >
-        <div style={{display: 'flex', justifyContent: 'center'}}>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
           <RatingsBreakdownList metaData={props.metaData} sortByStar={sortByStar} />
         </div>
       </div>

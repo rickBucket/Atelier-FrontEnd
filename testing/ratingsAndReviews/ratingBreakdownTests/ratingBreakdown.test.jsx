@@ -5,7 +5,7 @@ import metaDummy from '../../../client/src/components/ratingsAndReviews/metaDumm
 
 describe('<RatingBreakdown />', () => {
   it('should render a div', () => {
-    const wrapper = shallow(<RatingBreakdown metaData={metaDummy}/>);
+    const wrapper = shallow(<RatingBreakdown metaData={metaDummy} starSort={[]} />);
     expect(wrapper.find('#data')).not.toBeUndefined();
   });
 });

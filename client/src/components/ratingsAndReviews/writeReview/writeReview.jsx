@@ -106,6 +106,7 @@ const submitStyle = {
   boxShadow: '2px 2px 4px grey',
   backgroundColor: 'white',
   fontFamily: 'Open Sans',
+  cursor: 'pointer',
   width: '300px',
   margin: 'auto',
   padding: '10px',
@@ -371,7 +372,7 @@ class WriteReview extends React.Component {
           </div>
 
           <button
-            id="submitReview"
+            className="submitReview"
             type="button"
             style={submitStyle}
             onClick={this.HandleReviewData}

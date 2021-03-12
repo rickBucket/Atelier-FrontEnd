@@ -12,27 +12,23 @@ const gridLayout = {
   gridTemplateColumns: 'repeat(3, 1fr)',
   gridTemplateRows: 'minmax(6, 1fr) 200px',
   gridGap: '10px',
-  rowGap: '10px',
-  borderRadius: '20px',
-  padding: '20px',
-  height: '80vh',
+  maxHeight: '80vh',
+  minWidth: '95vh',
 };
 
 const noReviewsGrid = {
   display: 'grid',
-  justifyContents: 'center',
+  justifyContent: 'center',
   gridGap: '20px',
   paddingTop: '30px',
   paddingBottom: '30px',
 };
 
 const mainDiv = {
+  display: 'flex',
+  justifyContent: 'center',
   paddingTop: '30px',
   paddingBottom: '30px',
-  marginBottom: '20%',
-  maxWidth: '80%',
-  maxHeight: '60%',
-  margin: 'auto',
 };
 
 const ratingGrid = {
@@ -99,7 +95,6 @@ const innerModalStyle = {
 
 const productStyle = {
   maxWidth: '100%',
-  marginTop: '10px',
   margin: 'auto',
   gridColumn: '1',
   gridRow: '3',
@@ -150,6 +145,7 @@ class RatingsApp extends React.Component {
     this.handlePut = this.handlePut.bind(this);
     this.listSortChange = this.listSortChange.bind(this);
     this.sortByStar = this.sortByStar.bind(this);
+    this.clearStarFilter = this.clearStarFilter.bind(this);
   }
 
   componentDidMount() {
@@ -226,6 +222,11 @@ class RatingsApp extends React.Component {
 
   sortByStar(e) {
     const { starSort } = this.state;
+    // if (e.target.id === '') {
+    //   this.setState({
+    //     starSort: [...starSort],
+    //   });
+    // } else
     if (starSort.indexOf(e.target.id) === -1) {
       this.setState({
         starSort: [...starSort, e.target.id],
@@ -236,6 +237,12 @@ class RatingsApp extends React.Component {
         starSort,
       });
     }
+  }
+
+  clearStarFilter() {
+    this.setState({
+      starSort: [],
+    });
   }
 
   exitWriteReviewClick() {
@@ -268,11 +275,12 @@ class RatingsApp extends React.Component {
     const { starSort } = this.state;
     const { productID } = this.props;
 
+    // console.log(this.state.starSort)
     if (noReviews) {
       return (
         <div style={noReviewsGrid}>
           <div style={{ textAlign: 'center', fontSize: '40px', gridRow: '1' }}>Be the first to write a review!</div>
-          <button id="addReview" type="button" onClick={this.writeReviewClick} style={noReviewsAddBtn}>ADD A REVIEW +</button>
+          <button className="addReview" type="button" onClick={this.writeReviewClick} style={noReviewsAddBtn}>ADD A REVIEW +</button>
           {
           writeReviewModal
           && (
@@ -300,7 +308,7 @@ class RatingsApp extends React.Component {
       <div style={gridLayout}>
 
         <div style={ratingGrid}>
-          <RatingBreakdown metaData={metaData} sortByStar={this.sortByStar} />
+          <RatingBreakdown metaData={metaData} sortByStar={this.sortByStar} starSort={starSort} clearStarFilter={this.clearStarFilter}/>
         </div>
 
         <div style={productStyle}>
@@ -343,7 +351,7 @@ class RatingsApp extends React.Component {
         <div style={reviewButtonsStyle}>
           <div style={{ display: 'flex', margin: 'auto', justifyContent: 'space-evenly' }}>
             <div style={{ display: 'flex' }}>
-              <button id="addReview" type="button" onClick={this.writeReviewClick} style={addReviewBtnStyle}>ADD A REVIEW +</button>
+              <button className="addReview" type="button" onClick={this.writeReviewClick} style={addReviewBtnStyle}>ADD A REVIEW +</button>
             </div>
 
             {
@@ -351,7 +359,7 @@ class RatingsApp extends React.Component {
         && (
           <div style={{ display: 'flex' }}>
             <button
-              id="moreReviews"
+              className="moreReviews"
               type="button"
               style={moreReviewsBtn}
               onClick={this.moreReviewsClick}

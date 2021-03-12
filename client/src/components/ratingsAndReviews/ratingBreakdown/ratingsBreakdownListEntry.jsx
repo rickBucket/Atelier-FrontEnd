@@ -4,16 +4,15 @@ const starBar = {
   height: '8px',
   marginLeft: '8px',
   marginRight: '10px',
-  marginBottom: '20px',
+  marginTop: '5px',
   width: '130px',
   border: 'none',
   backgroundColor: 'rgba(232, 232, 232, .8)',
-  boxShadow: '2px 2px 4px gold',
 };
 
 const starBarFlex = {
   display: 'flex',
-  margin: 'auto',
+  marginBottom: '10px',
   cursor: 'pointer',
 };
 
@@ -36,7 +35,7 @@ const starPercentage = (obj, key) => {
 const RatingsBreakdownListEntry = ({
   rating, ratings, totalRating, sortByStar
 }) => (
-  <div id={rating} style={starBarFlex} onClick={sortByStar}>
+  <div id={rating} className="starBar" style={starBarFlex} onClick={sortByStar}>
     <u id={rating} style={starFont}>
       {`${rating} stars`}
     </u>

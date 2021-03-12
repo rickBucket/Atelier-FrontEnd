@@ -9,7 +9,31 @@
 
 ::-webkit-scrollbar { display: none }
 
+.starBar:hover {
+  box-shadow: 2px 2px 4px gold;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 10px;
+  margin-bottom: 4px;
+  transition-duration: 0.2s;
+}
 
+.addReview:hover {
+  transition-duration: 0.2s;
+  box-shadow: 2px 2px 4px green;
+  color: green;
+}
+
+.submitReview:hover {
+  transition-duration: 0.2s;
+  box-shadow: 2px 2px 4px green;
+  color: green;
+}
+
+.moreReviews:hover {
+  transition-duration: 0.2s;
+  color: teal;
+}
 
 html {
   font-family: 'Open Sans', sans-serif, Arial;

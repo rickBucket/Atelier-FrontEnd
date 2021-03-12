@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-console */
 import React from 'react';
 import axios from 'axios';
@@ -5,41 +6,27 @@ import styled from 'styled-components';
 import ComparisonModal from './comparisonModal';
 import CardContainer from '../sharedStyledComponents/cardContainer';
 import StarRating from '../../shared/starRating';
+import averageRating from '../../shared/averageRating';
 
 class RelatedProductCard extends React.Component {
   constructor(props) {
     super(props);
+    const { parentProductIDInfo } = this.props;
     this.state = {
       productIDInfo: '',
-      parentProductIDInfo: this.props.parentProductIDInfo,
-      productIDStyles: '',
+      parentProductIDInfo,
       featuredURL: '',
       loaded: 0,
       openCompareModal: false,
       combinedFeatures: '',
       salePrice: '',
-      averageRating: '',
-      metaData: '',
+      averageStarRating: '',
       averageRatingLoaded: false,
     };
     // bind functions here
     this.handleCompareClick = this.handleCompareClick.bind(this);
     this.combineFeatures = this.combineFeatures.bind(this);
-    this.averageRating = this.averageRating.bind(this);
     this.changeProduct = this.changeProduct.bind(this);
-
-    this.ImageWrapper = styled.div`
-    height: 200px;
-    width: auto;
-    margin-bottom: 30px;
-  `;
-    this.Image = styled.img`
-    height: 100%;
-    width: 100%;
-    object-fit: contain;
-    object-position: 50% 0;
-    z-index: 0;
-  `;
   }
 
   componentDidMount() {
@@ -50,6 +37,7 @@ class RelatedProductCard extends React.Component {
           productIDInfo: data,
           parentProductFeatures: parentProductIDInfo.features,
           currentProductFeatures: data.features,
+          // eslint-disable-next-line react/destructuring-assignment
           loaded: this.state.loaded + 1,
         });
       })
@@ -73,13 +61,11 @@ class RelatedProductCard extends React.Component {
         }
         if (!url) {
           this.setState({
-            productIDStyles: data,
             loaded: this.state.loaded + 1,
             featuredURL: 'https://www.westernheights.k12.ok.us/wp-content/uploads/2020/01/No-Photo-Available.jpg',
           });
         } else {
           this.setState({
-            productIDStyles: data,
             loaded: this.state.loaded + 1,
             featuredURL: url,
           });
@@ -93,8 +79,7 @@ class RelatedProductCard extends React.Component {
     axios.get(`/reviews/?product_id=${productID}&meta=meta`)
       .then((results) => {
         this.setState({
-          metaData: results.data,
-          averageRating: Number(this.averageRating(results.data.ratings)),
+          averageStarRating: Number(averageRating(results.data.ratings)),
           averageRatingLoaded: true,
         });
       })
@@ -103,18 +88,12 @@ class RelatedProductCard extends React.Component {
       });
   }
 
-  averageRating(obj) {
-    let wholeTotal = 0;
-    let responseTotal = 0;
-    for (const star in obj) {
-      wholeTotal += (Number(obj[star]) * Number(star));
-      responseTotal += Number(obj[star]);
-    }
-    const result = wholeTotal / responseTotal;
-    if (isNaN((Math.round(result * 4) / 4).toFixed(1))) {
-      return 0;
-    }
-    return result.toFixed(1);
+  handleCompareClick() {
+    const { openCompareModal, parentProductFeatures, currentProductFeatures } = this.state;
+    this.setState({
+      openCompareModal: !openCompareModal,
+    });
+    this.combineFeatures(parentProductFeatures, currentProductFeatures);
   }
 
   changeProduct() {
@@ -167,20 +146,12 @@ class RelatedProductCard extends React.Component {
     });
   }
 
-  handleCompareClick() {
-    const { openCompareModal, parentProductFeatures, currentProductFeatures } = this.state;
-    this.setState({
-      openCompareModal: !openCompareModal,
-    });
-    this.combineFeatures(parentProductFeatures, currentProductFeatures);
-  }
-
   render() {
     const {
       salePrice,
       loaded,
       featuredURL,
-      productIDInfo, averageRatingLoaded, averageRating, openCompareModal, parentProductIDInfo,
+      productIDInfo, averageRatingLoaded, averageStarRating, openCompareModal, parentProductIDInfo,
       combinedFeatures,
     } = this.state;
     const sale = {
@@ -206,17 +177,13 @@ class RelatedProductCard extends React.Component {
             <ButtonWrapper>
               <CompareButton
                 onClick={this.handleCompareClick}
-                className={"fa fa-star-o"}
+                className="fa fa-star-o"
                 aria-label="Compare"
-              >
-
-              </CompareButton>
+              />
             </ButtonWrapper>
-
-            <this.ImageWrapper onClick={this.changeProduct}>
-              <this.Image src={featuredURL} alt={productIDInfo.name} />
-            </this.ImageWrapper>
-
+            <ImageWrapper onClick={this.changeProduct}>
+              <Image src={featuredURL} alt={productIDInfo.name} />
+            </ImageWrapper>
             <ProductContentWrapper style={{ fontSize: '12px' }}>{productIDInfo.category}</ProductContentWrapper>
             <ProductContentWrapper onClick={this.changeProduct} style={{ fontSize: '17px', fontWeight: 'bold' }}>{productIDInfo.name}</ProductContentWrapper>
             <ProductContentWrapper style={sale}>
@@ -226,7 +193,7 @@ class RelatedProductCard extends React.Component {
             {salePrice ? <ProductContentWrapper style={{ fontSize: '15px' }}>{salePrice}</ProductContentWrapper> : null}
             <ProductContentWrapper>
               {averageRatingLoaded ? (
-                <StarRating averageRating={averageRating} height={18} width={15} />) : null}
+                <StarRating averageRating={averageStarRating} height={18} width={15} />) : null}
             </ProductContentWrapper>
             {salePrice ? <LowerBorderDiv /> : <BorderDiv />}
           </CardContainer>
@@ -259,6 +226,20 @@ margin-left: 5%;
 margin-right: 5%;
 position: relative;
 bottom: 0px;
+`;
+
+const Image = styled.img`
+height: 100%;
+width: 100%;
+object-fit: contain;
+object-position: 50% 0;
+z-index: 0;
+`;
+
+const ImageWrapper = styled.div`
+height: 200px;
+width: auto;
+margin-bottom: 30px;
 `;
 
 const LowerBorderDiv = styled.div`
@@ -298,4 +279,4 @@ const ProductContentWrapper = styled.div`
 
 export default RelatedProductCard;
 
-{/* <img src="star2.png" style={{ height: '25px' }} alt="Compare Products" /> */}
+{ /* <img src="star2.png" style={{ height: '25px' }} alt="Compare Products" /> */ }

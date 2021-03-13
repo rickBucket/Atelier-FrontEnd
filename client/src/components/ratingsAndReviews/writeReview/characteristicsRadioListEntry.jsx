@@ -19,7 +19,6 @@ const descriptionFlex = {
 };
 
 const CharacteristicsRadioListEntry = ({ characteristicID, characteristic, characteristicsRadioClick }) => (
-
   <div>
     <div style={containerStyle}>{`* ${characteristic}`}</div>
 
@@ -299,4 +298,3 @@ const CharacteristicsRadioListEntry = ({ characteristicID, characteristic, chara
 );
 
 export default CharacteristicsRadioListEntry;
-

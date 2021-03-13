@@ -54,6 +54,7 @@ class App extends React.Component {
       loadedID: 0,
       metaData: {},
       productIndex: 0,
+      reviewCacheState: 0,
     };
     this.nextProduct = this.nextProduct.bind(this);
     this.fetchProductID = this.fetchProductID.bind(this);
@@ -98,12 +99,13 @@ class App extends React.Component {
   }
 
   nextProduct(e) {
-    const { productIndex, productIDs } = this.state;
+    const { productIndex, productIDs, reviewCacheState } = this.state;
     e.preventDefault();
     this.setState({
       productIndex: (productIndex + 1) % 7,
       productID: productIDs[(productIndex + 1) % 7],
       loadedID: 1,
+      reviewCacheState: reviewCacheState + 1,
     }, this.fetchMeta);
   }
 
@@ -125,7 +127,9 @@ class App extends React.Component {
   }
 
   render() {
-    const { productID, metaData, loadedID } = this.state;
+    const {
+      productID, metaData, loadedID, reviewCacheState,
+    } = this.state;
     return (
       <div>
         <Title onClick={scrollToTop}>
@@ -139,7 +143,11 @@ class App extends React.Component {
             <ProductMainView productID={productID} ratings={metaData.ratings} />
             <RelatedProductsMainView updateProduct={this.updateProduct} productID={productID} />
             <QuestionMaster productID={productID} />
-            <RatingsApp productID={productID} metaData={metaData} />
+            <RatingsApp
+              productID={productID}
+              metaData={metaData}
+              reviewCacheState={reviewCacheState}
+            />
           </div>
           )
         }

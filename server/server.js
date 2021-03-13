@@ -5,6 +5,8 @@ const reviews = require('./apiHelpers/reviewAPI.js');
 const questions = require('./apiHelpers/qandaAPI.js');
 const cart = require('./apiHelpers/cartAPI.js');
 const outfit = require('./apiHelpers/outfitAPI.js');
+const reviewCache = require('./apiHelpers/reviewCache.js');
+const storeCache = require('./apiHelpers/reviewCache.js');
 
 const app = express();
 const port = 3000;
@@ -26,13 +28,23 @@ app.get('/products', (req, res) => {
 });
 
 app.get('/reviews', (req, res) => {
-  reviews.getReviews(req.query, (err, data) => {
-    if (err) {
-      res.status(404).send(err);
-    } else {
-      res.status(200).send(data);
-    }
-  });
+  if (req.query.count === 1000) {
+    reviews.getReviews(req.query, (err, data) => {
+      if (err) {
+        res.status(404).send(err);
+      } else {
+        res.status(200).send(data);
+      }
+    });
+  } else {
+    reviews.getReviews(req.query, (err, data) => {
+      if (err) {
+        res.status(404).send(err);
+      } else {
+        res.status(200).send(data);
+      }
+    });
+  }
 });
 
 app.post('/reviews', (req, res) => {

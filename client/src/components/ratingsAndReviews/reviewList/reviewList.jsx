@@ -8,22 +8,37 @@ const gridLayout = {
 };
 
 const reviewList = ({
-  reviewList, reviewEnd, handlePut, starSort,
+  reviewList, reviewEnd, handlePut, starSort, reviewCacheState, reviewCache,
 }) => (
   <div>
+    {
+      starSort.length === 0
+      && (
+      <ul style={gridLayout}>
+        {reviewList.slice(0, reviewEnd)
+          .map((review, key) => (
+            <ReviewListEntry
+              review={review}
+              key={key}
+              handlePut={handlePut}
+            />
+          ))}
+      </ul>
+      )
+    }
+    {
+      starSort.length > 0
+    && (
     <ul style={gridLayout}>
-      {reviewList.slice(0, reviewEnd)
-        .map((review, key) => {
-          if (starSort.length > 0) {
-            return starSort.map((star) => {
-              if (Number(star) === review.rating) {
-                return <ReviewListEntry review={review} key={key} handlePut={handlePut} />;
-              }
-            });
+      {reviewCache[reviewCacheState].results
+        .map((review, key) => starSort.map((star) => {
+          if (Number(star) === review.rating) {
+            return <ReviewListEntry review={review} key={key} handlePut={handlePut} />;
           }
-          return <ReviewListEntry review={review} key={key} handlePut={handlePut} />;
-        })}
+        }))}
     </ul>
+    )
+    }
   </div>
 );
 

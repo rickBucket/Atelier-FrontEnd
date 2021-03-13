@@ -36,7 +36,7 @@ class AnswerPhoto extends React.Component {
     const { modal } = this.state;
     return (
       <div>
-        <PhotoContainer>
+        <PhotoContainer className="PhotoList">
           <Photos src={photo} alt="Product" onClick={this.selectModal} />
           <PhotoModal
             photo={photo}

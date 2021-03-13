@@ -7,6 +7,7 @@ import Answers from '../../client/src/components/questionsAndAnswers/Answers';
 
 describe('<Answers />', () => {
   it('if answer component has a helpful button', () => {
+    //unit test
     const component = mount(<Answers item={{
       answer_id: 5,
       body: "Something pretty durable but I can't be sure",
@@ -19,8 +20,8 @@ describe('<Answers />', () => {
       }],
     }}
     />);
-    component.find('button.helpful').simulate('click');
-    expect(component.state().clickedYes).toBe(false);
+    component.find("button[name='helpful']").simulate('click');
+    expect(component.state().clickedYes).toBe(true);
   });
 
   it('if answer component have a report button', () => {
@@ -36,7 +37,9 @@ describe('<Answers />', () => {
       }],
     }}
     />);
-    component.find('button.report').simulate('click');
-    expect(component.state().clickedReport).toBe(false);
+    component.find("button[name='report']").simulate('click');
+    expect(component.state().clickedReport).toBe(true);
   });
 });
+
+//integration test - axios request in questionmaster

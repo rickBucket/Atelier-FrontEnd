@@ -93,7 +93,7 @@ class ProductMainView extends React.Component {
     const { selectedPhoto, selectedStyle } = this.state;
     const { currentProduct, styles } = this.state;
     return (
-      <div style={{ marginTop: '84px' }}>
+      <div style={{ marginTop: '96px' }}>
         {
           selectedPhoto
           && (

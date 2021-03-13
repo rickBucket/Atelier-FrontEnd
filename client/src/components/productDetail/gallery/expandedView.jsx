@@ -12,6 +12,10 @@ const Div = styled.div`
   display: flex;
   justify-content: center;
   backdrop-filter: blur(8px) contrast(70%);
+  animation-name: fadeInOpacity;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: 0.1s;
 `;
 const Img = styled.img`
   border-radius: 4px;

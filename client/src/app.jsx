@@ -10,7 +10,7 @@ const Title = styled.div`
   width: 100%;
   height: 72px;
   margin-left: -8px;
-  margin-top: -84px;
+  margin-top: -96px;
   z-index: 250;
   position: fixed;
   background: linear-gradient(120deg, hsla(175,75%,45%,0.5), hsla(235,75%,45%,0.5));
@@ -26,7 +26,7 @@ const Title = styled.div`
   }
 `;
 const Button = styled.button`
-  margin: -67px 12px;
+  margin: -79px 12px;
   z-index: 270;
   position: fixed;
   background: linear-gradient(-60deg, hsla(175,55%,75%,0.7), hsla(235,55%,75%,0.7));

@@ -17,6 +17,20 @@ const Img = styled.img`
   max-height: 540px;
   max-width: 580px;
   cursor: pointer;
+  animation-name: custom;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: 0.2s;
+  @keyframes custom {
+    0% {
+      opacity: 0.7;
+      filter: blur(14px);
+    }
+    100% {
+      opacity: 1;
+      filter: blur(0px);
+    }
+  }
 `;
 
 function PrimaryImageView({ photo, handleExpand }) {

@@ -20,7 +20,6 @@ Include logo/demo screenshot etc.
 * [Jest, Enzyme, Webpack]()
 * [Styled Components]()
 
-
 ## Installation
 To get a local copy up and running follow these simple steps:
 
@@ -31,30 +30,32 @@ To get a local copy up and running follow these simple steps:
 2. Install NPM packages
    ```sh
    npm install
+    ```
 3. Compile Webpack
    ```sh
    npm run build
+    ```
 4. Start the server
    ```sh
    npm start
+    ```
 5. Navigate to localhost:3000
 
-<!-- TEAM -->
 ## Team
 
 * Patrick McConnell - Rating and Reviews
-  * person github here
-  * linked in here
+  * https://github.com/pmcconnell13
+  * https://www.linkedin.com/in/charlespatrickmcconnell
 
 * Zachary Medellin - Questions and Answers
-  * person github here
-  * linked in here
+  * https://github.com/zacharymed44
+  * https://www.linkedin.com/in/zachary-medellin
 
 * Dana Walsh - Related Products
   * https://github.com/danaewalsh
-  * www.linkedin.com/in/dana-walsh-8a81b549
+  * https://www.linkedin.com/in/dana-walsh
 
 * Ricky Zhao - Product Overview
-  * person github here
-  * linked in here
+  * https://github.com/rickBucket
+  * https://www.linkedin.com/in/ricky-zhao/
 

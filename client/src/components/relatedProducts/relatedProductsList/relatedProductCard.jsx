@@ -278,5 +278,3 @@ const ProductContentWrapper = styled.div`
 `;
 
 export default RelatedProductCard;
-
-{ /* <img src="star2.png" style={{ height: '25px' }} alt="Compare Products" /> */ }

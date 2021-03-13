@@ -74,6 +74,7 @@ class YourOutfitCard extends React.Component {
     const sale = {
       textDecoration: salePrice ? 'line-through' : 'none',
       color: salePrice ? 'red' : 'black',
+      fontSize: '15px',
     };
     return (
       <>
@@ -122,7 +123,7 @@ const BorderDiv = styled.div`
 border-bottom: 2px solid grey;
 align: center;
 width: 90%;
-margin-top: 102px;
+margin-top: 72px;
 margin-left: 5%;
 margin-right: 5%;
 position: relative;
@@ -179,7 +180,7 @@ const ButtonWrapper = styled.div`
 `;
 
 const ProductContentWrapper = styled.div`
-  margin: 3px 3px 3px 5px;
+  margin: 5px 15px;
 `;
 
 export default YourOutfitCard;

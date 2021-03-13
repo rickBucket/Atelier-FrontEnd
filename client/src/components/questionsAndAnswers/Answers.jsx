@@ -91,20 +91,21 @@ class Answers extends React.Component {
     const { clickedReport, helpful } = this.state;
     return (
       <div>
-        <Container>
-          <AnwserDiv>
-            <h3> A: </h3>
-            <AnswerBody>
-              { item.body }
-            </AnswerBody>
-          </AnwserDiv>
-          <br />
+        <AnwserDiv>
+          <h3> A: </h3>
+          <AnswerBody>
+            { item.body }
+          </AnswerBody>
+        </AnwserDiv>
+        <br />
 
-          <PhotoDiv>
-            {item.photos.map((photo, i) => (
-              <AnswerPhoto photo={photo} key={i} />
-            ))}
-          </PhotoDiv>
+        <PhotoDiv>
+          {item.photos.map((photo, i) => (
+            <AnswerPhoto photo={photo} key={i} />
+          ))}
+        </PhotoDiv>
+
+        <Container>
 
           {item.answerer_name === item.asker_name
             ? (
@@ -130,14 +131,13 @@ class Answers extends React.Component {
                 })}
               </p>
             )}
-
           <Divide className="divider"> | </Divide>
           <p> Helpful? </p>
-          <Button name="helpful" onClick={(event) => { event.preventDefault(); this.handleClick(event); }}> Yes </Button>
+          <Button  name="helpful" onClick={(event) => { event.preventDefault(); this.handleClick(event); }}> Yes </Button>
           <p>{helpful}</p>
           <Divide className="divider"> | </Divide>
           {!clickedReport ? (
-            <Button name="report" onClick={(event) => { event.preventDefault(); this.handleClick(event); }}> Report </Button>) : (<p>Reported</p>)}
+            <Button  name="report" onClick={(event) => { event.preventDefault(); this.handleClick(event); }}> Report </Button>) : (<p>Reported</p>)}
         </Container>
       </div>
     );

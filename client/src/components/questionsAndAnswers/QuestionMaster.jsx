@@ -95,6 +95,12 @@ const SearchBtn = styled.button`
   }
 `;
 
+const BtnHolder = styled.div`
+display: flex;
+flex-direction: row;
+
+`;
+
 // CLASS STARTS HERE ------------------------//
 
 class QuestionMaster extends React.Component {
@@ -136,7 +142,7 @@ class QuestionMaster extends React.Component {
   showMore() {
     this.state.itemsToShow === 4 ? (
       this.setState({
-        itemsToShow: this.state.questionData.length,
+        itemsToShow: this.state.filteredData.length,
         expanded: true,
       })
     ) : (
@@ -215,7 +221,7 @@ class QuestionMaster extends React.Component {
             ))}
           </QuestionContainer>
 
-          {filteredData.length > 1 && !(expanded) ? (
+          {filteredData.length > 4 && !(expanded) ? (
             <ButtonA className="Load-button" onClick={this.showMore}>
               {' '}
               <b> MORE ANSWERED QUESTIONS </b>

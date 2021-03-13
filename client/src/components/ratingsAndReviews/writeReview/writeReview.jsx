@@ -188,7 +188,7 @@ class WriteReview extends React.Component {
     const { metaData } = this.props;
     const { handleReviewData } = this.props;
 
-    if (rating === null || recommend === null
+    if (rating === null || recommend === null)
       // || (metaData.characteristics.Comfort.id
       // && !characteristics[metaData.characteristics.Comfort.id])
       // || (metaData.characteristics.Quality.id
@@ -199,8 +199,8 @@ class WriteReview extends React.Component {
       // && !characteristics[metaData.characteristics.Fit.id])
       // || (metaData.characteristics.Width.id
       // && !characteristics[metaData.characteristics.Width.id])
-      || (metaData.characteristics.Size.id !== undefined
-      && !characteristics[metaData.characteristics.Size.id]))
+      // || (metaData.characteristics.Size.id !== undefined
+      // && !characteristics[metaData.characteristics.Size.id]))
       {
       alert('Please fill out all required (*) fields');
       e.preventDefault();
@@ -230,7 +230,6 @@ class WriteReview extends React.Component {
       e.preventDefault();
       return false;
     }
-    console.log('i made it!');
 
     alert('Your review has been submitted!');
     handleReviewData(this.state);

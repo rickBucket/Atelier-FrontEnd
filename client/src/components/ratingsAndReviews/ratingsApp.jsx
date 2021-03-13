@@ -27,8 +27,9 @@ const mainDiv = {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  maxHeight: '90%',
+  maxHeight: '100%',
   maxWidth: '80%',
+  marginTop: '20px',
   marginLeft: 'auto',
   marginRight: 'auto',
   // marginTop: '30px',
@@ -37,7 +38,8 @@ const mainDiv = {
 
 const ratingGrid = {
   gridColumn: '1',
-  gridRow: '2',
+  gridRow: '1',
+  maxheight: '200px',
 };
 
 const addReviewBtnStyle = {
@@ -101,11 +103,10 @@ const productStyle = {
   maxWidth: '100%',
   margin: 'auto',
   gridColumn: '1',
-  gridRow: '3',
+  gridRow: '2',
 };
 
 const sortOptionsStyle = {
-  marginTop: '60px',
   marginLeft: '30px',
   gridColumn: '2/-1',
   gridRow: '1',
@@ -113,10 +114,11 @@ const sortOptionsStyle = {
 
 const reviewListStyle = {
   gridColumn: '2/-1',
-  gridRow: '2/5',
+  gridRow: '1/5',
   overflow: 'auto',
   maxWidth: '90%',
-  maxHeight: '550px',
+  maxHeight: '520px',
+  marginTop: '40px',
   marginBottom: '20px',
   marginLeft: '20px',
   listStyle: 'none',
@@ -124,8 +126,9 @@ const reviewListStyle = {
 
 const reviewButtonsStyle = {
   width: '100%',
+  marginTop: '10px',
   gridColumn: '2/-1',
-  gridRowEnd: '5',
+  gridRowEnd: '4',
 };
 
 class RatingsApp extends React.Component {
@@ -158,7 +161,7 @@ class RatingsApp extends React.Component {
     /// /GET product reviews/////
     const { productID } = this.props;
 
-    axios.get(`/reviews/?product_id=${productID}&count=6`)
+    axios.get(`/reviews/?product_id=${productID}&count=4`)
       .then((results) => {
         if (results.data.results.length === 0) {
           this.setState({
@@ -184,8 +187,6 @@ class RatingsApp extends React.Component {
   }
 
   handleReviewData(reviewData) {
-    console.log(reviewData);
-    // axiosPost here
     axios.post('/reviews', reviewData)
       .then((results) => {
       })
@@ -195,7 +196,6 @@ class RatingsApp extends React.Component {
   }
 
   handlePut(review_id, type) {
-    console.log(review_id, type);
     axios.put(`/reviews/${review_id}/${type}`)
       .then((results) => {
       })

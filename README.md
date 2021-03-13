@@ -1,4 +1,4 @@
-# fec-projectCatwalk
+# FEC-ProjectCatwalk
 Front End Capstone Project at Hack Reactor.
 
 ## Motivation
@@ -7,7 +7,7 @@ This project was designed to grow our understanding of building, maintaining, an
 
 ## Build status
 
-[Observant-Ostriches](https://circleci.com/gh/Observant-Ostriches/fec-projectCatwalk.svg?style=svg)](https://github.com/Observant-Ostriches/fec-projectCatwalk)
+[![Observant-Ostriches](https://circleci.com/gh/Observant-Ostriches/fec-projectCatwalk.svg?style=svg)](https://github.com/Observant-Ostriches/fec-projectCatwalk)
 
 
 ## Screenshots

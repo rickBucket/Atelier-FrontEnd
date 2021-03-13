@@ -46,19 +46,21 @@ class ProductMainView extends React.Component {
     this.changeStyle = this.changeStyle.bind(this);
     this.selectPhoto = this.selectPhoto.bind(this);
     this.unselectPhoto = this.unselectPhoto.bind(this);
+    this.cacheImages = this.cacheImages.bind(this);
   }
 
   componentDidMount() {
     const { productID } = this.props;
-    axios.get(`/products/?product_id=${productID}`)
+    const promises = [];
+    promises.push(axios.get(`/products/?product_id=${productID}`)
       .then(({ data }) => {
         this.setState({
           currentProduct: data,
           // eslint-disable-next-line
           loaded: this.state.loaded + 1,
         });
-      });
-    axios.get(`/products/?product_id=${productID}&flag=styles`)
+      }));
+    promises.push(axios.get(`/products/?product_id=${productID}&flag=styles`)
       .then(({ data }) => {
         this.setState({
           styles: data.results,
@@ -66,7 +68,22 @@ class ProductMainView extends React.Component {
           loaded: this.state.loaded + 1,
           selectedStyle: data.results.find((element) => element['default?'] === true) || data.results[0],
         });
-      });
+      }));
+    Promise.all(promises)
+      .then(() => this.cacheImages());
+  }
+
+  cacheImages() {
+    const { styles } = this.state;
+    const promises = styles.map((style) => (
+      new Promise((resolve, reject) => {
+        const img = new Image();
+        img.src = style.photos[0].url;
+        img.onload = resolve();
+        img.onerror = reject();
+      })
+    ));
+    Promise.all(promises);
   }
 
   changeStyle(id) {

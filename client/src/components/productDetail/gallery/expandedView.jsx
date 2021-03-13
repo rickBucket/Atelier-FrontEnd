@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 const Div = styled.div`
   background: rgba(0,0,0,0.55);
-  margin: -84px -8px;
+  margin: -96px -8px;
   height: 100%;
   width: 100%;
   position: fixed;
@@ -12,10 +12,10 @@ const Div = styled.div`
   display: flex;
   justify-content: center;
   backdrop-filter: blur(8px) contrast(70%);
-  animation-name: fadeInOpacity;
+  animation-name: custom;
   animation-iteration-count: 1;
-  animation-timing-function: ease-in;
-  animation-duration: 0.1s;
+  animation-timing-function: ease;
+  animation-duration: 0.25s;
 `;
 const Img = styled.img`
   border-radius: 4px;

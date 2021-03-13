@@ -4,8 +4,8 @@ import Adapter from 'enzyme-adapter-react-16';
 import AnswerPhoto from '../../client/src/components/questionsAndAnswers/AnswerPhoto.jsx';
 
 describe('<AnswerPhoto />', () => {
-  it('renders a div component', () => {
+  it('Should render a container of photos', () => {
     const wrapper = shallow(<AnswerPhoto />);
-    expect(wrapper.find('#data')).not.toBeUndefined();
-  });
+    expect(wrapper.find('.PhotoList')).toBeDefined();
+  }); 
 });

@@ -104,6 +104,7 @@ class AnswerModal extends React.Component {
       newEmail: '',
       newAnswer: '',
       images: [],
+      send: false,
     };
     this.selectModal = this.selectModal.bind(this);
     this.postAnswer = this.postAnswer.bind(this);
@@ -137,6 +138,9 @@ class AnswerModal extends React.Component {
       newAnswer, newName, newEmail, images,
     } = this.state;
     const { q_id } = this.props;
+    this.setState({
+      send: true,
+    });
     axios.post('/qa/questions', {
       body: newAnswer,
       name: newName,
@@ -185,7 +189,7 @@ class AnswerModal extends React.Component {
             <p>For privacy reasons, do not use your full name or email address</p>
             <NewQueC placeholder="Enter Answer Here..." required type="text" maxLength="1000" minLength="1" autoComplete="off" value={newAnswer} onChange={(event) => { event.preventDefault(); this.type(event); }} />
             <AddImg type="file" onChange={this.addImg} />
-            <Button onClick={(event) => { this.postAnswer(event); }}> Submit Answer </Button>
+            <Button className="submitA" onClick={(event) => { this.postAnswer(event); }}> Submit Answer </Button>
           </NewForm>
         </ModalCon>
       </Modal>

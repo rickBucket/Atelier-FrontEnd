@@ -56,7 +56,10 @@ class Answers extends React.Component {
   }
 
   handleClick(event) {
-    if (!this.state.clickedYes && event.target.name === "helpful") {
+    if (!this.state.clickedYes && event.target.name === 'helpful') {
+      this.setState({
+        clickedYes: true,
+      });
       axios.put('/qa/questions', {
         answer_id: this.props.item.id,
         type: event.target.name,
@@ -64,18 +67,21 @@ class Answers extends React.Component {
         .then((response) => {
           this.setState({
             helpful: this.state.helpful + 1,
-            clickedYes: true,
           });
+        })
+        .catch((err) => {
+          console.log(err);
         });
     } else {
+      this.setState({
+        clickedReport: true,
+      });
       axios.put('/qa/questions', {
         answer_id: this.props.item.id,
         type: event.target.name,
       })
-        .then((response) => {
-          this.setState({
-            clickedReport: true,
-          });
+        .then(() => {
+          console.log('this answer has been reported.');
         });
     }
   }
@@ -85,21 +91,20 @@ class Answers extends React.Component {
     const { clickedReport, helpful } = this.state;
     return (
       <div>
-        <AnwserDiv>
-          <h3> A: </h3>
-          <AnswerBody>
-            { item.body }
-          </AnswerBody>
-        </AnwserDiv>
-        <br />
-
-        <PhotoDiv>
-          {item.photos.map((photo, i) => (
-            <AnswerPhoto photo={photo} key={i} />
-          ))}
-        </PhotoDiv>
-
         <Container>
+          <AnwserDiv>
+            <h3> A: </h3>
+            <AnswerBody>
+              { item.body }
+            </AnswerBody>
+          </AnwserDiv>
+          <br />
+
+          <PhotoDiv>
+            {item.photos.map((photo, i) => (
+              <AnswerPhoto photo={photo} key={i} />
+            ))}
+          </PhotoDiv>
 
           {item.answerer_name === item.asker_name
             ? (
@@ -125,13 +130,14 @@ class Answers extends React.Component {
                 })}
               </p>
             )}
+
           <Divide className="divider"> | </Divide>
           <p> Helpful? </p>
-          <Button className="helpful" name="helpful" onClick={(event) => { event.preventDefault(); this.handleClick(event); }}> Yes </Button>
+          <Button name="helpful" onClick={(event) => { event.preventDefault(); this.handleClick(event); }}> Yes </Button>
           <p>{helpful}</p>
           <Divide className="divider"> | </Divide>
           {!clickedReport ? (
-            <Button className="report" name="report" onClick={(event) => { event.preventDefault(); this.handleClick(event); }}> Report </Button>) : (<p>Reported</p>)}
+            <Button name="report" onClick={(event) => { event.preventDefault(); this.handleClick(event); }}> Report </Button>) : (<p>Reported</p>)}
         </Container>
       </div>
     );

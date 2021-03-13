@@ -128,7 +128,12 @@ class QuestionModal extends React.Component {
 
   postQuestion() {
     const { product_id } = this.props;
-    const { newQuestion, newName, newEmail } = this.state;
+    const {
+      newQuestion, newName, newEmail,
+    } = this.state;
+    this.setState({
+      send: true,
+    });
     axios.post('/qa/questions', {
       body: newQuestion,
       name: newName,
@@ -151,13 +156,13 @@ class QuestionModal extends React.Component {
       <Modal className="modal" onClick={(event) => { this.selectModal(event); }} style={divStyle}>
         <Modal_Con onClick={(event) => { event.stopPropagation(); }}>
           <Close className="close" onClick={(event) => { this.selectModal(event); }}>&times;</Close>
-          <NewForm>
+          <NewForm className="QuestionForm">
             <NewQueA placeholder="Example: jack@email.com" required type="email" maxLength="60" autoComplete="off" value={newEmail} onChange={(event) => { this.type(event); }} />
             <p>For authentication reasons, you will not be emailed</p>
             <NewQueB placeholder="Examples: jackson11!" required type="text" maxLength="60" autoComplete="off" value={newName} onChange={(event) => { this.type(event); }} />
             <p>For privacy reasons, do not use your full name or email address</p>
             <NewQueC placeholder="Enter Question Here..." required type="text" maxLength="1000" minLength="" autoComplete="off" value={newQuestion} onChange={(event) => { this.type(event); }} />
-            <Button onClick={(event) => { this.postQuestion(event); }}> Submit Question </Button>
+            <Button className="submitQ" onClick={(event) => { this.postQuestion(event); }}> Submit Question </Button>
           </NewForm>
         </Modal_Con>
       </Modal>

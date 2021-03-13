@@ -1,1 +1,2 @@
-Individual README for related products
+# Related Products and Your Outfit
+## Related Products

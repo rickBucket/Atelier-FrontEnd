@@ -3,7 +3,7 @@ Front End Capstone Project at Hack Reactor.
 
 ## Motivation
 
-This project was designed to grow our understanding of building, maintaining, and optimizing a full react application. While the project was completed as a group, each individual was fully responsible for their individual component. This allowed each of us to utilize and strengthen our understanding of front end development.
+This project was designed to grow our understanding of building, maintaining, and optimizing a full react application. While the project was completed as a group, each individual was fully responsible for their own component. This allowed each of us to utilize and strengthen our understanding of front end development.
 
 ## Build status
 

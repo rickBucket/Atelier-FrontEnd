@@ -179,7 +179,7 @@ class WriteReview extends React.Component {
 
   HandleReviewData(e) {
     // mandatory  fields
-    const { rating } = this.state;
+    const { rating, characteristics } = this.state;
     const { recommend } = this.state;
     const { body } = this.state;
     const { email } = this.state;
@@ -188,7 +188,20 @@ class WriteReview extends React.Component {
     const { metaData } = this.props;
     const { handleReviewData } = this.props;
 
-    if (rating === null || recommend === null || metaData.characteristics.Comfort.id === null || metaData.characteristics.Quality.id === null || metaData.characteristics.Length.id === null || metaData.characteristics.Fit.id === null) {
+    if (rating === null || recommend === null
+      // || (metaData.characteristics.Comfort.id
+      // && !characteristics[metaData.characteristics.Comfort.id])
+      // || (metaData.characteristics.Quality.id
+      // && !characteristics[metaData.characteristics.Quality.id])
+      // || (metaData.characteristics.Length.id
+      // && !characteristics[metaData.characteristics.Length.id])
+      // || (metaData.characteristics.Fit.id
+      // && !characteristics[metaData.characteristics.Fit.id])
+      // || (metaData.characteristics.Width.id
+      // && !characteristics[metaData.characteristics.Width.id])
+      || (metaData.characteristics.Size.id !== undefined
+      && !characteristics[metaData.characteristics.Size.id]))
+      {
       alert('Please fill out all required (*) fields');
       e.preventDefault();
       return false;

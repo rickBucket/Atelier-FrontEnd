@@ -6,6 +6,7 @@ import WriteReview from './writeReview/writeReview';
 import RatingBreakdown from './ratingBreakdown/ratingBreakdown';
 import ProductBreakdown from './productBreakdown/productBreakdown';
 import SortOptions from './sortOptions/sortOptions';
+import reviewCache from '../../../../server/apiHelpers/reviewCache';
 
 const gridLayout = {
   display: 'grid',
@@ -26,11 +27,11 @@ const mainDiv = {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  maxHeight: '80%',
+  maxHeight: '90%',
   maxWidth: '80%',
   marginLeft: 'auto',
   marginRight: 'auto',
-  marginTop: '30px',
+  // marginTop: '30px',
   marginBottom: '30px',
 };
 
@@ -172,6 +173,14 @@ class RatingsApp extends React.Component {
       .catch((err) => {
         console.log('error on review GET request', err);
       });
+
+    axios.get(`/reviews/?product_id=${productID}&count=1000`)
+      .then((results) => {
+        reviewCache.reviewCache.push(results.data);
+      })
+      .catch((err) => {
+        console.log('err on 1000 get', err);
+      });
   }
 
   handleReviewData(reviewData) {
@@ -179,7 +188,6 @@ class RatingsApp extends React.Component {
     // axiosPost here
     axios.post('/reviews', reviewData)
       .then((results) => {
-        console.log('post results client side', results);
       })
       .catch((err) => {
         console.log('err on review POST', err);
@@ -190,7 +198,6 @@ class RatingsApp extends React.Component {
     console.log(review_id, type);
     axios.put(`/reviews/${review_id}/${type}`)
       .then((results) => {
-        console.log(results.data);
       })
       .catch((err) => {
         console.log(err.data);
@@ -198,26 +205,31 @@ class RatingsApp extends React.Component {
   }
 
   moreReviewsClick() {
-    const { productID } = this.props;
-    const { reviewEnd } = this.state;
-    const { reviewList } = this.state;
+    const { productID, reviewCacheState } = this.props;
+    const { reviewEnd, reviewList } = this.state;
+
     const newEnd = reviewEnd + 2;
     if (newEnd > reviewList.length) {
       this.setState({
         hideMoreReviews: true,
       });
     }
+
     if (newEnd === reviewList.length - 1 || newEnd === reviewList.length) {
-      axios.get(`/reviews/?product_id=${productID}&count=${newEnd + 20}`)
-        .then((results) => {
-          this.setState({
-            reviewList: results.data.results,
-            reviewEnd: newEnd,
-          });
-        })
-        .catch((err) => {
-          console.log('error on review GET request', err);
-        });
+      // axios.get(`/reviews/?product_id=${productID}&count=${newEnd + 20}`)
+      //   .then((results) => {
+      //     this.setState({
+      //       reviewList: results.data.results,
+      //       reviewEnd: newEnd,
+      //     });
+      //   })
+      //   .catch((err) => {
+      //     console.log('error on review GET request', err);
+      //   });
+      this.setState({
+        reviewList: reviewCache.reviewCache[reviewCacheState].results.slice(0, (newEnd + 20)),
+        reviewEnd: newEnd,
+      });
     } else {
       this.setState({
         reviewEnd: newEnd,
@@ -269,16 +281,11 @@ class RatingsApp extends React.Component {
   }
 
   render() {
-    const { noReviews } = this.state;
-    const { metaData } = this.state;
-    const { writeReviewModal } = this.state;
-    const { reviewsReady } = this.state;
-    const { reviewList } = this.state;
-    const { listSort } = this.state;
-    const { reviewEnd } = this.state;
-    const { hideMoreReviews } = this.state;
-    const { starSort } = this.state;
-    const { productID } = this.props;
+    const {
+      noReviews, metaData, writeReviewModal,
+      reviewsReady, reviewList, listSort, reviewEnd, hideMoreReviews, starSort,
+    } = this.state;
+    const { productID, reviewCacheState } = this.props;
 
     // console.log(this.state.starSort);
     if (noReviews) {
@@ -378,6 +385,8 @@ class RatingsApp extends React.Component {
 
           {/* <div style={{display: 'flex',}}> */}
           <ReviewList
+            reviewCache={reviewCache.reviewCache}
+            reviewCacheState={reviewCacheState}
             starSort={starSort}
             reviewList={reviewList}
             reviewEnd={reviewEnd}

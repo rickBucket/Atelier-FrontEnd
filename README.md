@@ -26,7 +26,7 @@ To get a local copy up and running follow these simple steps:
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/Team-Dobos-Torte/FEC-Project-Catwalk.git
+   git clone https://github.com/Observant-Ostriches/fec-projectCatwalk.git
    ```
 2. Install NPM packages
    ```sh
@@ -51,7 +51,7 @@ To get a local copy up and running follow these simple steps:
   * linked in here
 
 * Dana Walsh - Related Products
-  * person github here
+  * https://github.com/danaewalsh
   * linked in here
 
 * Ricky Zhao - Product Overview

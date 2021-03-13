@@ -163,7 +163,6 @@ class YourOutfitList extends React.Component {
     const carousel = document.getElementById('yourOutfit');
     if (carousel) {
       const bool = carousel.scrollWidth > carousel.clientWidth;
-      console.log('is the div overflowing?', bool);
       this.setState({
         // cardOverflow: bool,
         imagesToTheRight: bool,
@@ -238,8 +237,13 @@ const AddOutfitContent = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  font-weight: bold;
+  border-radius: 3px;
   background: rgba(255,255,255,0.1);
+  box-shadow: 0px 0px 1px rgba(0,0,0,0.5);
+
+
   &:hover {
-    opacity: .7
+    background: linear-gradient(180deg, hsl(190,45%,95%), hsl(240,60%,100%));
   }
 `;

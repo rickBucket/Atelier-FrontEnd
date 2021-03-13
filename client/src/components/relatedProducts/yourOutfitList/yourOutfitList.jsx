@@ -240,6 +240,8 @@ const AddOutfitContent = styled.div`
   font-weight: bold;
   border-radius: 3px;
   background: rgba(255,255,255,0.1);
+  box-shadow: 0px 0px 1px rgba(0,0,0,0.5);
+
 
   &:hover {
     background: linear-gradient(180deg, hsl(190,45%,95%), hsl(240,60%,100%));

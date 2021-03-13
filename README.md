@@ -52,7 +52,7 @@ To get a local copy up and running follow these simple steps:
 
 * Dana Walsh - Related Products
   * https://github.com/danaewalsh
-  * linked in here
+  * www.linkedin.com/in/dana-walsh-8a81b549
 
 * Ricky Zhao - Product Overview
   * person github here

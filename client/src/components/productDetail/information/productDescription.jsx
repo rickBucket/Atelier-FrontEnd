@@ -11,7 +11,7 @@ const FlexDiv = styled.div`
   display: flex;
   justify-content: center;
   max-width: 960px;
-  margin: 45px auto 96px auto;
+  margin: 32px auto 36px auto;
 `;
 
 function formatFeatures(featureArray) {

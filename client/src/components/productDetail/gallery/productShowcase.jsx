@@ -66,6 +66,19 @@ class ProductShowcase extends React.Component {
     this.nextPhoto = this.nextPhoto.bind(this);
   }
 
+  componentDidMount() {
+    const { photos } = this.state;
+    const promises = photos.map((photo) => (
+      new Promise((resolve, reject) => {
+        const img = new Image();
+        img.src = photo.url;
+        img.onload = resolve();
+        img.onerror = reject();
+      })
+    ));
+    Promise.all(promises);
+  }
+
   handleClick(value) {
     const { photos } = this.state;
     this.setState({
@@ -119,7 +132,7 @@ class ProductShowcase extends React.Component {
           this.isPosition('left')
           && (
             <Button
-              style={{ margin: '276px 488px -64px -552px' }}
+              style={{ margin: '276px 496px -64px -552px' }}
               onClick={() => this.nextPhoto(-1)}
               className="fa fa-arrow-left"
               aria-label="left"

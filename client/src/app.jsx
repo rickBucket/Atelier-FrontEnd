@@ -141,7 +141,11 @@ class App extends React.Component {
           && (
           <div>
             <ProductMainView productID={productID} ratings={metaData.ratings} />
-            <RelatedProductsMainView updateProduct={this.updateProduct} productID={productID} />
+            <RelatedProductsMainView
+              updateProduct={this.updateProduct}
+              productID={productID}
+              ratings={metaData.ratings}
+            />
             <QuestionMaster productID={productID} />
             <RatingsApp
               productID={productID}

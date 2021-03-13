@@ -4,6 +4,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import CardContainer from '../sharedStyledComponents/cardContainer';
+import StarRating from '../../shared/starRating';
 
 class YourOutfitCard extends React.Component {
   constructor(props) {
@@ -11,6 +12,7 @@ class YourOutfitCard extends React.Component {
     this.state = {
       productIDInfo: '',
       productIDStyles: '',
+      productRating: '',
       featuredURL: '',
       loaded: 0,
       salePrice: '',
@@ -38,6 +40,7 @@ class YourOutfitCard extends React.Component {
       this.setState({
         productIDInfo: outfit.info,
         productIDStyles: outfit.styles,
+        productRating: outfit.rating,
         loaded: this.state.loaded + 1,
         featuredURL: 'https://www.westernheights.k12.ok.us/wp-content/uploads/2020/01/No-Photo-Available.jpg',
       });
@@ -45,6 +48,7 @@ class YourOutfitCard extends React.Component {
       this.setState({
         productIDInfo: outfit.info,
         productIDStyles: outfit.styles,
+        productRating: outfit.rating,
         loaded: this.state.loaded + 1,
         featuredURL: url,
       });
@@ -65,11 +69,12 @@ class YourOutfitCard extends React.Component {
 
   render() {
     const {
-      salePrice, loaded, featuredURL, productIDInfo,
+      salePrice, loaded, featuredURL, productIDInfo, productRating,
     } = this.state;
     const sale = {
       textDecoration: salePrice ? 'line-through' : 'none',
       color: salePrice ? 'red' : 'black',
+      fontSize: '15px',
     };
     return (
       <>
@@ -86,9 +91,7 @@ class YourOutfitCard extends React.Component {
                   onClick={this.removeOutfit}
                   className="fa fa-times"
                   aria-label="Delete product from outfit"
-                >
-
-                </DeleteButton>
+                />
               </ButtonWrapper>
 
               <ImageWrapper onClick={this.changeProduct}>
@@ -104,6 +107,9 @@ class YourOutfitCard extends React.Component {
                 {productIDInfo.default_price}
               </ProductContentWrapper>
               {salePrice ? <ProductContentWrapper style={{ fontSize: '15px' }}>{salePrice}</ProductContentWrapper> : null}
+              <ProductContentWrapper>
+                <StarRating averageRating={productRating} height={18} width={15} />
+              </ProductContentWrapper>
               {salePrice ? <LowerBorderDiv /> : <BorderDiv />}
             </CardContainer>
           )
@@ -117,7 +123,7 @@ const BorderDiv = styled.div`
 border-bottom: 2px solid grey;
 align: center;
 width: 90%;
-margin-top: 102px;
+margin-top: 72px;
 margin-left: 5%;
 margin-right: 5%;
 position: relative;
@@ -174,9 +180,7 @@ const ButtonWrapper = styled.div`
 `;
 
 const ProductContentWrapper = styled.div`
-  margin: 3px 3px 3px 5px;
+  margin: 5px 15px;
 `;
 
 export default YourOutfitCard;
-
-{ /* <img src="close.png" style={{ height: '25px' }} alt="" /> */ }

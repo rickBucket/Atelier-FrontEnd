@@ -30,6 +30,18 @@ For futher information and demos of these components please see:
 ### Questions & Answers
 
 ### Ratings & Reviews
+![Related_Products_Screenshot](./readMeImg/WholeReviewsComponentView.jpg)
+
+Ratings and Reviews displays dynamically rendered client reviews and their ratings meta data for the selected product.
+  - Server side caching system to reduce number of API requests to two upon page load
+  - Star filtration functionality to designed to retrieve reviews of specific star rating
+  - Scrollable list of reviews with conditionally rendered subcomponents
+
+![Related_Products_Screenshot](./readMeImg/ReviewSubmissionForm.jpg)
+
+Review submission form with validation for client to rate products
+  - Validation on client side preventing faulty reviews from being sent to server
+  - Dynamically rendered subcomponents specific to product being reviewed
 
 ### Built With
 

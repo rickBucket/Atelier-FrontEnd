@@ -12,6 +12,12 @@ This project was designed to grow our understanding of building, maintaining, an
 
 ## Component Details
 ### Main Product Overview
+![Product_Overview_Screenshot](./readMeImg/ProductOverview.jpg)
+Product Overview displays a primary product with product information:
+  - A gallery of product images
+  - An assortment of styles to select for each product
+  - Product descriptions, slogans, features, and pricing
+  - Size and quantity available
 
 ### Related Products and Your Outfit
 ![Related_Products_Screenshot](./client/src/components/relatedProducts/README_content/relatedProducts.png)

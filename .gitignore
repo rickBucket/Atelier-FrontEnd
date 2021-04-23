@@ -5,3 +5,4 @@ coverage
 aws-demo.pem
 FEC.pem
 *.pem
+.DS_Store

@@ -12,6 +12,12 @@ This project was designed to grow our understanding of building, maintaining, an
 
 ## Component Details
 ### Main Product Overview
+![Product_Overview_Screenshot](./readMeImg/ProductOverview.jpg)
+Product Overview displays a primary product with product information:
+  - A gallery of product images
+  - An assortment of styles to select for each product
+  - Product descriptions, slogans, features, and pricing
+  - Size and quantity available
 
 ### Related Products and Your Outfit
 ![Related_Products_Screenshot](./client/src/components/relatedProducts/README_content/relatedProducts.png)
@@ -30,6 +36,18 @@ For futher information and demos of these components please see:
 ### Questions & Answers
 
 ### Ratings & Reviews
+![Related_Products_Screenshot](./readMeImg/ratingsAndReviews.gif)
+
+Ratings and Reviews displays dynamically rendered client reviews and their ratings meta data for the selected product.
+  - Server side caching system to reduce number of API requests to two upon page load
+  - Star filtration functionality to designed to retrieve reviews of specific star rating
+  - Scrollable list of reviews with conditionally rendered subcomponents
+
+![Related_Products_Screenshot](./readMeImg/submissionFormDemo.gif)
+
+Review submission form with validation for client to rate products
+  - Validation on client side preventing faulty reviews from being sent to server
+  - Dynamically rendered subcomponents specific to product being reviewed
 
 ### Built With
 
@@ -81,7 +99,7 @@ To get a local copy up and running follow these simple steps:
   * https://github.com/danaewalsh
   * https://www.linkedin.com/in/dana-walsh
 
-* Ricky Zhao - Product Overview
+* Ricky Zhao - Product Overview[/src/components/productDetail/README.md]
   * https://github.com/rickBucket
   * https://www.linkedin.com/in/ricky-zhao
 

@@ -55,7 +55,7 @@ To get a local copy up and running follow these simple steps:
   * https://github.com/danaewalsh
   * https://www.linkedin.com/in/dana-walsh
 
-* Ricky Zhao - Product Overview
+* Ricky Zhao - Product Overview[/src/components/productDetail/README.md]
   * https://github.com/rickBucket
   * https://www.linkedin.com/in/ricky-zhao/
 

@@ -128,7 +128,7 @@ const reviewButtonsStyle = {
   width: '100%',
   marginTop: '10px',
   gridColumn: '2/-1',
-  gridRowEnd: '4',
+  gridRowEnd: '5',
 };
 
 class RatingsApp extends React.Component {

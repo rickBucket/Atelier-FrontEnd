@@ -1,4 +1,4 @@
-# FEC-ProjectCatwalk
+# Atelier Retail Portal
 Front-end project for Atelier retail portal
 
 ## Build status
